@@ -7,4 +7,4 @@ The library is released under the open source [Modelica License 2](https://www.m
 ThermoSysPro has been mainly designed for the modeling and simulation of thermal power plants of all kinds (nuclear, fossil fuel fired, solar, biomass, combined heat and power…), but can also be used for energy systems at large such as heat networks or industrial processes.
 
 The library documentation is available at [https://thermosyspro.gitlab.io/documentation](https://thermosyspro.gitlab.io/documentation).
-More information can be found on ThermoSysPro dedicated website [https://thermosyspro.com](https://thermosyspro.com). 
+More information can be found on [ThermoSysPro website](https://thermosyspro.com). 
