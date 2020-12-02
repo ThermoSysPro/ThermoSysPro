@@ -1,0 +1,254 @@
+﻿within ThermoSysPro.InstrumentationAndControl;
+package Common
+
+
+  record Duree
+    Integer nb_jours(min=0) "Nombre de jours";
+    Integer nb_heures(min=0, max=23) "Nombre d'heures";
+    Integer nb_minutes(min=0, max=59) "Nombre de minutes";
+    Integer nb_secondes(min=0, max=59) "Nombre de secondes";
+    Integer nb_dixiemes_secondes(min=0, max=9) "Nombre de dixèmes de secondes";
+    annotation (
+      Icon(coordinateSystem(
+          preserveAspectRatio=false,
+          extent={{-100,-100},{100,100}},
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-100,50},{100,-100}},
+            lineColor={0,0,255},
+            fillColor={255,255,127},
+            fillPattern=FillPattern.Solid),
+          Text(extent={{-127,115},{127,55}}, textString=
+                                                 "%name"),
+          Line(points={{-100,-50},{100,-50}}, color={0,0,0}),
+          Line(points={{-100,0},{100,0}}, color={0,0,0}),
+          Line(points={{0,50},{0,-100}}, color={0,0,0})}),
+      Window(
+        x=0.33,
+        y=0.33,
+        width=0.6,
+        height=0.6),
+      Documentation(info="<html>
+<p><b>Copyright &copy; EDF 2002 - 2010</b></p>
+</HTML>
+<html>
+<p><b>ThermoSysPro Version 2.0</b></p>
+</HTML>
+"));
+  end Duree;
+
+  record DateEtHeure
+    Integer annee(min=2000) "Année";
+    Integer mois(min=1, max=12) "Mois dans l'année";
+    Integer jour(min=1, max=31) "Jour dans le mois";
+    Integer heure(min=0, max=23) "Heure du jour";
+    Integer minutes(min=0, max=59) "Nombre de minutes";
+    Integer secondes(min=0, max=59) "Nombre de secondes";
+    Integer nb_dixemes_secondes(min=0, max=9) "Nombre de dixèmes de secondes";
+    annotation (
+      Icon(coordinateSystem(
+          preserveAspectRatio=false,
+          extent={{-100,-100},{100,100}},
+          grid={2,2}), graphics={
+          Rectangle(
+            extent={{-100,50},{100,-100}},
+            lineColor={0,0,255},
+            fillColor={255,255,127},
+            fillPattern=FillPattern.Solid),
+          Text(extent={{-127,115},{127,55}}, textString=
+                                                 "%name"),
+          Line(points={{-100,-50},{100,-50}}, color={0,0,0}),
+          Line(points={{-100,0},{100,0}}, color={0,0,0}),
+          Line(points={{0,50},{0,-100}}, color={0,0,0})}),
+      Documentation(info="<html>
+<p><b>Copyright &copy; EDF 2002 - 2010</b></p>
+</HTML>
+<html>
+<p><b>ThermoSysPro Version 2.0</b></p>
+</HTML>
+"));
+  end DateEtHeure;
+
+  function CvtEntierVersDuree
+    input Integer t "Duree en dixiemes secondes";
+    output Duree d "Duree"        annotation (Placement(transformation(extent={
+              {-70,-70},{70,70}}, rotation=0)));
+  algorithm
+
+    d.nb_jours := integer(t/24/3600/10);
+    d.nb_heures := integer((t - d.nb_jours*24*3600*10)/3600/10);
+    d.nb_minutes := integer((t - d.nb_jours*24*3600*10 - d.nb_heures*3600*10)/
+      60/10);
+    d.nb_secondes := integer((t - d.nb_jours*24*3600*10 - d.nb_heures*3600*10
+       - d.nb_minutes*60*10)/10);
+    d.nb_dixiemes_secondes := integer(t - d.nb_jours*24*3600*10 - d.nb_heures*
+      3600*10 - d.nb_minutes*60*10 - d.nb_secondes*10);
+    annotation (
+      Icon(coordinateSystem(
+          preserveAspectRatio=false,
+          extent={{-100,-100},{100,100}},
+          grid={2,2}), graphics={
+          Ellipse(
+            extent={{-100,40},{100,-100}},
+            lineColor={255,127,0},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Text(
+            extent={{-84,-4},{84,-52}},
+            lineColor={255,127,0},
+            textString=
+                 "fonction"),
+          Text(extent={{-134,104},{142,44}}, textString=
+                                                 "%name")}),
+      Window(
+        x=0.27,
+        y=0.27,
+        width=0.6,
+        height=0.6),
+      Documentation(info="<html>
+<p><b>Copyright &copy; EDF 2002 - 2010</b></p>
+</HTML>
+<html>
+<p><b>ThermoSysPro Version 2.0</b></p>
+</HTML>
+"));
+  end CvtEntierVersDuree;
+  annotation (
+    Icon(coordinateSystem(
+        preserveAspectRatio=false,
+        extent={{-100,-100},{100,100}},
+        grid={2,2},
+        initialScale=0.1), graphics={
+        Text(
+          extent={{-102,0},{24,-26}},
+          lineColor={242,148,0},
+          textString=
+               "Thermo"),
+        Text(
+          extent={{-4,8},{68,-34}},
+          lineColor={46,170,220},
+          textString=
+               "SysPro"),
+        Polygon(
+          points={{-62,2},{-58,4},{-48,8},{-32,12},{-16,14},{6,14},{26,12},{42,
+              8},{52,2},{42,6},{28,10},{6,12},{-12,12},{-16,12},{-34,10},{-50,6},
+              {-62,2}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-44,38},{-24,38},{-26,30},{-26,22},{-24,14},{-24,12},{-46,8},
+              {-42,22},{-42,30},{-44,38}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-26,20},{-20,20},{-20,22},{-14,22},{-14,20},{-12,20},{-12,12},
+              {-26,12},{-28,12},{-26,20}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-8,14},{-8,24},{-6,24},{-6,14},{-8,14}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-8,30},{-6,26}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-8,36},{-6,32}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-8,42},{-6,38}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-8,48},{-6,44}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-4,14},{-4,26},{-2,26},{-2,14},{-4,14}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-4,32},{-2,28}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-4,38},{-2,34}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-4,44},{-2,40}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Rectangle(
+          extent={{-4,50},{-2,46}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-2,20},{8,20},{8,22},{10,22},{18,22},{18,12},{-4,14},{-2,20}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Polygon(
+          points={{-62,2},{-58,4},{-48,8},{-36,10},{-18,12},{6,12},{26,10},{42,
+              6},{52,0},{42,4},{28,8},{6,10},{-12,10},{-18,10},{-38,8},{-50,6},
+              {-62,2}},
+          lineColor={242,148,0},
+          fillColor={242,148,0},
+          fillPattern=FillPattern.Solid),
+        Line(
+          points={{22,12},{22,14},{22,16},{24,14},{20,18}},
+          color={46,170,220},
+          thickness=0.5),
+        Line(
+          points={{26,12},{26,14},{26,16},{28,14},{24,18}},
+          color={46,170,220},
+          thickness=0.5),
+        Line(
+          points={{30,10},{30,12},{30,14},{32,12},{28,16}},
+          color={46,170,220},
+          thickness=0.5),
+        Polygon(
+          points={{36,8},{36,30},{34,34},{36,38},{40,38},{40,8},{36,8}},
+          lineColor={46,170,220},
+          fillColor={46,170,220},
+          fillPattern=FillPattern.Solid),
+        Rectangle(extent={{-100,80},{80,-100}}, lineColor={0,0,255}),
+        Line(
+          points={{-100,80},{-80,100},{100,100},{100,-80},{80,-100}},
+          color={0,0,255},
+          smooth=Smooth.None),
+        Line(
+          points={{80,80},{100,100}},
+          color={0,0,255},
+          smooth=Smooth.None)}),
+    Window(
+      x=0.05,
+      y=0.26,
+      width=0.25,
+      height=0.25,
+      library=1,
+      autolayout=1),
+    Documentation(info="<html>
+<p><b>Copyright &copy; EDF 2002 - 2003</b></p>
+</HTML>
+<html>
+<p><b>Version 1.0</b></p>
+</HTML>
+"));
+
+end Common;
