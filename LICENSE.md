@@ -4,8 +4,6 @@
 
 The use of the ThermoSysPro Library is granted by EDF under the provisions of Modelica License 2.
 
-Packages Neutronics and InstrumentationAndControl.BFE are not released under open source license.
-
 ## The Modelica License 2
 
 __Preamble__. The goal of this license is that Modelica related model libraries, software, images, documents, data files etc. can be used freely in the original or a modified form, in open source and in commercial environments (as long as the license conditions below are fulfilled, in particular sections 2c) and 2d). The Original Work is provided free of charge and the use is completely at your own risk. Developers of free Modelica packages are encouraged to utilize this license for their work.
