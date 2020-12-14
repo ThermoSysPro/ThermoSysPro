@@ -1,10 +1,4 @@
-# License
-
-## The ThermoSysPro License
-
-The use of the ThermoSysPro Library is granted by EDF under the provisions of Modelica License 2.
-
-## The Modelica License 2
+# The Modelica License 2
 
 __Preamble__. The goal of this license is that Modelica related model libraries, software, images, documents, data files etc. can be used freely in the original or a modified form, in open source and in commercial environments (as long as the license conditions below are fulfilled, in particular sections 2c) and 2d). The Original Work is provided free of charge and the use is completely at your own risk. Developers of free Modelica packages are encouraged to utilize this license for their work.
 
@@ -12,7 +6,7 @@ The Modelica License applies to any Original Work that contains the following li
 
 __Licensed by the Modelica Association under the Modelica License 2__
 
-### 1. Definitions.
+## 1. Definitions.
 
 1. “License” is this Modelica License.
 
@@ -40,7 +34,7 @@ __Licensed by the Modelica Association under the Modelica License 2__
 “package <Name> ... end <Name>;“ Modelica language element.
 
 
-### 2. Grant of Copyright License.
+## 2. Grant of Copyright License.
 
 Licensor grants You a worldwide, royalty-free, non-exclusive, sublicensable license, for the duration of the copyright, to do the following:
 
@@ -58,55 +52,55 @@ For the matter of clarity, no restrictions regarding fees, either as to a copyri
 
 6. To display the Original Work publicly.
 
-### 3. Acceptance.
+## 3. Acceptance.
 
 Any use of the Original Work or a Derivative Work, or any action according to either Section 2a) to 2f) above constitutes Your acceptance of this License.
 
-### 4. Designation of Derivative Works and of Modified Works.
+## 4. Designation of Derivative Works and of Modified Works.
 
 The identifying designation of Derivative Work and of Modified Work must be different to the corresponding identifying designation of the Original Work. This means especially that the (root-level) name of a Modelica package under this license must be changed if the package is modified (besides fixing of errors, adding vendor specific Modelica annotations, using a subset of the classes of a Modelica package, or using another representation, e.g. a binary representation).
 
-### 5. Grant of Patent License.
+## 5. Grant of Patent License.
 
 Licensor grants You a worldwide, royalty-free, non-exclusive, sublicensable license, under patent claims owned by the Licensor or licensed to the Licensor by the owners of the Original Work that are embodied in the Original Work as furnished by the Licensor, for the duration of the patents, to make, use, sell, offer for sale, have made, and import the Original Work and Derivative Works under the conditions as given in Section 2. For the matter of clarity, the license regarding Derivative Works covers patent claims to the extent as they are embodied in the Original Work only.
 
-### 6. Provision of Source Code.
+## 6. Provision of Source Code.
 
 Licensor agrees to provide You with a copy of the Source Code of the Original Work but reserves the right to decide freely on the manner of how the Original Work is provided.
       For the matter of clarity, Licensor might provide only a binary representation of the Original Work. In that case, You may (a) either reproduce the Source Code from the binary representation if this is possible (e.g., by performing a copy of an encrypted Modelica package, if encryption allows the copy operation) or (b) request the Source Code from the Licensor who will provide it to You.
 
-### 7. Exclusions from License Grant.
+## 7. Exclusions from License Grant.
 
 Neither the names of Licensor, nor the names of any contributors to the Original Work, nor any of their trademarks or service marks, may be used to endorse or promote products derived from this Original Work without express prior permission of the Licensor. Except as otherwise expressly stated in this License and in particular in Sections 2 and 5, nothing in this License grants any license to Licensor’s trademarks, copyrights, patents, trade secrets or any other intellectual property, and no patent license is granted to make, use, sell, offer for sale, have made, or import embodiments of any patent claims.
       No license is granted to the trademarks of Licensor even if such trademarks are included in the Original Work, except as expressly stated in this License. Nothing in this License shall be interpreted to prohibit Licensor from licensing under terms different from this License any Original Work that Licensor otherwise would have a right to license.
 
-### 8. Attribution Rights.
+## 8. Attribution Rights.
 
 You must retain in the Source Code of the Original Work and of any Derivative Works that You create, all author, copyright, patent, or trademark notices, as well as any descriptive text identified therein as an "Attribution Notice". The same applies to the licensing notice of this License in the Original Work. For the matter of clarity, “author notice” means the notice that identifies the original author(s). 
 You must cause the Source Code for any Derivative Works that You create to carry a prominent Attribution Notice reasonably calculated to inform recipients that You have modified the Original Work. 
 In case the Original Work or Derivative Work is not provided in Source Code, the Attribution Notices shall be appropriately displayed, e.g., in the documentation of the Derivative Work.
 
-### 9. Disclaimer of Warranty.
+## 9. Disclaimer of Warranty.
 
 __The Original Work is provided under this License on an "as is" basis and without warranty, either express or implied, including, without limitation, the warranties of non-infringement, merchantability or fitness for a particular purpose. The entire risk as to the quality of the Original Work is with You.__ This disclaimer of warranty constitutes an essential part of this License. No license to the Original Work is granted by this License except under this disclaimer.
 
-### 10. Limitation of Liability.
+## 10. Limitation of Liability.
 
 Under no circumstances and under no legal theory, whether in tort (including negligence), contract, or otherwise, shall the Licensor, the owner or a licensee of the Original Work be liable to anyone for any direct, indirect, general, special, incidental, or consequential damages of any character arising as a result of this License or the use of the Original Work including, without limitation, damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses. This limitation of liability shall not apply to the extent applicable law prohibits such limitation.
 
-### 11. Termination.
+## 11. Termination.
 
 This License conditions your rights to undertake the activities listed in Section 2 and 5, including your right to create Derivative Works based upon the Original Work, and doing so without observing these terms and conditions is prohibited by copyright law and international treaty. Nothing in this License is intended to affect copyright exceptions and limitations. This License shall terminate immediately and You may no longer exercise any of the rights granted to You by this License upon your failure to observe the conditions of this license.
 
-### 12. Termination for Patent Action.
+## 12. Termination for Patent Action.
 
 This License shall terminate automatically and You may no longer exercise any of the rights granted to You by this License as of the date You commence an action, including a cross-claim or counterclaim, against Licensor, any owners of the Original Work or any licensee alleging that the Original Work infringes a patent. This termination provision shall not apply for an action alleging patent infringement through combinations of the Original Work under combination with other software or hardware.
 
-### 13. Jurisdiction.
+## 13. Jurisdiction.
 
 Any action or suit relating to this License may be brought only in the courts of a jurisdiction wherein the Licensor resides and under the laws of that jurisdiction excluding its conflict-of-law provisions. The application of the United Nations Convention on Contracts for the International Sale of Goods is expressly excluded. Any use of the Original Work outside the scope of this License or after its termination shall be subject to the requirements and penalties of copyright or patent law in the appropriate jurisdiction. This section shall survive the termination of this License.
 
-### 14. Attorneys’ Fees.
+## 14. Attorneys’ Fees.
 
 In any action to enforce the terms of this License or seeking damages relating thereto, the prevailing party shall be entitled to recover its costs and expenses, including, without limitation, reasonable attorneys' fees and costs incurred in connection with such action, including any appeal of such action. This section shall survive the termination of this License.
 
