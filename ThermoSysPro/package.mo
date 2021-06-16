@@ -128,5 +128,5 @@ annotation (
 </html>"),
   uses(Modelica(version="3.2.2")),
   version="3.2",
-  conversion(noneFromVersion="", noneFromVersion="4.0"));
+  conversion(noneFromVersion="", noneFromVersion="3.1"));
 end ThermoSysPro;
