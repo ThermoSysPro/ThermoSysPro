@@ -20,6 +20,7 @@ function derDynamicViscosity_derP_derh
 
   output Real der_mu "Dynamic Viscosity time derivative";
 
+protected
     constant Real Viscosity_c0 = 0.07551475951333098;
     constant Real Viscosity_c1 = - 0.00027760397992950003;
     constant Real Viscosity_c2 = 0.00000034888693;

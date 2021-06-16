@@ -4,7 +4,7 @@ function u2_Ph
  input Modelica.SIunits.AbsolutePressure p "Pressure";
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Modelica.SIunits.SpecificEnergy u "Specific inner energy";
- protected
+protected
   u2_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

@@ -5,6 +5,7 @@ function dd1sp_Ps
  input Modelica.SIunits.SpecificEntropy s "Specific entropy";
  output ThermoSysPro.Units.DerDensityByEntropy ddsp
     "Derivative of density wrt. specific enthalpy at constant pressure";
+protected
   d1_Ps_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

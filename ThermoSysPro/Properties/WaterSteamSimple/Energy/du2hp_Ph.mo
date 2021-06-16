@@ -5,7 +5,8 @@ function du2hp_Ph
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Real duhp(unit = "1")
     "Derivative of specific inner energy wrt. specific enthalpy at constant pressure";
-  protected u2_Ph_coef coef
+protected
+  u2_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

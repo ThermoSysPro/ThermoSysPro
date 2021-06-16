@@ -4,8 +4,8 @@ function d2u1hp_Ph
  input Modelica.SIunits.AbsolutePressure p "Pressure";
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Real d2uhp;
-
- protected u1_Ph_coef coef
+protected
+  u1_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

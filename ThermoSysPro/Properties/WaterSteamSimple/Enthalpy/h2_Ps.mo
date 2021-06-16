@@ -4,6 +4,7 @@ function h2_Ps
  input Modelica.SIunits.AbsolutePressure p "Pressure";
  input Modelica.SIunits.SpecificEntropy s "Specific entropy";
  output Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+protected
   h2_Ps_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

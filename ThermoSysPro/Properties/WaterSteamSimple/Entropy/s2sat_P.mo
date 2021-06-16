@@ -3,6 +3,7 @@ function s2sat_P "specificentropy at vapor saturation for given pressure"
 
   input Modelica.SIunits.Pressure p "pressure";
   output Modelica.SIunits.SpecificEntropy s "specific entropy";
+protected
   s2sat_P_coef1 coef1;
   s2sat_P_coef2 coef2;
 algorithm

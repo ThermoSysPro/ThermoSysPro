@@ -4,7 +4,8 @@ function dh1satp_P
 
   input Modelica.SIunits.Pressure p "pressure";
   output Real dhp(unit="m3/kg") "derivative of enthalpy";
-  protected h1sat_P_coef coef
+protected
+  h1sat_P_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
   dhp := coef.a*coef.b*abs(p)^(coef.b-1);

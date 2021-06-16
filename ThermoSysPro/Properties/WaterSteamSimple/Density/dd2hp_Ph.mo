@@ -5,7 +5,8 @@ function dd2hp_Ph
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Modelica.SIunits.DerDensityByEnthalpy ddhp
     "Derivative of density wrt. specific enthalpy at constant pressure";
- protected d2_Ph_coef coef
+protected
+  d2_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

@@ -4,7 +4,7 @@ function d2h2satpp_P
 
   input Modelica.SIunits.Pressure p "pressure";
   output Real d2hpp "derivative of enthalpy";
-  protected
+protected
   h2sat_P_coef1 coef1;
   h2sat_P_coef2 coef2;
   h2sat_P_coef2 coef3;

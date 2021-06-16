@@ -4,7 +4,7 @@ function d1_Ph
  input Modelica.SIunits.AbsolutePressure p "Pressure";
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Modelica.SIunits.Density d "Density";
- protected
+protected
   d1_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

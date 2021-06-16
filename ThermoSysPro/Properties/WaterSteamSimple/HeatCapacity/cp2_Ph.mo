@@ -5,7 +5,7 @@ function cp2_Ph
  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
  output Modelica.SIunits.SpecificHeatCapacity cp
     "Specific heat capacity at constant presure";
-  protected
+protected
   cp2_Ph_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

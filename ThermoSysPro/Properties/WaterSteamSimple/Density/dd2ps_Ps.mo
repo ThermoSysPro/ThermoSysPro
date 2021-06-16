@@ -5,6 +5,7 @@ function dd2ps_Ps
  input Modelica.SIunits.SpecificEntropy s "Specific entropy";
  output Modelica.SIunits.DerDensityByPressure ddps
     "Derivative of density wrt. pressure at constant specific entropy";
+protected
   d2_Ps_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

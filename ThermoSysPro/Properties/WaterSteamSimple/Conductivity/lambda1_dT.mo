@@ -4,6 +4,7 @@ function lambda1_dT
  input Modelica.SIunits.Density d "Density";
  input Modelica.SIunits.Temperature T "Temperature";
  output Modelica.SIunits.ThermalConductivity  lambda "Thermal conductivity";
+protected
   lambda1_dT_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

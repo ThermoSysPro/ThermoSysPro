@@ -3,7 +3,7 @@ function h2sat_P "specific enthalpy at vapor saturation for given pressure"
 
   input Modelica.SIunits.Pressure p "pressure";
   output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-  protected
+protected
   h2sat_P_coef1 coef1;
   h2sat_P_coef2 coef2;
   h2sat_P_coef3 coef3;
