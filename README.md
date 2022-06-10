@@ -10,7 +10,7 @@ ThermoSysPro has been mainly designed for the modeling and simulation of thermal
 
 ## Current release
 
-Current release of ThermoSysPro is v3.2.
+Current release of ThermoSysPro is v4.0.
 
 ## Documentation, book and website
 
