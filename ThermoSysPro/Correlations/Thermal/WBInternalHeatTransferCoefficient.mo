@@ -8,46 +8,42 @@ function WBInternalHeatTransferCoefficient
   input Real geomt[6] "Geometrical data vector";
   input Real Gm "Water mass velocity at the inlet (kg/m2s)";
   input Real Xmc "Steam average mass fraction";
-  input Modelica.SIunits.Power flux "Heat flux";
-  input Modelica.SIunits.AbsolutePressure Pmc "Water average pressure";
-  input Modelica.SIunits.Area Si "Internal exchnage surface over dz";
+  input Units.SI.Power flux "Heat flux";
+  input Units.SI.AbsolutePressure Pmc "Water average pressure";
+  input Units.SI.Area Si "Internal exchnage surface over dz";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer hi
+  output Units.SI.CoefficientOfHeatTransfer hi
     "Internal heat transfer coefficient";
 
 protected
-  constant Modelica.SIunits.AbsolutePressure Pc=221.2e5 "Critical pressure";
-  Modelica.SIunits.Density rhol "Density of the liquid phase";
-  Modelica.SIunits.Density rhov "Density of the steam phase";
-  Modelica.SIunits.DynamicViscosity mul "Dynamic viscosity of the liquid phase";
-  Modelica.SIunits.DynamicViscosity muv "Dynamic viscosity of the vapor phase";
-  Modelica.SIunits.ThermalConductivity kl
-    "Thermal conductivity of the liquid phase";
-  Modelica.SIunits.ThermalConductivity kv
-    "Thermal conductivity of the vapor phase";
-  Modelica.SIunits.SpecificHeatCapacity cpl
+  constant Units.SI.AbsolutePressure Pc=221.2e5 "Critical pressure";
+  Units.SI.Density rhol "Density of the liquid phase";
+  Units.SI.Density rhov "Density of the steam phase";
+  Units.SI.DynamicViscosity mul "Dynamic viscosity of the liquid phase";
+  Units.SI.DynamicViscosity muv "Dynamic viscosity of the vapor phase";
+  Units.SI.ThermalConductivity kl "Thermal conductivity of the liquid phase";
+  Units.SI.ThermalConductivity kv "Thermal conductivity of the vapor phase";
+  Units.SI.SpecificHeatCapacity cpl
     "Specific heat capacity of the liquid phase";
-  Modelica.SIunits.SpecificHeatCapacity cpv
-    "Specific heat capacity of the vapor phase";
-  Modelica.SIunits.SpecificEnergy lv "Phase transition change energy";
-  Modelica.SIunits.Diameter dtin "Pipes internal diameter";
+  Units.SI.SpecificHeatCapacity cpv "Specific heat capacity of the vapor phase";
+  Units.SI.SpecificEnergy lv "Phase transition change energy";
+  Units.SI.Diameter dtin "Pipes internal diameter";
   Real Xmc0 "Steam average mass fraction";
   Real Frl "Froude number for the computation of hi";
   Real Frl0 "Froude number for the computation of hi";
   Real Xtt "Martinelli number";
   Real Rel "Reynolds number for the computation of hi";
   Real Prl "Prandtl number for the computation of hi";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc
+  Units.SI.CoefficientOfHeatTransfer hc
     "Convective heat transfer coefficient for the compuation of hi";
   Real Bo "Boiling number";
   Real E "Variable for the compuation of hi";
   Real pred "Variable for the compuation of hi";
-  Modelica.SIunits.CoefficientOfHeatTransfer heb
-    "Boiling heat transfer coefficient";
+  Units.SI.CoefficientOfHeatTransfer heb "Boiling heat transfer coefficient";
   Real S "Corrective term for the removal of nucleation";
   Real Rev "Reynolds number for the computation of hi";
   Real Prv "Prandtl number for the computation of hi";
-  Modelica.SIunits.CoefficientOfHeatTransfer hvi
+  Units.SI.CoefficientOfHeatTransfer hvi
     "Heat transfer coefficient for the drying of the wall";
 
 algorithm

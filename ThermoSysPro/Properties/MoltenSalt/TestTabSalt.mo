@@ -1,28 +1,22 @@
 within ThermoSysPro.Properties.MoltenSalt;
 model TestTabSalt "TestTabSalt"
 
-  parameter Modelica.SIunits.Temperature T0=800
-    "initial temperature of the fluid";
+  parameter Units.SI.Temperature T0=800 "initial temperature of the fluid";
 
 public
-  Modelica.SIunits.Density rho1(start=1800) "Fluid density ";
+  Units.SI.Density rho1(start=1800) "Fluid density ";
 
-  Modelica.SIunits.ThermalConductivity k(start=0.3)
-    "Fluid thermal conductivity";
-  Modelica.SIunits.DynamicViscosity mu1(start=6.e-3) "Fluid dynamic viscosity ";
+  Units.SI.ThermalConductivity k(start=0.3) "Fluid thermal conductivity";
+  Units.SI.DynamicViscosity mu1(start=6.e-3) "Fluid dynamic viscosity ";
 
-  Modelica.SIunits.SpecificHeatCapacity cp(start=1571)
-    "Fluid specific heat capacity";
+  Units.SI.SpecificHeatCapacity cp(start=1571) "Fluid specific heat capacity";
 
-  Modelica.SIunits.Density rho11(start=1800) "Fluid density ";
+  Units.SI.Density rho11(start=1800) "Fluid density ";
 
-  Modelica.SIunits.ThermalConductivity k1(start=0.3)
-    "Fluid thermal conductivity";
-  Modelica.SIunits.DynamicViscosity mu11(start=6.e-3)
-    "Fluid dynamic viscosity ";
+  Units.SI.ThermalConductivity k1(start=0.3) "Fluid thermal conductivity";
+  Units.SI.DynamicViscosity mu11(start=6.e-3) "Fluid dynamic viscosity ";
 
-  Modelica.SIunits.SpecificHeatCapacity cp1(start=1571)
-    "Fluid specific heat capacity";
+  Units.SI.SpecificHeatCapacity cp1(start=1571) "Fluid specific heat capacity";
 
   Properties.MoltenSalt.ThermoProperties_T pro1
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

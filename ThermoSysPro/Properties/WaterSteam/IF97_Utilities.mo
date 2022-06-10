@@ -22,8 +22,8 @@ public
 
     function waterBasePropAnalytic_ph "intermediate property record for water"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =  0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -38,10 +38,10 @@ public
                                                                 f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEnthalpy h_liq "liquid specific enthalpy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEnthalpy h_vap "vapour specific enthalpy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEnthalpy h_liq "liquid specific enthalpy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEnthalpy h_vap "vapour specific enthalpy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd
                                                                         liq
         "phase boundary property record";
@@ -60,9 +60,9 @@ public
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd
                                                                 fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
       /// new stuff, for analytic Jacobian
       Real dxv "der of x wrt v";
@@ -82,7 +82,7 @@ public
       Real duTTv "2nd der of u wrt T at dew";
       Real vp3 "vp^3";
       Real ivp3 "1/vp3";
-      Modelica.SIunits.SpecificVolume v;
+      Units.SI.SpecificVolume v;
       // cvt is in aux record
       // Real detpht;
     algorithm
@@ -248,8 +248,8 @@ public
     function waterBasePropAnalytic_pT
       "intermediate property record for water (p and T prefered states)"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region = 0
         "if 0, do region computation, otherwise assume the region is this input";
       output ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
@@ -263,7 +263,7 @@ public
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Real vp3 "vp^3";
       Real ivp3 "1/vp3";
-      Modelica.SIunits.SpecificVolume v;
+      Units.SI.SpecificVolume v;
       Integer error "error flag for inverse iterations";
     algorithm
       aux.phase := 1;
@@ -336,8 +336,8 @@ public
     function waterBasePropAnalytic_dT
       "intermediate property record for water (d and T prefered states)"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density rho "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density rho "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -345,10 +345,10 @@ public
       output ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
     protected
-      Modelica.SIunits.SpecificEnthalpy h_liq "liquid specific enthalpy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEnthalpy h_vap "vapour specific enthalpy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEnthalpy h_liq "liquid specific enthalpy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEnthalpy h_vap "vapour specific enthalpy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs3rd
                                                             g
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
@@ -393,7 +393,7 @@ public
       // cvt is in aux record
       Real vp3 "vp^3";
       Real ivp3 "1/vp3";
-      Modelica.SIunits.SpecificVolume v;
+      Units.SI.SpecificVolume v;
     algorithm
       aux.region := if region == 0 then
         (if phase == 2 then 4 else ThermoSysPro.Properties.WaterSteam.BaseIF97.Regions.region_dT(
@@ -540,9 +540,10 @@ public
     end waterBasePropAnalytic_dT;
 
     function waterBaseProp_ps "intermediate property record for water"
+      import ThermoSysPro;
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -555,10 +556,10 @@ public
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEntropy s_liq "liquid specific entropy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEntropy s_vap "vapour specific entropy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEntropy s_liq "liquid specific entropy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEntropy s_vap "vapour specific entropy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties liq
         "phase boundary property record";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties vap
@@ -567,13 +568,13 @@ public
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs gv
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
-      Modelica.Media.Common.HelmholtzDerivs fl
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fl
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.Media.Common.HelmholtzDerivs fv
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
     algorithm
       aux.region := if region == 0 then
@@ -689,8 +690,8 @@ public
 
     function phase_ph "phase as a function of  pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       output Integer phase "true if in liquid or gas or supercritical region";
     algorithm
       phase := if ((h < hl_p(p) or h > hv_p(p)) or p >ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT)
@@ -701,8 +702,8 @@ public
 
     function phase_dT "phase as a function of  pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density rho "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density rho "density";
+      input Units.SI.Temperature T "temperature";
       output Integer phase "true if in liquid or gas or supercritical region";
     algorithm
       phase := if not ((rho < rhol_T(T) and rho > rhov_T(T)) and T <
@@ -714,11 +715,11 @@ public
     function rho_props_ph
       "density as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := aux.rho;
 
@@ -730,21 +731,21 @@ public
 
     function rho_ph "density as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := rho_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end rho_ph;
 
     function rho_ph_d "derivative function of rho_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_d "derivative of pressure";
@@ -769,8 +770,8 @@ public
 
     function rho_ph_dd "Second order derivative function of rho_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_d "derivative of pressure";
@@ -779,10 +780,8 @@ public
       input Real h_dd "second derivative of specific enthalpy";
       output Real rho_dd "Second derivative of density";
     protected
-      Modelica.SIunits.DerDensityByPressure ddph
-        "Derivative of d by p at constant h";
-      Modelica.SIunits.DerDensityByEnthalpy ddhp
-        "Derivative of d by h at constant p";
+      Units.SI.DerDensityByPressure ddph "Derivative of d by p at constant h";
+      Units.SI.DerDensityByEnthalpy ddhp "Derivative of d by h at constant p";
       Real ddph_ph "Derivative of ddph by p";
       Real ddph_hp "Derivative of ddph by h";
       Real ddhp_hp "Derivative of ddhp by h";
@@ -798,11 +797,11 @@ public
     function T_props_ph
       "temperature as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic
         properties "auxiliary record";
-      output Modelica.SIunits.Temperature T "temperature";
+      output Units.SI.Temperature T "temperature";
     algorithm
       T := properties.T;
 
@@ -813,21 +812,21 @@ public
 
     function T_ph "temperature as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Temperature T "Temperature";
+      output Units.SI.Temperature T "Temperature";
     algorithm
       T := T_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end T_ph;
 
     function T_ph_der "derivative function of T_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -849,11 +848,11 @@ public
     function s_props_ph
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic
         properties "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := properties.s;
 
@@ -865,13 +864,13 @@ public
     function s_ph
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =   0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end s_ph;
@@ -879,8 +878,8 @@ public
     function s_ph_der
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -893,11 +892,11 @@ public
     function cv_props_ph
       "specific heat capacity at constant volume as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -909,13 +908,13 @@ public
     function cv_ph
       "specific heat capacity at constant volume as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end cv_ph;
@@ -931,11 +930,11 @@ public
     function cp_props_ph
       "specific heat capacity at constant pressure as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := aux.cp;
 
@@ -948,21 +947,21 @@ public
     function cp_ph
       "specific heat capacity at constant pressure as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end cp_ph;
 
     function cp_ph_der "derivative function of cp_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -1005,11 +1004,11 @@ public
     function beta_props_ph
       "isobaric expansion coefficient as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 or aux.region == 4 then
@@ -1024,13 +1023,13 @@ public
     function beta_ph
       "isobaric expansion coefficient as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
@@ -1039,11 +1038,11 @@ public
     function kappa_props_ph
       "isothermal compressibility factor as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 or aux.region == 4 then
@@ -1057,13 +1056,13 @@ public
     function kappa_ph
       "isothermal compressibility factor as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
@@ -1072,11 +1071,11 @@ public
     function velocityOfSound_props_ph
       "speed of sound as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -1091,13 +1090,13 @@ public
 
     function velocityOfSound_ph
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_ph(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
     end velocityOfSound_ph;
@@ -1105,8 +1104,8 @@ public
     function isentropicExponent_props_ph
       "isentropic exponent as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -1123,8 +1122,8 @@ public
     function isentropicExponent_ph
       "isentropic exponent as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =   0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
@@ -1139,11 +1138,11 @@ public
 
     function ddph_props "density derivative by pressure"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.DerDensityByPressure ddph
+      output Units.SI.DerDensityByPressure ddph
         "density derivative by pressure";
     algorithm
       ddph := if aux.region == 3 then
@@ -1159,13 +1158,13 @@ public
 
     function ddph "density derivative by pressure"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.DerDensityByPressure ddph
+      output Units.SI.DerDensityByPressure ddph
         "density derivative by pressure";
     algorithm
       ddph := ddph_props(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
@@ -1173,15 +1172,15 @@ public
 
     function ddph_ph_der "derivative function of ddph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
       input Real h_der "derivative of specific enthalpy";
       output Real ddph_der "Gradient of ddph";
     protected
-      Modelica.SIunits.SpecificVolume v=1/aux.rho;
+      Units.SI.SpecificVolume v=1/aux.rho;
       Real detPH "Determinant";
       Real dht;
       Real dhd;
@@ -1242,14 +1241,14 @@ public
 
     function ddph_ph_dd "Second derivatives function of density"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       output Real ddph_ph "Second derivative of density by p at constant h";
       output Real ddph_hp "Second mixed derivative of density by p and h";
     protected
-      Modelica.SIunits.SpecificVolume v=1/aux.rho;
+      Units.SI.SpecificVolume v=1/aux.rho;
       Real detPH "Determinant";
       Real dht;
       Real dhd;
@@ -1308,11 +1307,11 @@ public
 
     function ddhp_props "density derivative by specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.DerDensityByEnthalpy ddhp
+      output Units.SI.DerDensityByEnthalpy ddhp
         "density derivative by specific enthalpy";
     algorithm
       ddhp := if aux.region == 3 then
@@ -1328,13 +1327,13 @@ public
 
     function ddhp "density derivative by specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.DerDensityByEnthalpy ddhp
+      output Units.SI.DerDensityByEnthalpy ddhp
         "density derivative by specific enthalpy";
     algorithm
       ddhp := ddhp_props(p, h, waterBasePropAnalytic_ph(p, h, phase, region));
@@ -1342,15 +1341,15 @@ public
 
     function ddhp_ph_der "derivative function of ddhp"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
       input Real h_der "derivative of specific enthalpy";
       output Real ddhp_der "Gradient of ddhp";
     protected
-      Modelica.SIunits.SpecificVolume v=1/aux.rho;
+      Units.SI.SpecificVolume v=1/aux.rho;
       Real detPH "Determinant";
       Real dht;
       Real dhd;
@@ -1403,14 +1402,14 @@ public
 
     function ddhp_ph_dd "Second derivatives of density w.r.t h and p"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       output Real ddhp_hp "Second derivative of density by h at constant p";
       output Real ddhp_ph "Second mixed derivative of density by p and h";
     protected
-      Modelica.SIunits.SpecificVolume v=1/aux.rho;
+      Units.SI.SpecificVolume v=1/aux.rho;
       Real detPH "Determinant";
       Real dht;
       Real dhd;
@@ -1463,11 +1462,11 @@ public
 
     function rho_props_pT "density as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := aux.rho;
 
@@ -1479,11 +1478,11 @@ public
 
     function rho_pT "density as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := rho_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
     end rho_pT;
@@ -1491,11 +1490,11 @@ public
     function h_props_pT
       "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := aux.h;
 
@@ -1507,19 +1506,19 @@ public
 
     function h_pT "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := h_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
     end h_pT;
 
     function h_pT_der "derivative function of h_pT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -1538,8 +1537,8 @@ public
 
     function rho_pT_der "derivative function of rho_pT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -1558,11 +1557,11 @@ public
     function s_props_pT
       "specific entropy as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := aux.s;
 
@@ -1573,11 +1572,11 @@ public
 
     function s_pT "temperature as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -1587,11 +1586,11 @@ public
       "specific heat capacity at constant volume as function of pressure and temperature"
 
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -1603,11 +1602,11 @@ public
     function cv_pT
       "specific heat capacity at constant volume as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -1616,11 +1615,11 @@ public
     function cp_props_pT
       "specific heat capacity at constant pressure as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := if aux.region == 3 then
         (aux.rho*aux.rho*aux.pd*aux.cv + aux.T*aux.pt*aux.pt)/(aux.rho*aux.rho*aux.pd) else
@@ -1635,11 +1634,11 @@ public
       "specific heat capacity at constant pressure as function of pressure and temperature"
 
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -1648,11 +1647,11 @@ public
     function beta_props_pT
       "isobaric expansion coefficient as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 then
@@ -1667,11 +1666,11 @@ public
     function beta_pT
       "isobaric expansion coefficient as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
@@ -1681,11 +1680,11 @@ public
     function kappa_props_pT
       "isothermal compressibility factor as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 then
@@ -1699,11 +1698,11 @@ public
     function kappa_pT
       "isothermal compressibility factor as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
@@ -1713,11 +1712,11 @@ public
     function velocityOfSound_props_pT
       "speed of sound as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -1731,11 +1730,11 @@ public
     function velocityOfSound_pT
       "speed of sound as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_pT(p, T, waterBasePropAnalytic_pT(p, T, region));
     end velocityOfSound_pT;
@@ -1743,8 +1742,8 @@ public
     function isentropicExponent_props_pT
       "isentropic exponent as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -1760,8 +1759,8 @@ public
     function isentropicExponent_pT
       "isentropic exponent as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
       output Real gamma "isentropic exponent";
@@ -1775,11 +1774,11 @@ public
     function h_props_dT
       "specific enthalpy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := aux.h;
 
@@ -1791,21 +1790,21 @@ public
 
     function h_dT "specific enthalpy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := h_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end h_dT;
 
     function h_dT_der "derivative function of h_dT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real d_der "derivative of density";
@@ -1826,11 +1825,11 @@ public
 
     function p_props_dT "pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Pressure p "pressure";
+      output Units.SI.Pressure p "pressure";
     algorithm
       p := aux.p;
 
@@ -1842,21 +1841,21 @@ public
 
     function p_dT "pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Pressure p "pressure";
+      output Units.SI.Pressure p "pressure";
     algorithm
       p := p_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end p_dT;
 
     function p_dT_der "derivative function of p_dT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       input Real d_der "derivative of density";
@@ -1877,11 +1876,11 @@ public
     function s_props_dT
       "specific entropy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := aux.s;
 
@@ -1892,13 +1891,13 @@ public
 
     function s_dT "temperature as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end s_dT;
@@ -1906,11 +1905,11 @@ public
     function cv_props_dT
       "specific heat capacity at constant volume as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -1922,13 +1921,13 @@ public
     function cv_dT
       "specific heat capacity at constant volume as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end cv_dT;
@@ -1936,11 +1935,11 @@ public
     function cp_props_dT
       "specific heat capacity at constant pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := aux.cp;
 
@@ -1952,13 +1951,13 @@ public
     function cp_dT
       "specific heat capacity at constant pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end cp_dT;
@@ -1966,11 +1965,11 @@ public
     function beta_props_dT
       "isobaric expansion coefficient as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 or aux.region == 4 then
@@ -1985,13 +1984,13 @@ public
     function beta_dT
       "isobaric expansion coefficient as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
@@ -2000,11 +1999,11 @@ public
     function kappa_props_dT
       "isothermal compressibility factor as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 or aux.region == 4 then
@@ -2018,13 +2017,13 @@ public
     function kappa_dT
       "isothermal compressibility factor as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
@@ -2033,11 +2032,11 @@ public
     function velocityOfSound_props_dT
       "speed of sound as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -2053,13 +2052,13 @@ public
     function velocityOfSound_dT
       "speed of sound as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_dT(d, T, waterBasePropAnalytic_dT(d, T, phase, region));
     end velocityOfSound_dT;
@@ -2067,8 +2066,8 @@ public
     function isentropicExponent_props_dT
       "isentropic exponent as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97TwoPhaseAnalytic aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -2085,8 +2084,8 @@ public
     function isentropicExponent_dT
       "isentropic exponent as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
@@ -2152,24 +2151,24 @@ public
     function isentropicEnthalpy
       "isentropic specific enthalpy from p,s (preferably use dynamicIsentropicEnthalpy in dynamic simulation!)"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := isentropicEnthalpy_props(p, s, waterBaseProp_ps(p, s, phase, region));
     end isentropicEnthalpy;
 
     function isentropicEnthalpy_props
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "isentropic enthalpay";
+      output Units.SI.SpecificEnthalpy h "isentropic enthalpay";
     algorithm
       h := aux.h;
 
@@ -2181,8 +2180,8 @@ public
     function isentropicEnthalpy_der
       "derivative of isentropic specific enthalpy from p,s"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "pressure derivative";
@@ -2195,15 +2194,15 @@ public
     function dynamicIsentropicEnthalpy
       "isentropic specific enthalpy from p,s and good guesses of d and T"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
-      input Modelica.SIunits.Density dguess
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
+      input Units.SI.Density dguess
         "good guess density, e.g. from adjacent volume";
-      input Modelica.SIunits.Temperature Tguess
+      input Units.SI.Temperature Tguess
         "good guess temperature, e.g. from adjacent volume";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
      h := ThermoSysPro.Properties.WaterSteam.BaseIF97.Isentropic.water_hisentropic_dyn(
                                                     p,s,dguess,Tguess,0);
@@ -2338,9 +2337,10 @@ public
         ThermoSysPro.Properties.WaterSteam.BaseIF97.IterationData;
 
     function waterBaseProp_ph "intermediate property record for water"
+      import ThermoSysPro;
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =  0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -2353,10 +2353,10 @@ public
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEnthalpy h_liq "liquid specific enthalpy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEnthalpy h_vap "vapour specific enthalpy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEnthalpy h_liq "liquid specific enthalpy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEnthalpy h_vap "vapour specific enthalpy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties liq
         "phase boundary property record";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties vap
@@ -2365,13 +2365,13 @@ public
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs gv
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
-      Modelica.Media.Common.HelmholtzDerivs fl
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fl
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.Media.Common.HelmholtzDerivs fv
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
     algorithm
       aux.region := if region == 0 then
@@ -2485,9 +2485,10 @@ public
     end waterBaseProp_ph;
 
     function waterBaseProp_ps "intermediate property record for water"
+      import ThermoSysPro;
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -2500,10 +2501,10 @@ public
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEntropy s_liq "liquid specific entropy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEntropy s_vap "vapour specific entropy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEntropy s_liq "liquid specific entropy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEntropy s_vap "vapour specific entropy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties liq
         "phase boundary property record";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties vap
@@ -2512,13 +2513,13 @@ public
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs gv
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
-      Modelica.Media.Common.HelmholtzDerivs fl
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fl
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.Media.Common.HelmholtzDerivs fv
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
     algorithm
       aux.region := if region == 0 then
@@ -2632,11 +2633,11 @@ public
     function rho_props_ps
       "density as function of pressure and specific entropy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase
         properties "auxiliary record";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := properties.rho;
 
@@ -2647,13 +2648,13 @@ public
 
     function rho_ps "density as function of pressure and specific entropy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := rho_props_ps(p, s, waterBaseProp_ps(p, s, phase, region));
     end rho_ps;
@@ -2661,11 +2662,11 @@ public
     function T_props_ps
       "temperature as function of pressure and specific entropy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase
         properties "auxiliary record";
-      output Modelica.SIunits.Temperature T "temperature";
+      output Units.SI.Temperature T "temperature";
     algorithm
       T := properties.T;
 
@@ -2675,13 +2676,13 @@ public
 
     function T_ps "temperature as function of pressure and specific entropy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Temperature T "Temperature";
+      output Units.SI.Temperature T "Temperature";
     algorithm
       T := T_props_ps(p, s, waterBaseProp_ps(p, s, phase, region));
     end T_ps;
@@ -2689,11 +2690,11 @@ public
     function h_props_ps
       "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := aux.h;
 
@@ -2704,21 +2705,21 @@ public
 
     function h_ps "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := h_props_ps(p, s, waterBaseProp_ps(p, s, phase, region));
     end h_ps;
 
     function phase_ps "phase as a function of  pressure and specific entropy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       output Integer phase "true if in liquid or gas or supercritical region";
     algorithm
       phase := if ((s < sl_p(p) or s > sv_p(p)) or p >ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT)
@@ -2729,8 +2730,8 @@ public
 
     function phase_ph "phase as a function of  pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       output Integer phase "true if in liquid or gas or supercritical region";
     algorithm
       phase := if ((h < hl_p(p) or h > hv_p(p)) or p >ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT)
@@ -2741,8 +2742,8 @@ public
 
     function phase_dT "phase as a function of  pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density rho "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density rho "density";
+      input Units.SI.Temperature T "temperature";
       output Integer phase "true if in liquid or gas or supercritical region";
     algorithm
       phase := if not ((rho < rhol_T(T) and rho > rhov_T(T)) and T <
@@ -2754,11 +2755,11 @@ public
     function rho_props_ph
       "density as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase
         properties "auxiliary record";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := properties.rho;
 
@@ -2770,21 +2771,21 @@ public
 
     function rho_ph "density as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := rho_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end rho_ph;
 
     function rho_ph_der "derivative function of rho_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -2808,11 +2809,11 @@ public
     function T_props_ph
       "temperature as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase
         properties "auxiliary record";
-      output Modelica.SIunits.Temperature T "temperature";
+      output Units.SI.Temperature T "temperature";
     algorithm
       T := properties.T;
 
@@ -2823,21 +2824,21 @@ public
 
     function T_ph "temperature as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Temperature T "Temperature";
+      output Units.SI.Temperature T "Temperature";
     algorithm
       T := T_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end T_ph;
 
     function T_ph_der "derivative function of T_ph"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -2859,11 +2860,11 @@ public
     function s_props_ph
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase
         properties "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := properties.s;
 
@@ -2875,13 +2876,13 @@ public
     function s_ph
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =   0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end s_ph;
@@ -2889,8 +2890,8 @@ public
     function s_ph_der
       "specific entropy as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -2903,11 +2904,11 @@ public
     function cv_props_ph
       "specific heat capacity at constant volume as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -2919,13 +2920,13 @@ public
     function cv_ph
       "specific heat capacity at constant volume as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end cv_ph;
@@ -2941,11 +2942,11 @@ public
     function cp_props_ph
       "specific heat capacity at constant pressure as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := aux.cp;
 
@@ -2957,13 +2958,13 @@ public
     function cp_ph
       "specific heat capacity at constant pressure as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end cp_ph;
@@ -2971,11 +2972,11 @@ public
     function beta_props_ph
       "isobaric expansion coefficient as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 or aux.region == 4 then
@@ -2990,13 +2991,13 @@ public
     function beta_ph
       "isobaric expansion coefficient as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
@@ -3005,11 +3006,11 @@ public
     function kappa_props_ph
       "isothermal compressibility factor as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 or aux.region == 4 then
@@ -3023,13 +3024,13 @@ public
     function kappa_ph
       "isothermal compressibility factor as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
@@ -3038,11 +3039,11 @@ public
     function velocityOfSound_props_ph
       "speed of sound as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -3057,13 +3058,13 @@ public
 
     function velocityOfSound_ph
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_ph(p, h, waterBaseProp_ph(p, h, phase, region));
     end velocityOfSound_ph;
@@ -3071,8 +3072,8 @@ public
     function isentropicExponent_props_ph
       "isentropic exponent as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -3089,8 +3090,8 @@ public
     function isentropicExponent_ph
       "isentropic exponent as function of pressure and specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase =   0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
@@ -3105,11 +3106,11 @@ public
 
     function ddph_props "density derivative by pressure"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.DerDensityByPressure ddph
+      output Units.SI.DerDensityByPressure ddph
         "density derivative by pressure";
     algorithm
       ddph := if aux.region == 3 then
@@ -3124,13 +3125,13 @@ public
 
     function ddph "density derivative by pressure"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.DerDensityByPressure ddph
+      output Units.SI.DerDensityByPressure ddph
         "density derivative by pressure";
     algorithm
       ddph := ddph_props(p, h, waterBaseProp_ph(p, h, phase, region));
@@ -3138,11 +3139,11 @@ public
 
     function ddhp_props "density derivative by specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.DerDensityByEnthalpy ddhp
+      output Units.SI.DerDensityByEnthalpy ddhp
         "density derivative by specific enthalpy";
     algorithm
       ddhp := if aux.region == 3 then
@@ -3157,13 +3158,13 @@ public
 
     function ddhp "density derivative by specific enthalpy"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEnthalpy h "specific enthalpy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.DerDensityByEnthalpy ddhp
+      output Units.SI.DerDensityByEnthalpy ddhp
         "density derivative by specific enthalpy";
     algorithm
       ddhp := ddhp_props(p, h, waterBaseProp_ph(p, h, phase, region));
@@ -3172,8 +3173,8 @@ public
     function waterBaseProp_pT
       "intermediate property record for water (p and T prefered states)"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region = 0
         "if 0, do region computation, otherwise assume the region is this input";
       output ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
@@ -3242,11 +3243,11 @@ public
 
     function rho_props_pT "density as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := aux.rho;
 
@@ -3258,11 +3259,11 @@ public
 
     function rho_pT "density as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Density rho "density";
+      output Units.SI.Density rho "density";
     algorithm
       rho := rho_props_pT(p, T, waterBaseProp_pT(p, T, region));
     end rho_pT;
@@ -3270,11 +3271,11 @@ public
     function h_props_pT
       "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := aux.h;
 
@@ -3286,19 +3287,19 @@ public
 
     function h_pT "specific enthalpy as function or pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := h_props_pT(p, T, waterBaseProp_pT(p, T, region));
     end h_pT;
 
     function h_pT_der "derivative function of h_pT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -3317,8 +3318,8 @@ public
 
     function rho_pT_der "derivative function of rho_pT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "derivative of pressure";
@@ -3337,11 +3338,11 @@ public
     function s_props_pT
       "specific entropy as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := aux.s;
 
@@ -3352,11 +3353,11 @@ public
 
     function s_pT "temperature as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_pT(p, T, waterBaseProp_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -3366,11 +3367,11 @@ public
       "specific heat capacity at constant volume as function of pressure and temperature"
 
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -3382,11 +3383,11 @@ public
     function cv_pT
       "specific heat capacity at constant volume as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_pT(p, T, waterBaseProp_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -3395,11 +3396,11 @@ public
     function cp_props_pT
       "specific heat capacity at constant pressure as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := if aux.region == 3 then
         (aux.rho*aux.rho*aux.pd*aux.cv + aux.T*aux.pt*aux.pt)/(aux.rho*aux.rho*aux.pd) else
@@ -3414,11 +3415,11 @@ public
       "specific heat capacity at constant pressure as function of pressure and temperature"
 
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_pT(p, T, waterBaseProp_pT(p, T, region));
       annotation (InlineNoEvent=false);
@@ -3427,11 +3428,11 @@ public
     function beta_props_pT
       "isobaric expansion coefficient as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 then
@@ -3446,11 +3447,11 @@ public
     function beta_pT
       "isobaric expansion coefficient as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_pT(p, T, waterBaseProp_pT(p, T, region));
@@ -3460,11 +3461,11 @@ public
     function kappa_props_pT
       "isothermal compressibility factor as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 then
@@ -3478,11 +3479,11 @@ public
     function kappa_pT
       "isothermal compressibility factor as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_pT(p, T, waterBaseProp_pT(p, T, region));
@@ -3492,11 +3493,11 @@ public
     function velocityOfSound_props_pT
       "speed of sound as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -3510,11 +3511,11 @@ public
     function velocityOfSound_pT
       "speed of sound as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_pT(p, T, waterBaseProp_pT(p, T, region));
     end velocityOfSound_pT;
@@ -3522,8 +3523,8 @@ public
     function isentropicExponent_props_pT
       "isentropic exponent as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -3539,8 +3540,8 @@ public
     function isentropicExponent_pT
       "isentropic exponent as function of pressure and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.Temperature T "temperature";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
       output Real gamma "isentropic exponent";
@@ -3553,9 +3554,10 @@ public
 
     function waterBaseProp_dT
       "intermediate property record for water (d and T prefered states)"
+      import ThermoSysPro;
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density rho "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density rho "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       input Integer region = 0
@@ -3563,25 +3565,25 @@ public
       output ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
     protected
-      Modelica.SIunits.SpecificEnthalpy h_liq "liquid specific enthalpy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEnthalpy h_vap "vapour specific enthalpy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEnthalpy h_liq "liquid specific enthalpy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEnthalpy h_vap "vapour specific enthalpy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs g
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
-      Modelica.Media.Common.PhaseBoundaryProperties liq
+      ThermoSysPro.Properties.Common.PhaseBoundaryProperties liq
         "phase boundary property record";
-      Modelica.Media.Common.PhaseBoundaryProperties vap
+      ThermoSysPro.Properties.Common.PhaseBoundaryProperties vap
         "phase boundary property record";
-      Modelica.Media.Common.GibbsDerivs gl
+      ThermoSysPro.Properties.Common.GibbsDerivs gl
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
-      Modelica.Media.Common.GibbsDerivs gv
+      ThermoSysPro.Properties.Common.GibbsDerivs gv
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
-      Modelica.Media.Common.HelmholtzDerivs fl
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fl
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.Media.Common.HelmholtzDerivs fv
+      ThermoSysPro.Properties.Common.HelmholtzDerivs fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
       Integer error "error flag for inverse iterations";
     algorithm
@@ -3693,11 +3695,11 @@ public
     function h_props_dT
       "specific enthalpy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := aux.h;
 
@@ -3709,21 +3711,21 @@ public
 
     function h_dT "specific enthalpy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := h_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end h_dT;
 
     function h_dT_der "derivative function of h_dT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real d_der "derivative of density";
@@ -3744,11 +3746,11 @@ public
 
     function p_props_dT "pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.Pressure p "pressure";
+      output Units.SI.Pressure p "pressure";
     algorithm
       p := aux.p;
 
@@ -3760,21 +3762,21 @@ public
 
     function p_dT "pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Pressure p "pressure";
+      output Units.SI.Pressure p "pressure";
     algorithm
       p := p_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end p_dT;
 
     function p_dT_der "derivative function of p_dT"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real d_der "derivative of density";
@@ -3795,11 +3797,11 @@ public
     function s_props_dT
       "specific entropy as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := aux.s;
 
@@ -3810,13 +3812,13 @@ public
 
     function s_dT "temperature as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "Temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEntropy s "specific entropy";
+      output Units.SI.SpecificEntropy s "specific entropy";
     algorithm
       s := s_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end s_dT;
@@ -3824,11 +3826,11 @@ public
     function cv_props_dT
       "specific heat capacity at constant volume as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := aux.cv;
 
@@ -3840,13 +3842,13 @@ public
     function cv_dT
       "specific heat capacity at constant volume as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     algorithm
       cv := cv_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end cv_dT;
@@ -3854,11 +3856,11 @@ public
     function cp_props_dT
       "specific heat capacity at constant pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := aux.cp;
 
@@ -3870,13 +3872,13 @@ public
     function cp_dT
       "specific heat capacity at constant pressure as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      output Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     algorithm
       cp := cp_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end cp_dT;
@@ -3884,11 +3886,11 @@ public
     function beta_props_dT
       "isobaric expansion coefficient as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := if aux.region == 3 or aux.region == 4 then
@@ -3903,13 +3905,13 @@ public
     function beta_dT
       "isobaric expansion coefficient as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.RelativePressureCoefficient beta
+      output Units.SI.RelativePressureCoefficient beta
         "isobaric expansion coefficient";
     algorithm
       beta := beta_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
@@ -3918,11 +3920,11 @@ public
     function kappa_props_dT
       "isothermal compressibility factor as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := if aux.region == 3 or aux.region == 4 then
@@ -3936,13 +3938,13 @@ public
     function kappa_dT
       "isothermal compressibility factor as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.IsothermalCompressibility kappa
+      output Units.SI.IsothermalCompressibility kappa
         "isothermal compressibility factor";
     algorithm
       kappa := kappa_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
@@ -3951,11 +3953,11 @@ public
     function velocityOfSound_props_dT
       "speed of sound as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       // dp/drho at constant s
       v_sound := if aux.region == 3 then sqrt((aux.pd*aux.rho*aux.rho*aux.cv + aux.pt*aux.pt*aux.T)/(aux.rho*aux.rho*aux.cv)) else
@@ -3971,13 +3973,13 @@ public
     function velocityOfSound_dT
       "speed of sound as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.Velocity v_sound "speed of sound";
+      output Units.SI.Velocity v_sound "speed of sound";
     algorithm
       v_sound := velocityOfSound_props_dT(d, T, waterBaseProp_dT(d, T, phase, region));
     end velocityOfSound_dT;
@@ -3985,8 +3987,8 @@ public
     function isentropicExponent_props_dT
       "isentropic exponent as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       output Real gamma "isentropic exponent";
@@ -4003,8 +4005,8 @@ public
     function isentropicExponent_dT
       "isentropic exponent as function of density and temperature"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Density d "density";
-      input Modelica.SIunits.Temperature T "temperature";
+      input Units.SI.Density d "density";
+      input Units.SI.Temperature T "temperature";
       input Integer phase =  0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region =  0
@@ -4070,24 +4072,24 @@ public
     function isentropicEnthalpy
       "isentropic specific enthalpy from p,s (preferably use dynamicIsentropicEnthalpy in dynamic simulation!)"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
       input Integer region = 0
         "if 0, region is unknown, otherwise known and this input";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
       h := isentropicEnthalpy_props(p, s, waterBaseProp_ps(p, s, phase, region));
     end isentropicEnthalpy;
 
     function isentropicEnthalpy_props
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
-      output Modelica.SIunits.SpecificEnthalpy h "isentropic enthalpay";
+      output Units.SI.SpecificEnthalpy h "isentropic enthalpay";
     algorithm
       h := aux.h;
 
@@ -4099,8 +4101,8 @@ public
     function isentropicEnthalpy_der
       "derivative of isentropic specific enthalpy from p,s"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
       input ThermoSysPro.Properties.WaterSteam.Common.IF97BaseTwoPhase aux
         "auxiliary record";
       input Real p_der "pressure derivative";
@@ -4113,15 +4115,15 @@ public
     function dynamicIsentropicEnthalpy
       "isentropic specific enthalpy from p,s and good guesses of d and T"
       extends Modelica.Icons.Function;
-      input Modelica.SIunits.Pressure p "pressure";
-      input Modelica.SIunits.SpecificEntropy s "specific entropy";
-      input Modelica.SIunits.Density dguess
+      input Units.SI.Pressure p "pressure";
+      input Units.SI.SpecificEntropy s "specific entropy";
+      input Units.SI.Density dguess
         "good guess density, e.g. from adjacent volume";
-      input Modelica.SIunits.Temperature Tguess
+      input Units.SI.Temperature Tguess
         "good guess temperature, e.g. from adjacent volume";
       input Integer phase = 0
         "2 for two-phase, 1 for one-phase, 0 if not known";
-      output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+      output Units.SI.SpecificEnthalpy h "specific enthalpy";
     algorithm
      h := ThermoSysPro.Properties.WaterSteam.BaseIF97.Isentropic.water_hisentropic_dyn(
                                                     p,s,dguess,Tguess,0);

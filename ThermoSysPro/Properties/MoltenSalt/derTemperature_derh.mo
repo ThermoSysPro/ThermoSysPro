@@ -2,7 +2,7 @@ within ThermoSysPro.Properties.MoltenSalt;
 function derTemperature_derh
   "der(Temperature) computation for Salt (input der(h))"
 
-  input Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
+  input Units.SI.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
   input Real der_h "Specific Enthalpy time derivative (J/(kg*s))";
   output Real der_T "Fluid temperature time derivative (K/s)";
 

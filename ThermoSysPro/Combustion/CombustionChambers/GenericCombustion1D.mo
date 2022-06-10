@@ -3,26 +3,26 @@ model GenericCombustion1D "Generic combustion chamber 1D"
 
   parameter Integer NCEL = 7;
 
-  parameter Modelica.SIunits.Area Acham=1
+  parameter Units.SI.Area Acham=1
     "Average cross-sectional area of the combusition chamber";
   //parameter Modelica.SIunits.Area SM[NCEL] = {639.92,198.58,466.48,466.48,466.48,523.79,523.79}
-  parameter Modelica.SIunits.Area SM[NCEL] = fill(100, NCEL)
+  parameter Units.SI.Area SM[NCEL]=fill(100, NCEL)
     "Heat exchange area for the node i = projetee )";
   parameter Real RSURF[NCEL] = cat(1,{1.321},fill(1.409,NCEL - 1))
     "Reel surface/projetee surface ";
-  parameter ThermoSysPro.Units.PressureLossCoefficient kcham=0.01
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient kcham=0.01
     "Pressure loss coefficient in the combustion chamber";
   parameter Real Xpth=0.00
     "Thermal loss fraction in the body of the combustion chamber (0-1 over Q.HHV)";
   parameter Real ImbCV=0 "Unburnt particles ratio in the volatile ashes (0-1)";
   parameter Real ImbBF=0
     "Unburnt particle ratio in the low furnace ashes (0-1)";
-  parameter Modelica.SIunits.SpecificHeatCapacity Cpcd=500
+  parameter Units.SI.SpecificHeatCapacity Cpcd=500
     "Ashes specific heat capacity";
-  parameter Modelica.SIunits.Temperature Tbf=500
+  parameter Units.SI.Temperature Tbf=500
     "Ashes temperature at the outlet of the low furnace";
   parameter Real Xbf=0.1 "Ashes ration in the low furnace (0-1)";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kec= 50
+  parameter Units.SI.CoefficientOfHeatTransfer Kec=50
     "Convection and conduction(fouling) heat exchange coefficient";
   parameter Real EPSPAR = 0.6 "Combustion chamber walls emissivity";
   //parameter Real hrCorr=1.00 "Corrective term for ratiation heat exchange";
@@ -33,7 +33,7 @@ protected
   constant Real amH=1.00797 "Hydrogen atomic mass";
   constant Real amO=15.9994 "Oxygen atomic mass";
   constant Real amS=32.064 "Sulfur atomic mass";
-  constant Modelica.SIunits.SpecificEnergy HHVcarbone=32.8e6
+  constant Units.SI.SpecificEnergy HHVcarbone=32.8e6
     "Unburnt carbon higher heating value, CO2 = 3.2791664E+07";
   constant Real RAD = 0.017453293 "pi/180";
   Real amCO2 "CO2 molecular mass";
@@ -41,82 +41,76 @@ protected
   Real amSO2 "SO2 molecular mass";
 
 public
-  Modelica.SIunits.MassFlowRate Qea(start=400) "Air mass flow rate";
-  Modelica.SIunits.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
-  Modelica.SIunits.Temperature Tea(start=600) "Air temperature at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hea(start=50e3)
+  Units.SI.MassFlowRate Qea(start=400) "Air mass flow rate";
+  Units.SI.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
+  Units.SI.Temperature Tea(start=600) "Air temperature at the inlet";
+  Units.SI.SpecificEnthalpy Hea(start=50e3)
     "Air specific enthalpy at the inlet";
   Real XeaCO2(start=0) "CO2 mass fraction at the air inlet";
   Real XeaH2O(start=0.1) "H2O mass fraction at the air inlet";
   Real XeaO2(start=0.2) "O2 mass fraction at the air inlet";
   Real XeaSO2(start=0) "SO2 mass fraction at the air inlet";
-  Modelica.SIunits.MassFlowRate Qfuel(start=5) "Fuel mass flow rate";
-  Modelica.SIunits.Temperature Tfuel(start=300) "Fuel temperature";
-  Modelica.SIunits.SpecificEnthalpy Hfuel(start=10e3) "Fuel specific enthalpy";
+  Units.SI.MassFlowRate Qfuel(start=5) "Fuel mass flow rate";
+  Units.SI.Temperature Tfuel(start=300) "Fuel temperature";
+  Units.SI.SpecificEnthalpy Hfuel(start=10e3) "Fuel specific enthalpy";
   Real XCfuel(start=0.8) "C mass fraction in the fuel /pur";
   Real XHfuel(start=0.2) "H mass fraction in the fuel /pur";
   Real XOfuel(start=0) "O mass fraction in the fuel /pur";
   Real XSfuel(start=0) "S mass fraction in the fuel /pur";
   Real Xwfuel(start=0) "H2O mass fraction in the fuel";
   Real XCDfuel(start=0) "Ashes mass fraction in the fuel /Dryer";
-  Modelica.SIunits.SpecificEnergy LHVfuel_D(start=5e7)
+  Units.SI.SpecificEnergy LHVfuel_D(start=5e7)
     "Fuel lower heating value /Dryer";
-  Modelica.SIunits.SpecificEnergy LHVfuel(start=5e7)
-    "Fuel lower heating value /Brut";
-  Modelica.SIunits.SpecificHeatCapacity Cpfuel(start=1000)
+  Units.SI.SpecificEnergy LHVfuel(start=5e7) "Fuel lower heating value /Brut";
+  Units.SI.SpecificHeatCapacity Cpfuel(start=1000)
     "Fuel specific heat capacity";
-  Modelica.SIunits.SpecificEnergy HHVfuel "Fuel higher heating value";
-  Modelica.SIunits.MassFlowRate Qews(start=1) "Water/steam mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy Hews(start=10e3)
+  Units.SI.SpecificEnergy HHVfuel "Fuel higher heating value";
+  Units.SI.MassFlowRate Qews(start=1) "Water/steam mass flow rate";
+  Units.SI.SpecificEnthalpy Hews(start=10e3)
     "Water/steam specific enthalpy at the inlet";
-  Modelica.SIunits.MassFlowRate Qsf(start=400) "Flue gases mass flow rate";
-  Modelica.SIunits.AbsolutePressure Psf(start=12e5)
-    "Flue gases pressure at the outlet";
-  Modelica.SIunits.Temperature Tsf(start=1500)
-    "Flue gases temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hsf(start=50e4)
+  Units.SI.MassFlowRate Qsf(start=400) "Flue gases mass flow rate";
+  Units.SI.AbsolutePressure Psf(start=12e5) "Flue gases pressure at the outlet";
+  Units.SI.Temperature Tsf(start=1500) "Flue gases temperature at the outlet";
+  Units.SI.SpecificEnthalpy Hsf(start=50e4)
     "Flue gases specific enthalpy at the outlet";
   Real XsfCO2(start=0.5) "CO2 mass fraction in the flue gases";
   Real XsfH2O(start=0.1) "H2O mass fraction in the flue gases";
   Real XsfO2(start=0) "O2 mass fraction in the flue gases";
   Real XsfSO2(start=0) "SO2 mass fraction in the flue gases";
   //////////////////////Modelica.SIunits.Power Wfuel(start=5e8) "LHV power available in the fuel";
-  Modelica.SIunits.Power Wpth(start=1e6) "Thermal losses power";
+  Units.SI.Power Wpth(start=1e6) "Thermal losses power";
   Real exc(start=1) "Combustion air ratio";
-  Modelica.SIunits.MassFlowRate Qcv(start=1) "Volatile ashes mass flow rate";
-  Modelica.SIunits.MassFlowRate Qbf(start=1) "Low furnace ashes mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy Hcv(start=10e3)
+  Units.SI.MassFlowRate Qcv(start=1) "Volatile ashes mass flow rate";
+  Units.SI.MassFlowRate Qbf(start=1) "Low furnace ashes mass flow rate";
+  Units.SI.SpecificEnthalpy Hcv(start=10e3)
     "Volatile ashes specific enthalpy at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hbf(start=10e3)
+  Units.SI.SpecificEnthalpy Hbf(start=10e3)
     "Low furnace ashes specific enthalpy at the outlet";
-  ThermoSysPro.Units.DifferentialPressure deltaPccb(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference deltaPccb(start=1e3)
     "Pressure loss in the combustion chamber";
-  Modelica.SIunits.SpecificEnthalpy Hrair(start=10e3)
-    "Air reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrws(start=10e4)
+  Units.SI.SpecificEnthalpy Hrair(start=10e3) "Air reference specific enthalpy";
+  Units.SI.SpecificEnthalpy Hrws(start=10e4)
     "Water/steam reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrfuel(start=10e3)
+  Units.SI.SpecificEnthalpy Hrfuel(start=10e3)
     "Fuel reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrcd(start=10e3)
+  Units.SI.SpecificEnthalpy Hrcd(start=10e3)
     "Ashes reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrfg(start=10e3)
+  Units.SI.SpecificEnthalpy Hrfg(start=10e3)
     "Flue gases reference specific enthalpy";
   Real Vea(start=0.001) "Air volume mass (m3/kg)";
   Real Vsf(start=0.001) "Flue gases volume mass (m3/kg)";
-  Modelica.SIunits.Density rhoea(start=0.001) "Air density at the inlet";
-  Modelica.SIunits.Density rhosf(start=0.001)
-    "Flue gases density at the outlet";
-  Modelica.SIunits.MassFlowRate Qm(start=400)
+  Units.SI.Density rhoea(start=0.001) "Air density at the inlet";
+  Units.SI.Density rhosf(start=0.001) "Flue gases density at the outlet";
+  Units.SI.MassFlowRate Qm(start=400)
     "Average mlass flow rate in the combusiton chamber";
   Real Vccbm(start=0.001) "Average volume mass in the combustion chamber";
-  Modelica.SIunits.Velocity v(start=100)
+  Units.SI.Velocity v(start=100)
     "Flue gases reference velocity in the combusiton chamber";
-  Modelica.SIunits.Temperature Tpi[NCEL](start=fill(400, NCEL))
+  Units.SI.Temperature Tpi[NCEL](start=fill(400, NCEL))
     "Wall temperature for node i";
-  Modelica.SIunits.Power Ws[NCEL]( start=fill(10e6,NCEL))
+  Units.SI.Power Ws[NCEL](start=fill(10e6, NCEL))
     "Power delivered to each segment";
-  Modelica.SIunits.Power Wst( start = 50.e6)
-    "Total power exchanged on all segment";
+  Units.SI.Power Wst(start=50.e6) "Total power exchanged on all segment";
 
 public
   ThermoSysPro.Combustion.Connectors.FuelInlet Cfuel "Fuel inlet"

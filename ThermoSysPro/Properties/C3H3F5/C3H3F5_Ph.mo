@@ -1,21 +1,21 @@
 within ThermoSysPro.Properties.C3H3F5;
 function C3H3F5_Ph "11133-C3H3F5 physical properties as a function of P and h"
-  input Modelica.SIunits.AbsolutePressure P "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure P "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
 protected
-  Modelica.SIunits.Temperature Tsat "Saturation temperature";
-  Modelica.SIunits.AbsolutePressure Psc "Critical pressure";
-  Modelica.SIunits.AbsolutePressure Pcalc
+  Units.SI.Temperature Tsat "Saturation temperature";
+  Units.SI.AbsolutePressure Psc "Critical pressure";
+  Units.SI.AbsolutePressure Pcalc
     "Variable for the computation of the pressure";
-  Modelica.SIunits.SpecificEnthalpy hcalc
+  Units.SI.SpecificEnthalpy hcalc
     "Variable for the computation of the specific  enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hsatL "Boiling specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hsatV "Condensation specific enthalpy";
-  Modelica.SIunits.SpecificEntropy ssatL "Boiling specific entropy";
-  Modelica.SIunits.SpecificEntropy ssatV "Condensation specific entropy";
-  Modelica.SIunits.Density rhoSatL "Boiling density";
-  Modelica.SIunits.Density rhoSatV "Condensation density";
+  Units.SI.SpecificEnthalpy hsatL "Boiling specific enthalpy";
+  Units.SI.SpecificEnthalpy hsatV "Condensation specific enthalpy";
+  Units.SI.SpecificEntropy ssatL "Boiling specific entropy";
+  Units.SI.SpecificEntropy ssatV "Condensation specific entropy";
+  Units.SI.Density rhoSatL "Boiling density";
+  Units.SI.Density rhoSatV "Condensation density";
   Real A1;
   Real B1;
   Real C1;

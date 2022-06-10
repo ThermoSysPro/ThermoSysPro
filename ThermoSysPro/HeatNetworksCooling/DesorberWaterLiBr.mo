@@ -1,29 +1,27 @@
 within ThermoSysPro.HeatNetworksCooling;
 model DesorberWaterLiBr "Water LiBr solution desorber with water heating"
   parameter Real Eff=0.65 "Thermal exchange efficiency (=W/Wmax)";
-  parameter ThermoSysPro.Units.DifferentialPressure DPc=0
+  parameter ThermoSysPro.Units.SI.PressureDifference DPc=0
     "Pressure losses in the hot fluid a a percent of the pressure at the inlet";
   parameter Real Pth=0.15 "Thermal losses fraction (=losses/W)";
 
 public
-  Modelica.SIunits.Power W(start=1e6) "Power exchnaged with the solution";
-  Modelica.SIunits.Power Wpth(start=1e6) "Thermal losses power";
-  Modelica.SIunits.Power Wtot(start=1e6) "Hot water total power";
-  Modelica.SIunits.Power Wmaxf(start=1e6)
-    "Maximum power acceptable by the solution";
-  Modelica.SIunits.Power Wmaxc(start=1e6)
-    "Maximum power releasable by the hot water";
-  Modelica.SIunits.Temperature Tsatc(start=400)
+  Units.SI.Power W(start=1e6) "Power exchnaged with the solution";
+  Units.SI.Power Wpth(start=1e6) "Thermal losses power";
+  Units.SI.Power Wtot(start=1e6) "Hot water total power";
+  Units.SI.Power Wmaxf(start=1e6) "Maximum power acceptable by the solution";
+  Units.SI.Power Wmaxc(start=1e6) "Maximum power releasable by the hot water";
+  Units.SI.Temperature Tsatc(start=400)
     "Hot water saturation temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hminc(start=1e5)
+  Units.SI.SpecificEnthalpy Hminc(start=1e5)
     "Minimum specific enthalpy reachable by the hot water";
   Real Xmin "Minimum mass fraction reachable by the solution";
-  Modelica.SIunits.MassFlowRate Qs_min(start=100)
+  Units.SI.MassFlowRate Qs_min(start=100)
     "Minimum solution mass flow rate at the outlet";
-  Modelica.SIunits.MassFlowRate Qv_max(start=100)
+  Units.SI.MassFlowRate Qv_max(start=100)
     "Maximum steam mass flow rate at the outlet";
-  Modelica.SIunits.Power Wmax(start=1e6) "Maximum power exchangeable";
-  ThermoSysPro.Units.DifferentialTemperature DTm(start=40)
+  Units.SI.Power Wmax(start=1e6) "Maximum power exchangeable";
+  ThermoSysPro.Units.SI.TemperatureDifference DTm(start=40)
     "Differences of the average temperatures between the hot and cold sides";
 
 public

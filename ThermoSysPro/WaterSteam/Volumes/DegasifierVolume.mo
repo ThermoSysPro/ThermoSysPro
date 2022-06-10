@@ -1,33 +1,29 @@
 ﻿within ThermoSysPro.WaterSteam.Volumes;
 model DegasifierVolume "Degasifier volume"
-  parameter Modelica.SIunits.Volume V=160 "Degazifier volume";
-  parameter Modelica.SIunits.Volume Vmax=10
+  parameter Units.SI.Volume V=160 "Degazifier volume";
+  parameter Units.SI.Volume Vmax=10
     "Maximum volume of the liquid in the basins";
-  parameter Modelica.SIunits.SpecificHeatCapacity Cpmetal=460
-    "Metal specific heat";
-  parameter Modelica.SIunits.Mass Mmetal=10869 "Metal mass";
-  parameter Modelica.SIunits.AbsolutePressure P0=1e5
+  parameter Units.SI.SpecificHeatCapacity Cpmetal=460 "Metal specific heat";
+  parameter Units.SI.Mass Mmetal=10869 "Metal mass";
+  parameter Units.SI.AbsolutePressure P0=1e5
     "Initial fluid pressure (active if steady_state=false)";
-  parameter Modelica.SIunits.SpecificEnthalpy h0=1e5
+  parameter Units.SI.SpecificEnthalpy h0=1e5
     "Initial fluid specific enthalpy (active if steady_state=false)";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, h0)";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.Power W
-    "Thermal power exchanged between the liquid and the basins";
-  Modelica.SIunits.Temperature Tl
-    "Saturation temperature of the liquid in the basins";
+  Units.SI.Power W "Thermal power exchanged between the liquid and the basins";
+  Units.SI.Temperature Tl "Saturation temperature of the liquid in the basins";
   Real x "Vapor mass fraction";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Average fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.MassFlowRate BQ
-    "Right hand side of the mass balance equation";
-  Modelica.SIunits.Power BH "Right hand side of the energy balance equation";
+  Units.SI.AbsolutePressure P(start=1.e5) "Average fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.MassFlowRate BQ "Right hand side of the mass balance equation";
+  Units.SI.Power BH "Right hand side of the energy balance equation";
   Real rhols;
 
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro

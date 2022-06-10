@@ -1,7 +1,7 @@
 within ThermoSysPro.Correlations.Thermal;
 function Function_U1 "Calculation of the uncorrected heat transfer coefficient"
-  input Modelica.SIunits.Diameter D_tubes "Weight average thickness of tubes";
-  input Modelica.SIunits.Velocity Vf "Velocity of cold water";
+  input Units.SI.Diameter D_tubes "Weight average thickness of tubes";
+  input Units.SI.Velocity Vf "Velocity of cold water";
 
 protected
   Real U11;

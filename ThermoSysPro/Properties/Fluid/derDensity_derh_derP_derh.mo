@@ -2,8 +2,8 @@
 function derDensity_derh_derP_derh
   "der(Density derivative w.r.t enthalpy) computation for all fluids (inputs: P, h, der(P), der(h), fluid)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -21,9 +21,9 @@ function derDensity_derh_derP_derh
   output Real der_ddhp "Time derivative of Density derivative by enthalpy";
 
 protected
-  Modelica.SIunits.Duration dt=1;
-  Modelica.SIunits.AbsolutePressure delta_P = 0.01*P;
-  Modelica.SIunits.SpecificEnthalpy delta_h = 0.01*h;
+  Units.SI.Duration dt=1;
+  Units.SI.AbsolutePressure delta_P=0.01*P;
+  Units.SI.SpecificEnthalpy delta_h=0.01*h;
 
 ///annotation(derivative(order=2)=derderDensity_derh_derderP_derderh);
 

@@ -1,10 +1,8 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Pressure_sat_hl
-  input Modelica.SIunits.SpecificEnthalpy hl
-    "Liquid specific enthalpy on the saturation line";
+  input Units.SI.SpecificEnthalpy hl "Liquid specific enthalpy on the saturation line";
 
-  output Modelica.SIunits.AbsolutePressure p
-    "Liquid pressure on the saturation line";
+  output Units.SI.AbsolutePressure p "Liquid pressure on the saturation line";
 
 algorithm
   assert(hl > ThermoSysPro.Properties.WaterSteamSimple.Enthalpy.h1sat_P(

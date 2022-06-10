@@ -1,8 +1,8 @@
 within ThermoSysPro.Properties.MoltenSalt;
 function SpecificEnthalpy_T "Specific Enthalpy computation for Salt (input T)"
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  output Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
+  input Units.SI.Temperature T "Temperature (K)";
+  output Units.SI.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
 
 // STEPHANIE SQMSolarSalt
 protected

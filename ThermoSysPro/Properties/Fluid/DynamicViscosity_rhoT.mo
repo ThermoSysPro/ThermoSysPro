@@ -2,12 +2,12 @@ within ThermoSysPro.Properties.Fluid;
 function DynamicViscosity_rhoT
   "Dynamic Viscosity computation for all fluids (inputs: rho,T,fluid)"
 
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam  <br>7 - WaterSteamSimple </html>";
 
-  output Modelica.SIunits.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
+  output Units.SI.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
 protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro annotation (Placement(
         transformation(extent={{-80,40},{-40,80}}, rotation=0)));

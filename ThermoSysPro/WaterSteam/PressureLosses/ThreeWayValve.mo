@@ -1,7 +1,7 @@
 within ThermoSysPro.WaterSteam.PressureLosses;
 model ThreeWayValve "Three way valve"
-  parameter ThermoSysPro.Units.Cv Cvmax1=8005.42 "Valve 1 max CV";
-  parameter ThermoSysPro.Units.Cv Cvmax2=8005.42 "Valve 2 max CV";
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax1=8005.42 "Valve 1 max CV";
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax2=8005.42 "Valve 2 max CV";
   parameter Real caract1[:, 2]=[0, 0; 1, Cvmax1]
     "Valve 1 - Position vs. Cv characteristics (active if mode_caract1=true)";
   parameter Real caract2[:, 2]=[0, 0; 1, Cvmax2]
@@ -10,11 +10,11 @@ model ThreeWayValve "Three way valve"
     "Valve 1 - 0:linear characteristics - 1:characteristics is given by caract1[]";
   parameter Integer mode_caract2=0
     "Valve 2 - 0:linear characteristics - 1:characteristics is given by caract2[]";
-  parameter Modelica.SIunits.Volume V=1 "Three way valve volume";
+  parameter Units.SI.Volume V=1 "Three way valve volume";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal Ouv

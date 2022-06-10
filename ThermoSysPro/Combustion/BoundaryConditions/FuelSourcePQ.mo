@@ -1,12 +1,12 @@
 within ThermoSysPro.Combustion.BoundaryConditions;
 model FuelSourcePQ "Fuel source with fixed pressure and mass flow rate"
-  parameter Modelica.SIunits.AbsolutePressure P0=1e5
+  parameter Units.SI.AbsolutePressure P0=1e5
     "Fuel pressure (active if pressure input port is not connected)";
-  parameter Modelica.SIunits.MassFlowRate Q0=10
+  parameter Units.SI.MassFlowRate Q0=10
     "Fuel mass flow rate (active if mass flow input port is not connected)";
-  parameter Modelica.SIunits.Temperature T0=300 "Fuel temperature";
-  parameter Modelica.SIunits.SpecificEnergy LHV=48e6 "Lower heating value";
-  parameter Modelica.SIunits.SpecificHeatCapacity Cp=1e3
+  parameter Units.SI.Temperature T0=300 "Fuel temperature";
+  parameter Units.SI.SpecificEnergy LHV=48e6 "Lower heating value";
+  parameter Units.SI.SpecificHeatCapacity Cp=1e3
     "Fuel specific heat capacity at 273.15K";
   parameter Real Hum=0.0 "Fuel humidity (%)";
   parameter Real Xc=0.75 "C mass fraction";
@@ -16,7 +16,7 @@ model FuelSourcePQ "Fuel source with fixed pressure and mass flow rate"
   parameter Real Xs=0 "S mass fraction";
   parameter Real Xashes=0 "Ashes mass fraction";
   parameter Real Vol=0 "Volatile matter mass fraction";
-  parameter Modelica.SIunits.Density rho=0.72 "Fuel density";
+  parameter Units.SI.Density rho=0.72 "Fuel density";
 
   Connectors.FuelOutlet C                   annotation (Placement(
         transformation(extent={{90,-10},{110,10}}, rotation=0)));

@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function ThermalConductivity_derT "derivative of ThermalConductivity_T"
-  input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
   input Real der_temp "fluid temperature time derivative (K/s)";
   output Real der_k "thermal conductivity time derivative (W/mKs)";
 protected

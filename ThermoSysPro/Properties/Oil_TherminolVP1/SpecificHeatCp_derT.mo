@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function SpecificHeatCp_derT "derivative of SpecificHeatCp_t"
-  input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
   input Real der_temp "fluid temperature time derivative (K/s)";
   output Real der_cp "specific heat capacity time derivative (J/kgKs)";
 protected

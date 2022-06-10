@@ -1,28 +1,27 @@
 within ThermoSysPro.Correlations.Misc;
 function PropWaterSteam "Computation of the water/steam properties"
-  input Modelica.SIunits.AbsolutePressure Pmc "Water/steam average pressure";
-  input Modelica.SIunits.SpecificEnthalpy Hmc
-    "Water/steam average specific enthalpy";
+  input Units.SI.AbsolutePressure Pmc "Water/steam average pressure";
+  input Units.SI.SpecificEnthalpy Hmc "Water/steam average specific enthalpy";
   input Real Xmc "Steam average mass fraction";
 
 protected
-  constant Modelica.SIunits.AbsolutePressure Pc=221.2e5 "Critical pressure";
-  Modelica.SIunits.Temperature Tsat1 "Saturation temperature at Pmc";
-  Modelica.SIunits.Temperature T "Water/steam mixture temperature";
-  Modelica.SIunits.SpecificEnthalpy hlv "Water/steam mixture specific enthalpy";
-  Modelica.SIunits.Density rholv "Water/steam mixture density";
-  Modelica.SIunits.Density rhol "Water density";
-  Modelica.SIunits.Density rhov "Steam density";
-  Modelica.SIunits.SpecificEnthalpy hl "Water specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "Steam specific enthalpy";
-  Modelica.SIunits.SpecificEnergy lv "Phase transition energy";
-  Modelica.SIunits.SpecificHeatCapacity cpl "Water specific heat capacity";
-  Modelica.SIunits.SpecificHeatCapacity cpv "Steam specific heat capacity";
-  Modelica.SIunits.DynamicViscosity mul "Water dynamic viscosity";
-  Modelica.SIunits.DynamicViscosity muv "Steam dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity kl "Water thermal conductivity";
-  Modelica.SIunits.ThermalConductivity kv "Steam thermal conductivity";
-  Modelica.SIunits.SurfaceTension tsl "Water surface tensiton";
+  constant Units.SI.AbsolutePressure Pc=221.2e5 "Critical pressure";
+  Units.SI.Temperature Tsat1 "Saturation temperature at Pmc";
+  Units.SI.Temperature T "Water/steam mixture temperature";
+  Units.SI.SpecificEnthalpy hlv "Water/steam mixture specific enthalpy";
+  Units.SI.Density rholv "Water/steam mixture density";
+  Units.SI.Density rhol "Water density";
+  Units.SI.Density rhov "Steam density";
+  Units.SI.SpecificEnthalpy hl "Water specific enthalpy";
+  Units.SI.SpecificEnthalpy hv "Steam specific enthalpy";
+  Units.SI.SpecificEnergy lv "Phase transition energy";
+  Units.SI.SpecificHeatCapacity cpl "Water specific heat capacity";
+  Units.SI.SpecificHeatCapacity cpv "Steam specific heat capacity";
+  Units.SI.DynamicViscosity mul "Water dynamic viscosity";
+  Units.SI.DynamicViscosity muv "Steam dynamic viscosity";
+  Units.SI.ThermalConductivity kl "Water thermal conductivity";
+  Units.SI.ThermalConductivity kv "Steam thermal conductivity";
+  Units.SI.SurfaceTension tsl "Water surface tensiton";
 
 protected
   ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat vsatm

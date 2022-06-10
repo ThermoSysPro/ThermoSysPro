@@ -1,9 +1,8 @@
 ﻿within ThermoSysPro.WaterSteam.LoopBreakers;
 model LoopingPQ
 
-  parameter Modelica.SIunits.AbsolutePressure P=1e5
-    "Pression imposée en sortie";
-  parameter Modelica.SIunits.MassFlowRate Q=1.0 "Débit imposé";
+  parameter Units.SI.AbsolutePressure P=1e5 "Pression imposée en sortie";
+  parameter Units.SI.MassFlowRate Q=1.0 "Débit imposé";
 
   ThermoSysPro.WaterSteam.Connectors.FluidInletI C1
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

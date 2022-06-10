@@ -1,12 +1,13 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function phase_ph "return the current phase"
- input Modelica.SIunits.Pressure p "pressure";
- input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
- output Integer phase=0 "phase: 2 for two-phase, 1 for one phase";
+function phase_ph "Returns the current phase"
+  input Units.SI.Pressure p "pressure";
+  input Units.SI.SpecificEnthalpy h "specific enthalpy";
+
+  output Integer phase=0 "phase: 2 for two-phase, 1 for one phase";
 
 protected
-  Modelica.SIunits.SpecificEnthalpy h1sat "bubble enthalpy";
-  Modelica.SIunits.SpecificEnthalpy h2sat "dew enthalpy";
+  Units.SI.SpecificEnthalpy h1sat "bubble enthalpy";
+  Units.SI.SpecificEnthalpy h2sat "dew enthalpy";
   Boolean supercritical;
 
 algorithm

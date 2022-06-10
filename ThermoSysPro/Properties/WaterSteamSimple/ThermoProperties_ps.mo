@@ -1,31 +1,31 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 record ThermoProperties_ps
-  Modelica.SIunits.Temperature T(
+  Units.SI.Temperature T(
     min=WaterSteam.InitLimits.TMIN,
     max=WaterSteam.InitLimits.TMAX,
     nominal=WaterSteam.InitLimits.TNOM) "Temperature";
-  Modelica.SIunits.Density d(
+  Units.SI.Density d(
     min=WaterSteam.InitLimits.DMIN,
     max=WaterSteam.InitLimits.DMAX,
     nominal=WaterSteam.InitLimits.DNOM) "Density";
-  Modelica.SIunits.SpecificEnergy u(
+  Units.SI.SpecificEnergy u(
     min=WaterSteam.InitLimits.SEMIN,
     max=WaterSteam.InitLimits.SEMAX,
     nominal=WaterSteam.InitLimits.SENOM) "Specific inner energy";
-  Modelica.SIunits.SpecificEnthalpy h(
+  Units.SI.SpecificEnthalpy h(
     min=WaterSteam.InitLimits.SHMIN,
     max=WaterSteam.InitLimits.SHMAX,
     nominal=WaterSteam.InitLimits.SHNOM) "Specific enthalpy";
-  Modelica.SIunits.SpecificHeatCapacity cp(
+  Units.SI.SpecificHeatCapacity cp(
     min=WaterSteam.InitLimits.CPMIN,
     max=WaterSteam.InitLimits.CPMAX,
     nominal=WaterSteam.InitLimits.CPNOM)
     "Specific heat capacity at constant pressure";
-  ThermoSysPro.Units.DerDensityByEntropy ddsp
+  ThermoSysPro.Units.xSI.DerDensityByEntropy ddsp
     "Derivative of the density wrt. specific entropy at constant pressure";
-  Modelica.SIunits.DerDensityByPressure ddps
+  Units.SI.DerDensityByPressure ddps
     "Derivative of the density wrt. pressure at constant specific entropy";
-  ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+  ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
   annotation (
     Window(
       x=0.31,

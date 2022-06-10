@@ -1,12 +1,12 @@
 within ThermoSysPro.WaterSteam.Machines;
 model CentrifugalPump "Centrifugal pump"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm N=1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm N=1400
     "Pump angular velocity in rpm (active if input M is not connected)";
-  parameter ThermoSysPro.Units.AngularVelocity_rpm N_nom=1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm N_nom=1400
     "Nominal angular velocity in rpm";
-  parameter Modelica.SIunits.MomentOfInertia J=10
+  parameter Units.SI.MomentOfInertia J=10
     "Rotating masses moment of inertia (active if dynamic_mech_equation=true)";
-  parameter Modelica.SIunits.Volume V=1
+  parameter Units.SI.Volume V=1
     "Pump volume (active if dynamic_energy_balance=true)";
   parameter Boolean dynamic_mech_equation=false
     "true: dynamic mechanical equation - false: static mechanical equation (active if input M is connected)";
@@ -15,7 +15,7 @@ model CentrifugalPump "Centrifugal pump"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=1
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
@@ -26,11 +26,11 @@ model CentrifugalPump "Centrifugal pump"
   parameter Integer mode_car_Cr=2
     "1:complete torque characteristics - 2:analytic formula";
 
-  parameter Modelica.SIunits.VolumeFlowRate Qv_nom_p=0.4781
+  parameter Units.SI.VolumeFlowRate Qv_nom_p=0.4781
     "Nominal volumetric flow (active if mode_car=1)";
-  parameter Modelica.SIunits.Height hn_nom_p=22.879
+  parameter Units.SI.Height hn_nom_p=22.879
     "Nominal pump head (active if mode_car=1)";
-  parameter Modelica.SIunits.Height rh_nom_p=0.863
+  parameter Units.SI.Height rh_nom_p=0.863
     "Nominal pump efficiency (active if mode_car=1)";
 
   parameter Real F_t[:]={ 0.634, 0.643, 0.646, 0.640, 0.629, 0.613, 0.595, 0.575, 0.552, 0.533, 0.516, 0.505,
@@ -64,18 +64,14 @@ model CentrifugalPump "Centrifugal pump"
     "Coef. of the parabolic pump efficiency characteristics (active if mode_car=2)";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.AngularVelocity w_a_min=1.e-4
-    "Small angular velocity";
-  parameter Modelica.SIunits.VolumeFlowRate Qv_a_min=1.e-4
-    "Small volume flow rate";
+  parameter Units.SI.AngularVelocity w_a_min=1.e-4 "Small angular velocity";
+  parameter Units.SI.VolumeFlowRate Qv_a_min=1.e-4 "Small volume flow rate";
   parameter Real rh_min=0.05 "Minimum efficiency";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
-//  parameter Boolean dyn_mech_equation=((cardinality(M) <> 0) and dynamic_mech_equation);
-  parameter Boolean dyn_mech_equation=dynamic_mech_equation;
+  parameter Boolean dyn_mech_equation=((cardinality(M) <> 0) and dynamic_mech_equation);
 
 public
   Real w_a "Dimensionless angular velocity";
@@ -83,32 +79,31 @@ public
   Real hn_a(start=1) "Dimensionless head";
   Real Cr_a(start=1) "Dimensionless resistive torque";
   Real rh_a(start=1) "Dimensionless pump efficiency";
-  Modelica.SIunits.AngularVelocity w_nom "Nominal angular velocity";
-  Modelica.SIunits.VolumeFlowRate Qv_nom "Nominal volumetric flow";
-  Modelica.SIunits.Height hn_nom "Nominal pump head";
-  Modelica.SIunits.Torque Cr_nom "Nominal resistive hydraulic torque";
+  Units.SI.AngularVelocity w_nom "Nominal angular velocity";
+  Units.SI.VolumeFlowRate Qv_nom "Nominal volumetric flow";
+  Units.SI.Height hn_nom "Nominal pump head";
+  Units.SI.Torque Cr_nom "Nominal resistive hydraulic torque";
   Real rh_nom "Nominal pump efficiency";
-  Modelica.SIunits.Angle theta "Angle arctan(Qv_a/w_a) (rad)";
-  ThermoSysPro.Units.Angle_deg theta_deg "Angle arctan(Qv_a/w_a) (deg)";
-  Modelica.SIunits.AngularVelocity w "Angular velocity in rad";
-  ThermoSysPro.Units.AngularVelocity_rpm w_rpm "Angular velocity in rpm";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.VolumeFlowRate Qv(start=0.5) "Volumetric flow rate";
-  Modelica.SIunits.Pressure deltaP
+  Units.SI.Angle theta "Angle arctan(Qv_a/w_a) (rad)";
+  ThermoSysPro.Units.nonSI.Angle_deg theta_deg "Angle arctan(Qv_a/w_a) (deg)";
+  Units.SI.AngularVelocity w "Angular velocity in rad";
+  ThermoSysPro.Units.nonSI.AngularVelocity_rpm w_rpm "Angular velocity in rpm";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.VolumeFlowRate Qv(start=0.5) "Volumetric flow rate";
+  Units.SI.Pressure deltaP
     "Pressure variation between the outlet and the inlet";
-  Modelica.SIunits.Height hn(start=10) "Pump head";
-  Modelica.SIunits.Torque Cm "Motor torque";
-  Modelica.SIunits.Torque Cr "Resistive hydraulic torque";
+  Units.SI.Height hn(start=10) "Pump head";
+  Units.SI.Torque Cm "Motor torque";
+  Units.SI.Torque Cr "Resistive hydraulic torque";
   Real rh "Pump efficiency";
-  Modelica.SIunits.Power Wr "Resistive power";
-  Modelica.SIunits.Power Wm "Motor power";
-  Modelica.SIunits.Energy Ec "Kinetic energy of the rotating masses";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.SpecificEnthalpy deltaH
+  Units.SI.Power Wr "Resistive power";
+  Units.SI.Power Wm "Motor power";
+  Units.SI.Energy Ec "Kinetic energy of the rotating masses";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.SpecificEnthalpy deltaH
     "Specific enthalpy variation between the outlet and the inlet";
-  Modelica.SIunits.Pressure Pm(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000)
-    "Fluid average specific enthalpy";
+  Units.SI.Pressure Pm(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid average specific enthalpy";
   Real c "Dimensionless coef. of the semi-parabolic pump head characteristics";
   Real F "Function F";
   Real G "Function G";

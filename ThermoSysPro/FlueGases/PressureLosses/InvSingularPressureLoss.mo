@@ -1,19 +1,19 @@
 within ThermoSysPro.FlueGases.PressureLosses;
 model InvSingularPressureLoss "Inverse singular pressure loss"
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
 protected
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3 "Small mass flow";
+  parameter Units.SI.MassFlowRate Qeps=1.e-3 "Small mass flow";
 
 public
   Real K(start=10) "Pressure loss coefficient";
-  ThermoSysPro.Units.DifferentialPressure deltaP(start=1.e2)
+  ThermoSysPro.Units.SI.PressureDifference deltaP(start=1.e2)
     "Singular pressure loss";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow";
-  Modelica.SIunits.Density rho(start=1) "Fluid density";
-  Modelica.SIunits.Temperature T(start=300) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid average pressure";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow";
+  Units.SI.Density rho(start=1) "Fluid density";
+  Units.SI.Temperature T(start=300) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid average pressure";
 
 public
   ThermoSysPro.FlueGases.Connectors.FlueGasesInlet C1

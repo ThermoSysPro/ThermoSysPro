@@ -1,21 +1,21 @@
 within ThermoSysPro.WaterSolution.Machines;
 model StaticCentrifugalPumpNom
   "Static centrigugal pump with nominal operating point"
-  parameter Modelica.SIunits.MassFlowRate Qnom=1 "Nominal mass flow";
-  parameter ThermoSysPro.Units.DifferentialPressure DPnom=1e5
+  parameter Units.SI.MassFlowRate Qnom=1 "Nominal mass flow";
+  parameter ThermoSysPro.Units.SI.PressureDifference DPnom=1e5
     "Nominal pressure increase";
   parameter Real A=0.15 "x^2 coef. of the pump characteristics (A>0)";
   parameter Real B=0.35 "x coef. of the pump characteristics (B>0)";
   parameter Real eta=0.9 "Hydraulic efficiency";
 
 public
-  ThermoSysPro.Units.DifferentialPressure deltaP(start=1e5)
+  ThermoSysPro.Units.SI.PressureDifference deltaP(start=1e5)
     "Pressure difference between the outlet and the inlet";
-  Modelica.SIunits.SpecificEnthalpy He(start = 1e3)
+  Units.SI.SpecificEnthalpy He(start=1e3)
     "Fluid specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hs(start = 1e3)
+  Units.SI.SpecificEnthalpy Hs(start=1e3)
     "Fluid specific enthalpy at the outlet";
-  Modelica.SIunits.Power W(start=1e6) "Mechanical power of the pump";
+  Units.SI.Power W(start=1e6) "Mechanical power of the pump";
 
   Connectors.WaterSolutionInlet Ce
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}, rotation=

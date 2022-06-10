@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_rho "inverse of function Density_t"
-  input Modelica.SIunits.Density rho "Density (kg/m3)";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Density rho "Density (kg/m3)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
   constant Real Temp_c0 = 829.2269319387954;
   constant Real Temp_c1 = -0.6032830735166413;

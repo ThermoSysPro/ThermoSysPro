@@ -3,15 +3,14 @@ model CoolingTower "Cooling tower"
 
   parameter Integer fluid=1
     "<html>Fluid number: <br>1 - Water/Steam <br>7 - WaterSteamSimple </html>";
-  parameter Modelica.SIunits.AbsolutePressure Patm=101325
+  parameter Units.SI.AbsolutePressure Patm=101325
     "Pressure above the fluid level";
-  parameter Modelica.SIunits.MassFlowRate Qesp=0.001;
+  parameter Units.SI.MassFlowRate Qesp=0.001;
 
   // ---------------------   Geometrical parameters ------------------------------------------
-  parameter Modelica.SIunits.Area A=13114 "Tower cross-sectional aera";
+  parameter Units.SI.Area A=13114 "Tower cross-sectional aera";
   parameter Real a1=1/z1 "Water/air interfacial area for the packing (m2/m3)";
-  parameter Modelica.SIunits.Height z1 = 1.6
-    "Height of the packing heat exchange zone";
+  parameter Units.SI.Height z1=1.6 "Height of the packing heat exchange zone";
 
   // ----------------------  Mixing law parameters -------------------------------------------
   parameter Real lambda=1.227 "Beta packing exchange parameter";
@@ -37,126 +36,117 @@ public
   parameter Boolean packing_zone_activated=true
     "true: activation of the packing zone";
 
-  Modelica.SIunits.Volume dV "Volume of the packing exchange zone";
+  Units.SI.Volume dV "Volume of the packing exchange zone";
   Real xeH2o "Air humidity at the inlet (kg/kg)";
-  Modelica.SIunits.MassFlowRate QsAir2
+  Units.SI.MassFlowRate QsAir2
     "Ambiant air mass flow at the inlet of the packing zone";
-  Modelica.SIunits.SpecificEnthalpy HmAir2(start=100000)
+  Units.SI.SpecificEnthalpy HmAir2(start=100000)
     "Ambiant air specific enthalpy at the inlet of the packing zone";
-  Modelica.SIunits.AbsolutePressure PeAir2
+  Units.SI.AbsolutePressure PeAir2
     "Ambiant air pressure at the inlet of the packing zone";
-  Modelica.SIunits.Temperature Teair1(start=284.16)
+  Units.SI.Temperature Teair1(start=284.16)
     "Ambiant air temperature at the inlet of the packing zone";
   Real xeH2o1 "Ambiant air humidity at the inlet of the packing zone (kg/kg)";
-  Modelica.SIunits.MassFlowRate QsAir1
+  Units.SI.MassFlowRate QsAir1
     "Hot air mass flow at the outlet of the packing zone";
-  Modelica.SIunits.SpecificEnthalpy HmAir1( start=100000)
+  Units.SI.SpecificEnthalpy HmAir1(start=100000)
     "Hot air specific enthalpy at the outlet of the packing zone";
-  Modelica.SIunits.Temperature Tsair1(start=300)
+  Units.SI.Temperature Tsair1(start=300)
     "Hot air temperature at the outlet of the packing zone";
   Real xsH2o1 "Hot air humidity at the outlet of the packing zone (kg/kg)";
   Real xsO2 "Hot air O2 mass fraction at the outlet of the packing zone";
-  Modelica.SIunits.AbsolutePressure PeEau1
+  Units.SI.AbsolutePressure PeEau1
     "Hot water pressure at the inlet of the packing zone";
-  Modelica.SIunits.MassFlowRate QeEau1
+  Units.SI.MassFlowRate QeEau1
     "Hot water mass flow rate at the inlet of the packing zone";
-  Modelica.SIunits.SpecificEnthalpy HeEau1
+  Units.SI.SpecificEnthalpy HeEau1
     "Hot water specific enthalpy at the inlet of the packing zone";
-  Modelica.SIunits.Temperature Teeau1
+  Units.SI.Temperature Teeau1
     "Hot water temperature at the inlet of the packing zone";
-  Modelica.SIunits.MassFlowRate QsEau1
+  Units.SI.MassFlowRate QsEau1
     "Cold water pressure at the outlet of the packing zone";
-  Modelica.SIunits.Temperature Tseau1( start = 300)
+  Units.SI.Temperature Tseau1(start=300)
     "Cold water tempretaure at the outlet of the packing zone";
-  Modelica.SIunits.SpecificEnthalpy HmEau1(start=200000)
+  Units.SI.SpecificEnthalpy HmEau1(start=200000)
     "Cold water specific enthalpy at the outlet of the packing zone";
-  Modelica.SIunits.Power dw1
+  Units.SI.Power dw1
     "Cooling power given by water convection and evaporation in the packing zone";
-  Modelica.SIunits.SpecificEnthalpy Hs1
-    "Air specific enthalpy in the packing zone";
-  Modelica.SIunits.SpecificEnthalpy Hse1
+  Units.SI.SpecificEnthalpy Hs1 "Air specific enthalpy in the packing zone";
+  Units.SI.SpecificEnthalpy Hse1
     "Air specific enthalpy saturated at Teau in the packing zone";
-  Modelica.SIunits.MassFlowRate Qevap1
-    "Evaporation mass flow in the packing zone";
-  Modelica.SIunits.Volume Vair1(start=20000) "Air volume in the packing zone";
-  Modelica.SIunits.Volume Veau1(start=2000) "Water volume in the packing zone";
-  Modelica.SIunits.Density rhoEair1 "Air density at the inlet";
-  Modelica.SIunits.DynamicViscosity muEair1 "Air viscosity at the inlet";
-  Modelica.SIunits.SpecificHeatCapacity CpEair1
+  Units.SI.MassFlowRate Qevap1 "Evaporation mass flow in the packing zone";
+  Units.SI.Volume Vair1(start=20000) "Air volume in the packing zone";
+  Units.SI.Volume Veau1(start=2000) "Water volume in the packing zone";
+  Units.SI.Density rhoEair1 "Air density at the inlet";
+  Units.SI.DynamicViscosity muEair1 "Air viscosity at the inlet";
+  Units.SI.SpecificHeatCapacity CpEair1
     "Air specific heat capacity at the inlet";
-  Modelica.SIunits.ThermalConductivity lambdaEair1
+  Units.SI.ThermalConductivity lambdaEair1
     "Air thermal conductivity at the inlet";
-  Modelica.SIunits.Density rhoSair1 "Air density at the outlet";
-  Modelica.SIunits.DynamicViscosity muSair1 "Air viscosity at the outlet";
-  Modelica.SIunits.SpecificHeatCapacity CpSair1
+  Units.SI.Density rhoSair1 "Air density at the outlet";
+  Units.SI.DynamicViscosity muSair1 "Air viscosity at the outlet";
+  Units.SI.SpecificHeatCapacity CpSair1
     "Air specific heat capacity at the outlet";
-  Modelica.SIunits.ThermalConductivity lambdaSair1
+  Units.SI.ThermalConductivity lambdaSair1
     "Air thermal conductivity at the outlet";
-  Modelica.SIunits.Density rho1 "Water density";
+  Units.SI.Density rho1 "Water density";
 
   // ----------------------  Zone 2 : rain   --------------------------
   parameter Boolean rain_zone_activated=true "Activation of the rain zone";
-  parameter Modelica.SIunits.Area A2=A "Flow cross-sectional area in the tower";
-  parameter Modelica.SIunits.Height z2=z1
+  parameter Units.SI.Area A2=A "Flow cross-sectional area in the tower";
+  parameter Units.SI.Height z2=z1
     "Height of the exchange zone in the rain zone";
-  parameter Modelica.SIunits.Diameter Dg=0.005 "Droplets diameter";
+  parameter Units.SI.Diameter Dg=0.005 "Droplets diameter";
   parameter Real p_Beta2=0
     "If > 0, the mass transfer coef. is fixed, otherwise it is computed";
 
   Real Beta2 "Transfer coefficient for the rain";
-  Modelica.SIunits.Velocity Ug(start=1) "Droplets velocity";
-  Modelica.SIunits.Velocity Ua "Air velocity";
+  Units.SI.Velocity Ug(start=1) "Droplets velocity";
+  Units.SI.Velocity Ua "Air velocity";
   Real a2 "Interfacial area water/air (m2/m3) (rain zone)";
-  Modelica.SIunits.PrandtlNumber Pr "Droplets Prandtl number";
-  Modelica.SIunits.NusseltNumber Nu "Droplets Nusselt number";
-  Modelica.SIunits.ReynoldsNumber Re "Droplets Reynols number";
-  Modelica.SIunits.Volume dV2 "Volume of the rain exchange zone";
-  Modelica.SIunits.MassFlowRate QeAir2
+  Units.SI.PrandtlNumber Pr "Droplets Prandtl number";
+  Units.SI.NusseltNumber Nu "Droplets Nusselt number";
+  Units.SI.ReynoldsNumber Re "Droplets Reynols number";
+  Units.SI.Volume dV2 "Volume of the rain exchange zone";
+  Units.SI.MassFlowRate QeAir2
     "Air mass flow rate at the inlet of the rain zone";
-  Modelica.SIunits.SpecificEnthalpy HeAir2
+  Units.SI.SpecificEnthalpy HeAir2
     "Air specific enthalpy at the inlet of the rain zone";
-  Modelica.SIunits.Temperature Teair2
-    "Air temperature at the inlet of the rain zone";
-  Modelica.SIunits.Temperature Tsair2
-    "Air temperature at the outlet of the rain zone";
-  Modelica.SIunits.Temperature Teeau2
+  Units.SI.Temperature Teair2 "Air temperature at the inlet of the rain zone";
+  Units.SI.Temperature Tsair2 "Air temperature at the outlet of the rain zone";
+  Units.SI.Temperature Teeau2
     "Hot water temperature at the inlet of the rain zone";
-  Modelica.SIunits.Temperature Tseau2
+  Units.SI.Temperature Tseau2
     "Cold water temperature at the outlet of the rain zone";
-  Modelica.SIunits.MassFlowRate QsEau2
+  Units.SI.MassFlowRate QsEau2
     "Cold water mass flow rate at the outlet of the rain zone";
-  Modelica.SIunits.MassFlowRate Qevap2
-    "Evaporation mass flow rate in the rain zone";
+  Units.SI.MassFlowRate Qevap2 "Evaporation mass flow rate in the rain zone";
   Real xsH2o2 "Air humidity at the outlet of the rain zone (kg/kg)";
-  Modelica.SIunits.Power dw2
+  Units.SI.Power dw2
     "Thermal power exchanged between the air and the droplets by convection and evaporation in the rain zone";
-  Modelica.SIunits.SpecificEnthalpy Hs2
+  Units.SI.SpecificEnthalpy Hs2
     "Air specific enthalpy at temprature Tair in the rain zone";
-  Modelica.SIunits.SpecificEnthalpy Hse2
+  Units.SI.SpecificEnthalpy Hse2
     "Air specific enthalpy saturated at temperature Teau in the rain zone";
   Real ng "Number of droplets";
-  Modelica.SIunits.Volume Vair2(start=20000)
-    "Air volume in the rain exchange zone";
-  Modelica.SIunits.Volume Veau2(start=2000)
-    "Water volume in the rain exchange zone";
-  Modelica.SIunits.SpecificEnthalpy HmEau2(start=200000)
+  Units.SI.Volume Vair2(start=20000) "Air volume in the rain exchange zone";
+  Units.SI.Volume Veau2(start=2000) "Water volume in the rain exchange zone";
+  Units.SI.SpecificEnthalpy HmEau2(start=200000)
     "Average specific enthalpy in the rain zone";
-  Modelica.SIunits.Area SEAU "Contact area air/water";
-  Modelica.SIunits.Density rhoEair2(start=1) "Air density at the inlet";
-  Modelica.SIunits.DynamicViscosity muEair2(start=1e-6)
-    "Air viscosity at the inlet";
-  Modelica.SIunits.SpecificHeatCapacity CpEair2(start=1000)
+  Units.SI.Area SEAU "Contact area air/water";
+  Units.SI.Density rhoEair2(start=1) "Air density at the inlet";
+  Units.SI.DynamicViscosity muEair2(start=1e-6) "Air viscosity at the inlet";
+  Units.SI.SpecificHeatCapacity CpEair2(start=1000)
     "Air specific heat capacity at the inlet";
-  Modelica.SIunits.ThermalConductivity lambdaEair2(start=0.05)
+  Units.SI.ThermalConductivity lambdaEair2(start=0.05)
     "Air thermal conductivity at the inlet";
-  Modelica.SIunits.Density rhoSair2 "Air density at the outlet";
-  Modelica.SIunits.DynamicViscosity muSair2(start=1e-6)
-    "Air viscosity at the outlet";
-  Modelica.SIunits.SpecificHeatCapacity CpSair2(start=1000)
+  Units.SI.Density rhoSair2 "Air density at the outlet";
+  Units.SI.DynamicViscosity muSair2(start=1e-6) "Air viscosity at the outlet";
+  Units.SI.SpecificHeatCapacity CpSair2(start=1000)
     "Air specific heat capacity at the outlet";
-  Modelica.SIunits.ThermalConductivity lambdaSair2(start=0.05)
+  Units.SI.ThermalConductivity lambdaSair2(start=0.05)
     "Air thermal conductivity at the outlet";
-  Modelica.SIunits.Density rho2(start=995) "Water density";
+  Units.SI.Density rho2(start=995) "Water density";
   Real ddairhp1 "dérivé de la masse volumique de l'air par rapport à H paching";
   Real ddairhp2 "dérivé de la masse volumique de l'air par rapport à H pluie";
   Real Xh2oTeau1 "Fraction massique en H2o de l'air a Teeau zone 1";

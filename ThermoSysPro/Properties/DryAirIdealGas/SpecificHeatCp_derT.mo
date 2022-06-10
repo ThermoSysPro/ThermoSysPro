@@ -2,7 +2,7 @@ within ThermoSysPro.Properties.DryAirIdealGas;
 function SpecificHeatCp_derT
   "der(Specific Heat Capacity at fixed P) computation for Dry Air Ideal Gas (inputs: T, der(T))"
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.Temperature T "Temperature (K)";
   input Real der_T "Temperature time derivative (K/s)";
 
   output Real der_Cp "Specific Heat Capacity time derivative (J/kg/K/s)";

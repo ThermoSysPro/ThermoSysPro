@@ -1,11 +1,10 @@
 within ThermoSysPro.Properties.WaterSolution;
 function SpecificEnthalpy_TX
   "Specific enthalpy of the H2O/LiBr solution as a function of T and Xh2o"
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Temperature T "Temperature";
   input Real X "Water mass fraction in the solution";
 
-  output Modelica.SIunits.SpecificEnthalpy h
-    "Specific enthalpy of the solution";
+  output Units.SI.SpecificEnthalpy h "Specific enthalpy of the solution";
 
 protected
   Real C1;
@@ -15,12 +14,12 @@ protected
   Real C5;
   Real DXi;
   Real Xi "LiBr mass fraction in the solution";
-  Modelica.SIunits.Temperature Tc "Temperature in Celsius";
-  Modelica.SIunits.SpecificEnthalpy H1
+  Units.SI.Temperature Tc "Temperature in Celsius";
+  Units.SI.SpecificEnthalpy H1
     "Liquid LiBr specific enthalpy on the saturation line";
-  Modelica.SIunits.SpecificEnthalpy Hliq
+  Units.SI.SpecificEnthalpy Hliq
     "Liquid H2O specific enthalpy on the saturation line";
-  Modelica.SIunits.SpecificEnthalpy Dh
+  Units.SI.SpecificEnthalpy Dh
     "Difference in specific enthalpy wrt. ideal mixing";
 
 algorithm

@@ -1,13 +1,12 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 function prop2_Ph_der
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
   input Real p_der "derivative of Pressure";
   input Real h_der "derivative of Specific enthalpy";
 
-  output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph der_pro
-    "Derivative";
+  output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph der_pro "Derivative";
 
 protected
   Real dTp "Derivative of temperature wrt. pressure";
@@ -23,8 +22,7 @@ protected
   Real d2dhp "Second derivative of density wrt. enthalpy and pressure";
   Real d2dhh "Second derivative of density wrt. enthalpy";
   Real d2dpp "Second derivative of density wrt. pressure";
-  Real d2uhp
-    "Second derivative of specific inner energy wrt. enthalpy and pressure";
+  Real d2uhp "Second derivative of specific inner energy wrt. enthalpy and pressure";
   Real d2uhh "Second derivative of specific inner energy wrt. enthalpy";
   Real d2upp "Second derivative of specific inner energy wrt. pressure";
 

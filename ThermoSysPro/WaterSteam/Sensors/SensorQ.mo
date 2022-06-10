@@ -5,11 +5,11 @@ model SensorQ "Mass flow sensor"
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Minimum mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputReal Measure
     annotation (Placement(transformation(

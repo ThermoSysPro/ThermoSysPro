@@ -17,7 +17,7 @@ model AlternatingEngine "Internal combustion engine with electrical output"
   parameter Real MMg=30 "Gas average molar mass (g/mol)";
   parameter Real DPe=0
     "Water pressure loss as percent of the pressure at the inlet";
-  parameter ThermoSysPro.Units.DifferentialPressure DPaf=0
+  parameter ThermoSysPro.Units.SI.PressureDifference DPaf=0
     "Pressure difference between the air pressure at the inlet and the flue gases pressure at the outlet";
   parameter Real RV=6 "Engine volume ratio (> 1)";
   parameter Real Kc=1.2 "Compression polytropic coefficient";
@@ -34,63 +34,57 @@ protected
   constant Real amSO2=amS+2*amO "SO2 molecular mass";
 
 public
-  Modelica.SIunits.MassFlowRate Qsf(start=400)
+  Units.SI.MassFlowRate Qsf(start=400)
     "Flue gases mass flow rate at the outlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=12e5)
-    "Flue gases pressure at the outlet";
-  Modelica.SIunits.Temperature Tsf(start=1500)
-    "Flue gases temperature at the outlet";
+  Units.SI.AbsolutePressure Psf(start=12e5) "Flue gases pressure at the outlet";
+  Units.SI.Temperature Tsf(start=1500) "Flue gases temperature at the outlet";
   Real XsfCO2(start=0.5) "Flue gases CO2 mass fraction at the outlet";
   Real XsfH2O(start=0.1) "Flue gases H2O mass fraction at the outlet";
   Real XsfO2(start=0) "Flue gases O2 mass fraction at the outlet";
   Real XsfSO2(start=0) "Flue gases SO2 mass fraction at the outlet";
   Real Rmeca(start=0.3) "Engine mechanical efficiency";
-  Modelica.SIunits.Power Wmeca(start=5e8) "Engine mechanical power";
-  Modelica.SIunits.Power Welec(start=5e8) "Engine electrical power";
-  Modelica.SIunits.Power Wact(start=5e8) "Active power";
-  Modelica.SIunits.Power Wcomb(start=5e8) "Fuel power available (Q.PCS)";
-  Modelica.SIunits.Power Wpth_ref(start=1e6)
-    "Power of thermal losses + cooling";
+  Units.SI.Power Wmeca(start=5e8) "Engine mechanical power";
+  Units.SI.Power Welec(start=5e8) "Engine electrical power";
+  Units.SI.Power Wact(start=5e8) "Active power";
+  Units.SI.Power Wcomb(start=5e8) "Fuel power available (Q.PCS)";
+  Units.SI.Power Wpth_ref(start=1e6) "Power of thermal losses + cooling";
   Real exc(start=1) "Combustion air ratio";
   Real PCScomb "Pouvoir Calorifique Supérieur du combustible sur brut(en J/kg)";
-  Modelica.SIunits.Temperature Tm(start=500) "Air-gas mixture temperature";
-  Modelica.SIunits.Temperature Tfcp(start=500)
+  Units.SI.Temperature Tm(start=500) "Air-gas mixture temperature";
+  Units.SI.Temperature Tfcp(start=500)
     "Temperature at the end of the compression phase";
-  Modelica.SIunits.AbsolutePressure Pfcp(start=12e5)
+  Units.SI.AbsolutePressure Pfcp(start=12e5)
     "Pressure at the end of the compression phase";
-  Modelica.SIunits.Temperature Tfcb(start=500)
+  Units.SI.Temperature Tfcb(start=500)
     "Temperature at the end of the combustion phase";
-  Modelica.SIunits.AbsolutePressure Pfcb(start=12e5)
+  Units.SI.AbsolutePressure Pfcb(start=12e5)
     "Pressure at the end of the combustion phase";
-  Modelica.SIunits.Temperature Tfd(start=500)
+  Units.SI.Temperature Tfd(start=500)
     "Temperature at the end of the expansion phase";
-  Modelica.SIunits.AbsolutePressure Pfd(start=12e5)
+  Units.SI.AbsolutePressure Pfd(start=12e5)
     "Pressure at the end of the expansion phase";
-  Modelica.SIunits.Temperature Tfe(start=500) "Temperature at the exhaust";
-  Modelica.SIunits.SpecificEnthalpy Hea(start=50e3)
+  Units.SI.Temperature Tfe(start=500) "Temperature at the exhaust";
+  Units.SI.SpecificEnthalpy Hea(start=50e3)
     "Air specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hsf(start=50e4)
+  Units.SI.SpecificEnthalpy Hsf(start=50e4)
     "Flue gases specific enthalpy at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hcomb(start=10e3)
+  Units.SI.SpecificEnthalpy Hcomb(start=10e3)
     "Fuel specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hrfum(start=10e3)
+  Units.SI.SpecificEnthalpy Hrfum(start=10e3)
     "Flue gases reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrair(start=10e3)
-    "Air reference specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrcomb(start=10e3)
+  Units.SI.SpecificEnthalpy Hrair(start=10e3) "Air reference specific enthalpy";
+  Units.SI.SpecificEnthalpy Hrcomb(start=10e3)
     "Fuel reference specific enthalpy";
-  Modelica.SIunits.MassFlowRate Qea(start=400)
-    "Air mass flow rate at the inlet";
-  Modelica.SIunits.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
-  Modelica.SIunits.Temperature Tea(start=600) "Air temperature at the inlet";
+  Units.SI.MassFlowRate Qea(start=400) "Air mass flow rate at the inlet";
+  Units.SI.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
+  Units.SI.Temperature Tea(start=600) "Air temperature at the inlet";
   Real XeaCO2(start=0) "Air CO2 mass fraction at the inlet";
   Real XeaH2O(start=0.1) "Air H2O mass fraction at the inlet";
   Real XeaO2(start=0.2) "Air O2 mass fraction at the inlet";
   Real XeaSO2(start=0) "Air SO2 mass fraction at the inlet";
-  Modelica.SIunits.SpecificHeatCapacity Cpair(start=1000)
-    "Air specific heat capacity";
-  Modelica.SIunits.MassFlowRate Qcomb(start=5) "Fuel mass flow rate";
-  Modelica.SIunits.Temperature Tcomb(start=300) "Fuel temperature";
+  Units.SI.SpecificHeatCapacity Cpair(start=1000) "Air specific heat capacity";
+  Units.SI.MassFlowRate Qcomb(start=5) "Fuel mass flow rate";
+  Units.SI.Temperature Tcomb(start=300) "Fuel temperature";
   Real XCcomb(start=0.8) "Fuel carbon fraction";
   Real XHcomb(start=0.2) "Fuel hydrogen fraction";
   Real XOcomb(start=0) "Fuel oxygen fraction";
@@ -98,15 +92,14 @@ public
   Real XEAUcomb(start=0) "Fuel H2O fraction";
   Real XCDcomb(start=0) "Fuel ashes fraction";
   Real PCIcomb(start=5e7) "Fuel PCI (J/kg)";
-  Modelica.SIunits.SpecificHeatCapacity Cpcomb(start=1000)
+  Units.SI.SpecificHeatCapacity Cpcomb(start=1000)
     "Fuel specific heat capacity";
-  Modelica.SIunits.MassFlowRate Qe(start=1) "Water mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy Hev(start=10e3)
+  Units.SI.MassFlowRate Qe(start=1) "Water mass flow rate";
+  Units.SI.SpecificEnthalpy Hev(start=10e3)
     "Water specific enthalpy at the inlet";
-  Modelica.SIunits.Density rhoea(start=0.001) "Air density at the inlet";
-  Modelica.SIunits.Density rhosf(start=0.001)
-    "Flue gases density at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hsv(start=10e3)
+  Units.SI.Density rhoea(start=0.001) "Air density at the inlet";
+  Units.SI.Density rhosf(start=0.001) "Flue gases density at the outlet";
+  Units.SI.SpecificEnthalpy Hsv(start=10e3)
     "Water specific enthalpy at the outlet";
   Real MMairgaz(start=30) "Air/gas mixture molecular mass (g/mol)";
   Real MMfumees(start=30) "Flue gases molecular mass (g/mol)";

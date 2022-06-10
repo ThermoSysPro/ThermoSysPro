@@ -1,12 +1,12 @@
 within ThermoSysPro.FlueGases.BoundaryConditions;
 model SinkPQ "Flue gas sink with fixed pressure and mass flow rate"
-  parameter Modelica.SIunits.AbsolutePressure P0=100000 "Sink pressure";
-  parameter Modelica.SIunits.MassFlowRate Q0=100 "Sink mass flow rate";
+  parameter Units.SI.AbsolutePressure P0=100000 "Sink pressure";
+  parameter Units.SI.MassFlowRate Q0=100 "Sink mass flow rate";
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid pressure";
-  Modelica.SIunits.MassFlowRate Q "Mass flow";
-  Modelica.SIunits.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P "Fluid pressure";
+  Units.SI.MassFlowRate Q "Mass flow";
+  Units.SI.Temperature T "Fluid temperature";
   Real Xco2 "CO2 mass fraction";
   Real Xh2o "H2O mass fraction";
   Real Xo2 "O2 mass fraction";

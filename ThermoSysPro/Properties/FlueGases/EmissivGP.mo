@@ -1,14 +1,14 @@
 within ThermoSysPro.Properties.FlueGases;
 function EmissivGP "Flue gases - particles emissivity"
   extends ThermoSysPro.Properties.FlueGases.unsafeForJacobian;
-  input Modelica.SIunits.Length AL "Equivalent length (radiation)";
-  input Modelica.SIunits.Temperature TMF "Flue gases average temperature";
-  input Modelica.SIunits.Temperature TPE "Wall temperature";
-  input Modelica.SIunits.AbsolutePressure PMEL "Mixture pressure";
-  input Modelica.SIunits.AbsolutePressure PH2O "H2O partial pressure";
-  input Modelica.SIunits.AbsolutePressure PCO2 "PCO2 partial pressure";
+  input Units.SI.Length AL "Equivalent length (radiation)";
+  input Units.SI.Temperature TMF "Flue gases average temperature";
+  input Units.SI.Temperature TPE "Wall temperature";
+  input Units.SI.AbsolutePressure PMEL "Mixture pressure";
+  input Units.SI.AbsolutePressure PH2O "H2O partial pressure";
+  input Units.SI.AbsolutePressure PCO2 "PCO2 partial pressure";
   input Real FV "Volume concentration of the particles in the flue gases";
-  input Modelica.SIunits.Length DP "Particles average diameter";
+  input Units.SI.Length DP "Particles average diameter";
   input Real EPSPAR "Wall emissivity";
   output Real EPSFP "Particles/flue gases emissivity";
 

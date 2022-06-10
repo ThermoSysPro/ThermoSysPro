@@ -15,15 +15,15 @@ model SteamEngine "Steam engine"
     "Outlet IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.Power W "Power produced by the engine";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy His
+  Units.SI.Power W "Power produced by the engine";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.SpecificEnthalpy His
     "Fluid specific enthalpy after isentropic expansion";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Pressure loss";
-  Modelica.SIunits.AbsolutePressure Pe(start=10e5) "Pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Ps(start=10e5) "Pressure at the outlet";
-  Modelica.SIunits.Temperature Te "Temperature at the inlet";
-  Modelica.SIunits.Temperature Ts "Temperature at the outlet";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Pressure loss";
+  Units.SI.AbsolutePressure Pe(start=10e5) "Pressure at the inlet";
+  Units.SI.AbsolutePressure Ps(start=10e5) "Pressure at the outlet";
+  Units.SI.Temperature Te "Temperature at the inlet";
+  Units.SI.Temperature Ts "Temperature at the outlet";
   Real xm(start=1.0,min=0) "Average vapor mass fraction (n.u.)";
 
 public

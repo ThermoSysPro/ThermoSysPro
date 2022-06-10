@@ -1,16 +1,16 @@
 ﻿within ThermoSysPro.Correlations.Thermal;
 function WBLongitudinalCurrentConvectiveHeatTransferCoefficient
   "Convective heat transfer coefficient for co- or counter-current heat exchangers"
-  input Modelica.SIunits.Temperature TFilm "Film temperature";
-  input Modelica.SIunits.Temperature Tmf "Flue gases average temperature";
-  input Modelica.SIunits.MassFlowRate Qf "Flue gases mass flow rate";
+  input Units.SI.Temperature TFilm "Film temperature";
+  input Units.SI.Temperature Tmf "Flue gases average temperature";
+  input Units.SI.MassFlowRate Qf "Flue gases mass flow rate";
   input Real Xh2o "H2O mass fraction";
-  input Modelica.SIunits.Area Sgaz "Geometrical parameter";
-  input Modelica.SIunits.Diameter Dext "Pipes external diameter";
+  input Units.SI.Area Sgaz "Geometrical parameter";
+  input Units.SI.Diameter Dext "Pipes external diameter";
   input Integer option_interpolation=1
     "1: linear interpolation - 2: spline interpolation";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer Kcfl
+  output Units.SI.CoefficientOfHeatTransfer Kcfl
     "Convective heat transfer coefficient for longitudinal flows";
 
 protected

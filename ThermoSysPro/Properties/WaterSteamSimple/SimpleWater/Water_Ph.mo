@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_Ph
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer mode = 0 "IF97 region. 0:automatic";
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph pro
     annotation (Placement(transformation(extent={{-90,15},{-43.3333,61.6667}},

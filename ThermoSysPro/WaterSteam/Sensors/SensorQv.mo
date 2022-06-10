@@ -8,18 +8,17 @@ model SensorQv "Volumetric flow sensor"
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Minimum mass flow rate for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
-  Modelica.SIunits.AbsolutePressure Pm "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
+  Units.SI.AbsolutePressure Pm "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
 
 protected
-  Modelica.SIunits.Time facteur=if (output_unit == 1) then 3600 else 1
-    "Unit factor";
+  Units.SI.Time facteur=if (output_unit == 1) then 3600 else 1 "Unit factor";
 public
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Propriétés de l'eau"

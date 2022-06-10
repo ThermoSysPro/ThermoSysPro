@@ -1,8 +1,8 @@
 within ThermoSysPro.ElectroMechanics;
 package Connectors "Connectors"
   connector MechanichalTorque "Mechanical torque"
-    Modelica.SIunits.Torque Ctr "Torque";
-    Modelica.SIunits.AngularVelocity w "Angular velocity";
+    Units.SI.Torque Ctr "Torque";
+    Units.SI.AngularVelocity w "Angular velocity";
     annotation (
       Window(
         x=0.25,

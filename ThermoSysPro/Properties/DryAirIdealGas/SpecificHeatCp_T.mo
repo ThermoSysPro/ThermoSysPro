@@ -3,9 +3,8 @@ function SpecificHeatCp_T
   "Specific Heat Capacity at fixed P computation for Dry Air Ideal Gas (input T)"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  output Modelica.SIunits.SpecificHeatCapacity Cp
-    "Specific Heat Capacity (J/kg/K)";
+  input Units.SI.Temperature T "Temperature (K)";
+  output Units.SI.SpecificHeatCapacity Cp "Specific Heat Capacity (J/kg/K)";
 
 protected
   ThermoSysPro.Properties.DryAirIdealGas.DryAirIdealGas Data;

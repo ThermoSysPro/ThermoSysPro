@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model generate_data_lowpressure_ph
-  import Modelica.SIunits.*;
+  import ThermoSysPro.Units.SI.*;
   parameter Pressure p_min = 0.01e5;
   parameter Pressure p_max = 10e5;
   parameter Pressure delta_p(min = 1) = 1e5;

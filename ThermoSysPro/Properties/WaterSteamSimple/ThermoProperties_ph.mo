@@ -1,34 +1,34 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 record ThermoProperties_ph
-  Modelica.SIunits.Temperature T(
+  Units.SI.Temperature T(
     min=InitLimits.TMIN,
     max=InitLimits.TMAX,
     nominal=InitLimits.TNOM) "Temperature";
-  Modelica.SIunits.Density d(
+  Units.SI.Density d(
     min=InitLimits.DMIN,
     max=InitLimits.DMAX,
     nominal=InitLimits.DNOM) "Density";
-  Modelica.SIunits.SpecificEnergy u(
+  Units.SI.SpecificEnergy u(
     min=InitLimits.SEMIN,
     max=InitLimits.SEMAX,
     nominal=InitLimits.SENOM) "Specific inner energy";
-  Modelica.SIunits.SpecificEntropy s(
+  Units.SI.SpecificEntropy s(
     min=InitLimits.SSMIN,
     max=InitLimits.SSMAX,
     nominal=InitLimits.SSNOM) "Specific entropy";
-  Modelica.SIunits.SpecificHeatCapacity cp(
+  Units.SI.SpecificHeatCapacity cp(
     min=InitLimits.CPMIN,
     max=InitLimits.CPMAX,
     nominal=InitLimits.CPNOM) "Specific heat capacity at constant presure";
-  Modelica.SIunits.DerDensityByEnthalpy ddhp
+  Units.SI.DerDensityByEnthalpy ddhp
     "Derivative of density wrt. specific enthalpy at constant pressure";
-  Modelica.SIunits.DerDensityByPressure ddph
+  Units.SI.DerDensityByPressure ddph
     "Derivative of density wrt. pressure at constant specific enthalpy";
   Real duph(unit="m3/kg")
     "Derivative of specific inner energy wrt. pressure at constant specific enthalpy";
   Real duhp(unit = "1")
     "Derivative of specific inner energy wrt. specific enthalpy at constant pressure";
-  ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+  ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
 
   annotation (
     Window(

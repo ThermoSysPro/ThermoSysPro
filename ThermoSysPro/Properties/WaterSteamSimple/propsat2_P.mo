@@ -1,10 +1,10 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 function propsat2_P
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
+  input Units.SI.AbsolutePressure p "Pressure";
   output ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat pro;
 
 protected
-  Modelica.SIunits.SpecificEnthalpy hv "dew enthalpy";
+  Units.SI.SpecificEnthalpy hv "Dew enthalpy";
 
 algorithm
   hv := Enthalpy.h2sat_P(p);

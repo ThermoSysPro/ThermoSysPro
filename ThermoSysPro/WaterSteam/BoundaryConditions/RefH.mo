@@ -1,17 +1,16 @@
 within ThermoSysPro.WaterSteam.BoundaryConditions;
 model RefH "Fixed specific enthalpy reference"
-  parameter Modelica.SIunits.SpecificEnthalpy h0=1.e5
-    "Fixed fluid specific enthalpy";
+  parameter Units.SI.SpecificEnthalpy h0=1.e5 "Fixed fluid specific enthalpy";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
+  Units.SI.MassFlowRate Q "Mass flow rate";
   Connectors.FluidInlet C1
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=
            0)));

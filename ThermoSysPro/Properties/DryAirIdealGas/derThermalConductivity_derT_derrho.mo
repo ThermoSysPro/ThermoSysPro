@@ -3,16 +3,16 @@ function derThermalConductivity_derT_derrho
   "der(Thermal Conductivity) computation for Dry Air Ideal Gas (inputs: T, rho, der(T), der(rho))"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  input Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Temperature T "Temperature (K)";
+  input Units.SI.Density rho "Density (kg/m3)";
   input Real der_T "Temperature time derivative (K/s)";
   input Real der_rho "Density time derivative (kg/m3/s)";
 
   output Real der_k "thermal conductivity time derivative (W/m/K/s)";
 
 protected
-    constant Modelica.SIunits.Temperature tnorm = 132.5 "critical temperature";
-    constant Modelica.SIunits.Density rhonorm = 314.3 "critical density";
+  constant Units.SI.Temperature tnorm=132.5 "critical temperature";
+  constant Units.SI.Density rhonorm=314.3 "critical density";
     constant Real lambda = 25.9778e-3;
     constant Real C1 = 0.239503;
     constant Real C05 = 0.00649768;

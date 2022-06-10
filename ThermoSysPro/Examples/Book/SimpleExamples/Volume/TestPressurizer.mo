@@ -1,7 +1,7 @@
 within ThermoSysPro.Examples.Book.SimpleExamples.Volume;
 model TestPressurizer
 
-  parameter Modelica.SIunits.Power Wch(fixed=false)=0.29e6
+  parameter Units.SI.Power Wch(fixed=false) = 0.29e6
     "Power released by the electrical heaters";
   parameter Real OUVfeedwaterValve( fixed=false)=0.01
     "OUV feed water valve";

@@ -1,10 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Density;
 function dd2Tp_PT
   "Derivative of density wrt. temperature at constant pressure in vapor region for given pressure and temperature"
- input Modelica.SIunits.AbsolutePressure p "Pressure";
- input Modelica.SIunits.Temperature T "temperature";
- output Modelica.SIunits.DerDensityByTemperature ddTp
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.Temperature T "temperature";
+  output Units.SI.DerDensityByTemperature ddTp
     "Derivative of density wrt. temperature at constant pressure";
+protected
   d1_PT_coef coef
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm

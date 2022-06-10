@@ -3,25 +3,21 @@ model DynamicWaterHeating "Dynamic water heater"
   //parameter Modelica.SIunits.Volume Vc=4510 "Cavity total volume";
   parameter Real Vf0=0.066
     "Fraction of initial liquid volume in the Cavity (0 < Vf0 < 1)";
-  parameter Modelica.SIunits.Pressure P0c=1e5 "INitial pressure in the Cavity";
+  parameter Units.SI.Pressure P0c=1e5 "INitial pressure in the Cavity";
   //parameter Modelica.SIunits.Area Ac=200 "Cavity cross-sectional area";
-  parameter Modelica.SIunits.Radius Rv=1.0
-    "Radius of the Cavity cross-sectional area";
-  parameter Modelica.SIunits.Length L1=12.5
+  parameter Units.SI.Radius Rv=1.0 "Radius of the Cavity cross-sectional area";
+  parameter Units.SI.Length L1=12.5
     " Length of drowned pipes in liquid (pipes 1)";
-  parameter Modelica.SIunits.Length L2=12.5 " Length of Pipe 2 (in steam)";
-  parameter Modelica.SIunits.Length L3=25 " Length of Pipe 3 (in steam)";
-  parameter Modelica.SIunits.Length Lc=2.5
+  parameter Units.SI.Length L2=12.5 " Length of Pipe 2 (in steam)";
+  parameter Units.SI.Length L3=25 " Length of Pipe 3 (in steam)";
+  parameter Units.SI.Length Lc=2.5
     "support plate spacing in cooling zone(Chicanes)";
-  parameter Modelica.SIunits.Diameter Dc=0.016
-    "Internal diameter of the cooling pipes";
-  parameter Modelica.SIunits.Thickness ec=2.e-3
-    " Thickness of the cooling pipes";
-  parameter Modelica.SIunits.Diameter DIc=1.390 "Internal calendre diameter";
-  parameter Modelica.SIunits.Length PasL = 0.03
+  parameter Units.SI.Diameter Dc=0.016 "Internal diameter of the cooling pipes";
+  parameter Units.SI.Thickness ec=2.e-3 " Thickness of the cooling pipes";
+  parameter Units.SI.Diameter DIc=1.390 "Internal calendre diameter";
+  parameter Units.SI.Length PasL=0.03
     "Longitudinal step or Length bottom pipes triangular step";
-  parameter Modelica.SIunits.Length PasT = 0.03
-    " Transverse step or pipes step";
+  parameter Units.SI.Length PasT=0.03 " Transverse step or pipes step";
   //parameter Modelica.SIunits.Angle Angle = 60 "Average bend angle (deg)";
   parameter Integer Ns=10 "Number of segments for one tube pass (half U pipe";
   parameter Integer ntubes1=500
@@ -31,11 +27,11 @@ model DynamicWaterHeating "Dynamic water heater"
   parameter Integer ntubes3=500
     "Numbers of the pipes immersed in steam for pipes 3";
   parameter Integer ntubesV=15 "Numbers of pipes in a vertical row (tube bank)";
-  parameter Modelica.SIunits.SpecificHeatCapacity cp=460
+  parameter Units.SI.SpecificHeatCapacity cp=460
     "Specific heat capacity of the metal of the cooling pipes";
-  parameter Modelica.SIunits.Density rho=7900
+  parameter Units.SI.Density rho=7900
     "Density of the metal of the cooling pipes";
-  parameter Modelica.SIunits.ThermalConductivity lambda=26
+  parameter Units.SI.ThermalConductivity lambda=26
     "Wall thermal conductivity of the cooling pipes";
   //parameter Modelica.SIunits.CoefficientOfHeatTransfer hcond=25000
   //  "Heat transfer coefficient between the vapor and the cooling pipes";

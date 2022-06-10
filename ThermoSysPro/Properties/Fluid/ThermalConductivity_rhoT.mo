@@ -2,14 +2,14 @@ within ThermoSysPro.Properties.Fluid;
 function ThermalConductivity_rhoT
   "Thermal Conductivity computation for all fluids (inputs: rho,T, fluid)"
 
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
   input Integer region "region (valid values: 1,2,4)";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam  <br>7 - WaterSteamSimple </html>";
 
-  output Modelica.SIunits.ThermalConductivity k "Thermal Conductivity (W/m/K)";
+  output Units.SI.ThermalConductivity k "Thermal Conductivity (W/m/K)";
 
 protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro annotation (Placement(

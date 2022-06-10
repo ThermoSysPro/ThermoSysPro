@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Enthalpy_derT
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
     input Real der_temp "Fluid temperature time derivative (K/s)";
     output Real der_h "Enthalpy time derivative (J/(kg*s))";
 protected

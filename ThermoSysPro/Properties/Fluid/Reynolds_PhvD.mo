@@ -2,8 +2,8 @@
 function Reynolds_PhvD
   "Reynolds number computation for all fluids (inputs: P, h, fluid, v, D)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy (J/kg)";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy (J/kg)";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -11,11 +11,11 @@ function Reynolds_PhvD
   input Real Xh2o "H2O mass fraction";
   input Real Xo2 "O2 mass fraction";
   input Real Xso2 "SO2 mass fraction";
-  input Modelica.SIunits.Velocity v "Mean velocity of fluid flow";
-  input Modelica.SIunits.Length D
+  input Units.SI.Velocity v "Mean velocity of fluid flow";
+  input Units.SI.Length D
     "Characteristic dimension (hydraulic diameter of pipes)";
 
-  output Modelica.SIunits.ReynoldsNumber Re "Reynolds number";
+  output Units.SI.ReynoldsNumber Re "Reynolds number";
 
 // fluid==1 - Water/Steam
 protected

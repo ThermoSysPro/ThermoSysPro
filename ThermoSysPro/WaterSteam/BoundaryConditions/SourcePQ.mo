@@ -1,16 +1,16 @@
 within ThermoSysPro.WaterSteam.BoundaryConditions;
 model SourcePQ "Water/steam source with fixed pressure and mass flow rate"
-  parameter Modelica.SIunits.AbsolutePressure P0=300000
+  parameter Units.SI.AbsolutePressure P0=300000
     "Fluid pressure (active if IPressure connector is not connected)";
-  parameter Modelica.SIunits.MassFlowRate Q0=100
+  parameter Units.SI.MassFlowRate Q0=100
     "Mass flow (active if IMassFlow connector is not connected)";
-  parameter Modelica.SIunits.SpecificEnthalpy h0=100000
+  parameter Units.SI.SpecificEnthalpy h0=100000
     "Fluid specific enthalpy (active if IEnthalpy connector is not connected)";
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid pressure";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  Units.SI.AbsolutePressure P "Fluid pressure";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
 
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal IMassFlow

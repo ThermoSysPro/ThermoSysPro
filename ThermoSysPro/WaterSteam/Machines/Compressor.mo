@@ -2,18 +2,18 @@ within ThermoSysPro.WaterSteam.Machines;
 model Compressor "Heat pump compressor "
   parameter Real pi=10.0 "Compression factor (Ps/Pe)";
   parameter Real eta=0.85 "Isentropic efficiency";
-  parameter Modelica.SIunits.Power W_fric=0.0
+  parameter Units.SI.Power W_fric=0.0
     "Power losses due to hydrodynamic friction (percent)";
 
 public
-  Modelica.SIunits.Power W "Mechanical power delivered to the compressor";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy His
+  Units.SI.Power W "Mechanical power delivered to the compressor";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.SpecificEnthalpy His
     "Fluid specific enthalpy after isentropic compression";
-  Modelica.SIunits.AbsolutePressure Pe(start=10e5) "Inlet pressure";
-  Modelica.SIunits.AbsolutePressure Ps(start=10e5) "Outlet pressure";
-  Modelica.SIunits.Temperature Te "Inlet temperature";
-  Modelica.SIunits.Temperature Ts "Outlet temperature";
+  Units.SI.AbsolutePressure Pe(start=10e5) "Inlet pressure";
+  Units.SI.AbsolutePressure Ps(start=10e5) "Outlet pressure";
+  Units.SI.Temperature Te "Inlet temperature";
+  Units.SI.Temperature Ts "Outlet temperature";
   Real xm(start=1.0) "Average vapor mass fraction";
 
   Connectors.FluidInlet C1

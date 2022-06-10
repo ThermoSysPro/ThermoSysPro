@@ -1,20 +1,17 @@
 within ThermoSysPro.Correlations.Misc;
 record Pro_WaterSteam
   "Water/steam properties for the computation of correlations"
-  Modelica.SIunits.Temperature TEE
+  Units.SI.Temperature TEE
     "Water/steam temperature at the inlet of the exchanger";
-  Modelica.SIunits.Temperature TME "Average water/steam temperature";
-  Modelica.SIunits.Density rhoME "Average water/steam density";
-  Modelica.SIunits.Density rhoSE
-    "Water/steam density at the outlet of the exchanger";
-  Modelica.SIunits.AbsolutePressure PME(start=100e5)
-    "Average water/steam pressure";
-  Modelica.SIunits.SpecificEntropy SME "Average water/steam specific entropy";
+  Units.SI.Temperature TME "Average water/steam temperature";
+  Units.SI.Density rhoME "Average water/steam density";
+  Units.SI.Density rhoSE "Water/steam density at the outlet of the exchanger";
+  Units.SI.AbsolutePressure PME(start=100e5) "Average water/steam pressure";
+  Units.SI.SpecificEntropy SME "Average water/steam specific entropy";
   Real xm "Average steam mass fraction";
-  Modelica.SIunits.SpecificHeatCapacity cpME
-    "Water/steam specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muME "Water/steam dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity kME "Water/steam thermal conductivity";
+  Units.SI.SpecificHeatCapacity cpME "Water/steam specific heat capacity";
+  Units.SI.DynamicViscosity muME "Water/steam dynamic viscosity";
+  Units.SI.ThermalConductivity kME "Water/steam thermal conductivity";
 
   annotation (
     Window(

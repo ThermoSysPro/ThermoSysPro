@@ -1,16 +1,16 @@
 within ThermoSysPro.Correlations.Thermal;
 function WBCrossedCurrentConvectiveHeatTransferCoefficient
   "Convective heat transfer coefficient for crossed current heat exchangers"
-  input Modelica.SIunits.Temperature TFilm "Film temperature";
-  input Modelica.SIunits.MassFlowRate Qf "Flue gases mass flow rate";
+  input Units.SI.Temperature TFilm "Film temperature";
+  input Units.SI.MassFlowRate Qf "Flue gases mass flow rate";
   input Real Xh2o "H2O mass fraction in the flue gases";
-  input Modelica.SIunits.Area Sgaz "Geometrical parameter";
-  input Modelica.SIunits.Diameter Dext "Pipes external diameter";
+  input Units.SI.Area Sgaz "Geometrical parameter";
+  input Units.SI.Diameter Dext "Pipes external diameter";
   input Real Fa "Pipes position coefficient";
   input Integer option_interpolation=1
     "1: linear interpolation - 2: spline interpolation";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer Kcfc
+  output Units.SI.CoefficientOfHeatTransfer Kcfc
     "Convective heat transfer coefficient for crossed current heat exchanger";
 
 protected

@@ -3,25 +3,22 @@ model DynamicCondenser "Dynamic Cavity"
   //parameter Modelica.SIunits.Volume Vc=4510 "Cavity total volume";
   parameter Real Vf0=0.066
     "Fraction of initial liquid volume in the Cavity (0 < Vf0 < 1)";
-  parameter Modelica.SIunits.Pressure P0c=1e4 "INitial pressure in the Cavity";
-  parameter Modelica.SIunits.Radius Rv=1.0
-    "Radius of the Cavity cross-sectional area";
-  parameter Modelica.SIunits.Length Lv=15 "Cavity length";
-  parameter Modelica.SIunits.Length L2=14 "Pipes length";
-  parameter Modelica.SIunits.Length Lc=2.5
+  parameter Units.SI.Pressure P0c=1e4 "INitial pressure in the Cavity";
+  parameter Units.SI.Radius Rv=1.0 "Radius of the Cavity cross-sectional area";
+  parameter Units.SI.Length Lv=15 "Cavity length";
+  parameter Units.SI.Length L2=14 "Pipes length";
+  parameter Units.SI.Length Lc=2.5
     "support plate spacing in cooling zone(Chicanes)";
-  parameter Modelica.SIunits.Diameter Dc=0.016
-    "Internal diameter of the cooling pipes";
-  parameter Modelica.SIunits.Thickness ec=2.e-3
-    "Thickness of the cooling pipes";
+  parameter Units.SI.Diameter Dc=0.016 "Internal diameter of the cooling pipes";
+  parameter Units.SI.Thickness ec=2.e-3 "Thickness of the cooling pipes";
   parameter Integer Ns=10 "Number of segments for pipes";
   parameter Integer ntubest=10000 "Number of total pipes in Cavity ";
   parameter Integer ntubesV=200 "Numbers of pipes in a vertical plan in Cavity";
-  parameter Modelica.SIunits.SpecificHeatCapacity cp=460
+  parameter Units.SI.SpecificHeatCapacity cp=460
     "Specific heat capacity of the metal of the cooling pipes";
-  parameter Modelica.SIunits.Density rho=7900
+  parameter Units.SI.Density rho=7900
     "Density of the metal of the cooling pipes";
-  parameter Modelica.SIunits.ThermalConductivity lambda=26
+  parameter Units.SI.ThermalConductivity lambda=26
     "Wall thermal conductivity of the cooling pipes";
   //parameter Modelica.SIunits.CoefficientOfHeatTransfer hcond=25000
   //  "Heat transfer coefficient between the vapor and the cooling pipes";

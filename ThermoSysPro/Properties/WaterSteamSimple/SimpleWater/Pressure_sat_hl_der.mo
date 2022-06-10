@@ -1,7 +1,6 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Pressure_sat_hl_der
-  input Modelica.SIunits.SpecificEnthalpy hl
-    "Liquid specific enthalpy on the saturation line";
+  input Units.SI.SpecificEnthalpy hl "Liquid specific enthalpy on the saturation line";
   input Real hl_der;
 
   output Real p_der;
@@ -13,8 +12,7 @@ algorithm
   assert(hl < ThermoSysPro.Properties.WaterSteamSimple.critical.HCRIT,
     "Pressure_sat_hl_der called with too high specific enthalpy (above critical point)");
 
-  p_der := hl_der*ThermoSysPro.Properties.WaterSteamSimple.Pressure.dpsat1h_h(
-    hl);
+  p_der := hl_der*ThermoSysPro.Properties.WaterSteamSimple.Pressure.dpsat1h_h(hl);
 annotation (
   Icon(coordinateSystem(
         preserveAspectRatio=false,

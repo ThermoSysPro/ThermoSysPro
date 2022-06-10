@@ -1,27 +1,26 @@
 within ThermoSysPro.WaterSteam.Volumes;
 model VolumeDTh "Mixing volume with 1 inlet and 3 outlets and thermal input"
-  parameter Modelica.SIunits.Volume V=1 "Volume";
-  parameter Modelica.SIunits.AbsolutePressure P0=1e5
+  parameter Units.SI.Volume V=1 "Volume";
+  parameter Units.SI.AbsolutePressure P0=1e5
     "Initial fluid pressure (active if dynamic_mass_balance=true and steady_state=false)";
-  parameter Modelica.SIunits.SpecificEnthalpy h0=1e5
+  parameter Units.SI.SpecificEnthalpy h0=1e5
     "Initial fluid specific enthalpy (active if steady_state=false)";
   parameter Boolean dynamic_mass_balance=false
     "true: dynamic mass balance equation - false: static mass balance equation";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, h0)";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.MassFlowRate BQ
-    "Right hand side of the mass balance equation";
-  Modelica.SIunits.Power BH "Right hand side of the energybalance equation";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.MassFlowRate BQ "Right hand side of the mass balance equation";
+  Units.SI.Power BH "Right hand side of the energybalance equation";
 public
   Connectors.FluidInlet Ce          annotation (Placement(transformation(extent=
            {{-110,-10},{-90,10}}, rotation=0)));

@@ -1,9 +1,9 @@
 within ThermoSysPro.Properties.Fluid;
 function P_sat
-  input  Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.Temperature T "Temperature (K)";
   input Integer fluid  "Fluid number - 1: IF97 - 7: SimpleWater";
 
-  output Modelica.SIunits.AbsolutePressure P "Pressure";
+  output Units.SI.AbsolutePressure P "Pressure";
 
 algorithm
 

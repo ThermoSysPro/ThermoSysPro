@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.SolarSalt;
 function SpecificHeatCp_derT "derivative of SpecificHeatCp_T"
-  input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
   input Real der_temp "fluid temperature time derivative (K/s)";
   output Real der_cp "specific heat capacity time derivative (J/kgKs)";
 protected

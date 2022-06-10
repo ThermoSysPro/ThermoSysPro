@@ -1,6 +1,6 @@
 within ThermoSysPro.ElectroMechanics.BoundaryConditions;
 model SourceTorque "Torque source"
-  parameter Modelica.SIunits.Torque T0=0;
+  parameter Units.SI.Torque T0=0;
 
   ThermoSysPro.ElectroMechanics.Connectors.MechanichalTorque M
     annotation (Placement(transformation(

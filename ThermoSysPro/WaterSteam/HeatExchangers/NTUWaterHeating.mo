@@ -1,13 +1,12 @@
 within ThermoSysPro.WaterSteam.HeatExchangers;
 model NTUWaterHeating "NTU water heater"
   parameter Real lambdaE=0 "Pressure loss coefficient on the water side";
-  parameter Modelica.SIunits.Area SCondDes=3000
+  parameter Units.SI.Area SCondDes=3000
     "Exchange surface for the condensation and deheating";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer KCond=1
+  parameter Units.SI.CoefficientOfHeatTransfer KCond=1
     "Heat transfer coefficient for the condensation";
-  parameter Modelica.SIunits.Area SPurge=0
-    "Drain surface - if > 0: with drain cooling";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer KPurge=1
+  parameter Units.SI.Area SPurge=0 "Drain surface - if > 0: with drain cooling";
+  parameter Units.SI.CoefficientOfHeatTransfer KPurge=1
     "Heat transfer coefficient for the drain cooling";
   parameter Integer mode_eeF=0
     "IF97 region at the inlet of the water side. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
@@ -28,30 +27,29 @@ protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
 
 public
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy HsateC(start=300e3,min=0)
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.SpecificEnthalpy HsateC(start=300e3, min=0)
     "Saturation specific enthalpy of the water at the pressure of the vapor inlet";
-  Modelica.SIunits.SpecificEnthalpy HsatvC(start=2500e3,min=0)
+  Units.SI.SpecificEnthalpy HsatvC(start=2500e3, min=0)
     "Saturation specific enthalpy of the vapor at the pressure of the vapor inlet";
-  Modelica.SIunits.Area SDes(start=0) "Heat exchange surface for deheating";
-  Modelica.SIunits.SpecificEnthalpy HeiF(start=200e3)
+  Units.SI.Area SDes(start=0) "Heat exchange surface for deheating";
+  Units.SI.SpecificEnthalpy HeiF(start=200e3)
     "Fluid specific enthalpy after drain cooling";
-  Modelica.SIunits.SpecificEnthalpy HDesF(start=200e3)
+  Units.SI.SpecificEnthalpy HDesF(start=200e3)
     "Fluid specific enthalpy after deheating";
-  Modelica.SIunits.Temperature TeiF(start=400,min=0)
+  Units.SI.Temperature TeiF(start=400, min=0)
     "Fluid temperature after drain cooling";
-  Modelica.SIunits.Temperature TsatC(start=400,min=0) "Saturation temperature";
-  Modelica.SIunits.Power W(start=1)
-    "Total heat power transfered to the cooling water";
-  Modelica.SIunits.Power Wdes(start=1) "Energy transfer during deheating";
-  Modelica.SIunits.Power Wcond(start=1) "Energy transfer during condensation";
-  Modelica.SIunits.Power Wflash(start=1)
+  Units.SI.Temperature TsatC(start=400, min=0) "Saturation temperature";
+  Units.SI.Power W(start=1) "Total heat power transfered to the cooling water";
+  Units.SI.Power Wdes(start=1) "Energy transfer during deheating";
+  Units.SI.Power Wcond(start=1) "Energy transfer during condensation";
+  Units.SI.Power Wflash(start=1)
     "Energy transfer during partial vaporisation in the drain";
-  Modelica.SIunits.Power Wpurge(start=1) "Energy transfer during drain cooling";
-  Modelica.SIunits.SpecificEnthalpy Hep(start=3e5)
+  Units.SI.Power Wpurge(start=1) "Energy transfer during drain cooling";
+  Units.SI.SpecificEnthalpy Hep(start=3e5)
     "Mixing specific enthalpy of the drain and the condensate";
-  Modelica.SIunits.Density rho(start=1e3,min=0) "Average water density";
+  Units.SI.Density rho(start=1e3, min=0) "Average water density";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph proeeF
     "Water inlet fluid properties (4F)"
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}},

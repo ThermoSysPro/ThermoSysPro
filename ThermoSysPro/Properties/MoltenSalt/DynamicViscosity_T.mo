@@ -1,8 +1,8 @@
 ﻿within ThermoSysPro.Properties.MoltenSalt;
 function DynamicViscosity_T "Dynamic Viscosity computation for Salt (input T)"
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  output Modelica.SIunits.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
+  input Units.SI.Temperature T "Temperature (K)";
+  output Units.SI.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
 
 algorithm
   //mu :=( 0.0755147595 - 0.00027760398*T + 3.4888693*1e-7*T^2 - 1.4739999*1e-10*T^3);   // temperature in °K

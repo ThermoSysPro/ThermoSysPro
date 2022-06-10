@@ -1,16 +1,19 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model DynamicReliefValve "Dynamic relief valve"
-  parameter Modelica.SIunits.AbsolutePressure Popen=3e5 "Pressure that opens the valve";
-  parameter Modelica.SIunits.AbsolutePressure Pout=1e5 "Pressure at the valve outlet (for sizing)";
-  parameter ThermoSysPro.Units.Cv Cvmax=8005.42 "Maximum Cv";
+  parameter Units.SI.AbsolutePressure Popen=3e5 "Pressure that opens the valve";
+  parameter Units.SI.AbsolutePressure Pout=1e5
+    "Pressure at the valve outlet (for sizing)";
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax=8005.42 "Maximum Cv";
   parameter Real caract[:, 2]=[0, 0; 1, Cvmax] "Position vs. Cv characteristics (active if mode_caract=1)";
-  parameter Modelica.SIunits.Area A1=0.1 "Hydraulic area upstream the clapper";
-  parameter Modelica.SIunits.Area A2=0.125 "Hydraulic area downstream the clapper";
-  parameter Modelica.SIunits.Area clapper_area[:, 2]=[0, A1; 0.01, A2; 1, A2] "Clapper area as a function of the clapper elevation";
+  parameter Units.SI.Area A1=0.1 "Hydraulic area upstream the clapper";
+  parameter Units.SI.Area A2=0.125 "Hydraulic area downstream the clapper";
+  parameter Units.SI.Area clapper_area[:,2]=[0,A1; 0.01,A2; 1,A2]
+    "Clapper area as a function of the clapper elevation";
   parameter Real D=1 "Damping";
-  parameter Modelica.SIunits.Mass m=1 "Valve mass";
-  parameter Modelica.SIunits.Length z_max=0.1 "Maximum clapper elevation";
-  parameter Modelica.SIunits.Length z0=0 "Initial clapper elevation, between 0 and z_max. 0:valve closed - z_max: valve fully open (active if permanent_meca = false)";
+  parameter Units.SI.Mass m=1 "Valve mass";
+  parameter Units.SI.Length z_max=0.1 "Maximum clapper elevation";
+  parameter Units.SI.Length z0=0
+    "Initial clapper elevation, between 0 and z_max. 0:valve closed - z_max: valve fully open (active if permanent_meca = false)";
   parameter Real Ke=62500 "Valve spring stiffness";
   parameter Real Cd=0 "Drag coefficient of the clapper";
   parameter Integer mode_caract=0
@@ -21,45 +24,44 @@ model DynamicReliefValve "Dynamic relief valve"
     "true: start from mechanical steady state - false: start from 0";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
-  constant Modelica.SIunits.Density rho60F=998.98 "Water density at 60°F";
+  constant Units.SI.Density rho60F=998.98 "Water density at 60°F";
   constant Real K=1.733e12 "Valve constant";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.Length z_min=0 "Minimum clapper elevation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.Length z_min=0 "Minimum clapper elevation";
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Boolean clapper_is_free(start=true) "true if clapper is free to move in both directions, false otherwise";
-  Modelica.SIunits.Force Fp "Gravity force";
-  Modelica.SIunits.Force Fr "Spring force";
-  Modelica.SIunits.Force Fd "Damping force";
-  Modelica.SIunits.Force Fh "Hydraulic force";
-  Modelica.SIunits.Force Fdyn "Dynamic pressure force";
-  Modelica.SIunits.Force Ft "Total force";
-  Modelica.SIunits.Length z(start=z_min) "Clapper elevation";
-  Modelica.SIunits.Velocity v=der(z) "Clapper velocity";
-  Modelica.SIunits.Acceleration a=der(v) "Clapper acceleration";
+  Units.SI.Force Fp "Gravity force";
+  Units.SI.Force Fr "Spring force";
+  Units.SI.Force Fd "Damping force";
+  Units.SI.Force Fh "Hydraulic force";
+  Units.SI.Force Fdyn "Dynamic pressure force";
+  Units.SI.Force Ft "Total force";
+  Units.SI.Length z(start=z_min) "Clapper elevation";
+  Units.SI.Velocity v=der(z) "Clapper velocity";
+  Units.SI.Acceleration a=der(v) "Clapper acceleration";
   Real Ouv "Valve position";
-  Modelica.SIunits.Area A "Hydraulic area upstream the clapper";
-  Modelica.SIunits.Force Fr_min "Spring force when valve is closed";
-  ThermoSysPro.Units.Cv Cv "Cv";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
-  Modelica.SIunits.AbsolutePressure Pdyn "Dynamic pressure on the clapper";
-  Modelica.SIunits.Velocity vh "Fluid velocity through the valve";
-  Modelica.SIunits.Energy Wdyn "Dissipated fluid kinetic energy";
+  Units.SI.Area A "Hydraulic area upstream the clapper";
+  Units.SI.Force Fr_min "Spring force when valve is closed";
+  ThermoSysPro.Units.xSI.Cv Cv "Cv";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Singular pressure loss";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  Units.SI.AbsolutePressure Pdyn "Dynamic pressure on the clapper";
+  Units.SI.Velocity vh "Fluid velocity through the valve";
+  Units.SI.Energy Wdyn "Dissipated fluid kinetic energy";
   Real Re=rho*(vh - v)*sqrt(4*A/pi)/ThermoSysPro.Properties.WaterSteam.IF97.DynamicViscosity_rhoT(rho, T) "Clapper Reynolds";
 
 protected

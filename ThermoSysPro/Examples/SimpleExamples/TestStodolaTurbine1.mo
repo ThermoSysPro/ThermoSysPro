@@ -1,6 +1,6 @@
 within ThermoSysPro.Examples.SimpleExamples;
 model TestStodolaTurbine1
-   parameter Modelica.SIunits.AbsolutePressure PoutPump(fixed=false,start=13e5)
+  parameter Units.SI.AbsolutePressure PoutPump(fixed=false, start=13e5)
     "Flow pressure at the outlet of the pump";
   ThermoSysPro.WaterSteam.Machines.StodolaTurbine stodolaTurbine(pros1(x(start=
             1)), Hrs(start=2931e3),

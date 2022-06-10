@@ -2,15 +2,15 @@ within ThermoSysPro.WaterSteam.HeatExchangers;
 model SimpleStaticCondenser "Simple static condenser"
   parameter Real Kc=10 "Friction pressure loss coefficient for the hot side";
   parameter Real Kf=10 "Friction pressure loss coefficient for the cold side";
-  parameter Modelica.SIunits.Position z1c=0 "Hot inlet altitude";
-  parameter Modelica.SIunits.Position z2c=0 "Hot outlet altitude";
-  parameter Modelica.SIunits.Position z1f=0 "Cold inlet altitude";
-  parameter Modelica.SIunits.Position z2f=0 "Cold outlet altitude";
+  parameter Units.SI.Position z1c=0 "Hot inlet altitude";
+  parameter Units.SI.Position z2c=0 "Hot outlet altitude";
+  parameter Units.SI.Position z1f=0 "Cold inlet altitude";
+  parameter Units.SI.Position z2f=0 "Cold outlet altitude";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
-  parameter Modelica.SIunits.Density p_rhoc=0
+  parameter Units.SI.Density p_rhoc=0
     "If > 0, fixed fluid density for the hot side";
-  parameter Modelica.SIunits.Density p_rhof=0
+  parameter Units.SI.Density p_rhof=0
     "If > 0, fixed fluid density for the cold side";
   parameter Integer modec=0
     "IF97 region of the water for the hot side. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
@@ -20,42 +20,39 @@ model SimpleStaticCondenser "Simple static condenser"
     "IF97 region of the water for the cold side. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
 
 public
-  Modelica.SIunits.Power W(start=1e6)
+  Units.SI.Power W(start=1e6)
     "Power exchanged from the hot side to the cold side";
-  Modelica.SIunits.Temperature Tec(start=500)
+  Units.SI.Temperature Tec(start=500)
     "Fluid temperature at the inlet of the hot side";
-  Modelica.SIunits.Temperature Tsc(start=400)
+  Units.SI.Temperature Tsc(start=400)
     "Fluid temperature at the outlet of the hot side";
-  Modelica.SIunits.Temperature Tef(start=350)
+  Units.SI.Temperature Tef(start=350)
     "Fluid temperature at the inlet of the cold side";
-  Modelica.SIunits.Temperature Tsf(start=350)
+  Units.SI.Temperature Tsf(start=350)
     "Fluid temperature at the outlet of the cold side";
-  ThermoSysPro.Units.DifferentialPressure DPfc(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPfc(start=1e3)
     "Friction pressure loss in the hot side";
-  ThermoSysPro.Units.DifferentialPressure DPgc(start=1e2)
+  ThermoSysPro.Units.SI.PressureDifference DPgc(start=1e2)
     "Gravity pressure loss in the hot side";
-  ThermoSysPro.Units.DifferentialPressure DPc( start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPc(start=1e3)
     "Total pressure loss in the hot side";
-  ThermoSysPro.Units.DifferentialPressure DPff(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPff(start=1e3)
     "Friction pressure loss in the cold side";
-  ThermoSysPro.Units.DifferentialPressure DPgf(start=1e2)
+  ThermoSysPro.Units.SI.PressureDifference DPgf(start=1e2)
     "Gravity pressure loss in the cold side";
-  ThermoSysPro.Units.DifferentialPressure DPf( start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPf(start=1e3)
     "Total pressure loss in the cold side";
-  Modelica.SIunits.Density rhoc(start=998)
-    "Density of the fluid in the hot side";
-  Modelica.SIunits.Density rhof(start=998)
-    "Density of the fluid in the cold side";
-  Modelica.SIunits.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
-  Modelica.SIunits.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
+  Units.SI.Density rhoc(start=998) "Density of the fluid in the hot side";
+  Units.SI.Density rhof(start=998) "Density of the fluid in the cold side";
+  Units.SI.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
+  Units.SI.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
 
 public
   Connectors.FluidInlet Ec

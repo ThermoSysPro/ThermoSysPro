@@ -1,10 +1,10 @@
 ﻿within ThermoSysPro.WaterSteam.Volumes;
 model TwoPhaseVolume "TwoPhaseVolume"
-  parameter Modelica.SIunits.Volume V=1 "Cavity volume";
-  parameter Modelica.SIunits.Area A=1 "Cavity cross-sectional area";
+  parameter Units.SI.Volume V=1 "Cavity volume";
+  parameter Units.SI.Area A=1 "Cavity cross-sectional area";
   parameter Real Vf0=0.5
     "Fraction of initial water volume in the drum (active if steady_state=false)";
-  parameter Modelica.SIunits.AbsolutePressure P0=0.1e5
+  parameter Units.SI.AbsolutePressure P0=0.1e5
     "Fluid initial pressure (active if steady_state=false)";
   parameter Real Ccond=0.01 "Condensation coefficient";
   parameter Real Cevap=0.09 "Evaporation coefficient";
@@ -12,7 +12,7 @@ model TwoPhaseVolume "TwoPhaseVolume"
     "Vapor mass fraction in the liquid phase from which the liquid starts to evaporate";
   parameter Real Xvo=0.9975
     "Vapor mass fraction in the gas phase from which the liquid starts to condensate";
-  parameter Modelica.SIunits.Area Avl=A
+  parameter Units.SI.Area Avl=A
     "Heat exchange surface between the liquid and gas phases";
   parameter Real Kvl=1000
     "Heat exchange coefficient between the liquid and gas phases";
@@ -20,36 +20,34 @@ model TwoPhaseVolume "TwoPhaseVolume"
     "true: start from steady state - false: start from (P0, Vl0)";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid average pressure";
-  Modelica.SIunits.AbsolutePressure Pfond
-    "Fluid pressure at the bottom of the cavity";
-  Modelica.SIunits.SpecificEnthalpy hl "Liquid phase spepcific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "Gas phase spepcific enthalpy";
-  Modelica.SIunits.Temperature Tl "Liquid phase temperature";
-  Modelica.SIunits.Temperature Tv "Gas phase temperature";
-  Modelica.SIunits.Volume Vl "Liquid phase volume";
-  Modelica.SIunits.Volume Vv "Gas phase volume";
+  Units.SI.AbsolutePressure P "Fluid average pressure";
+  Units.SI.AbsolutePressure Pfond "Fluid pressure at the bottom of the cavity";
+  Units.SI.SpecificEnthalpy hl "Liquid phase spepcific enthalpy";
+  Units.SI.SpecificEnthalpy hv "Gas phase spepcific enthalpy";
+  Units.SI.Temperature Tl "Liquid phase temperature";
+  Units.SI.Temperature Tv "Gas phase temperature";
+  Units.SI.Volume Vl "Liquid phase volume";
+  Units.SI.Volume Vv "Gas phase volume";
   Real xl(start=0.5) "Mass vapor fraction in the liquid phase";
   Real xv(start=0) "Mass vapor fraction in the gas phase";
-  Modelica.SIunits.Density rhol(start=996) "Liquid phase density";
-  Modelica.SIunits.Density rhov(start=1.5) "Gas phase density";
-  Modelica.SIunits.MassFlowRate BQl
+  Units.SI.Density rhol(start=996) "Liquid phase density";
+  Units.SI.Density rhov(start=1.5) "Gas phase density";
+  Units.SI.MassFlowRate BQl
     "Right hand side of the mass balance equation of the liquid phase";
-  Modelica.SIunits.MassFlowRate BQv
+  Units.SI.MassFlowRate BQv
     "Right hand side of the mass balance equation of the gas phaser";
-  Modelica.SIunits.Power BHl
+  Units.SI.Power BHl
     "Right hand side of the energy balance equation of the liquid phase";
-  Modelica.SIunits.Power BHv
+  Units.SI.Power BHv
     "Right hand side of the energy balance equation of the gas phase";
-  Modelica.SIunits.MassFlowRate Qcond
+  Units.SI.MassFlowRate Qcond
     "Condensation mass flow rate from the vapor phase";
-  Modelica.SIunits.MassFlowRate Qevap
+  Units.SI.MassFlowRate Qevap
     "Evaporation mass flow rate from the liquid phase";
-  Modelica.SIunits.Power Wvl
+  Units.SI.Power Wvl
     "Thermal power exchanged from the gas phase to the liquid phase";
 
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph prol

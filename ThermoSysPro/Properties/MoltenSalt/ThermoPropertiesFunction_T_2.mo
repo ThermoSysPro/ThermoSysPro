@@ -1,7 +1,7 @@
 ﻿within ThermoSysPro.Properties.MoltenSalt;
 function ThermoPropertiesFunction_T_2 "ThermoPropertiesFunction of Solt: KNO3-NaNO3
 "
-  input Modelica.SIunits.Temperature T
+  input Units.SI.Temperature T
     "dimensionless derivatives of the Gibbs function";
   output ThermoSysPro.Properties.MoltenSalt.ThermoProperties_T pro;
 //protected

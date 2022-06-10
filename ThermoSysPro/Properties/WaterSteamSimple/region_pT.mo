@@ -1,14 +1,15 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function region_pT
-  "return the current region (valid values: 1,2) for given pressure and temperature"
- input Modelica.SIunits.Pressure p "pressure";
- input Modelica.SIunits.Temperature T "temperature";
- input Integer mode=0 "mode: 0 means check, otherwise assume region=mode";
- output Integer region "region (valid values: 1,2)";
+function region_pT "Returns the current region (valid values: 1,2) for given pressure and temperature"
+  input Units.SI.Pressure p "Pressure";
+  input Units.SI.Temperature T "Temperature";
+  input Integer mode=0 "mode: 0 means check, otherwise assume region=mode";
+
+  output Integer region "Region (valid values: 1,2)";
 
 protected
-  Modelica.SIunits.Temperature Tsat "bubble entropy";
-  Modelica.SIunits.SpecificEnthalpy sv "dew entropy";
+  Units.SI.Temperature Tsat "Bubble entropy";
+  Units.SI.SpecificEnthalpy sv "Dew entropy";
+
 algorithm
   Tsat := ThermoSysPro.Properties.WaterSteamSimple.Temperature.Tsat_P(p);
   if (mode <> 0) then

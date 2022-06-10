@@ -5,10 +5,10 @@ model AbsorptionRefrigeratorSystem "Refrigeration system by absorption"
   parameter Real Pth=0.33 "Desorber thermal losses (0-1 %W)";
   parameter Real ExchEff=0.99 "Exchanger water LiBr efficiency";
   parameter Real EvapEff=0.99 "Evaporator efficiency";
-  parameter Modelica.SIunits.MassFlowRate Qsol=8.856 "Solution mass flow rate";
-  parameter Modelica.SIunits.MassFlowRate Qnom=8.856
+  parameter Units.SI.MassFlowRate Qsol=8.856 "Solution mass flow rate";
+  parameter Units.SI.MassFlowRate Qnom=8.856
     "Pump solution nominal mass flow rate";
-  parameter ThermoSysPro.Units.DifferentialPressure DPnom=3386.05
+  parameter ThermoSysPro.Units.SI.PressureDifference DPnom=3386.05
     "Pump solution nominal delta pressure";
 
   ThermoSysPro.WaterSteam.Connectors.FluidOutletI outletWaterSteamI

@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Density_T "Density as function of temperature"
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
-    output Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
+  output Units.SI.Density rho "Density (kg/m3)";
 protected
     constant Real Density_c0 = 1156.4064882506063;
     constant Real Density_c1 = 0.6335655001350703;

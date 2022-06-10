@@ -2,10 +2,10 @@ within ThermoSysPro.Properties.DryAirIdealGas;
 function Density_PT "Density computation for Dry Air Ideal Gas (input P, T)"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Pressure P;
-  input Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.Pressure P;
+  input Units.SI.Temperature T "Temperature (K)";
 
-  output Modelica.SIunits.Density rho;
+  output Units.SI.Density rho;
 
 protected
   ThermoSysPro.Properties.DryAirIdealGas.DryAirIdealGas Data;

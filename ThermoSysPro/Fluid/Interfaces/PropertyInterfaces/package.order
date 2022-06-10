@@ -1,0 +1,12 @@
+FluidType
+FluidTypeColors
+FluidTypeParameterInterface
+FluidTypeVariableInterface
+FlueGasesFluidType
+WaterSteamFluidType
+FlueGasesFluidTypeParameterInterface
+WaterSteamFluidTypeParameterInterface
+IF97Region
+isCompatible
+cvfgftype
+cvwsftype

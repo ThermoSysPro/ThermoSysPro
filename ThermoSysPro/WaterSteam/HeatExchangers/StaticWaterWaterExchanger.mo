@@ -1,22 +1,22 @@
 ﻿within ThermoSysPro.WaterSteam.HeatExchangers;
 model StaticWaterWaterExchanger "Static plate heat exchanger"
-  parameter Modelica.SIunits.ThermalConductivity lambdam=15.0
+  parameter Units.SI.ThermalConductivity lambdam=15.0
     "Metal thermal conductivity";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer p_hc=6000
+  parameter Units.SI.CoefficientOfHeatTransfer p_hc=6000
     "Heat transfer coefficient for the hot side if not computed by the correlations";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer p_hf=3000
+  parameter Units.SI.CoefficientOfHeatTransfer p_hf=3000
     "Heat transfer coefficient for the cold side if not computed by the correlations";
   parameter Real p_Kc=100
     "Pressure loss coefficient for the hot side if not computed by the correlations";
   parameter Real p_Kf=100
     "Pressure loss coefficient for the cold side if not computed by the correlations";
-  parameter Modelica.SIunits.Thickness emetal=0.0006 "Wall thickness";
-  parameter Modelica.SIunits.Area Sp=2 "Plate area";
+  parameter Units.SI.Thickness emetal=0.0006 "Wall thickness";
+  parameter Units.SI.Area Sp=2 "Plate area";
   parameter Real nbp=499 "Number of plates";
   parameter Real c1=1.12647 "Correction coefficient";
-  parameter Modelica.SIunits.Density p_rhoc=0
+  parameter Units.SI.Density p_rhoc=0
     "If > 0, fixed fluid density for the hot fluid";
-  parameter Modelica.SIunits.Density p_rhof=0
+  parameter Units.SI.Density p_rhof=0
     "If > 0, fixed fluid density for the cold fluid";
   parameter Integer modec=0
     "IF97 region for the hot fluid. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
@@ -31,54 +31,50 @@ model StaticWaterWaterExchanger "Static plate heat exchanger"
     "Correlation for the computation of the pressure loss coefficient - 0: no correlation. 1: SRI correlations";
 
 public
-  Modelica.SIunits.Power W "Thermal power exchanged between the two sides";
-  ThermoSysPro.Units.DifferentialPressure DPc "Pressure loss of the hot fluid";
-  ThermoSysPro.Units.DifferentialPressure DPf "Pressure loss of the cold fluid";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc
+  Units.SI.Power W "Thermal power exchanged between the two sides";
+  ThermoSysPro.Units.SI.PressureDifference DPc
+    "Pressure loss of the hot fluid";
+  ThermoSysPro.Units.SI.PressureDifference DPf
+    "Pressure loss of the cold fluid";
+  Units.SI.CoefficientOfHeatTransfer hc
     "Heat transfer coefficient of the hot fluid";
-  Modelica.SIunits.CoefficientOfHeatTransfer hf
+  Units.SI.CoefficientOfHeatTransfer hf
     "Heat transfer coefficient of the cold fluid";
-  Modelica.SIunits.CoefficientOfHeatTransfer K
-    "Global heat transfer coefficient";
-  Modelica.SIunits.Area S "Heat exchange surface";
-  Modelica.SIunits.Temperature Tec "Fluid temperature at the hot inlet";
-  Modelica.SIunits.Temperature Tsc "Fluid temperature at the hot outlet";
-  Modelica.SIunits.Temperature Tef "Fluid temperature at the cold inlet";
-  Modelica.SIunits.Temperature Tsf "Fluid temperature at the cold outlet";
-  ThermoSysPro.Units.DifferentialTemperature DTm
+  Units.SI.CoefficientOfHeatTransfer K "Global heat transfer coefficient";
+  Units.SI.Area S "Heat exchange surface";
+  Units.SI.Temperature Tec "Fluid temperature at the hot inlet";
+  Units.SI.Temperature Tsc "Fluid temperature at the hot outlet";
+  Units.SI.Temperature Tef "Fluid temperature at the cold inlet";
+  Units.SI.Temperature Tsf "Fluid temperature at the cold outlet";
+  ThermoSysPro.Units.SI.TemperatureDifference DTm
     "Difference in average temperature";
-  ThermoSysPro.Units.DifferentialTemperature DT1
+  ThermoSysPro.Units.SI.TemperatureDifference DT1
     "Temperature difference at the inlet of the exchanger";
-  ThermoSysPro.Units.DifferentialTemperature DT2
+  ThermoSysPro.Units.SI.TemperatureDifference DT2
     "Temperature difference at the outlet of the exchanger";
   Real DT12 "DT1/DT2 (s.u.)";
-  Modelica.SIunits.MassFlowRate Qc(start=500) "Mass flow rate of the hot fluid";
-  Modelica.SIunits.MassFlowRate Qf(start=500)
-    "Mass flow rate of the cold fluid";
+  Units.SI.MassFlowRate Qc(start=500) "Mass flow rate of the hot fluid";
+  Units.SI.MassFlowRate Qf(start=500) "Mass flow rate of the cold fluid";
   Real qmc;
   Real qmf;
   Real quc;
   Real quf;
   Real N;
-  Modelica.SIunits.Density rhoc(start=998) "Hot fluid density";
-  Modelica.SIunits.Density rhof(start=998) "Cold fluid density";
-  Modelica.SIunits.DynamicViscosity muc(start=1.e-3)
-    "Hot fluid dynamic viscosity";
-  Modelica.SIunits.DynamicViscosity muf(start=1.e-3)
-    "Cold fluid dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity lambdac(start=0.602698)
+  Units.SI.Density rhoc(start=998) "Hot fluid density";
+  Units.SI.Density rhof(start=998) "Cold fluid density";
+  Units.SI.DynamicViscosity muc(start=1.e-3) "Hot fluid dynamic viscosity";
+  Units.SI.DynamicViscosity muf(start=1.e-3) "Cold fluid dynamic viscosity";
+  Units.SI.ThermalConductivity lambdac(start=0.602698)
     "Hot fluid thermal conductivity";
-  Modelica.SIunits.ThermalConductivity lambdaf(start=0.597928)
+  Units.SI.ThermalConductivity lambdaf(start=0.597928)
     "Cold fluid thermal conductivity";
-  Modelica.SIunits.Temperature Tmc(start=290) "Hot fluid average temperature";
-  Modelica.SIunits.Temperature Tmf(start=290) "Cold fluid average temperature";
-  Modelica.SIunits.AbsolutePressure Pmc(start=1.e5)
-    "Hot fluid average pressure";
-  Modelica.SIunits.AbsolutePressure Pmf(start=1.e5)
-    "Cold fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy Hmc(start=100000)
+  Units.SI.Temperature Tmc(start=290) "Hot fluid average temperature";
+  Units.SI.Temperature Tmf(start=290) "Cold fluid average temperature";
+  Units.SI.AbsolutePressure Pmc(start=1.e5) "Hot fluid average pressure";
+  Units.SI.AbsolutePressure Pmf(start=1.e5) "Cold fluid average pressure";
+  Units.SI.SpecificEnthalpy Hmc(start=100000)
     "Hot fluid average specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hmf(start=100000)
+  Units.SI.SpecificEnthalpy Hmf(start=100000)
     "Cold fluid average specific enthalpy";
 
 public
@@ -194,8 +190,8 @@ equation
   quf = noEvent(abs(Qf)/N);
 
   if (pressure_loss_correlation == 0) then
-      DPc = p_Kc*ThermoSysPro.Functions.ThermoSquare(Qc, 1.e-3)/rhoc;
-      DPf = p_Kf*ThermoSysPro.Functions.ThermoSquare(Qf, 1.e-3)/rhof;
+      DPc = p_Kc*Qc^2/rhoc;
+      DPf = p_Kf*Qf^2/rhof;
   elseif (pressure_loss_correlation == 1) then
     DPc = noEvent(if (qmc < 1.e-3) then 0 else c1*14423.2/rhoc*qmc^(-0.097)*quc
       ^2*(1472.47 + 1.54*(N - 1)/2 + 104.97*qmc^(-0.25)));
@@ -283,8 +279,8 @@ equation
       width=0.93,
       height=0.87),
     Documentation(info="<html>
-<p><b>Copyright &copy; EDF 2002 - 2019</h4>
-<p><b>ThermoSysPro Version 3.2</h4>
+<p><b>Copyright &copy; EDF 2002 - 2021</h4>
+<p><b>ThermoSysPro Version 4.0</h4>
 <p>This component model is documented in Sect. 9.6.2 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>. </h4>
 </html>",
    revisions="<html>

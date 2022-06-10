@@ -1,47 +1,46 @@
 within ThermoSysPro.HeatNetworksCooling;
 model HeatNetworkPipe
   "Static pipe with thermal losses and singular pressure losses"
-  parameter Modelica.SIunits.Length L=10 "Pipe length";
-  parameter Modelica.SIunits.Diameter D=0.2 "Pipe internal diameter";
-  parameter Modelica.SIunits.Length e=0.05 "Wall thickness";
+  parameter Units.SI.Length L=10 "Pipe length";
+  parameter Units.SI.Diameter D=0.2 "Pipe internal diameter";
+  parameter Units.SI.Length e=0.05 "Wall thickness";
   parameter Real rugosrel=0 "Pipe roughness";
-  parameter Modelica.SIunits.Length z1=0 "Pipe altitude at the inlet";
-  parameter Modelica.SIunits.Length z2=0 "Pipe altitude at the outlet";
-  parameter Modelica.SIunits.Temperature Tamb=293 "Ambient temperature";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer K=0.1
+  parameter Units.SI.Length z1=0 "Pipe altitude at the inlet";
+  parameter Units.SI.Length z2=0 "Pipe altitude at the outlet";
+  parameter Units.SI.Temperature Tamb=293 "Ambient temperature";
+  parameter Units.SI.CoefficientOfHeatTransfer K=0.1
     "Heat exchange coefficient with ambient";
-  parameter ThermoSysPro.Units.PressureLossCoefficient Ks=
-                                                         1000
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient Ks=1000
     "Singular pressure losses coefficient";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.Power Wloss "Thermal losses at ambient conditions";
+  Units.SI.Power Wloss "Thermal losses at ambient conditions";
   Real khi "Hydraulic pressure loss coefficient";
-  ThermoSysPro.Units.DifferentialPressure deltaPr "Regular pressure losses";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Total pressure losses";
-  ThermoSysPro.Units.DifferentialPressure deltaPs "Singular pressure losses";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.ReynoldsNumber Re "Reynolds number";
-  Modelica.SIunits.ReynoldsNumber Relim "Limit Reynolds number";
+  ThermoSysPro.Units.SI.PressureDifference deltaPr "Regular pressure losses";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Total pressure losses";
+  ThermoSysPro.Units.SI.PressureDifference deltaPs
+    "Singular pressure losses";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.ReynoldsNumber Re "Reynolds number";
+  Units.SI.ReynoldsNumber Relim "Limit Reynolds number";
   Real lambda "Friction pressure loss coefficient";
-  Modelica.SIunits.Density rho "Fluid density";
-  Modelica.SIunits.DynamicViscosity mu "Fluid dynamic viscosity";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy hm "Fluid average specific enthalpy";
+  Units.SI.Density rho "Fluid density";
+  Units.SI.DynamicViscosity mu "Fluid dynamic viscosity";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure Pm "Fluid average pressure";
+  Units.SI.SpecificEnthalpy hm "Fluid average specific enthalpy";
 public
   ThermoSysPro.WaterSteam.Connectors.FluidInlet C1
                           annotation (Placement(transformation(extent={{-90,80},

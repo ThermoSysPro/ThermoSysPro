@@ -1,15 +1,14 @@
 within ThermoSysPro.Thermal.HeatTransfer;
 model HeatExchangerWallCounterFlow "Heat exchanger wall counter flow "
-  parameter Modelica.SIunits.Length L=1 "Tube length";
-  parameter Modelica.SIunits.Diameter D=0.2 "Internal tube diameter";
-  parameter Modelica.SIunits.Thickness e=2.e-3 "Wall thickness";
-  parameter Modelica.SIunits.ThermalConductivity lambda=26
-    "Wall thermal conductivity";
+  parameter Units.SI.Length L=1 "Tube length";
+  parameter Units.SI.Diameter D=0.2 "Internal tube diameter";
+  parameter Units.SI.Thickness e=2.e-3 "Wall thickness";
+  parameter Units.SI.ThermalConductivity lambda=26 "Wall thermal conductivity";
   parameter Integer Ns=1 "Number of sections inside the wall";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpw=1000
+  parameter Units.SI.SpecificHeatCapacity cpw=1000
     "Wall specific heat capacity";
-  parameter Modelica.SIunits.Density rhow=7800 "Wall density";
-  parameter Modelica.SIunits.Temperature T0=350
+  parameter Units.SI.Density rhow=7800 "Wall density";
+  parameter Units.SI.Temperature T0=350
     "Initial temperature (active if steady_state=false)";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from T0";
@@ -17,20 +16,20 @@ model HeatExchangerWallCounterFlow "Heat exchanger wall counter flow "
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.Length dx=L/Ns "Section length";
-  parameter Modelica.SIunits.Mass dM=ntubes*rhow*pi*((D + 2*e)^2 - D^2)/4*dx
+  parameter Units.SI.Length dx=L/Ns "Section length";
+  parameter Units.SI.Mass dM=ntubes*rhow*pi*((D + 2*e)^2 - D^2)/4*dx
     "Wall section mass";
 
 public
-  Modelica.SIunits.Power dW1[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
+  Units.SI.Power dW1[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
     "Power in section i of side 1";
-  Modelica.SIunits.Power dW2[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
+  Units.SI.Power dW2[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
     "Power in section i of side 2";
-  Modelica.SIunits.Temperature Tp1[Ns](start=fill(300, Ns))
+  Units.SI.Temperature Tp1[Ns](start=fill(300, Ns))
     "Wall temperature in section i of side 1";
-  Modelica.SIunits.Temperature Tp2[Ns](start=fill(300, Ns))
+  Units.SI.Temperature Tp2[Ns](start=fill(300, Ns))
     "Wall temperature in section i of side 2";
-  Modelica.SIunits.Temperature Tp[Ns](start=fill(300, Ns))
+  Units.SI.Temperature Tp[Ns](start=fill(300, Ns))
     "Average wall temperature in section i";
 
   ThermoSysPro.Thermal.Connectors.ThermalPort WT2[Ns] "Side 2"

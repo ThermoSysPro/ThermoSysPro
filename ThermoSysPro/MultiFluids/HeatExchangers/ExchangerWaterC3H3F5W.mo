@@ -1,11 +1,11 @@
 within ThermoSysPro.MultiFluids.HeatExchangers;
 model ExchangerWaterC3H3F5W
   "Static water - C3H3F5 heat exchanger with fixed delta power"
-  parameter Modelica.SIunits.Power DW = 0
+  parameter Units.SI.Power DW=0
     "Power exchanged between the hot and the cold fluids";
-  parameter ThermoSysPro.Units.DifferentialPressure DPc
+  parameter ThermoSysPro.Units.SI.PressureDifference DPc
     "Total pressure loss for the hot fluid (% of the fluid pressure at the inlet)";
-  parameter ThermoSysPro.Units.DifferentialPressure DPf
+  parameter ThermoSysPro.Units.SI.PressureDifference DPf
     "Total pressure loss for the cold fluid (% of the fluid pressure at the inlet)";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
@@ -14,20 +14,16 @@ model ExchangerWaterC3H3F5W
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.Temperature Tec
-    "Fluid temperature at the inlet of the hot side";
-  Modelica.SIunits.Temperature Tsc
-    "Fluid temperature at the outlet of the hot side";
-  Modelica.SIunits.Temperature Tef
-    "Fluid temperature at the inlet of the cold side";
-  Modelica.SIunits.Temperature Tsf
-    "Fluid temperature at the outlet of the cold side";
-  Modelica.SIunits.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
-  Modelica.SIunits.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
+  Units.SI.Temperature Tec "Fluid temperature at the inlet of the hot side";
+  Units.SI.Temperature Tsc "Fluid temperature at the outlet of the hot side";
+  Units.SI.Temperature Tef "Fluid temperature at the inlet of the cold side";
+  Units.SI.Temperature Tsf "Fluid temperature at the outlet of the cold side";
+  Units.SI.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
+  Units.SI.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
 
 public
   WaterSteam.Connectors.FluidInlet Ec

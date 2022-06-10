@@ -1,8 +1,7 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Temperature_cp "inverse function of SpecificHeatCp_t"
-  input Modelica.SIunits.SpecificHeatCapacity cp
-    "Specific Heat Capacity (J/kgK)";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.SpecificHeatCapacity cp "Specific Heat Capacity (J/kgK)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
   constant Real tempC0 = -8116.38;
   constant Real tempC1 = 5.81395;

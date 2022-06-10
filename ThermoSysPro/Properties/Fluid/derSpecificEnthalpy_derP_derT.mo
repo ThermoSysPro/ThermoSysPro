@@ -2,8 +2,8 @@
 function derSpecificEnthalpy_derP_derT
   "der(Specific enthalpy) computation for all fluids (inputs: P, h, der(P), der(T), fluid)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.Temperature T "Temperature (K)";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -21,9 +21,9 @@ function derSpecificEnthalpy_derP_derT
   output Real der_h "Specific enthalpy time derivative";
 
 protected
-  Modelica.SIunits.Duration dt=1;
-  Modelica.SIunits.AbsolutePressure delta_P = 0.001*P;
-  Modelica.SIunits.TemperatureDifference delta_T = 0.01*T;
+  Units.SI.Duration dt=1;
+  Units.SI.AbsolutePressure delta_P=0.001*P;
+  Units.SI.TemperatureDifference delta_T=0.01*T;
 
 /////////////////////////////////////////////////////////////////
   // Water/Steam, C3H3F5, FlueGas, MoltenSalt, Oil, DryAirIdealGas

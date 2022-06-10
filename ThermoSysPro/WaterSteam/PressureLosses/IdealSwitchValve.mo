@@ -1,18 +1,18 @@
 within ThermoSysPro.WaterSteam.PressureLosses;
 model IdealSwitchValve "Ideal switch valve"
-  parameter Modelica.SIunits.MassFlowRate Qmin=1.e-6
+  parameter Units.SI.MassFlowRate Qmin=1.e-6
     "Mass flow when the valve is closed";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP
     "Pressure difference between the inlet and the outlet";
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical Ouv

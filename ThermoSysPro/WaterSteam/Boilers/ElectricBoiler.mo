@@ -1,16 +1,17 @@
 within ThermoSysPro.WaterSteam.Boilers;
 model ElectricBoiler "Electric boiler"
-  parameter Modelica.SIunits.Power W=1e6 "Electrical power";
+  parameter Units.SI.Power W=1e6 "Electrical power";
   parameter Real eta = 100 "Boiler efficiency (percent)";
-  parameter ThermoSysPro.Units.DifferentialPressure deltaP=0 "Pressure loss";
+  parameter ThermoSysPro.Units.SI.PressureDifference deltaP=0
+    "Pressure loss";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.Temperature Te(start=300) "Inlet temperature";
-  Modelica.SIunits.Temperature Ts(start=500) "Outlet temperature";
-  Modelica.SIunits.MassFlowRate Q(start=100) "Mass flow";
-  Modelica.SIunits.SpecificEnthalpy deltaH
+  Units.SI.Temperature Te(start=300) "Inlet temperature";
+  Units.SI.Temperature Ts(start=500) "Outlet temperature";
+  Units.SI.MassFlowRate Q(start=100) "Mass flow";
+  Units.SI.SpecificEnthalpy deltaH
     "Specific enthalpy variation between the outlet and the inlet";
 
 public

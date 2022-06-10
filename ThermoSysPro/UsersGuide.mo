@@ -539,7 +539,7 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
   class Version_3_2 "Version 3.2"
 
       annotation (Documentation(info="<html>
-<p><b><span style=\"font-size: 10pt; color: #008000;\">Version 3.2 (May 15, 2019)</span></b> </p>
+<p><b><span style=\"font-size: 10pt; color: #008000;\">Version 3.2 (August 5, 2020)</span></b> </p>
 <p align=\"center\"><b><span style=\"font-size: 16pt;\">ThermoSysPro modifications from version 3.1</span></b></p>
 <p>&nbsp; </p>
 <ul>
@@ -550,7 +550,7 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <ul>
 <li>Component FlueGases.HeatExchangers.StaticFluegasesFluegasesExchangerKS </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Introduction of connector&nbsp; InputReal Kcorr and variable Kcorr </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Introduction of connector&nbsp; InputReal Kcorr and variable Kcor </p>
 <ul>
 <li>Components FlueGases.Volumes.VolumesATh; VolumesBTh; VolumesCTh and VolumesDTh </li>
 </ul>
@@ -577,7 +577,7 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <ul>
 <li>Component FlueGases.Junctions.Splitter2 </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">&nbsp;Equation 0&nbsp;=&nbsp;Ce.Q*he - Cs1.Q*hs1 - Cs2.Q*hs2 is replaced by&nbsp;&nbsp; 0&nbsp;=&nbsp;Ce.Q*(he - Ce.Xh2o*hr) - Cs1.Q*(hs1 - Cs1.Xh2o*hr) - Cs2.Q*(hs2 - Cs2.Xh2o*hr); </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation 0&nbsp;=&nbsp;Ce.Q*he - Cs1.Q*hs1 - Cs2.Q*hs2 is replaced by&nbsp;&nbsp; 0&nbsp;=&nbsp;Ce.Q*(he - Ce.Xh2o*hr) - Cs1.Q*(hs1 - Cs1.Xh2o*hr) - Cs2.Q*(hs2 - Cs2.Xh2o*hr); </p>
 <ul>
 <li>Package FlueGases.BoundaryConditions </li>
 </ul>
@@ -589,11 +589,15 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <ul>
 <li>Component CombustionChamber.GenericCombustion </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equations &nbsp;Hfuel = Cpfuel*Tfuel;&nbsp;&nbsp;&nbsp; Hcv = Cpcd*Tsf;&nbsp; Hbf = Cpcd*Tbf; &nbsp;are replaced by Hfuel = Cpfuel*(Tfuel - 273.16);&nbsp; Hcv = Cpcd*(Tsf-273.16);&nbsp; Hbf = Cpcd*(Tbf-273.16); </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equations &nbsp;Hfuel = Cpfuel*Tfuel;&nbsp;&nbsp;&nbsp; Hcv = Cpcd*Tsf;&nbsp; Hbf = Cpcd*Tbf; &nbsp;are replaced by Hfuel = Cpfuel*(Tfuel - 273.16);&nbsp; Hcv = Cpcd*(Tsf - 273.16);&nbsp; Hbf = Cpcd*(Tbf - 273.16); </p>
 <ul>
 <li>Component Combustion.CombustionChambers.GTCombustionChamber </li>
 </ul>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation Wcpat&nbsp;=&nbsp;Qea*XQat*(Hiscpat&nbsp;-&nbsp;Hecpat)/eta_isc; is replaced by Wcpat&nbsp;=&nbsp;Qea*XQat*(Hiscpat&nbsp;-&nbsp;Hecpat)*eta_isc; </p>
+<ul>
+<li>Component Combustion.BoundaryConditions.FuelSourcePQ </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp;</span></span><span style=\"font-family: Courier New;\">Parameter rho=0.72 is replaced by rho=720 </p>
 <ul>
 <li>Package Properties </li>
 </ul>
@@ -626,11 +630,10 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <li>Package WaterSteam.Volumes </li>
 </ul>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New component TwoPhaseCavityOnePipe </p>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New component TwoPhaseCavityOnePipe.mo </p>
 <ul>
 <li>Component WaterSteam.Machines.StodolaTurbine </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New parameter eta_is_wet( start=0.83) &quot;Isentropic efficiency for wet steam&quot;; eta_is_wet = xm*eta_is; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New parameter eta_is_wet(start=0.83) &quot;Isentropic efficiency for wet steam&quot;; eta_is_wet = xm*eta_is; </p>
 <ul>
 <li>Component WaterSteam.PressureLosses.LumpedStraightPipe </li>
 </ul>
@@ -639,11 +642,11 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <ul>
 <li>Component WaterSteam.PressureLosses.InvSingularPressureLoss </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">&nbsp;Equation deltaP&nbsp;=&nbsp;if&nbsp;noEvent(abs(Q)&nbsp;&lt;&nbsp;Qeps)&nbsp;then&nbsp;1.e10&nbsp;else&nbsp;K*ThermoSysPro.Functions.ThermoSquare(Q,&nbsp;eps)/rho; is replaced by deltaP&nbsp;=&nbsp;if&nbsp;noEvent(abs(Q)&nbsp;&lt;&nbsp;Qeps)&nbsp;then&nbsp;1.e-10&nbsp;else&nbsp;K*ThermoSysPro.Functions.ThermoSquare(Q,&nbsp;eps)/rho; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation deltaP&nbsp;=&nbsp;if&nbsp;noEvent(abs(Q)&nbsp;&lt;&nbsp;Qeps)&nbsp;then&nbsp;1.e10&nbsp;else&nbsp;K*ThermoSysPro.Functions.ThermoSquare(Q,&nbsp;eps)/rho; is replaced by deltaP&nbsp;=&nbsp;if&nbsp;noEvent(abs(Q)&nbsp;&lt;&nbsp;Qeps)&nbsp;then&nbsp;1.e-10&nbsp;else&nbsp;K*ThermoSysPro.Functions.ThermoSquare(Q,&nbsp;eps)/rho; </p>
 <ul>
 <li>Component WaterSteam.HeatExchangers.DynamicOnePhaseFlowPipe </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">&nbsp;Equation hc[i] = hcCorr*3.66*k[i]/D; &nbsp;is replaced by hc[i] = hcCorr*k[i]/D*max(4.36,0.023*Re1[i]^0.8*Pr[i]^0.4); </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation hc[i] = hcCorr*3.66*k[i]/D; &nbsp;is replaced by hc[i] = hcCorr*k[i]/D*max(4.36,0.023*Re1[i]^0.8*Pr[i]^0.4); </p>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation dpa[i] = noEvent(Q[i]* abs Q[i]*(1/rhoc[i + 1] - 1/rhoc[i])/A^2); is replaced by dpa[i] = Q[i]^2*(1/rhoc[i + 1] - 1/rhoc[i])/A^2; </p>
 <ul>
 <li>Component WaterSteam. HeatExchangers.DynamicTwoPhaseFlowPipe </li>
@@ -655,7 +658,7 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <li>Component WaterSteam.Junctions.SteamExtractionSplitter </li>
 </ul>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">parameter&nbsp;Real&nbsp;alpha&nbsp;=&nbsp;1&nbsp;&quot;Steam&nbsp;extraction&nbsp;rate&nbsp;(0&nbsp;&lt;=&nbsp;alpha&nbsp;&lt;=&nbsp;1)&quot;; is replaced by&nbsp; parameter&nbsp;Real&nbsp;alpha&nbsp;=&nbsp;1&nbsp;&quot;Vapor mass fraction at the extraction/Vapor mass fraction at the inlet (0 &lt;= alpha &lt;= 1)&quot;; </p>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">&nbsp;Equation x_ex = 1 - alpha*(1 - proe.x); is replaced by x_ex = alpha*proe.x; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation x_ex = 1 - alpha*(1 - proe.x); is replaced by x_ex = alpha*proe.x; </p>
 <ul>
 <li>Component WaterSteam.HeatExchangers.DynamicCondenser </li>
 </ul>
@@ -673,23 +676,23 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
 <ul>
 <li>Component&nbsp; WaterSteam.Machines.CentrifugalPump </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">mode=0&nbsp; is replaced by&nbsp; mode=1&nbsp;</p>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp;</span></span><span style=\"font-family: Courier New;\">Equation Wm = WR is replaced by Cm = Cr &nbsp;</p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">parameter Integer mode=0&nbsp; is replaced by&nbsp; parameter Integer mode=1&nbsp;</p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp;</span></span><span style=\"font-family: Courier New;\">Equation Wm - Wr = 0; is replaced by Cm - Cr = 0; &nbsp;</p>
 <ul>
 <li>Component&nbsp; WaterSteam.Machines.DynamicCentrifugalPump </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">mode=0&nbsp; is replaced by&nbsp; mode=1&nbsp; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">parameter Integer mode=0&nbsp; is replaced by&nbsp; parameter Integer mode=1&nbsp; </p>
 <ul>
 <li>Component&nbsp; WaterSteam.Machines.StaticCentrifugalPump </li>
 </ul>
-<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">mode=0&nbsp; is replaced by&nbsp; mode=1&nbsp; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">parameter Integer mode=0&nbsp; is replaced by&nbsp; parameter Integer mode=1&nbsp; </p>
 <ul>
 <li>Component&nbsp; WaterSteam.Volumes.Pressurizer </li>
 </ul>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">parameter Real Cevap=0.5 &quot;Evaporation coefficient&quot;; &nbsp;is replaced by&nbsp; parameter Real Cevap=0.1 &quot;Evaporation coefficient&quot;; </p>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation&nbsp;&nbsp;Qcond&nbsp;=&nbsp;noEvent(Ccond*rhov*Vv*(hvs&nbsp;-&nbsp;hv)/(hvs&nbsp;-&nbsp;hls)&nbsp;+&nbsp;(Cas.Q*(hls&nbsp;-&nbsp;Cas.h) +&nbsp;0.5*(Wpv&nbsp;+&nbsp;abs(Wpv))&nbsp;+&nbsp;Wlv)/(hv&nbsp;-&nbsp;hls));&nbsp; is replaced by&nbsp; Qcond = Ccond*rhov*Vv*(hvs - hv)/(hvs - hls); </p>
 <ul>
-<li>Component&nbsp; WaterSteam.Junctions.SteamDryer_Book </li>
+<li>Component&nbsp; WaterSteam.Junctions.SteamDryer </li>
 </ul>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Deleted variable Real&nbsp;eta1(start=1.0)&nbsp;&quot;Vapor&nbsp;mass&nbsp;fraction&nbsp;at&nbsp;outlet&nbsp;(0&nbsp;&lt;&nbsp;eta&nbsp;&lt;=&nbsp;1)&quot;; </p>
 <p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">&nbsp;Deleted equation eta1 = noEvent(max(xe, eta)); </p>
@@ -755,6 +758,77 @@ package UsersGuide "ThermoSysPro Licence and Users Guide"
             fillPattern=FillPattern.Solid,
             extent={{-12.5,-12.5},{12.5,12.5}})}));
   end Version_3_2;
+
+  class Version_4_0 "Version 4.0"
+
+      annotation (Documentation(info="<html>
+<p><b><span style=\"font-size: 10pt; color: #008000;\">Version 4.0 (June 7, 2022)</span></b> </p>
+<p align=\"center\"><b><span style=\"font-size: 16pt;\">ThermoSysPro modifications from version 3.2</span></b></p>
+<p>&nbsp; </p>
+<ul>
+<li>New package ThermoSysPro.Fluid </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Package utilizes new fluid connectors that can handle all fluids in package ThermoSysPro.Properties. </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Package handles thermal diffusion as a new option. </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Package replaces packages ThermoSysPro.Combustion, ThermoSysPro.FlueGases, ThermoSysPro.MultiFluids, ThermoSysPro.WaterSolution and ThermoSysPro.WaterSteam. </p>
+<ul>
+<li>Component ThermoSysPro.WaterSteam.HeatExchangers.DynamicWaterWaterExchanger </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation&nbsp;DPc[i] = p_Kc*ThermoSysPro.Functions.ThermoSquare(Qc[i], 1.e-3)/rhoc[i]; &nbsp;is replaced by&nbsp; DPc[i] = p_Kc*Qc[i]^2/rhoc[i]; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation&nbsp;DPf[i] = p_Kf*ThermoSysPro.Functions.ThermoSquare(Qf[i], 1.e-3)/rhof[i]; &nbsp;is replaced by&nbsp; DPf[i] = p_Kf*Qf[i]^2/rhof[i]; </p>
+<ul>
+<li>Component ThermoSysPro.WaterSteam.HeatExchangers.StaticWaterWaterExchanger </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation&nbsp;DPc = p_Kc*ThermoSysPro.Functions.ThermoSquare(Qc, 1.e-3)/rhoc; &nbsp;is replaced by&nbsp; DPc = p_Kc*Qc^2/rhoc; </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation&nbsp;DPf = p_Kf*ThermoSysPro.Functions.ThermoSquare(Qf, 1.e-3)/rhof; &nbsp;is replaced by&nbsp; DPf = p_Kf*Qf^2/rhof; </p>
+<ul>
+<li>Component ThermoSysPro.Fluid.Machines.Generator_11 </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; C</span></span><span style=\"font-family: Courier New;\">omponent is duplicated in package ThermoSysPro.ElectroMechanics.Machines for package Fluid </p>
+<ul>
+<li>Component ThermoSysPro.Thermal.HeatTransfer.HeatExchangerWall</li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New option: dynamic_energy_balance </p>
+<ul>
+<li>Package ThermoSysPro.Units</li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New package: SI that duplicates package Modelica.SIunits </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New package: nonSI </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New package: xSI </p>
+<ul>
+<li>All components in package ThermoSysPro</li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">ThermoSysPro.Units.xSI.DifferentialTemperature is replaced by ThermoSysPro.Units.SI.TemperatureDifference </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">ThermoSysPro.Units.xSI.DifferentialPressure is replaced by ThermoSysPro.Units.SI.PressureDifference </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">ThermoSysPro.Units.xSI.MassFraction is replaced by ThermoSysPro.Units.SI.MassFraction </p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">All references to Modelica.SIunits are replaced by references to ThermoSysPro.Units </p>
+<ul>
+<li>Component ThermoSysPro.Solar.Collectors.FresnelField </li>
+</ul>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New parameter: Lc</p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New parameter: <code>trackingFactor</code></p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">New parameter: <code>thermalLossPhy</code></p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation <code>KL&nbsp;=<span style=\"color: #ff0000;\">&nbsp;cos</span>(pi*thetaL/180)*(1&nbsp;-&nbsp;h*<span style=\"color: #ff0000;\">tan</span>(pi*thetaL/180)/L); is replaced by KL&nbsp;=<span style=\"color: #ff0000;\">&nbsp;cos</span>(pi*thetaL/180)*(1&nbsp;-&nbsp;h*<span style=\"color: #ff0000;\">tan</span>(pi*thetaL/180)/Lc);</code></p>
+<p style=\"margin-left: 60px;\"><span style=\"font-family: Courier New;\">o<span style=\"font-family: Times New Roman; font-size: 7pt;\">&nbsp;&nbsp; </span></span><span style=\"font-family: Courier New;\">Equation <code>dQloss[i]&nbsp;=&nbsp;pi*D*L/Ns*(0.5*F12*Emi*5.67e-8*(T[i]^4&nbsp;-&nbsp;(0.0552*T0^(1.5))^4)&nbsp;+&nbsp;hc*(T[i]&nbsp;-&nbsp;T0)); is replaced by dQloss[i]&nbsp;=&nbsp;<span style=\"color: #0000ff;\">if&nbsp;</span>thermalLossPhy<span style=\"color: #0000ff;\">&nbsp;then&nbsp;</span>pi*D*L/Ns*(0.5*F12*Emi*5.67e-8*(T[i]^4&nbsp;-&nbsp;(0.0552*T0^(1.5))^4)&nbsp;+&nbsp;hc*(T[i]&nbsp;-&nbsp;T0))<span style=\"color: #0000ff;\">&nbsp;else&nbsp;</span>L/Ns*(A1*deltaT[i]&nbsp;+&nbsp;A2*deltaT[i]^2);</code></p>
+</html>"), Icon(graphics={
+          Ellipse(
+            lineColor={75,138,73},
+            fillColor={75,138,73},
+            pattern=LinePattern.None,
+            fillPattern=FillPattern.Solid,
+            extent={{-100.0,-100.0},{100.0,100.0}}),
+          Polygon(origin={-4.167,-15.0},
+            fillColor={255,255,255},
+            pattern=LinePattern.None,
+            fillPattern=FillPattern.Solid,
+            points={{-15.833,20.0},{-15.833,30.0},{14.167,40.0},{24.167,20.0},{4.167,-30.0},{14.167,-30.0},{24.167,-30.0},{24.167,-40.0},{-5.833,-50.0},{-15.833,-30.0},{4.167,20.0},{-5.833,20.0}},
+            smooth=Smooth.Bezier),
+          Ellipse(origin={7.5,56.5},
+            fillColor={255,255,255},
+            pattern=LinePattern.None,
+            fillPattern=FillPattern.Solid,
+            extent={{-12.5,-12.5},{12.5,12.5}})}));
+  end Version_4_0;
     annotation (Documentation(info="<html>
 <h3><font color=\"#008000\" size=5>Release notes</font></h3>
 <p>
@@ -787,13 +861,12 @@ on the ThermoSysPro library.
 <h3><font color=\"#008000\" size=5>Contact
 </font></h3>
 <dl><dt>The development of the ThermoSysPro library is organized by<br/></dt>
-<dd>Daniel Bouskela and Baligh El Hefni<br/></dd>
+<dd>Daniel Bouskela<br/></dd>
 <dd>EDF/R&AMP;D</dd>
 <dd>6, quai Watier</dd>
 <dd>F-78401 Chatou Cedex</dd>
 <dd>France<br/></dd>
 <dd>email: <a href=\"mailto:daniel.bouskela@edf.fr\">daniel.bouskela@edf.fr</a></dd>
-<dd>email: <a href=\"mailto:baligh.el-hefni@edf.fr\">baligh.el-hefni@edf.fr</a><br/></dd>
 </dl></html>"), Icon(graphics={
           Ellipse(
             lineColor={75,138,73},

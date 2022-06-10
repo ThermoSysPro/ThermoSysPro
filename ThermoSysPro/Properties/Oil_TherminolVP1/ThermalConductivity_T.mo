@@ -1,8 +1,8 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function ThermalConductivity_T
   "thermal conductivity as function of fluid temperature"
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
-    output Modelica.SIunits.ThermalConductivity k "Viscosity (Pa s)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
+  output Units.SI.ThermalConductivity k "Viscosity (Pa s)";
 protected
     constant Real Conductivity_c0 = 0.1511294630021525;
     constant Real Conductivity_c1 = -0.000010409515731161305;

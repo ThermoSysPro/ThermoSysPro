@@ -3,8 +3,8 @@ function derDensity_derP_derT
   "der(Density) computation for Dry Air Ideal Gas (inputs: P, T, der(P), der(T))"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Pressure P;
-  input Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.Pressure P;
+  input Units.SI.Temperature T "Temperature (K)";
   input Real der_P "pressure time derivative (Pa/s)";
   input Real der_T "Temperature time derivative (K/s)";
 

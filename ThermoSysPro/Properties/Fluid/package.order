@@ -14,6 +14,7 @@ Reynolds_PhvD
 Reynolds_vrhoDmu
 SpecificEnthalpy_PT
 SpecificHeatCapacityCp_Ph
+SpecificHeatCapacityCp_PT
 Temperature_Ph
 ThermalConductivity_Ph
 ThermalConductivity_rhoT

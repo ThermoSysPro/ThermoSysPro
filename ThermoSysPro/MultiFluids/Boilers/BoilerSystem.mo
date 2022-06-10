@@ -1,9 +1,9 @@
 within ThermoSysPro.MultiFluids.Boilers;
 model BoilerSystem
-  parameter Modelica.SIunits.Temperature Tair=300 "Source air temperature";
-  parameter Modelica.SIunits.Temperature Tsf=423.16
+  parameter Units.SI.Temperature Tair=300 "Source air temperature";
+  parameter Units.SI.Temperature Tsf=423.16
     "Flue gases temperature at the outlet";
-  parameter Modelica.SIunits.Power Wloss=1e5 "Thermal losses";
+  parameter Units.SI.Power Wloss=1e5 "Thermal losses";
 
   ThermoSysPro.Combustion.BoundaryConditions.FuelSourcePQ Fuel(
     Xashes=0.011,

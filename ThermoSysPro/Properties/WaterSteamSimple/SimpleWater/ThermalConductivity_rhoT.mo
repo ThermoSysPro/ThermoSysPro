@@ -1,12 +1,13 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function ThermalConductivity_rhoT
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
 
-  output Modelica.SIunits.ThermalConductivity lambda "Thermal conductivity";
+  output Units.SI.ThermalConductivity lambda "Thermal conductivity";
+
 protected
-  Modelica.SIunits.Density d1sat;
-  Modelica.SIunits.Density d2sat;
+  Units.SI.Density d1sat;
+  Units.SI.Density d2sat;
   Real x;
 
 algorithm
@@ -14,17 +15,13 @@ algorithm
   d2sat := ThermoSysPro.Properties.WaterSteamSimple.Density.d2sat_T(T);
 
   if rho > d1sat then
-    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda1_dT(
-      rho, T);
+    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda1_dT(rho, T);
   elseif rho < d2sat then
-    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda2_dT(
-      rho, T);
+    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda2_dT(rho, T);
   else
      x := (rho-d1sat)/(d2sat - d1sat);
-    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda1_dT(
-      d1sat, T)*(1 - x) +
-      ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda2_dT(d2sat, T)
-      *x;
+    lambda := ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda1_dT(d1sat, T)*(1 - x)
+              + ThermoSysPro.Properties.WaterSteamSimple.Conductivity.lambda2_dT(d2sat, T)*x;
   end if;
   annotation (
     smoothOrder=2,

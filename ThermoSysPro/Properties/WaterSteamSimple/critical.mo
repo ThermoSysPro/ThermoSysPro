@@ -1,14 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 record critical "critical point data"
   extends Modelica.Icons.Record;
-  constant Modelica.SIunits.Pressure PCRIT=22064000.0 "the critical pressure";
-  constant Modelica.SIunits.Temperature TCRIT=647.096
-    "the critical temperature";
-  constant Modelica.SIunits.Density DCRIT=322.0 "the critical density";
-  constant Modelica.SIunits.SpecificEnthalpy HCRIT=2087546.84511715
-    "the calculated specific enthalpy at the critical point";
-  constant Modelica.SIunits.SpecificEntropy SCRIT=4412.02148223476
-    "the calculated specific entropy at the critical point";
+  constant Units.SI.Pressure PCRIT=22064000.0 "the critical pressure";
+  constant Units.SI.Temperature TCRIT=647.096 "the critical temperature";
+  constant Units.SI.Density DCRIT=322.0 "the critical density";
+  constant Units.SI.SpecificEnthalpy HCRIT=2087546.84511715 "the calculated specific enthalpy at the critical point";
+  constant Units.SI.SpecificEntropy SCRIT=4412.02148223476 "the calculated specific entropy at the critical point";
   annotation (Documentation(info="<HTML>
  <h4>Record description</h4>
  <p>Critical point data for IF97 steam properties. SCRIT and HCRIT are calculated from helmholtz function for region 3 </p>

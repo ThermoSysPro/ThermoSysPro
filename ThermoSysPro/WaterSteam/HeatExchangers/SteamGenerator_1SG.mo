@@ -24,7 +24,6 @@ public
         origin={-67,-41.5},
         extent={{30.5,-15},{-30.5,15}},
         rotation=270)));
-
   DynamicOnePhaseFlowPipe UtubeColdtLeg(
     option_temperature=2,
     mode=0,
@@ -46,7 +45,6 @@ public
         origin={67,-41.5},
         extent={{30.5,-14},{-30.5,14}},
         rotation=90)));
-
   Volumes.DynamicDrum DomeGV(
     hl(start=1257382.15477056),
     hv(start=2771260.46625813),
@@ -59,7 +57,6 @@ public
     R=4.2818979,
     Mp=32000)                      annotation (Placement(transformation(extent=
             {{-22,64},{22,107}}, rotation=0)));
-protected
   ThermoSysPro.WaterSteam.PressureLosses.LumpedStraightPipe DPSeparateurCyclone(
     L=1,
     D=0.95886,
@@ -67,7 +64,6 @@ protected
         origin={0,42},
         extent={{-5,-10},{5,10}},
         rotation=90)));
-public
   ThermoSysPro.WaterSteam.Volumes.VolumeC MixAlimDomeGV(
     h0=H0_Mix_AlimDomeGV,
     steady_state=true,
@@ -90,14 +86,11 @@ public
     C2(P(start=6829391.22090726), Q(fixed=false, start=6643)),
     K=0.172144)                    annotation (Placement(transformation(extent={{47,53},
             {57,73}},          rotation=0)));
-
-public
   ThermoSysPro.WaterSteam.Sensors.SensorP CapteurPAlim
     annotation (Placement(transformation(
         origin={99,30},
         extent={{-6,-6},{6,6}},
         rotation=270)));
-
   ThermoSysPro.WaterSteam.Connectors.FluidOutletI fluidOutletI
     annotation (Placement(transformation(extent={{-10,139},{10,159}}, rotation=
             0)));
@@ -112,7 +105,6 @@ public
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputReal outputReal
     annotation (Placement(transformation(extent={{-42,86},{-62,106}}, rotation=
             0)));
-public
   PressureLosses.LumpedStraightPipe DownComerGV(
     p_rho=0,
     h(start=1194851.3),
@@ -186,7 +178,6 @@ public
         origin={-2.5,-41},
         extent={{-32,31.5},{32,-31.5}},
         rotation=90)));
-
   Volumes.VolumeC volumeA(
     P0=68.4935e5,
     h0=1185.2e3,
@@ -260,6 +251,8 @@ equation
           6.12303e-016,47},{6.12303e-016,52},{22,52},{22,64}}, color={0,0,255}));
   connect(DomeGV.Cs, DPnulle_DomeDwnc.C1) annotation (Line(points={{22,76.9},{40,
           76.9},{40,63},{47,63}},    color={0,0,255}));
+  connect(DomeGV.yLevel, outputReal) annotation (Line(points={{24.2,85.5},{32,
+          85.5},{32,128},{-34,128},{-34,96},{-52,96}}, color={0,0,255}));
   annotation (Diagram(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-150,-150},{150,150}},

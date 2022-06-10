@@ -1,12 +1,12 @@
 within ThermoSysPro.WaterSteam.Machines;
 model DynamicCentrifugalPump "Dynamic centrifugal pump"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRotn= 1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRotn=1400
     "Nominal rotational speed";
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRot0=0
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRot0=0
     "Initial rotational speed (active if steady_state_mech=false)";
-  parameter Modelica.SIunits.Volume V=1
+  parameter Units.SI.Volume V=1
     "Pump volume (only if dynamic_energy_balance = true)";
-  parameter Modelica.SIunits.MomentOfInertia J=10 "Pump moment of inertia";
+  parameter Units.SI.MomentOfInertia J=10 "Pump moment of inertia";
   parameter Real Cf0=10 "Mechanical friction coefficient";
   parameter Boolean steady_state_mech=true
     "true: start from steady state - false: start from VRot0";
@@ -15,7 +15,7 @@ model DynamicCentrifugalPump "Dynamic centrifugal pump"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=1
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
@@ -34,35 +34,35 @@ model DynamicCentrifugalPump "Dynamic centrifugal pump"
     "Constant coef. of the pump efficiency characteristics rh = f(vol_flow) (s.u.)";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-6 "Small number";
   parameter Real rhmin=0.05 "Minimum efficiency to avoid zero crossings";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Real rh "Hydraulic efficiency";
-  Modelica.SIunits.Height hn(start=10) "Pump head";
-  ThermoSysPro.Units.AngularVelocity_rpm VRot(start=VRotn) "Rotational speed";
-  Modelica.SIunits.AngularVelocity w "Angular speed";
+  Units.SI.Height hn(start=10) "Pump head";
+  ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRot(start=VRotn)
+    "Rotational speed";
+  Units.SI.AngularVelocity w "Angular speed";
   Real R "Ratio VRot/VRotn (s.u.)";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
-  Modelica.SIunits.Torque Cm "Motor torque";
-  Modelica.SIunits.Torque Ch "Hydraulic torque";
-  Modelica.SIunits.Torque Cf "Mechanical friction torque";
-  Modelica.SIunits.Power Wm "Motor power";
-  Modelica.SIunits.Power Wh "Hydraulic power";
-  Modelica.SIunits.Power Wf "Mechanical friction power";
-  Modelica.SIunits.Density rho "Fluid density";
-  ThermoSysPro.Units.DifferentialPressure deltaP
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
+  Units.SI.Torque Cm "Motor torque";
+  Units.SI.Torque Ch "Hydraulic torque";
+  Units.SI.Torque Cf "Mechanical friction torque";
+  Units.SI.Power Wm "Motor power";
+  Units.SI.Power Wh "Hydraulic power";
+  Units.SI.Power Wf "Mechanical friction power";
+  Units.SI.Density rho "Fluid density";
+  ThermoSysPro.Units.SI.PressureDifference deltaP
     "Pressure variation between the outlet and the inlet";
-  Modelica.SIunits.SpecificEnthalpy deltaH
+  Units.SI.SpecificEnthalpy deltaH
     "Specific enthalpy variation between the outlet and the inlet";
-  Modelica.SIunits.AbsolutePressure Pm "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid average specific enthalpy";
+  Units.SI.AbsolutePressure Pm "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h "Fluid average specific enthalpy";
 
 public
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro

@@ -1,7 +1,6 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_sat_P_der
-  input Modelica.SIunits.AbsolutePressure p "Pression";
-
+  input Units.SI.AbsolutePressure p "Pression";
   input Real p_der "derivative of pressure";
 
 public
@@ -9,7 +8,6 @@ public
     annotation (Placement(transformation(extent={{-85,15},{-15,85}}, rotation=0)));
   output ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat dvsat
     annotation (Placement(transformation(extent={{15,15},{85,85}}, rotation=0)));
-
 algorithm
   dlsat := ThermoSysPro.Properties.WaterSteamSimple.propsat1_P_der(p, p_der);
   dvsat := ThermoSysPro.Properties.WaterSteamSimple.propsat2_P_der(p, p_der);

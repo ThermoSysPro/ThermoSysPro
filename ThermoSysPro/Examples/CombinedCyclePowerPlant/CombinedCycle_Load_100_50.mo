@@ -1,17 +1,17 @@
 within ThermoSysPro.Examples.CombinedCyclePowerPlant;
 model CombinedCycle_Load_100_50
   "CCPP model to simulate a load variation from 100% to 50%"
-  parameter Real CstHP(fixed=false,start=7618660.65374636)
+  parameter Real CstHP(fixed=false,start=7872243.329137064)
     "Stodola's ellipse coefficient HP";
-  parameter Real CstMP(fixed=false,start=278905.664031036)
+  parameter Real CstMP(fixed=false,start=250346.99234192327)
     "Stodola's ellipse coefficient MP";
-  parameter Real CstBP(fixed=false,start=13491.6445678148)
+  parameter Real CstBP(fixed=false,start=10510.769959447052)
     "Stodola's ellipse coefficient BP";
-  parameter ThermoSysPro.Units.Cv CvmaxValveAHP(fixed=false,start=135)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveAHP(fixed=false, start=135)
     "Maximum CV: alim. valve HP Drum  ";
-  parameter ThermoSysPro.Units.Cv CvmaxValveAMP(fixed=false,start=70)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveAMP(fixed=false, start=70)
     "Maximum CV: alim. valve MP Drum ";
-  parameter ThermoSysPro.Units.Cv CvmaxValveVBP(fixed=false,start=32000)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveVBP(fixed=false, start=32000)
     "Maximum CV: steam valve BP Drum ";
   parameter Real Encras_SHP1(fixed=false,start=1)
     "Sur HP1: heat exchange fouling coefficient";
@@ -58,31 +58,32 @@ model CombinedCycle_Load_100_50
   parameter Real K_PerteChargeZero2(fixed=false,start=1e-4)
     "TurbineMP out: Friction pressure loss coefficient";
 
-  parameter ThermoSysPro.Units.Cv Cvmax_THP(fixed=false,start=8000)
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax_THP(fixed=false, start=8000)
     "Maximum CV input Turbine HP ";
-  parameter ThermoSysPro.Units.Cv Cvmax_TMP(fixed=false,start=1500)
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax_TMP(fixed=false, start=1500)
     "Maximum CV input Turbine MP ";
 
   ThermoSysPro.WaterSteam.Volumes.DynamicDrum BallonHP(
     L=16.27,
     Vertical=false,
-    hl(fixed=false, start=1474422.14552527),
-    hv(fixed=false, start=2666558.75582585),
+    hl(fixed=false, start=1459929.6557225615),
+    hv(fixed=false, start=2664756.9335524077),
     Vv(fixed=false),
     R=1.05,
     xmv(fixed=false),
-    P(fixed=false, start=12703151.2960688),
+    P(fixed=false, start=12726786.684064418),
     zl(start=1.05, fixed=true),
     Mp=5000,
     Kpa=5,
     Kvl=1000,
-    Pfond(start=12703151.3),
-    Tp(start=596.924860294475))
+    Pfond(start=12733698.15963666),
+    Tp(start=589.4448369021196))
                      annotation (Placement(transformation(extent={{38,10},{-2,
             50}}, rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_alimentationHP(
       Cvmax=CvmaxValveAHP,
-    C1(P(start=12721657.0), h_vol(start=1396865.59043578)),
+    C1(P(start=13374652.64958711),
+                            h_vol(start=1398250.7267619045)),
     h(start=1398000),
     Cv(start=178),
     Pm(start=13050700))
@@ -94,10 +95,10 @@ model CombinedCycle_Load_100_50
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_vapeurHP(
     Cvmax=47829.4,
     mode=0,
-    C2(h_vol(start=2666558.75582585)),
+    C2(h_vol(start=2664756.9335524077)),
     h(start=2674000),
     Cv(start=23914.7),
-    Pm(start=12721657.16928))
+    Pm(start=12725274.444912266))
                  annotation (Placement(transformation(extent={{-22,46},{-42,66}},
           rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss GainChargeHP(
@@ -106,7 +107,7 @@ model CombinedCycle_Load_100_50
     Q(start=150, fixed=true),
     z1=10.83,
     K=KgainChargeHP,
-    C2(P(start=12768600.0)),
+    C2(P(start=12758125.131063813)),
     h(start=1474422.14552527),
     Pm(start=12704000))
             annotation (Placement(transformation(
@@ -114,7 +115,7 @@ model CombinedCycle_Load_100_50
         extent={{-10,-10},{10,10}},
         rotation=180)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeEvapHP(mode=1, V=5,
-    h(start=1474422.14552527),
+    h(start=1459929.6557225615),
     P(start=12704000))                     annotation (Placement(transformation(
           extent={{8,-100},{-12,-80}}, rotation=0)));
   ThermoSysPro.MultiFluids.HeatExchangers.DynamicExchangerWaterSteamFlueGases
@@ -124,8 +125,8 @@ model CombinedCycle_Load_100_50
     L=20.7,
     ExchangerWall(e=0.0026, lambda=47,
       dW1(start={-5.74e7,-2.67e7,-1.24e7}),
-      Tp(start={607.668721736158,605.187884376142,603.825778846274}),
-      Tp1(start={606.357,604.602,603.578})),
+      Tp(start={607.9743232022095,605.444949344346,604.0557720629383}),
+      Tp1(start={606.517435991606,604.7669177434965,603.7415072757717})),
     Ns=3,
     ExchangerFlueGasesMetal(
       Dext=0.038,
@@ -138,9 +139,10 @@ model CombinedCycle_Load_100_50
       p_rho=1.05,
       Encras=Encras_EvHP,
       DeltaT(start={106,49,23}),
-      T(start={755.54821777344,673.68082608925,635.57157972092,618.19360351563}),
-      Tm(start={643.15,633.15,626.621}),
-      Tp(start={609.11670087771,605.86035558168,604.13687003529})),
+      T(start={755.54833984375,674.4067359457392,636.0812177546504,
+            618.193603515625}),
+      Tm(start={714.9775457406769,655.2439768501948,627.1374112677474}),
+      Tp(start={609.3279079642047,606.0749042484599,604.3477535039484})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -149,10 +151,11 @@ model CombinedCycle_Load_100_50
       continuous_flow_reversal=true,
       inertia=true,
       dW1(start={5.74e7,2.67e7,1.24e7}),
-      h(start={1459929.875,1760591.32331318,1893494.15765019,1954976.19646134,
-            1459929.875}),
+      h(start={1459929.625,1842858.7345266847,2021072.953461077,
+            2103674.4922587443,1459929.625}),
       hb(start={1459929.875,1760591.32331318,1893494.15765019,1954976.19646134}),
-      P(start={12758125,12740000,12734000,12730000,12726787})))
+      P(start={12758125.0,12740268.20023451,12734647.766847359,
+            12730499.45519915,12726787.0})))
                           annotation (Placement(transformation(
         origin={-14,-50},
         extent={{-20,-20},{20,20}},
@@ -166,10 +169,11 @@ model CombinedCycle_Load_100_50
     Ntubes=246,
     ExchangerWall(e=0.0026, lambda=47,
       dW1(start={-3.5e6,-2.63e6,-2e6}),
-      Tp(start={576.803345033827,581.933438017921,585.694098500999}),
-      Tp1(start={575.762,580.856,584.579})),
-    Cws1(P(start=13703700.0), h_vol(start=1306078.18827954)),
-    Cws2(h_vol(start=1406865.59043578)),
+      Tp(start={576.9773977809047,582.0830364334571,585.8301318496927}),
+      Tp1(start={576.3268547206692,581.5931147025063,585.4596791589167})),
+    Cws1(P(start=13301170.910895599),
+                              h_vol(start=1291418.4097512758)),
+    Cws2(h_vol(start=1398250.726761905)),
     ExchangerFlueGasesMetal(
       Dext=0.0318,
       step_L=0.111,
@@ -181,9 +185,10 @@ model CombinedCycle_Load_100_50
       p_rho=1.06,
       Encras=Encras_EHP4,
       DeltaT(start={38,29,22}),
-      T(start={618.19360351563,612.7722894387,608.97249438439,606.41162109375}),
-      Tm(start={623.15,613.15,607.844}),
-      Tp(start={577.44979072627,582.41942947968,586.06092597683})),
+      T(start={618.193603515625,613.1248964422501,609.3035158562986,
+            606.41162109375}),
+      Tm(start={615.6592506115472,611.2142061492743,607.857569142044}),
+      Tp(start={577.5724142989593,582.5311413173429,586.1689648703535})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -192,10 +197,11 @@ model CombinedCycle_Load_100_50
       option_temperature=2,
       inertia=true,
       dW1(start={3.5e6,2.63e6,2e6}),
-      h(start={1291418.875,1336078.18827954,1370718.78680301,1396865.59043578,
-            1398251.0}),
+      h(start={1291418.375,1337416.303924748,1372057.1590979556,
+            1398250.726761905,1398250.75}),
       hb(start={1291418.875,1336078.18827954,1370718.78680301,1396865.59043578}),
-      P(start={13301176,13320000,13338000,13357000,13374658})))
+      P(start={13301171.0,13320152.543490017,13338662.827011712,
+            13356802.623346366,13374653.0})))
                           annotation (Placement(transformation(
         origin={86,-50},
         extent={{20,-20},{-20,20}},
@@ -209,10 +215,11 @@ model CombinedCycle_Load_100_50
     Ntubes=246,
     ExchangerWall(e=0.0028, lambda=37.61,
     dW1(start={-9.8e6,-7.7e6,-5.9e6}),
-      Tp(start={629.445777860324,651.664976699235,671.075818762815}),
-      Tp1(start={629,651,670.})),
-    Cws1(h_vol(start=2665000.0)),
-    Cws2(P(start=12720900.0), h_vol(start=2981170.0)),
+      Tp(start={641.773975889456,659.2620935819541,674.5601453613823}),
+      Tp1(start={639.7214032623475,657.645496743186,673.3086347868172})),
+    Cws1(h_vol(start=2664756.9335524077)),
+    Cws2(P(start=12720371.43140221),
+                              h_vol(start=2973076.465167672)),
     ExchangerFlueGasesMetal(
       Dext=0.038,
       step_L=0.111,
@@ -224,9 +231,10 @@ model CombinedCycle_Load_100_50
       p_rho=1.04,
       Encras=Encras_SHP1,
       DeltaT(start={138,108,84}),
-      T(start={788.2431640625,774.65344332519,763.17487871399,755.54821777344}),
-      Tm(start={778.15,768.15,759.527}),
-      Tp(start={631.68675322573,653.38616970968,672.36458008039})),
+      T(start={788.2433471679688,774.636330839027,763.888258455914,
+            755.54833984375}),
+      Tm(start={781.4398445109163,769.2622946474705,759.7183069957642}),
+      Tp(start={643.6693613731671,660.754890543465,675.715814566568})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -234,10 +242,11 @@ model CombinedCycle_Load_100_50
       option_temperature=2,
       inertia=true,
       dW1(start={9.8e6,7.7e6,5.9e6}),
-      h(start={2664757.0,2808108.09290342,2916825.81170239,2998229.34382983,
-            2973076.25}),
+      h(start={2664757.0,2793366.8463525265,2894659.427023337,2973076.465167672,
+            2973076.5}),
       hb(start={2664757.0,2808108.09290342,2916825.81170239,2998229.34382983}),
-      P(start={12723762,12723600,12723500,12720000,12719000})))
+      P(start={12723762.0,12723704.875007024,12723025.392511783,
+            12721873.859626876,12720371.0})))
                           annotation (Placement(transformation(
         origin={-54,-50},
         extent={{-20,20},{20,-20}},
@@ -250,8 +259,8 @@ model CombinedCycle_Load_100_50
     Ns=3,
     ExchangerWall(e=2.6e-3, lambda=47,
           dW1(start={-1.6e7,-5.6e6,-2.1e6}),
-      Tp(start={556.530623976228,563.226831750573,565.575075374951}),
-      Tp1(start={555.49,562.473,564.857})),
+      Tp(start={556.7923625573021,563.4515089057426,565.7949884705216}),
+      Tp1(start={556.3098450461794,563.2778280617686,565.7320909419939})),
     L=20.726,
     ExchangerFlueGasesMetal(
       Dext=31.8e-3,
@@ -263,9 +272,10 @@ model CombinedCycle_Load_100_50
       p_rho=1.08,
       Encras=Encras_EHP3,
       St=5, DeltaT(start={34,12,4.4}),
-      T(start={602.67193603516,579.67183226637,571.50875350574,568.81030273438}),
-      Tm(start={593.15,583.15,571.919}),
-      Tp(start={557.01185690541,563.39937105652,565.63731055685})),
+      T(start={602.6719360351563,579.980900946576,571.7829862725544,
+            568.8102416992188}),
+      Tm(start={591.3264094805266,575.8819436095652,570.2965996068247}),
+      Tp(start={557.2336952021615,563.6103653709807,565.8525174347154})),
     TwoPhaseFlowPipe(
       rugosrel=5e-6,
       z2=0,
@@ -273,10 +283,11 @@ model CombinedCycle_Load_100_50
       z1=10.767,
       inertia=true,
       dW1(start={1.6e7,5.6e6,2.1e6}),
-      h(start={986348.9375,1189594.8774342,1263384.6284551,1290000.70037855,
-            1291418.875}),
+      h(start={986348.0625,1191052.0456419336,1264734.6677716642,
+            1291418.4097512758,1291418.375}),
       hb(start={986348.9375,1189594.8774342,1263384.6284551,1290000.70037855}),
-      P(start={13219333,13241000,13261000,13282000,13301176})))
+      P(start={13219328.0,13241437.958285147,13261883.227869928,
+            13281654.651763307,13301171.0})))
                   annotation (Placement(transformation(
         origin={206,-50},
         extent={{20,-20},{-20,20}},
@@ -288,8 +299,8 @@ model CombinedCycle_Load_100_50
     Ns=3,
     ExchangerWall(e=2.6e-3, lambda=47,
               dW1(start={-5e6,-3e6,-2.e6}),
-      Tp(start={490.631370193221,498.229397165878,502.978053774656}),
-      Tp1(start={490,497.024,501.871})),
+      Tp(start={491.54343078281,498.9069980271022,503.5184174104173}),
+      Tp1(start={491.3392380231037,498.7785262547952,503.4374982277421})),
     L=20.767,
     Ntubes=1107,
     ExchangerFlueGasesMetal(
@@ -302,9 +313,10 @@ model CombinedCycle_Load_100_50
       p_rho=1.11,
       Encras=Encras_EHP2,
       St=5, DeltaT(start={36,23,14}),
-      T(start={531.16070556641,523.74706132958,519.01561663699,516.31256103516}),
-      Tm(start={538.15,528.15,521.399}),
-      Tp(start={490.84070882241,498.36081646341,503.06064272486})),
+      T(start={531.16064453125,523.8360138077611,519.2214124321695,
+            516.3124389648438}),
+      Tm(start={527.4983362936189,521.5287131199652,517.7669224567446}),
+      Tp(start={491.73019484551236,499.02450420201814,503.5924298060023})),
     TwoPhaseFlowPipe(
       rugosrel=5e-6,
       z2=0,
@@ -312,10 +324,11 @@ model CombinedCycle_Load_100_50
       z1=10.767,
       inertia=true,
       dW1(start={5e6,3e6,2.e6}),
-      h(start={854494.5625,915007.018247822,957243.396653824,983786.364226731,
-            986348.9375}),
+      h(start={854493.25,919592.0464622772,960550.2028257779,986348.0919441726,
+            986348.0625}),
       hb(start={854494.5625,915007.018247822,957243.396653824,983786.364226731}),
-      P(start={13129352,13152000,13175000,13197000,13219333})))
+      P(start={13129347.0,13152374.515059257,13174952.371260952,
+            13197235.505730344,13219328.0})))
                   annotation (Placement(transformation(
         origin={406,-50},
         extent={{-20,-20},{20,20}},
@@ -327,11 +340,11 @@ model CombinedCycle_Load_100_50
     Ns=3,
     ExchangerWall(e=2.6e-3, lambda=47,
               dW1(start={-9.9999e6,-5e6,-2.4e6}),
-      Tp(start={458.958585923538,468.506814782426,473.132256983258}),
-      Tp1(start={458.001,467.576,472.607})),
+      Tp(start={460.16002911133717,469.99835357411166,474.7738719222592}),
+      Tp1(start={459.7281425156256,469.7896188414262,474.67326898241726})),
     L=20.726,
     Ntubes=1107,
-    Cws1(h_vol(start=723821.0)),
+    Cws1(h_vol(start=618649.6677733721)),
     ExchangerFlueGasesMetal(
       Dext=31.8e-3,
       step_L=74e-3,
@@ -342,21 +355,23 @@ model CombinedCycle_Load_100_50
       p_rho=1.13,
       Encras=Encras_EHP1,
       St=5,   DeltaT(start={41,20,10}),
-      T(start={509.31488037109,491.44087131458,484.15889910859,482.59533691406}),
-      Tm(start={503.15,498.15,494.131}),
-      Tp(start={459.37586976399,468.70800090382,473.22896941053})),
+      T(start={509.31475830078125,493.76452187742854,486.23046610566547,
+            482.5950622558594}),
+      Tm(start={501.5396335543568,489.997493991547,484.4127676365523}),
+      Tp(start={460.5550523989298,470.18927193360446,474.8658879848841})),
     TwoPhaseFlowPipe(
       rugosrel=5e-6,
       z2=0,
       z1=10.767,
       inertia=true,
       dW1(start={9.9999e6,5e6,2.4e6}),
-      h(start={618651.9375,752176.893518976,816707.727773953,847728.424287614,
-            854494.5625}),
+      h(start={618649.6875,756067.8313424552,822483.2837402308,854493.240474255,
+            854493.25}),
       hb(start={618651.9375,752176.893518976,816707.727773953,847728.424287614}),
       advection=true,
       dynamic_mass_balance=true,
-      P(start={13034956,13060000,13080000,13100000,13129352})))
+      P(start={13034952.0,13059418.53296798,13083081.248541538,
+            13106320.315256517,13129347.0})))
                   annotation (Placement(transformation(
         origin={526,-50},
         extent={{20,-20},{-20,20}},
@@ -370,9 +385,10 @@ model CombinedCycle_Load_100_50
     Ntubes=246,
     ExchangerWall(e=3e-3, lambda=27,
           dW1(start={-8.8e6,-6.6e6,-4.9e6}),
-      Tp(start={714.604505161814,740.492493660215,759.200099714419}),
-      Tp1(start={710.485,734.082,752.527})),
-    Cws2(P(start=127113000.0), h_vol(start=3254970.0)),
+      Tp(start={718.0864855457228,738.9518857688491,755.2055454298172}),
+      Tp1(start={715.3026673550778,736.860075660393,753.6461561287115})),
+    Cws2(P(start=12711006.754972342),
+                               h_vol(start=3240813.8516343245)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -384,9 +400,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SHP2,
       St=5,
       DeltaT(start={124,93,70}),
-      T(start={850.64624023438,839.40882309811,830.36536707939,822.68170166016}),
-      Tm(start={843.15,833.15,825.24}),
-      Tp(start={717.48312916257,742.56566858011,760.69152533026})),
+      T(start={850.646484375,838.5707346201303,829.4749488031354,
+            822.6819458007813}),
+      Tm(start={844.6086089059804,834.0228417116329,826.0784372242802}),
+      Tp(start={720.6412271937046,740.871563720893,756.6366147445857})),
     TwoPhaseFlowPipe(
       rugosrel=5e-6,
       z2=0,
@@ -394,10 +411,11 @@ model CombinedCycle_Load_100_50
       z1=10.83,
       inertia=true,
       dW1(start={8.8e6,6.6e6,4.9e6}),
-      h(start={2973076.25,3118965.9792171,3205920.08101435,3268474.17308722,
-            3240813.5}),
+      h(start={2973076.5,3088900.88921149,3175933.4050769014,3240813.8516343245,
+            3240813.75}),
       hb(start={2973076.25,3118965.9792171,3205920.08101435,3268474.17308722}),
-      P(start={12720371,12718000,12716000,12714000,12711007})))
+      P(start={12720371.0,12718678.034082344,12716464.21434507,
+            12713872.892207509,12711007.0})))
                   annotation (Placement(transformation(
         origin={-174,-50},
         extent={{-20,-20},{20,20}},
@@ -410,10 +428,10 @@ model CombinedCycle_Load_100_50
     Ntubes=246,
     ExchangerWall(lambda=27, e=5e-3,
     dW1(start={-6.3e6,-4.7e6,-3.6e6}),
-      Tp(start={793.335674512128,811.477076678823,824.721389633254}),
-      Tp1(start={783.815,803.639,818.56})),
+      Tp(start={789.3906813408935,806.8419831862884,820.1561431707274}),
+      Tp1(start={785.7263795421367,804.0878954218736,818.093373707382})),
     Dint=28e-3,
-    Cws2(h_vol(start=3446260.0)),
+    Cws2(h_vol(start=3433271.775819776)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -425,9 +443,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SHP3,
       St=5,
       DeltaT(start={97,73,55}),
-      T(start={894.21850585938,885.5393240412,879.47464880089,874.32891845703}),
-      Tm(start={893.15,883.15,875.939}),
-      Tp(start={796.82789474964,814.05266276572,826.6253996051})),
+      T(start={894.2188110351563,885.636025090525,879.1746662824661,
+            874.3292236328125}),
+      Tm(start={889.9274067093704,882.4053456864956,876.7519418617093}),
+      Tp(start={792.5370292454647,809.2067770105702,821.927337447906})),
     TwoPhaseFlowPipe(
       rugosrel=5e-6,
       z2=0,
@@ -435,10 +454,12 @@ model CombinedCycle_Load_100_50
       z1=10.726,
       inertia=true,
       dW1(start={6.3e6,4.7e6,3.6e6}),
-      h(start={3240813.5,3348361.34780186,3407279.82422176,3450835.48993987,
-            3433271.25}),
+      h(start={3240813.75,3323965.684475156,3386462.568744374,3433271.775819776,
+            3433271.75}),
       hb(start={3240813.5,3348361.34780186,3407279.82422176,3450835.48993987}),
-      P(start={12711007,12704000,12697000,12689000,12681000})))
+      P(start={12711007.0,12704270.150400551,12696927.059489354,
+            12689132.094962938,12681000.0})),
+    Cfg1(T(start=894.218788328216)))
                   annotation (Placement(transformation(
         origin={-294,-50},
         extent={{20,-20},{-20,20}},
@@ -448,17 +469,17 @@ model CombinedCycle_Load_100_50
     L=16.27,
     Vertical=false,
     P0=27.29e5,
-    hl(fixed=false, start=978914.570821827),
-    hv(fixed=false, start=2799158.13966473),
+    hl(fixed=false, start=980708.0463805634),
+    hv(fixed=false, start=2798574.7604119307),
     Vv(fixed=false),
     R=1.05,
-    P(fixed=false, start=2732895.21562269),
+    P(fixed=false, start=2733824.789876998),
     zl(start=1.05, fixed=true),
     Kpa=5,
     Mp=5000,
     Kvl=1000,
-    Pfond(start=2732995.0),
-    Tp(start=500.955757665063))
+    Pfond(start=2742370.2498246767),
+    Tp(start=497.3822823273814))
                      annotation (Placement(transformation(extent={{358,10},{320,
             50}}, rotation=0)));
    ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Constante
@@ -466,7 +487,8 @@ model CombinedCycle_Load_100_50
     annotation (Placement(transformation(extent={{304,70},{292,80}}, rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_alimentationMP(
       Cvmax=CvmaxValveAMP,
-    C1(P(start=2752995.0), h_vol(start=892414.570867188)),
+    C1(P(start=3216971.701899643),
+                           h_vol(start=944504.749093579)),
     h(start=944000),
     Cv(start=28),
     Pm(start=2975000))
@@ -475,10 +497,10 @@ model CombinedCycle_Load_100_50
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_vapeurMP(
     Cvmax=47829.4,
     mode=0,
-    C2(h_vol(start=2799158.13966473)),
+    C2(h_vol(start=2798574.7604119307)),
     h(fixed=false, start=2798000),
     Cv(start=23914.7),
-    Pm(fixed=false, start=2731689.4244255))
+    Pm(fixed=false, start=2732575.5179918623))
                  annotation (Placement(transformation(extent={{298,46},{278,66}},
           rotation=0)));
   ThermoSysPro.MultiFluids.HeatExchangers.DynamicExchangerWaterSteamFlueGases
@@ -488,8 +510,8 @@ model CombinedCycle_Load_100_50
     Ntubes=738,
     ExchangerWall(e=2.6e-3, lambda=47,
     dW1(start={-9.7e7,-7.6e6,-5.8e6}),
-      Tp(start={504.957792851478,504.19488464586,503.59993822766}),
-      Tp1(start={504.427,503.806,503.304})),
+      Tp(start={504.98976100715464,504.26964479130794,503.6922361659351}),
+      Tp1(start={504.4959569394237,503.8875506396794,503.39662949233303})),
     Ns=3,
     TwoPhaseFlowPipe(
       advection=false,
@@ -499,10 +521,12 @@ model CombinedCycle_Load_100_50
       continuous_flow_reversal=true,
       inertia=true,
           dW1(start={9.7e7,7.6e6,5.8e6}),
-      P(start={2773367.5,2754933.93610513,2745233.82043873,2738517.46232967,2733824.75}),
-      h(start={980708.125,1028103.09460604,1066178.43156513,1095633.31556464,980708.125}),
+      P(start={2773367.25,2751227.106127094,2743473.7578241928,
+            2738204.9403230133,2733824.75}),
+      h(start={980708.0625,1045813.9695051656,1096191.4250344052,
+            1135165.8819583436,980708.0625}),
       hb(start={980708.125,1028103.09460604,1066178.43156513,1095633.31556464})),
-    Cws1(P(start=2773640.0)),
+    Cws1(P(start=2773367.372876323)),
     ExchangerFlueGasesMetal(
       K(fixed=true, start=30.22),
       Dext=38e-3,
@@ -514,9 +538,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_EvMP,
       St=5,
       DeltaT(start={53,41,32}),
-      T(start={565.24822998047,551.20973998682,539.98034586472,531.16070556641}),
-      Tm(start={553.15,543.15,536.901}),
-      Tp(start={505.45492567199,504.57970000924,503.89762940507})))
+      T(start={565.2481689453125,550.9126306026692,539.787269523939,
+            531.16064453125}),
+      Tm(start={558.0803978580261,545.349950063304,535.4739641517078}),
+      Tp(start={505.44855126670757,504.624646069051,503.9668824707551})))
                           annotation (Placement(transformation(
         origin={306,-50},
         extent={{-20,-20},{20,20}},
@@ -535,21 +560,21 @@ model CombinedCycle_Load_100_50
         extent={{-10,-10},{10,10}},
         rotation=180)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeEvapMP(mode=1, V=5,
-    h(start=978914.570821827),
+    h(start=980708.0463805634),
     P(start=2734000))                      annotation (Placement(transformation(
           extent={{328,-100},{308,-80}}, rotation=0)));
   ThermoSysPro.MultiFluids.HeatExchangers.DynamicExchangerWaterSteamFlueGases
     EconomiseurMP(
     ExchangerWall(e=2.6e-3, lambda=47,
         dW1(start={-3e6,-1.4e6,-740379}),
-      Tp(start={457.584681885759,475.409334769727,486.332585528225}),
-      Tp1(start={456.76,474.926,485.122})),
+      Tp(start={469.31277462346344,487.36995421739016,497.00024549998545}),
+      Tp1(start={468.830886627779,487.11263557868836,496.8627293559427})),
     L=20.726,
     Ns=3,
     Dint=26.6e-3,
     Ntubes=246,
-    Cws1(h_vol(start=671235.0)),
-    Cws2(h_vol(start=977376.0)),
+    Cws1(h_vol(start=565106.2802015315)),
+    Cws2(h_vol(start=944504.7490935794)),
     ExchangerFlueGasesMetal(
       step_L=111e-3,
       step_T=86.9e-3,
@@ -561,9 +586,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_EMP,
       St=5,
       DeltaT(start={45,24,13}),
-      T(start={516.31256103516,511.25046295073,508.31162431247,509.31488037109}),
-      Tm(start={533.15,523.15,514.647}),
-      Tp(start={458.18343678065,475.77644311925,486.55770446184})),
+      T(start={516.3124389648438,512.4675048876576,510.41305969109146,
+            509.31475830078125}),
+      Tm(start={514.3899686844887,511.4402822893745,509.8639024611882}),
+      Tp(start={469.75353148474505,487.6053096442755,497.12602407127685})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -571,10 +597,11 @@ model CombinedCycle_Load_100_50
       z2=0,
       inertia=true,
       dW1(start={3e6,1.4e6,740379}),
-      h(start={565108.5,727745.440528479,829820.124314816,892414.570867187,
-            944505.4375}),
+      h(start={565106.25,773641.4896138782,884995.1575722523,944504.7490935792,
+            944504.75}),
       hb(start={565108.5,727745.440528479,829820.124314816,892414.570867187}),
-      P(start={3124229.75,3148000,3172000,3195000,3216977.75})))
+      P(start={3124223.75,3148825.327098676,3172192.2961615147,
+            3194799.9976396263,3216971.75})))
                           annotation (Placement(transformation(
         origin={466,-50},
         extent={{-20,-20},{20,20}},
@@ -585,13 +612,13 @@ model CombinedCycle_Load_100_50
     ExchangerWall(e=2.6e-3, lambda=47,
     dW1(start={-1.3e6,-0.80263e6,
                                 -501864}),
-      Tp(start={557.102699668877,574.070651369638,584.64928514972}),
-      Tp1(start={556.102699668877,573.070651369638,583.64928514972})),
+      Tp(start={558.2379692767729,574.1762943611731,584.4002179866045}),
+      Tp1(start={557.8513010794924,573.9323757073441,584.2477131820202})),
     L=20.726,
     Ns=3,
     Dint=32.8e-3,
     Ntubes=123,
-    Cws1(h_vol(start=2800000.0)),
+    Cws1(h_vol(start=2798574.7604119307)),
     ExchangerFlueGasesMetal(
       step_L=111e-3,
       step_T=86.9e-3,
@@ -603,9 +630,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SMP1,
       St=5,
       DeltaT(start={45,30,19}),
-      T(start={606.41162109375,604.22099235915,603.06310204059,602.67193603516}),
-      Tm(start={623.15,613.15,603.024}),
-      Tp(start={557.49575399383,574.31250418519,584.79699207547})),
+      T(start={606.41162109375,604.5654891969185,603.4004814494892,
+            602.6719360351563}),
+      Tm(start={605.488555812354,603.9829853232038,603.0361997319833}),
+      Tp(start={558.5972202716488,574.4029176513201,584.54190924323})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -613,18 +641,19 @@ model CombinedCycle_Load_100_50
       z1=10.77,
       inertia=true,
       dW1(start={1.3e6,0.80263e6,501864}),
-      h(start={2798574.75,2904836.50693844,2969862.15109307,3009575.30461156,
-            3040562.25}),
+      h(start={2798574.75,2900855.9998369273,2965377.215724287,
+            3005717.6950751985,3040562.75}),
       hb(start={2798574.75,2904836.50693844,2969862.15109307,3009575.30461156}),
-      P(start={2731326.25,2729591.6901521,2728654.3204706,2727686.1714029,
-            2726700})))   annotation (Placement(transformation(
+      P(start={2731326.25,2730394.924575977,2729276.921848465,
+            2728029.2082540947,2726700.0})))
+                          annotation (Placement(transformation(
         origin={146,-50},
         extent={{20,-20},{-20,20}},
         rotation=90)));
 
   ThermoSysPro.WaterSteam.Volumes.VolumeB MelangeurHPMP(
-    Ce1(h(start=3091610.0)),
-    h(start=3042573.51976705),
+    Ce1(h(start=3046256.0341363903)),
+    h(start=3040562.6721177064),
     P(start=2726000))
     annotation (Placement(transformation(
         origin={148,-110},
@@ -638,10 +667,12 @@ model CombinedCycle_Load_100_50
     Ntubes=369,
     ExchangerWall(e=2.6e-3, lambda=36.86,
     dW1(start={-1.15e7,-7.9e6,-5.5e6}),
-      Tp(start={689.66516778766,716.376344387713,734.591437191304}),
-      Tp1(start={687.7,713.5,731.5})),
-    Cws1(P(start=2576650.0), h_vol(start=3078800.0)),
-    Cws2(P(start=2558540.0), h_vol(start=3342910.0)),
+      Tp(start={689.1325590707521,714.3255084496102,731.974510062409}),
+      Tp1(start={687.8673243896432,713.4490802987744,731.369523912658})),
+    Cws1(P(start=2575582.5771302995),
+                             h_vol(start=3040562.6721177064)),
+    Cws2(P(start=2558239.090625735),
+                             h_vol(start=3321940.994604838)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -653,9 +684,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SMP2,
       St=5,
       DeltaT(start={125,86,60}),
-      T(start={822.68170166016,807.90772072705,797.00284433443,788.2431640625}),
-      Tm(start={813.15,803.15,792.527}),
-      Tp(start={690.93545553661,717.24269857866,735.18209370035})),
+      T(start={822.6819458007813,806.8523532375756,795.852828640494,
+            788.2433471679688}),
+      Tm(start={814.7671394415003,801.3525909390348,792.0480934116497}),
+      Tp(start={690.3215978858725,715.1491557188672,732.5430623045928})),
     TwoPhaseFlowPipe(
       advection=false,
       z2=0,
@@ -663,10 +695,11 @@ model CombinedCycle_Load_100_50
       rugosrel=1e-5,
       inertia=true,
       dW1(start={1.15e7,7.9e6,5.5e6}),
-      h(start={3040562.25,3176242.27636476,3267406.25678814,3329559.35651389,
-            3321940.75}),
+      h(start={3040562.75,3170178.6567147295,3259963.658181113,
+            3321940.994604838,3321941.0}),
       hb(start={3040562.25,3176242.27636476,3267406.25678814,3329559.35651389}),
-      P(start={2575582.5,2572000,2568000,2563000,2558239})))
+      P(start={2575582.5,2571900.999964748,2567682.4202753096,
+            2563090.6820579167,2558239.0})))
                           annotation (Placement(transformation(
         origin={-114,-50},
         extent={{-20,-20},{20,20}},
@@ -680,9 +713,9 @@ model CombinedCycle_Load_100_50
     Dint=45.6e-3,
     ExchangerWall(e=2.6e-3, lambda=27,
     dW1(start={-8e6,-5.5e6,-3.8e6}),
-      Tp(start={788.901616786331,805.674094596818,817.083010473709}),
-      Tp1(start={786.717,804.102,815.901})),
-    Cws2(h_vol(start=3529920.0)),
+      Tp(start={786.239853752146,802.8777020553458,814.3692554800219}),
+      Tp1(start={785.1915402608809,802.1579544921993,813.8760433493436})),
+    Cws2(h_vol(start=3517975.7051807973)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -694,9 +727,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SMP3,
       St=5,
       DeltaT(start={82,56,38}),
-      T(start={874.32891845703,864.2444076086,856.92248545484,850.64624023438}),
-      Tm(start={873.15,863.15,853.059}),
-      Tp(start={789.92521486539,806.37044583028,817.55662835373})),
+      T(start={874.3292236328125,863.3655435931397,855.822658205448,
+            850.646484375}),
+      Tm(start={868.8473805170461,859.5941008992938,853.2345706986391}),
+      Tp(start={787.2330782757132,803.5596268196659,814.8365492691358})),
     TwoPhaseFlowPipe(
       advection=false,
       z2=0,
@@ -704,10 +738,11 @@ model CombinedCycle_Load_100_50
       rugosrel=1e-5,
       inertia=true,
       dW1(start={8e6,5.5e6,3.8e6}),
-      h(start={3321940.75,3420707.89900972,3482716.02631475,3524890.37222916,
-            3517975.25}),
+      h(start={3321941.0,3412821.580454202,3475218.0684875553,
+            3517975.7051807973,3517975.75}),
       hb(start={3321940.75,3420707.89900972,3482716.02631475,3524890.37222916}),
-      P(start={2558239,2556000,2554000,2552000,2548600})))
+      P(start={2558239.0,2556052.5796892336,2553681.6710159215,
+            2551184.3906656993,2548600.0})))
                           annotation (Placement(transformation(
         origin={-234,-50},
         extent={{20,-20},{-20,20}},
@@ -718,16 +753,16 @@ model CombinedCycle_Load_100_50
     P0=5e5,
     Vv(fixed=false),
     L=8,
-    hl(fixed=false, start=549249.519022482),
-    hv(fixed=false, start=2709858.97470349),
+    hl(fixed=false, start=550072.7232069891),
+    hv(fixed=false, start=2684673.580149807),
     R=2,
-    P(fixed=false, start=563775.329209196),
+    P(fixed=false, start=485579.1243268126),
     zl(start=1.75, fixed=true),
     Kpa=5,
     Mp=5000,
     Kvl=1000,
-    Pfond(start=564775.0),
-    Tp(start=406.411032587651))
+    Pfond(start=501612.0798822072),
+    Tp(start=406.2632923392337))
                      annotation (Placement(transformation(extent={{618,10},{578,
             50}}, rotation=0)));
    ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Constante
@@ -735,7 +770,8 @@ model CombinedCycle_Load_100_50
     annotation (Placement(transformation(extent={{666,76},{654,86}}, rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_vapeurBP(
     p_rho=3, Cvmax=CvmaxValveVBP,
-    C2(P(start=503542.0), h_vol(start=2709858.97470349)),
+    C2(P(start=510622.8582477031),
+                          h_vol(start=2684673.580149807)),
     h(start=2685000),
     Cv(start=1),
     Pm(start=498000))
@@ -743,10 +779,10 @@ model CombinedCycle_Load_100_50
           rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve vanne_alimentationBP(
     Cvmax=285,
-    C1(h_vol(start=511900.0)),
+    C1(h_vol(start=509236.1596958067)),
     h(fixed=false, start=509000),
     Cv(start=142.5),
-    Pm(fixed=false, start=969800))
+    Pm(fixed=false, start=957583.6711025466))
                  annotation (Placement(transformation(extent={{650,44},{630,64}},
           rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss GainChargeBP(
@@ -755,15 +791,15 @@ model CombinedCycle_Load_100_50
     Q(start=50, fixed=false),
     K=32766,
     mode=1,
-    pro(d(start=934.452746556487)),
+    pro(d(start=934.2358753989836)),
     Pm(start=564000),
     h(start=549249.519022482))
             annotation (Placement(transformation(
         origin={610,-90},
         extent={{-10,-10},{10,10}},
         rotation=180)));
-  ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeEvapBP(h(start=549249.519022482),
-                                                                       mode=1,
+  ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeEvapBP(h(start=
+          550072.7232069891),                                          mode=1,
     V=5,
     P(start=564000))                       annotation (Placement(transformation(
           extent={{592,-100},{572,-80}}, rotation=0)));
@@ -772,8 +808,8 @@ model CombinedCycle_Load_100_50
     Dint=32.8e-3,
     ExchangerWall(e=2.6e-3, lambda=47,
     dW1(start={-1.24e7,-8.5e6,-5.8e6}),
-      Tp(start={433.127441964236,432.076030201586,431.28112439162}),
-      Tp1(start={432.956,431.127,430.61})),
+      Tp(start={427.75117227047275,426.57196634952743,425.692416702357}),
+      Tp1(start={427.2791524733697,426.249857647769,425.4722112637204})),
     L=20.726,
     Ntubes=984,
     Ns=3,
@@ -788,9 +824,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_EvBP,
       St=5,
       DeltaT(start={45,31,21}),
-      T(start={482.59533691406,464.53146753441,453.496360082,442.5893859863}),
-      Tm(start={483.15,478.15,472.098}),
-      Tp(start={433.5360639938,432.3549425205,431.471976456})),
+      T(start={482.5950622558594,464.01748118772224,451.30051770870455,
+            442.58880615234375}),
+      Tm(start={473.3062751775807,457.6589994482134,446.94466391603106}),
+      Tp(start={428.18972290092955,426.87123552234135,425.89700819308825})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -799,11 +836,13 @@ model CombinedCycle_Load_100_50
       continuous_flow_reversal=true,
       inertia=true,
       dW1(start={1.24e7,8.5e6,5.8e6}),
-      h(start={550075.0,765243.011613326,912673.256542569,1013555.73710231,
-            550075.0}),
+      h(start={550072.75,798514.7797723989,968052.8982857756,1083955.4353773424,
+            550072.75}),
       hb(start={550075.0,765243.011613326,912673.256542569,1013555.73710231}),
-      Q(start={49.787311368631,49.787311368631,49.787311368631,49.787311368631}),
-      P(start={512583.375,488000,487000,486000,485588.46875})))
+      Q(start={50.00030606442327,50.00030606442327,50.00030606442327,
+            50.00030606442327}),
+      P(start={512574.0,487903.6002327947,486912.76813325885,486233.0185244784,
+            485579.125})))
                           annotation (Placement(transformation(
         origin={566,-50},
         extent={{-20,-20},{20,20}},
@@ -815,10 +854,10 @@ model CombinedCycle_Load_100_50
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve Vanne_alimentationMPHP(
                           mode=1,
     Cvmax=308.931,
-    C1(h_vol(start=549249.519022482)),
+    C1(h_vol(start=550072.7232069891)),
     h(start=550000),
     Cv(start=308.931),
-    Pm(start=490000))
+    Pm(start=404001.70325999695))
                  annotation (Placement(transformation(extent={{710,-14},{730,6}},
           rotation=0)));
   ThermoSysPro.MultiFluids.HeatExchangers.DynamicExchangerWaterSteamFlueGases
@@ -829,10 +868,10 @@ model CombinedCycle_Load_100_50
     Ntubes=123,
     ExchangerWall(e=2.6e-3, lambda=47,
     dW1(start={-1.1e6,-782901,-559798}),
-      Tp(start={489.606851797367,513.610203520748,530.080624448955}),
-      Tp1(start={488.486,512.197,529.53})),
-    Cws1(h_vol(start=2642240.0)),
-    Cws2(h_vol(start=2979330.0)),
+      Tp(start={475.35471340675434,500.0471952971929,518.0415300925415}),
+      Tp1(start={475.07666786714793,499.8473601819379,517.8986430965637})),
+    Cws1(h_vol(start=2684673.580149807)),
+    Cws2(h_vol(start=2914519.282601244)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -844,9 +883,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_SBP,
       St=5,
       DeltaT(start={92,66,47}),
-      T(start={568.81030273438,567.21003420557,566.29303411055,565.24822998047}),
-      Tm(start={583.15,573.15,568.703}),
-      Tp(start={489.84170505864,513.76963980951,530.18834052149})),
+      T(start={568.8102416992188,567.2151210721856,566.0683353396659,
+            565.2481689453125}),
+      Tm(start={568.0126670066404,566.6417282059258,565.6582502265244}),
+      Tp(start={475.61601428945164,500.234995799533,518.1758120458845})),
     TwoPhaseFlowPipe(
       advection=false,
       z2=0,
@@ -854,11 +894,12 @@ model CombinedCycle_Load_100_50
       z1=10.767,
       inertia=true,
       dW1(start={1.1e6,782901,559798}),
-      h(start={2684673.5,2819292.38908571,2893584.12921908,2943776.05560762,
-            2914520.25}),
+      h(start={2684673.5,2787622.843498506,2861613.8808508525,2914519.282601244,
+            2914519.25}),
       hb(start={2684673.5,2819292.38908571,2893584.12921908,2943776.05560762}),
-      P(start={510622.6875,505757.57962259,504477.27858572,503172.36919354,
-            501850})))    annotation (Placement(transformation(
+      P(start={510622.84375,508733.6061914782,506650.25202074344,
+            504336.5353393364,501850.0})))
+                          annotation (Placement(transformation(
         origin={266,-50},
         extent={{20,-20},{-20,20}},
         rotation=90)));
@@ -874,12 +915,12 @@ model CombinedCycle_Load_100_50
     Dint=32.8e-3,
     ExchangerWall(e=2.6e-3, lambda=47,
     dW1(start={-2.45e7,-5.5e6,-1.17e6}),
-      Tp(start={398.142807363473,393.825926964772,392.943738968771}),
-      Tp1(start={397.622,392.348,391.516})),
+      Tp(start={400.3519750836609,396.09689492479714,395.2201421057111}),
+      Tp1(start={400.0855824116385,396.0373810697358,395.20741736846634})),
     Ntubes=3444,
     L=20.726,
-    Cws1(h_vol(start=195526.0)),
-    Cws2(h_vol(start=588078.0)),
+    Cws1(h_vol(start=194584.50261459063)),
+    Cws2(h_vol(start=509236.15969580685)),
     ExchangerFlueGasesMetal(
       step_T=86.9e-3,
       Fa=1,
@@ -891,9 +932,10 @@ model CombinedCycle_Load_100_50
       Encras=Encras_EBP,
       St=5,
       DeltaT(start={23.5,5.3,1.1}),
-      T(start={442.5893859863,403.9873508455,395.0465605839,395.464630127}),
-      Tm(start={423.15,418.15,414.742}),
-      Tp(start={398.4437772187,393.8897987349,392.9569515805})),
+      T(start={442.58880615234375,405.54898708865323,397.2418326138536,
+            395.4642028808594}),
+      Tm(start={424.0688986060054,401.3954098512534,396.353024695102}),
+      Tp(start={400.59947884299936,396.1521888739459,395.23196457920767})),
     TwoPhaseFlowPipe(
       advection=false,
       rugosrel=5e-6,
@@ -901,10 +943,11 @@ model CombinedCycle_Load_100_50
       z2=10.767,
       inertia=true,
       dW1(start={2.45e7,5.5e6,1.17e6}),
-      h(start={194584.515625,462556.370989432,494648.45288738,501287.069880104,
-            509237.875}),
+      h(start={194584.5,442113.0226180337,497412.50346040993,509236.1596958068,
+            509236.15625}),
       hb(start={194584.515625,462556.370989432,494648.45288738,501287.069880104}),
-      P(start={1540571.25,1500000,1480000,1450000,1429595.375})))
+      P(start={1540564.125,1504650.386070031,1479432.0451056722,
+            1454480.269096047,1429588.25})))
                           annotation (Placement(transformation(
         origin={680,-50},
         extent={{-20,-20},{20,20}},
@@ -919,8 +962,8 @@ model CombinedCycle_Load_100_50
     eta_is_min=0.75,
     Cst(start=8182844.56002535)=
         CstHP,
-    pros(d(start=10.0)),
-    Hrs(start=3046260),
+    pros(d(start=10.66426189633104)),
+    Hrs(start=3046256.0341363903),
     Pe(fixed=true, start=12431000),
     Ps(fixed=false, start=2726700))
               annotation (Placement(transformation(extent={{-2,-250},{38,-210}},
@@ -934,14 +977,14 @@ model CombinedCycle_Load_100_50
     eta_is_min=0.75,
     Cst(start=256335.364995961)=
         CstMP,
-    pros(d(start=30.0)),
-    Hrs(start=3029780),
+    pros(d(start=1.8827680646065352)),
+    Hrs(start=3029781.976396904),
     Pe(fixed=true, start=2548500),
     Ps(fixed=false, start=476800))
                 annotation (Placement(transformation(extent={{318,-250},{358,
             -210}}, rotation=0)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC MelangeurPostTMP1(
-    h(start=2997231.36734756),
+    h(start=3017480.4191624634),
     P(start=476799.99999954),
     Ce1(h(start=3029780)))                 annotation (Placement(transformation(
         origin={418,-230},
@@ -956,7 +999,7 @@ model CombinedCycle_Load_100_50
     eta_is_min=0.75,
     Cst(start=11944.9445735985)=
         CstBP,
-    Cs(h(start=2400000.0)),
+    Cs(h(start=2401033.111118852)),
     Hrs(start=2401030),
     Pe(fixed=true, start=476799.99999954),
     Ps(start=10053))
@@ -992,7 +1035,9 @@ model CombinedCycle_Load_100_50
     yNiveau(signal(start=1.5)),
     Cse(h(start=128076)),
     P(fixed=false, start=6136),
-    Pfond(start=6200))
+    Pfond(start=10000.0),
+    Cl(h(start=191812.29519356362)),
+    proe(d(start=996.0186965963143)))
     annotation (Placement(transformation(extent={{637,-384},{717,-304}},
           rotation=0)));
   ThermoSysPro.WaterSteam.BoundaryConditions.SourceQ SourceCaloporteur(
@@ -1004,26 +1049,26 @@ model CombinedCycle_Load_100_50
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeK1(    K=1e-4,
     h(start=2400000),
     C1(h_vol(start=2400000), h(start=2400000)),
-    Pm(start=10026))
+    Pm(start=10026.561030835077))
     annotation (Placement(transformation(extent={{640,-240},{660,-220}},
           rotation=0)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeCond1(mode=1,
-    Ce3(h(start=163768.700887002)),
-    h(start=163768.700887002),
+    Ce3(h(start=194584.50261452305)),
+    h(start=194584.50261459063),
     P(start=1540500))
     annotation (Placement(transformation(
         origin={902,-318},
         extent={{10,-10},{-10,10}},
         rotation=270)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeKCond1(    K=1e-4, mode=1,
-    pro(d(start=993.470128235971)),
+    pro(d(start=990.3586687482405)),
     Pm(start=1540000))
     annotation (Placement(transformation(
         origin={902,-270},
         extent={{12,-12},{-12,12}},
         rotation=270)));
   ThermoSysPro.WaterSteam.Volumes.VolumeA VolumeAlimMPHP(mode=1,
-    h(start=549249.519022482),
+    h(start=550072.7232069891),
     P(start=322430))                       annotation (Placement(transformation(
           extent={{742,-20},{762,0}}, rotation=0)));
   ThermoSysPro.WaterSteam.Machines.StaticCentrifugalPump PompeAlimMP(
@@ -1032,10 +1077,10 @@ model CombinedCycle_Load_100_50
     a1=-244551,
     Q(fixed=false),
     mode=1,
-    C1(h_vol(start=576000.0)),
-    C2(h_vol(start=561000.0)),
-    Qv(start=0.0207237016869104),
-    pro(d(start=930.0)),
+    C1(h_vol(start=550072.7232069891)),
+    C2(h_vol(start=565106.2802015315)),
+    Qv(start=0.01332183238847357),
+    pro(d(start=933.5252816181976)),
     Pm(start=1725850))
             annotation (Placement(transformation(extent={{804,-20},{824,0}},
           rotation=0)));
@@ -1045,10 +1090,10 @@ model CombinedCycle_Load_100_50
     b1=-12.7952660447433,
     Q(fixed=false),
     mode=1,
-    C1(h_vol(start=561000.0)),
-    C2(h_vol(start=630000.0)),
-    Qv(start=0.0810383142105344),
-    pro(d(start=929.0)),
+    C1(h_vol(start=550072.7232069891)),
+    C2(h_vol(start=618649.6677733721)),
+    Qv(start=0.08171817156952406),
+    pro(d(start=931.4140647908531)),
     Pm(start=6774000))
              annotation (Placement(transformation(extent={{804,-60},{824,-40}},
           rotation=0)));
@@ -1081,13 +1126,13 @@ model CombinedCycle_Load_100_50
         extent={{10,-10},{-10,10}},
         rotation=180)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeK3(    K=1e-4, mode=1,
-    Pm(start=372718))
+    Pm(start=322424.2818830876))
     annotation (Placement(transformation(
         origin={780,-50},
         extent={{10,-10},{-10,10}},
         rotation=180)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeK8(    K=1e-4, mode=1,
-    Pm(start=372718))
+    Pm(start=322424.28218490275))
     annotation (Placement(transformation(
         origin={780,-10},
         extent={{10,-10},{-10,10}},
@@ -1097,26 +1142,27 @@ model CombinedCycle_Load_100_50
           rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeK(
                                                          K=1e-4, mode=1,
-    C1(h_vol(start=153206.462779274)),
-    C2(h_vol(start=153206.462779274)),
-    pro(d(start=993.441492649513)),
+    C1(h_vol(start=191812.29519356362)),
+    C2(h_vol(start=191812.29519356362)),
+    pro(d(start=989.8383588386498)),
     Pm(start=6200))
     annotation (Placement(transformation(extent={{702,-446},{722,-426}},
           rotation=0)));
   ThermoSysPro.WaterSteam.Machines.StaticCentrifugalPump PompeAlimBP(
-    Qv(start=0.193483547611118),
+    Qv(start=0.2002405532484127),
     mode=1,
     a3=400,
     a1(fixed=true) = -6000,
     Q(start=194.502, fixed=false),
-    C2(h_vol(start=194669.0)),
-    Pm(start=800000))
+    C2(h_vol(start=194584.50261452305)),
+    Pm(start=783963.3809799375))
             annotation (Placement(transformation(extent={{742,-446},{762,-426}},
           rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.PipePressureLoss perteChargeK2(
                                                          K=1e-4, mode=1,
-    pro(d(start=994.045785814739)),
-    C1(h_vol(start=194585), h(start=194585)),
+    pro(d(start=990.3586687495459)),
+    C1(h_vol(start=194584.50261452305),
+                            h(start=194585)),
     Pm(start=1546000))
     annotation (Placement(transformation(extent={{840,-446},{860,-426}},
           rotation=0)));
@@ -1124,7 +1170,7 @@ model CombinedCycle_Load_100_50
         2000,
     h(start=194500),
     Cv(start=2000),
-    Pm(start=1549000))
+    Pm(start=1549245.4644062065))
                  annotation (Placement(transformation(extent={{802,-440},{822,
             -420}}, rotation=0)));
   ThermoSysPro.WaterSteam.Sensors.SensorQ CapteurDebitVapHP(C1(h_vol(start=2674000),
@@ -1230,7 +1276,8 @@ model CombinedCycle_Load_100_50
           rotation=0)));
   ThermoSysPro.Examples.Control.Condenser_LevelControl
     regulation_Niveau_Condenseur(pIsat(Ti=500, Limiteur1(u(signal(start=0.8)))),
-                                                add(k1=+1, k2=-1))
+                                                add(k1=+1, k2=-1),
+    edge(uL(signal(start=true))))
                                  annotation (Placement(transformation(extent={{
             758,-282},{778,-262}}, rotation=0)));
   ThermoSysPro.InstrumentationAndControl.Blocks.Tables.Table1DTemps
@@ -1262,26 +1309,26 @@ model CombinedCycle_Load_100_50
     mode=1,
     V=1,
     h0=988332,
-    h(start=988332),
+    h(start=854493.2404741034),
     dynamic_mass_balance=true,
     P0=7010000,
-    P(start=13129000))                    annotation (Placement(transformation(
+    P(start=13129347.20636851))           annotation (Placement(transformation(
           extent={{456,-98},{436,-78}}, rotation=0)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC VolumeECO_HP2_3(
     mode=1,
     V=1,
     h0=983786,
-    h(start=983786),
+    h(start=986348.0919441726),
     dynamic_mass_balance=true,
     P0=7000000,
-    P(start=13219000))                    annotation (Placement(transformation(
+    P(start=13219328.239579093))          annotation (Placement(transformation(
           extent={{252,-20},{232,0}}, rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve Vanne_alimentationMPHP1(
                           mode=1,
     Cvmax=308.931,
     h(start=618600),
     Cv(start=308.931),
-    Pm(start=13130000))
+    Pm(start=13130272.672059398))
                  annotation (Placement(transformation(extent={{754,-98},{730,
             -122}}, rotation=0)));
   ThermoSysPro.WaterSteam.PressureLosses.ControlValve Vanne_alimentationMPHP2(
@@ -1289,7 +1336,7 @@ model CombinedCycle_Load_100_50
     Cvmax=308.931,
     h(start=565000),
     Cv(start=308.931),
-    Pm(start=3126000))
+    Pm(start=3126744.5275077047))
                  annotation (Placement(transformation(extent={{804,-138},{780,
             -162}}, rotation=0)));
   ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Rampe arretPomesMp1(
@@ -1308,7 +1355,7 @@ model CombinedCycle_Load_100_50
             908,-162}}, rotation=0)));
   ThermoSysPro.WaterSteam.Volumes.VolumeD VolumePreTHP(
     h0=3e6,
-    h(start=3450835.48993987),
+    h(start=3433271.775819776),
     dynamic_mass_balance=true,
     P0=12700000,
     P(start=12700000))                annotation (Placement(transformation(
@@ -1317,7 +1364,7 @@ model CombinedCycle_Load_100_50
         rotation=180)));
   ThermoSysPro.WaterSteam.Volumes.VolumeC MelangeurPreTMP(
     h0=3523910,
-    h(start=3523910.30137915),
+    h(start=3517975.7051812997),
     dynamic_mass_balance=true,
     P0=2400000,
     P(start=2400000))                     annotation (Placement(transformation(
@@ -1383,21 +1430,24 @@ model CombinedCycle_Load_100_50
     exp_eff_n=0.89045,
     TurbQred=0.0175634,
     Kcham=2.02088,
-    chambreCombustionTAC(Pea(fixed=false, start=14.0e5)),
+    chambreCombustionTAC(Pea(fixed=false, start=14.0e5),
+      Psf(start=1333898.05061735),
+      Tsf(start=1493.5527523474145)),
     Wpth=1e6,
     Compresseur(
       is_eff(fixed=false, start=0.88),
       Xtau(fixed=false, start=1.00),
-      Ps(start=1420000),
-      Ts(start=678.07),
-      Tis(start=630.75)),
+      Ps(start=1419889.7074729432),
+      Ts(start=678.0795840911329),
+      Tis(start=630.7876402069812)),
     TurbineAgaz(
       Ps(fixed=false),
       is_eff(fixed=false, start=0.87),
       Pe(fixed=false, start=1333900),
       Te(start=1493.59),
       Ts(fixed=false, start=893.16),
-      Tis(start=813.95)))
+      Tis(start=814.7448743706253)),
+    xAIR(rho_air(start=1.099457970518182)))
     annotation (Placement(transformation(extent={{-471,-115},{-341,13}},
           rotation=0)));
 

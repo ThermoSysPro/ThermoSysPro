@@ -3,7 +3,7 @@ function derTemperature_derh
   "der(Temperature) computation for Dry Air Ideal Gas (inputs: h, der(h))"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
+  input Units.SI.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
   input Real der_h "Specific Enthalpy time derivative (J/(kg*s))";
 
   output Real der_T "Fluid temperature time derivative (K/s)";

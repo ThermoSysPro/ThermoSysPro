@@ -2,8 +2,8 @@
 function derDensity_derP_derh
   "der(Density) computation for all fluids (inputs: P, h, der(P), der(h), fluid)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -24,7 +24,7 @@ protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph der_pro annotation (Placement(
         transformation(extent={{-80,40},{-40,80}}, rotation=0)));
 protected
-  Modelica.SIunits.Temperature T "Temperature (K)";
+  Units.SI.Temperature T "Temperature (K)";
   Real der_T "Temperature time derivative (K/s)";
 
 ///annotation(derivative(order=2)=derderDensity_derderP_derderh);

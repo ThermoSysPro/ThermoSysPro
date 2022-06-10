@@ -21,15 +21,15 @@ model GasTurbineTrip "CCPP model to simulate a gas turbine trip"
 
   //parameter Real a3_PumpBP(fixed=false,start=400)"Constant coef. of the pump characteristics hn = f(vol_flow) (m)";
 
-  parameter ThermoSysPro.Units.Cv CvmaxValveAHP(fixed=false,start=135)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveAHP(fixed=false, start=135)
     "Maximum CV: alim. valve MP Drum ";
-  parameter ThermoSysPro.Units.Cv CvmaxValveVHP(fixed=false,start=47829.4)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveVHP(fixed=false, start=47829.4)
     "Maximum CV: steame valve HP Drum  ";
-  parameter ThermoSysPro.Units.Cv CvmaxValveAMP(fixed=false,start=70)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveAMP(fixed=false, start=70)
     "Maximum CV: alim. valve MP Drum ";
-  parameter ThermoSysPro.Units.Cv CvmaxValveVMP(fixed=false,start=47829.4)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveVMP(fixed=false, start=47829.4)
     "Maximum CV: steame valve  Drum MP";
-  parameter ThermoSysPro.Units.Cv CvmaxValveVBP(fixed=false,start=32000)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxValveVBP(fixed=false, start=32000)
     "Maximum CV: steame valve BP Drum ";
 
   //parameter ThermoSysPro.Units.Cv CvmaxValveWBP(fixed=false,start=10000)
@@ -82,9 +82,9 @@ model GasTurbineTrip "CCPP model to simulate a gas turbine trip"
   parameter Real K_Dp_HP_IP(fixed=false,start=1.)
     "Outlet THP: Friction pressure loss coefficient";
 
-  parameter ThermoSysPro.Units.Cv Cvmax_THP(fixed=false,start=8000)
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax_THP(fixed=false, start=8000)
     "Maximum CV input Turbine HP ";
-  parameter ThermoSysPro.Units.Cv Cvmax_TMP(fixed=false,start=1500)
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax_TMP(fixed=false, start=1500)
     "Maximum CV input Turbine MP ";
 
   ThermoSysPro.WaterSteam.Volumes.DynamicDrum HP_Drum(

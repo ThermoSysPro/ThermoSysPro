@@ -1,22 +1,23 @@
 ﻿within ThermoSysPro.FlueGases.Junctions;
 model Splitter2 "Flue gases splitter with two outlets"
-  parameter Modelica.SIunits.SpecificEnthalpy hr=2501569 "Water/steam reference specific enthalpy at 0.01°C";
+  parameter Units.SI.SpecificEnthalpy hr=2501569
+    "Water/steam reference specific enthalpy at 0.01°C";
 
 public
   Real alpha1 "Extraction coefficient for outlet 1 (<=1)";
-  Modelica.SIunits.AbsolutePressure P(start=1e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=1e5) "Fluid specific enthalpy";
-  Modelica.SIunits.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=1e5) "Fluid specific enthalpy";
+  Units.SI.Temperature T "Fluid temperature";
   Real Xco2 "CO2 mass fraction";
   Real Xh2o "H20 mass fraction";
   Real Xo2 "O2 mass fraction";
   Real Xso2 "SO2 mass fraction";
   Real Xn2 "N2 mass fraction";
-  Modelica.SIunits.SpecificEnthalpy he(start=100000)
+  Units.SI.SpecificEnthalpy he(start=100000)
     "Fluid specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy hs1(start=100000)
+  Units.SI.SpecificEnthalpy hs1(start=100000)
     "Fluid specific enthalpy at outlet #1";
-  Modelica.SIunits.SpecificEnthalpy hs2(start=100000)
+  Units.SI.SpecificEnthalpy hs2(start=100000)
     "Fluid specific enthalpy at outlet #2";
 
 public

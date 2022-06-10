@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model generate_data_dT
-  import Modelica.SIunits.*;
+  import ThermoSysPro.Units.SI.*;
   parameter Density d_min = 15;
   parameter Density d_max = 1000;
   parameter Density delta_d(min = 1) = 25;
@@ -8,11 +8,10 @@ model generate_data_dT
   parameter Temperature T_max = 1000;
   parameter Temperature  delta_T(min = 1) = 50;
 
-  Modelica.SIunits.DynamicViscosity mu_polynomial "Dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity  lambda_polynomial
-    "Thermal conductivity";
-  Modelica.SIunits.DynamicViscosity mu_IF97 "Dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity  lambda_IF97 "Thermal conductivity";
+  Units.SI.DynamicViscosity mu_polynomial "Dynamic viscosity";
+  Units.SI.ThermalConductivity lambda_polynomial "Thermal conductivity";
+  Units.SI.DynamicViscosity mu_IF97 "Dynamic viscosity";
+  Units.SI.ThermalConductivity lambda_IF97 "Thermal conductivity";
 
 protected
   parameter Integer n_d =  integer((d_max - d_min)/delta_d);

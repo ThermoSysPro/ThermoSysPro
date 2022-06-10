@@ -3,7 +3,7 @@ model Generator "Eletrical generator"
   parameter Real eta = 99.8 "Efficiency (percent)";
 
 public
-  Modelica.SIunits.Power Welec "Electrical power produced by the generator";
+  Units.SI.Power Welec "Electrical power produced by the generator";
 
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal Wmec2

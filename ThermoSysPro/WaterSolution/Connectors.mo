@@ -1,9 +1,9 @@
 within ThermoSysPro.WaterSolution;
 package Connectors "Connectors"
   connector WaterSolutionInlet "Water solution inlet"
-    Modelica.SIunits.AbsolutePressure P "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q
+    Units.SI.AbsolutePressure P "Fluid pressure in the control volume";
+    Units.SI.Temperature T "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xh2o "H20 mass fraction of the solution in the control volume";
 
@@ -42,9 +42,9 @@ package Connectors "Connectors"
   end WaterSolutionInlet;
 
   connector WaterSolutionOutlet "Water solution outlet"
-    Modelica.SIunits.AbsolutePressure P "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q
+    Units.SI.AbsolutePressure P "Fluid pressure in the control volume";
+    Units.SI.Temperature T "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xh2o "H20 mass fraction of the solution in the control volume";
 

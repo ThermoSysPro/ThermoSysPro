@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_derh
-    input Modelica.SIunits.SpecificEnthalpy h "Enthalpy (J/kg)";
+  input Units.SI.SpecificEnthalpy h "Enthalpy (J/kg)";
     input Real der_h "Enthalpy time derivative (J/(kg*s))";
     output Real der_temp "Fluid temperature time derivative (K/s)";
 protected

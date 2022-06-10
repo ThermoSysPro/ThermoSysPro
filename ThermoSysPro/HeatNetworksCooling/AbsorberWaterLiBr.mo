@@ -5,7 +5,7 @@ model AbsorberWaterLiBr
     "Pressure losses in the cold fluid a a percent of the pressure at the inlet";
 
 public
-  Modelica.SIunits.Power W(start=1e6) "Power exchanged";
+  Units.SI.Power W(start=1e6) "Power exchanged";
   Real DPc(start=10)
     "Pressure losses in the hot fluid a a percent of the pressure at the inlet";
 

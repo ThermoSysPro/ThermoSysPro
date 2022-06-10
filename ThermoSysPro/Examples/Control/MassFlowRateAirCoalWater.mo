@@ -2,11 +2,11 @@ within ThermoSysPro.Examples.Control;
 model MassFlowRateAirCoalWater "MassFlowRateAirCoalWater"
  // Modelica.SIunits.Power Welec
  //   "(Percent, max=100)Electrical power produced by the generator";
- Modelica.SIunits.Power Welec( start=804.461)
+  Units.SI.Power Welec(start=804.461)
     "(MW)Electrical power produced by the generator";
- Modelica.SIunits.MassFlowRate Qair(start=710) "Air mass flow rate";
- Modelica.SIunits.MassFlowRate Qcoal(start=70) "Coal mass flow rate";
- Modelica.SIunits.MassFlowRate Qwater(start=600) "Water mass flow rate";
+  Units.SI.MassFlowRate Qair(start=710) "Air mass flow rate";
+  Units.SI.MassFlowRate Qcoal(start=70) "Coal mass flow rate";
+  Units.SI.MassFlowRate Qwater(start=600) "Water mass flow rate";
 
   InstrumentationAndControl.Connectors.InputReal Electrical_power_MW
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},   rotation=-90,

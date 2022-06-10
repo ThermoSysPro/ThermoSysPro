@@ -7,8 +7,8 @@ model SteamExtractionSplitter "Splitter for steam extraction"
 
 public
   Real x_ex(start=0.99) "Vapor mass fraction at the extraction outlet";
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
 
 public
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph proe

@@ -1,10 +1,10 @@
 ﻿within ThermoSysPro.FlueGases.Volumes;
 model VolumeBTh
   "Mixing flue gases volume with 2 inlets and 2 outlets and thermal input"
-  parameter Modelica.SIunits.Volume V=1 "Volume";
-  parameter Modelica.SIunits.AbsolutePressure P0=1e5
+  parameter Units.SI.Volume V=1 "Volume";
+  parameter Units.SI.AbsolutePressure P0=1e5
     "Initial fluid pressure (active if dynamic_mass_balance=true and steady_state=false)";
-  parameter Modelica.SIunits.Temperature T0=400
+  parameter Units.SI.Temperature T0=400
     "Initial fluid temperature (active if steady_state=false)";
   parameter Boolean dynamic_mass_balance=false
     "true: dynamic mass balance equation - false: static mass balance equation";
@@ -12,43 +12,38 @@ model VolumeBTh
     "true: dynamic fluid composition balance equation - false: static fluid composition balance equation";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, h0)";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
-  parameter Modelica.SIunits.SpecificEnthalpy hr=2501569 "Water/steam reference specific enthalpy at 0.01°C";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.SpecificEnthalpy hr=2501569
+    "Water/steam reference specific enthalpy at 0.01°C";
   parameter Real Xco20 = 0.0  "CO2 mass fraction (active if steady_state=false)";
   parameter Real Xh2o0 = 0.05 "H20 mass fraction (active if steady_state=false)";
   parameter Real Xo20 = 0.23 "O2 mass fraction (active if steady_state=false)";
   parameter Real Xso20 = 0 "SO2 mass fraction (active if steady_state=false)";
 
 public
-  Modelica.SIunits.Temperature T(start=500) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
-  Modelica.SIunits.Density rho(start=1) "Fluid density";
-  Modelica.SIunits.SpecificHeatCapacity cp(start=1000)
-    "Fluid spécific heat capacity";
+  Units.SI.Temperature T(start=500) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  Units.SI.Density rho(start=1) "Fluid density";
+  Units.SI.SpecificHeatCapacity cp(start=1000) "Fluid spécific heat capacity";
   Real Xco2 "CO2 mass fraction";
   Real Xh2o "H20 mass fraction";
   Real Xo2 "O2 mass fraction";
   Real Xso2 "SO2 mass fraction";
   Real Xn2 "N2 mass fraction";
-  Modelica.SIunits.MassFlowRate BQ
-    "Right hand side of the mass balance equation";
-  Modelica.SIunits.Power BH "Right hand side of the energybalance equation";
-  Modelica.SIunits.MassFlowRate BXco2
-    "Right hand side of the CO2 balance equation";
-  Modelica.SIunits.MassFlowRate BXh2o
-    "Right hand side of the H2O balance equation";
-  Modelica.SIunits.MassFlowRate BXo2
-    "Right hand side of the O2 balance equation";
-  Modelica.SIunits.MassFlowRate BXso2
-    "Right hand side of the SO2 balance equation";
-  Modelica.SIunits.SpecificEnthalpy he1(start=100000)
+  Units.SI.MassFlowRate BQ "Right hand side of the mass balance equation";
+  Units.SI.Power BH "Right hand side of the energybalance equation";
+  Units.SI.MassFlowRate BXco2 "Right hand side of the CO2 balance equation";
+  Units.SI.MassFlowRate BXh2o "Right hand side of the H2O balance equation";
+  Units.SI.MassFlowRate BXo2 "Right hand side of the O2 balance equation";
+  Units.SI.MassFlowRate BXso2 "Right hand side of the SO2 balance equation";
+  Units.SI.SpecificEnthalpy he1(start=100000)
     "Fluid specific enthalpy at inlet #1";
-  Modelica.SIunits.SpecificEnthalpy he2(start=100000)
+  Units.SI.SpecificEnthalpy he2(start=100000)
     "Fluid specific enthalpy at inlet #2";
-  Modelica.SIunits.SpecificEnthalpy hs1(start=100000)
+  Units.SI.SpecificEnthalpy hs1(start=100000)
     "Fluid specific enthalpy at outlet #1";
-  Modelica.SIunits.SpecificEnthalpy hs2(start=100000)
+  Units.SI.SpecificEnthalpy hs2(start=100000)
     "Fluid specific enthalpy at outlet #2";
 
   Connectors.FlueGasesInlet Ce1

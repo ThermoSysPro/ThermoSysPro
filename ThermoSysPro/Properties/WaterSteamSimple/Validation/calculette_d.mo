@@ -1,25 +1,24 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model calculette_d
-  parameter Modelica.SIunits.Temperature T= 350;
-  parameter Modelica.SIunits.Density d_min = 0.1;
-  parameter Modelica.SIunits.Density d_max = 1000;
-  Modelica.SIunits.Density d;
-  Modelica.SIunits.Pressure p;
-  Modelica.SIunits.DynamicViscosity mu_polynomial "Dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity  lambda_polynomial
-    "Thermal conductivity";
-  Modelica.SIunits.DynamicViscosity mu_IF97 "Dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity  lambda_IF97 "Thermal conductivity";
+  parameter Units.SI.Temperature T=350;
+  parameter Units.SI.Density d_min=0.1;
+  parameter Units.SI.Density d_max=1000;
+  Units.SI.Density d;
+  Units.SI.Pressure p;
+  Units.SI.DynamicViscosity mu_polynomial "Dynamic viscosity";
+  Units.SI.ThermalConductivity lambda_polynomial "Thermal conductivity";
+  Units.SI.DynamicViscosity mu_IF97 "Dynamic viscosity";
+  Units.SI.ThermalConductivity lambda_IF97 "Thermal conductivity";
 
-  Modelica.SIunits.DynamicViscosity mu1;
-  Modelica.SIunits.DynamicViscosity mu2;
+  Units.SI.DynamicViscosity mu1;
+  Units.SI.DynamicViscosity mu2;
 
-  Modelica.SIunits.Density d1sat;
-  Modelica.SIunits.Density d2sat;
+  Units.SI.Density d1sat;
+  Units.SI.Density d2sat;
   Real titre;
 
 protected
-  parameter Modelica.SIunits.Time dt = 10000;
+  parameter Units.SI.Time dt=10000;
   Real x = time/dt;
 
 equation

@@ -1,10 +1,10 @@
 ﻿within ThermoSysPro.WaterSteam.HeatExchangers;
 model SimpleDynamicCondenser
-  parameter Modelica.SIunits.Volume V=1 "Cavity volume";
-  parameter Modelica.SIunits.Area A=1 "Cavity cross-sectional area";
+  parameter Units.SI.Volume V=1 "Cavity volume";
+  parameter Units.SI.Area A=1 "Cavity cross-sectional area";
   parameter Real Vf0=0.5
     "Fraction of initial water volume in the drum (active if steady_state=false)";
-  parameter Modelica.SIunits.AbsolutePressure P0=0.1e5
+  parameter Units.SI.AbsolutePressure P0=0.1e5
     "Fluid initial pressure (active if steady_state=false)";
   parameter Boolean gravity_pressure=false
     "true: fluid pressure at the bottom of the cavity includes gravity term - false: without gravity term";
@@ -14,20 +14,20 @@ model SimpleDynamicCondenser
     "Vapor mass fraction in the liquid phase from which the liquid starts to evaporate";
   parameter Real Xvo=0.9975
     "Vapor mass fraction in the gas phase from which the liquid starts to condensate";
-  parameter Modelica.SIunits.Area Avl=A
+  parameter Units.SI.Area Avl=A
     "Heat exchange surface between the liquid and gas phases";
   parameter Real Kvl=1000
     "Heat exchange coefficient between the liquid and gas phases";
-  parameter Modelica.SIunits.Length L=10. "Pipe length";
-  parameter Modelica.SIunits.Diameter D=0.02 "Pipe internal diameter";
-  parameter Modelica.SIunits.Length e=2.e-3 "Wall thickness";
-  parameter Modelica.SIunits.Position z1=0 "Inlet altitude";
-  parameter Modelica.SIunits.Position z2=0 "Outlet altitude";
-  parameter Modelica.SIunits.Length rugosrel=0.0007 "Pipe roughness";
+  parameter Units.SI.Length L=10. "Pipe length";
+  parameter Units.SI.Diameter D=0.02 "Pipe internal diameter";
+  parameter Units.SI.Length e=2.e-3 "Wall thickness";
+  parameter Units.SI.Position z1=0 "Inlet altitude";
+  parameter Units.SI.Position z2=0 "Outlet altitude";
+  parameter Units.SI.Length rugosrel=0.0007 "Pipe roughness";
   parameter Real lambda= 0.03
     "Friction pressure loss coefficient (active if lambda_fixed=true)";
   parameter Integer ntubes=1 "Number of pipes in parallel";
-  parameter Modelica.SIunits.Area At=ntubes*pi*D^2/4
+  parameter Units.SI.Area At=ntubes*pi*D^2/4
     "Internal pipe cross-section area (cooling fluid)";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, Vl0)";
@@ -37,47 +37,44 @@ model SimpleDynamicCondenser
     "true: continuous flow reversal - false: discontinuous flow reversal";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
 
 public
-  Modelica.SIunits.Density rhom(start=998) "Liquid phase density";
-  ThermoSysPro.Units.DifferentialPressure dpf "Friction pressure loss";
-  ThermoSysPro.Units.DifferentialPressure dpg "Gravity pressure loss";
+  Units.SI.Density rhom(start=998) "Liquid phase density";
+  ThermoSysPro.Units.SI.PressureDifference dpf "Friction pressure loss";
+  ThermoSysPro.Units.SI.PressureDifference dpg "Gravity pressure loss";
   Real khi "Hydraulic pressure loss coefficient";
-  Modelica.SIunits.AbsolutePressure P "Fluid average pressure";
-  Modelica.SIunits.AbsolutePressure Pfond
-    "Fluid pressure at the bottom of the cavity";
-  Modelica.SIunits.SpecificEnthalpy hl "Liquid phase spepcific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "Gas phase spepcific enthalpy";
-  Modelica.SIunits.Temperature Tl "Liquid phase temperature";
-  Modelica.SIunits.Temperature Tv "Gas phase temperature";
-  Modelica.SIunits.Volume Vl "Liquid phase volume";
-  Modelica.SIunits.Volume Vv "Gas phase volume";
+  Units.SI.AbsolutePressure P "Fluid average pressure";
+  Units.SI.AbsolutePressure Pfond "Fluid pressure at the bottom of the cavity";
+  Units.SI.SpecificEnthalpy hl "Liquid phase spepcific enthalpy";
+  Units.SI.SpecificEnthalpy hv "Gas phase spepcific enthalpy";
+  Units.SI.Temperature Tl "Liquid phase temperature";
+  Units.SI.Temperature Tv "Gas phase temperature";
+  Units.SI.Volume Vl "Liquid phase volume";
+  Units.SI.Volume Vv "Gas phase volume";
   Real xl(start=0.0) "Mass vapor fraction in the liquid phase";
   Real xv(start=1) "Mass vapor fraction in the gas phase";
-  Modelica.SIunits.Density rhol(start=996) "Liquid phase density";
-  Modelica.SIunits.Density rhov(start=1.5) "Gas phase density";
-  Modelica.SIunits.MassFlowRate BQl
+  Units.SI.Density rhol(start=996) "Liquid phase density";
+  Units.SI.Density rhov(start=1.5) "Gas phase density";
+  Units.SI.MassFlowRate BQl
     "Right hand side of the mass balance equation of the liquid phase";
-  Modelica.SIunits.MassFlowRate BQv
+  Units.SI.MassFlowRate BQv
     "Right hand side of the mass balance equation of the gas phaser";
-  Modelica.SIunits.Power BHl
+  Units.SI.Power BHl
     "Right hand side of the energy balance equation of the liquid phase";
-  Modelica.SIunits.Power BHv
+  Units.SI.Power BHv
     "Right hand side of the energy balance equation of the gas phase";
-  Modelica.SIunits.MassFlowRate Qcond
+  Units.SI.MassFlowRate Qcond
     "Condensation mass flow rate from the vapor phase";
-  Modelica.SIunits.MassFlowRate Qevap
+  Units.SI.MassFlowRate Qevap
     "Evaporation mass flow rate from the liquid phase";
-  Modelica.SIunits.Power Wvl
+  Units.SI.Power Wvl
     "Thermal power exchanged from the gas phase to the liquid phase";
-  Modelica.SIunits.Power Wout
-    "Thermal power exchanged from the steam to the pipes";
+  Units.SI.Power Wout "Thermal power exchanged from the steam to the pipes";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph prol
     "Propriétés de l'eau dans le ballon" annotation (Placement(transformation(
           extent={{-100,80},{-80,100}}, rotation=0)));

@@ -1,9 +1,10 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Enthalpy;
 function h1_PT
   "Specific enthalpy in liquid region for given pressure and temperature"
- input Modelica.SIunits.AbsolutePressure p "Pressure";
- input Modelica.SIunits.Temperature T "Temperature";
- output Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.Temperature T "Temperature";
+  output Units.SI.SpecificEnthalpy h "Specific enthalpy";
+protected
   h1_PT_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

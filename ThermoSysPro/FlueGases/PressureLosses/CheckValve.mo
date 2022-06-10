@@ -1,14 +1,14 @@
 within ThermoSysPro.FlueGases.PressureLosses;
 model CheckValve "Check valve"
-  parameter ThermoSysPro.Units.DifferentialPressure dPOuvert=10
+  parameter ThermoSysPro.Units.SI.PressureDifference dPOuvert=10
     "Pressure difference when the valve opens";
-  parameter ThermoSysPro.Units.DifferentialPressure dPFerme=0
+  parameter ThermoSysPro.Units.SI.PressureDifference dPFerme=0
     "Pressure difference when the valve closes";
-  parameter ThermoSysPro.Units.PressureLossCoefficient k=1000
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient k=1000
     "Pressure loss coefficient";
-  parameter Modelica.SIunits.MassFlowRate Qmin=1.e-6
+  parameter Units.SI.MassFlowRate Qmin=1.e-6
     "Mass flow when the valve is closed";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
 protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
@@ -17,12 +17,12 @@ public
   Boolean ouvert(start=true, fixed=true) "Valve state";
   discrete Boolean touvert(start=false, fixed=true);
   discrete Boolean tferme(start=false, fixed=true);
-  Modelica.SIunits.MassFlowRate Q(start=100) "Mass flow";
-  ThermoSysPro.Units.DifferentialPressure deltaP(start=10)
+  Units.SI.MassFlowRate Q(start=100) "Mass flow";
+  ThermoSysPro.Units.SI.PressureDifference deltaP(start=10)
     "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=1) "Fluid density";
-  Modelica.SIunits.Temperature T(start=300) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid average pressure";
+  Units.SI.Density rho(start=1) "Fluid density";
+  Units.SI.Temperature T(start=300) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid average pressure";
 
   Connectors.FlueGasesInlet C1      annotation (Placement(transformation(extent=
            {{-120,-10},{-100,10}}, rotation=0)));

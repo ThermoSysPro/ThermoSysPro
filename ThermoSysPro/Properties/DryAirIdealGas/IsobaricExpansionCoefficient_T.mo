@@ -2,8 +2,8 @@ within ThermoSysPro.Properties.DryAirIdealGas;
 function IsobaricExpansionCoefficient_T
   "Isobaric Expansion Coefficient computation for Dry Air Ideal Gas (input T)"
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  output Modelica.SIunits.CubicExpansionCoefficient Beta
+  input Units.SI.Temperature T "Temperature (K)";
+  output Units.SI.CubicExpansionCoefficient Beta
     "Isobaric Expansion Coefficient (1/K)";
 
 algorithm

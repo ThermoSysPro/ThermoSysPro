@@ -1,8 +1,8 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function SpecificHeatCp_T
   "Specific heat capacity as function of temperature"
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
-    output Modelica.SIunits.SpecificHeatCapacity cp "Viscosity (Pa s)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
+  output Units.SI.SpecificHeatCapacity cp "Viscosity (Pa s)";
 protected
     constant Real Cp_c0 = 1981.3598157651504;
     constant Real Cp_c1 = -9.777411226193031;

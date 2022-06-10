@@ -1,10 +1,12 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Entropy;
-function s2sat_P "specificentropy at vapor saturation for given pressure"
+function s2sat_P "Specific entropy at vapor saturation for given pressure"
+  input Units.SI.Pressure p "pressure";
+  output Units.SI.SpecificEntropy s "specific entropy";
 
-  input Modelica.SIunits.Pressure p "pressure";
-  output Modelica.SIunits.SpecificEntropy s "specific entropy";
+protected
   s2sat_P_coef1 coef1;
   s2sat_P_coef2 coef2;
+
 algorithm
   if p < 15.85e5 then
     s := ThermoSysPro.Properties.WaterSteamSimple.Utilities.polynomial_x_order5(coef1, ThermoSysPro.Properties.WaterSteamSimple.Utilities.logBase10(p));

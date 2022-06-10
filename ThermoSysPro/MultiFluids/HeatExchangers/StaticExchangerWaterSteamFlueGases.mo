@@ -4,11 +4,10 @@ model StaticExchangerWaterSteamFlueGases
   parameter Integer exchanger_type=1
     "Exchanger type - 1: Efficiency is fixed - 2: delta power is fixed - 3: heat transfer is fixed";
   parameter Real EffEch = 0.9 "Thermal exchange efficiency";
-  parameter Modelica.SIunits.Power W0=0
-    "Power exchanged (active if exchanger_type=2)";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer K = 100
+  parameter Units.SI.Power W0=0 "Power exchanged (active if exchanger_type=2)";
+  parameter Units.SI.CoefficientOfHeatTransfer K=100
     "Global heat transfer coefficient (active if exchanger_type=3)";
-  parameter Modelica.SIunits.Area S = 10
+  parameter Units.SI.Area S=10
     "Global heat exchange surface (active if exchanger_type=3)";
   parameter Real Kdpf = 10 "Pressure loss coefficient on the flue gas side";
   parameter Real Kdpe = 10 "Pressure loss coefficient on the water/steam side";
@@ -21,40 +20,32 @@ protected
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
 
 public
-  Modelica.SIunits.AbsolutePressure Pef(start=3e5)
-    "Flue gas pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=2.5e5)
-    "Flue gas pressure at the outlet";
-  Modelica.SIunits.Temperature Tef(start=600)
-    "Flue gas temperature at the inlet";
-  Modelica.SIunits.Temperature Tsf(start=400)
-    "Flue gas temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hef(start=6e5)
+  Units.SI.AbsolutePressure Pef(start=3e5) "Flue gas pressure at the inlet";
+  Units.SI.AbsolutePressure Psf(start=2.5e5) "Flue gas pressure at the outlet";
+  Units.SI.Temperature Tef(start=600) "Flue gas temperature at the inlet";
+  Units.SI.Temperature Tsf(start=400) "Flue gas temperature at the outlet";
+  Units.SI.SpecificEnthalpy Hef(start=6e5)
     "Flue gas specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hsf(start=3e5)
+  Units.SI.SpecificEnthalpy Hsf(start=3e5)
     "Flue gas specific enthalpy at the outlet";
-  Modelica.SIunits.MassFlowRate Qf(start=10) "Flue gas mass flow rate";
-  Modelica.SIunits.AbsolutePressure Pee(start=2e6)
-    "Water pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Pse(start=2e6)
-    "Water pressure at the outlet";
-  Modelica.SIunits.Temperature Tee(start=400) "Water temperature at the inlet";
-  Modelica.SIunits.Temperature Tse( start=450)
-    "Water temperature at the outlet";
-  ThermoSysPro.Units.DifferentialTemperature DT1 "Delta T at the inlet";
-  ThermoSysPro.Units.DifferentialTemperature DT2 "Delta T at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hse(start=20e5)
+  Units.SI.MassFlowRate Qf(start=10) "Flue gas mass flow rate";
+  Units.SI.AbsolutePressure Pee(start=2e6) "Water pressure at the inlet";
+  Units.SI.AbsolutePressure Pse(start=2e6) "Water pressure at the outlet";
+  Units.SI.Temperature Tee(start=400) "Water temperature at the inlet";
+  Units.SI.Temperature Tse(start=450) "Water temperature at the outlet";
+  ThermoSysPro.Units.SI.TemperatureDifference DT1 "Delta T at the inlet";
+  ThermoSysPro.Units.SI.TemperatureDifference DT2 "Delta T at the outlet";
+  Units.SI.SpecificEnthalpy Hse(start=20e5)
     "Water specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hee(start=3e5)
+  Units.SI.SpecificEnthalpy Hee(start=3e5)
     "Water specific enthalpy at the outlet";
-  Modelica.SIunits.MassFlowRate Qe(start=10) "Water mass flow rate";
-  Modelica.SIunits.Density rhoe(start=700) "Water density";
-  Modelica.SIunits.Density rhof(start=0.9) "Fluie gas density";
-  Modelica.SIunits.SpecificHeatCapacity Cpf(start=1000)
+  Units.SI.MassFlowRate Qe(start=10) "Water mass flow rate";
+  Units.SI.Density rhoe(start=700) "Water density";
+  Units.SI.Density rhof(start=0.9) "Fluie gas density";
+  Units.SI.SpecificHeatCapacity Cpf(start=1000)
     "Flue gas specific heat capacity";
-  Modelica.SIunits.SpecificHeatCapacity Cpe(start=4200)
-    "Water specific heat capacity";
-  Modelica.SIunits.Power W(start=1e8) "Exchanger power";
+  Units.SI.SpecificHeatCapacity Cpe(start=4200) "Water specific heat capacity";
+  Units.SI.Power W(start=1e8) "Exchanger power";
 
   ThermoSysPro.WaterSteam.Connectors.FluidOutlet Cws2 "Water outlet"
     annotation (Placement(transformation(extent={{90,-10},{110,10}}, rotation=0)));

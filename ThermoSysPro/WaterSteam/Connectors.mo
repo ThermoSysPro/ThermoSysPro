@@ -1,13 +1,13 @@
 within ThermoSysPro.WaterSteam;
 package Connectors "Connectors"
   connector FluidInlet "Water/steam inlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.SpecificEnthalpy h_vol(start=1.e5)
+    Units.SI.SpecificEnthalpy h_vol(start=1.e5)
       "Fluid specific enthalpy in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=500)
+    Units.SI.MassFlowRate Q(start=500)
       "Mass flow rate of the fluid crossing the boundary of the control volume";
-    Modelica.SIunits.SpecificEnthalpy h(start=1.e5)
+    Units.SI.SpecificEnthalpy h(start=1.e5)
       "Specific enthalpy of the fluid crossing the boundary of the control volume";
 
     input Boolean a=true
@@ -43,13 +43,13 @@ package Connectors "Connectors"
   end FluidInlet;
 
   connector FluidInletI "Internal water/steam inlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.SpecificEnthalpy h_vol(start=1.e5)
+    Units.SI.SpecificEnthalpy h_vol(start=1.e5)
       "Fluid specific enthalpy in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=500)
+    Units.SI.MassFlowRate Q(start=500)
       "Mass flow rate of the fluid crossing the boundary of the control volume";
-    Modelica.SIunits.SpecificEnthalpy h(start=1.e5)
+    Units.SI.SpecificEnthalpy h(start=1.e5)
       "Specific enthalpy of the fluid crossing the boundary of the control volume";
 
     input Boolean a
@@ -85,13 +85,13 @@ package Connectors "Connectors"
   end FluidInletI;
 
   connector FluidOutlet "Water/steam outlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.SpecificEnthalpy h_vol(start=1.e5)
+    Units.SI.SpecificEnthalpy h_vol(start=1.e5)
       "Fluid specific enthalpy in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=500)
+    Units.SI.MassFlowRate Q(start=500)
       "Mass flow rate of the fluid crossing the boundary of the control volume";
-    Modelica.SIunits.SpecificEnthalpy h(start=1.e5)
+    Units.SI.SpecificEnthalpy h(start=1.e5)
       "Specific enthalpy of the fluid crossing the boundary of the control volume";
 
     output Boolean a
@@ -127,13 +127,13 @@ package Connectors "Connectors"
   end FluidOutlet;
 
   connector FluidOutletI "Internal water/steam outlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.SpecificEnthalpy h_vol(start=1.e5)
+    Units.SI.SpecificEnthalpy h_vol(start=1.e5)
       "Fluid specific enthalpy in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=500)
+    Units.SI.MassFlowRate Q(start=500)
       "Mass flow rate of the fluid crossing the boundary of the control volume";
-    Modelica.SIunits.SpecificEnthalpy h(start=1.e5)
+    Units.SI.SpecificEnthalpy h(start=1.e5)
       "Specific enthalpy of the fluid crossing the boundary of the control volume";
 
     output Boolean a

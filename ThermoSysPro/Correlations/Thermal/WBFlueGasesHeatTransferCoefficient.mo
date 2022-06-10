@@ -2,39 +2,37 @@ within ThermoSysPro.Correlations.Thermal;
 function WBFlueGasesHeatTransferCoefficient
   "Flue gases heat transfer coefficient"
   input Real propf[4] "Flue gases properties vector";
-  input Modelica.SIunits.MassFlowRate Qef
-    "Flue gases mass flow rate at the inlet";
-  input Modelica.SIunits.AbsolutePressure Pmf "Flue gases average pressure";
-  input Modelica.SIunits.Temperature Tmf "Flue gases average temperature";
+  input Units.SI.MassFlowRate Qef "Flue gases mass flow rate at the inlet";
+  input Units.SI.AbsolutePressure Pmf "Flue gases average pressure";
+  input Units.SI.Temperature Tmf "Flue gases average temperature";
   input Real XefCO2 "CO2 mass fraction at the inlet";
   input Real XefH2O "H2O mass fraction at the inlet";
-  input Modelica.SIunits.PathLength dz "Step in the z direction";
-  input Modelica.SIunits.Length long "Wall zone length";
-  input Modelica.SIunits.Length prof "Wall zone width";
-  input Modelica.SIunits.Temperature Tpext "External wall temperature";
+  input Units.SI.PathLength dz "Step in the z direction";
+  input Units.SI.Length long "Wall zone length";
+  input Units.SI.Length prof "Wall zone width";
+  input Units.SI.Temperature Tpext "External wall temperature";
   input Real fvd=0 "Particles volume fraction";
   input Real emimur=0.1 "Wall emissivity";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer hf
+  output Units.SI.CoefficientOfHeatTransfer hf
     "Global heat transfer coefficient";
 
 protected
-  Modelica.SIunits.ThermalConductivity condf "Flue gases thermal conductivity";
-  Modelica.SIunits.SpecificHeatCapacity cpf "Flue gases specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muf "Flue gases dynamic viscosity";
+  Units.SI.ThermalConductivity condf "Flue gases thermal conductivity";
+  Units.SI.SpecificHeatCapacity cpf "Flue gases specific heat capacity";
+  Units.SI.DynamicViscosity muf "Flue gases dynamic viscosity";
   Real Ref "Flue gases Reynolds number";
   Real Prf "Flue gases Prandtl number";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc
+  Units.SI.CoefficientOfHeatTransfer hc
     "Flue gases convective heat transfer coefficient";
-  Modelica.SIunits.Volume volumg "Gas volume";
-  Modelica.SIunits.Area senveng "Gas total envelope surface";
-  Modelica.SIunits.Radius rop "Average optical radius between pipes";
+  Units.SI.Volume volumg "Gas volume";
+  Units.SI.Area senveng "Gas total envelope surface";
+  Units.SI.Radius rop "Average optical radius between pipes";
   Real EG " ";
   Real ES " ";
   Real emigaz "Gas emissivity";
   Real emigaz0 "Gas emissivity";
-  Modelica.SIunits.CoefficientOfHeatTransfer hr
-    "Radiation heat transfer coefficient";
+  Units.SI.CoefficientOfHeatTransfer hr "Radiation heat transfer coefficient";
 
 algorithm
   condf := propf[1];

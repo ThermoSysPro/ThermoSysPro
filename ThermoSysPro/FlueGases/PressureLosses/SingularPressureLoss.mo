@@ -1,18 +1,18 @@
 within ThermoSysPro.FlueGases.PressureLosses;
 model SingularPressureLoss "Singular pressure loss for flue gases"
   parameter Real K=1.e-3 "Friction pressure loss coefficient";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
 protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
 
 public
-  ThermoSysPro.Units.DifferentialPressure deltaPf(start=1.e2)
+  ThermoSysPro.Units.SI.PressureDifference deltaPf(start=1.e2)
     "Friction pressure loss";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow";
-  Modelica.SIunits.Density rho(start=1) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Average fluid pressure";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow";
+  Units.SI.Density rho(start=1) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Average fluid pressure";
 
 public
   ThermoSysPro.FlueGases.Connectors.FlueGasesInlet C1

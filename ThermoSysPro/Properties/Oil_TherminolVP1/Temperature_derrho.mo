@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_derrho "derivative of Temperature_rho"
-  input Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Density rho "Density (kg/m3)";
   input Real der_rho "Density time derivative (kg/(m3*s))";
   output Real der_temp "Fluid temperature time derivative (K/s)";
 protected

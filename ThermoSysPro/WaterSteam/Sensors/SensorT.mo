@@ -7,14 +7,14 @@ model SensorT "Temperature sensor"
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Minimum mass flow rate for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Propriétés de l'eau"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

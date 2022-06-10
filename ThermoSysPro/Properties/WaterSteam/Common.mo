@@ -1,11 +1,11 @@
 ﻿within ThermoSysPro.Properties.WaterSteam;
 package Common
-  import SI = Modelica.SIunits;
+  import      ThermoSysPro.Units.SI;
 
   record HelmholtzData
-    Modelica.SIunits.Density d;
-    Modelica.SIunits.Temperature T;
-    Modelica.SIunits.SpecificHeatCapacity R;
+    Units.SI.Density d;
+    Units.SI.Temperature T;
+    Units.SI.SpecificHeatCapacity R;
     annotation (
       Window(
         x=0.16,
@@ -36,9 +36,9 @@ package Common
   end HelmholtzData;
 
   record GibbsData
-    Modelica.SIunits.AbsolutePressure p;
-    Modelica.SIunits.Temperature T;
-    Modelica.SIunits.SpecificHeatCapacity R;
+    Units.SI.AbsolutePressure p;
+    Units.SI.Temperature T;
+    Units.SI.SpecificHeatCapacity R;
     annotation (
       Window(
         x=0.16,
@@ -71,9 +71,9 @@ package Common
   record GibbsDerivs
     "derivatives of dimensionless Gibbs-function w.r.t dimensionless pressure and temperature"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Pressure p "pressure";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Pressure p "pressure";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
     Real pi(unit="1") "dimensionless pressure";
     Real tau(unit="1") "dimensionless temperature";
     Real g(unit="1") "dimensionless Gibbs-function";
@@ -87,9 +87,9 @@ package Common
   record HelmholtzDerivs
     "derivatives of dimensionless Helmholtz-function w.r.t dimensionless pressuredensity and temperature"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Density d "density";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Density d "density";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
     Real delta(unit="1") "dimensionless density";
     Real tau(unit="1") "dimensionless temperature";
     Real f(unit="1") "dimensionless Helmholtz-function";
@@ -101,35 +101,35 @@ package Common
   end HelmholtzDerivs;
 
   record ThermoProperties_ph
-    Modelica.SIunits.Temperature T(
+    Units.SI.Temperature T(
       min=InitLimits.TMIN,
       max=InitLimits.TMAX,
       nominal=InitLimits.TNOM) "Temperature";
-    Modelica.SIunits.Density d(
+    Units.SI.Density d(
       min=InitLimits.DMIN,
       max=InitLimits.DMAX,
       nominal=InitLimits.DNOM) "Density";
-    Modelica.SIunits.SpecificEnergy u(
+    Units.SI.SpecificEnergy u(
       min=InitLimits.SEMIN,
       max=InitLimits.SEMAX,
       nominal=InitLimits.SENOM) "Specific inner energy";
-    Modelica.SIunits.SpecificEntropy s(
+    Units.SI.SpecificEntropy s(
       min=InitLimits.SSMIN,
       max=InitLimits.SSMAX,
       nominal=InitLimits.SSNOM) "Specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp(
+    Units.SI.SpecificHeatCapacity cp(
       min=InitLimits.CPMIN,
       max=InitLimits.CPMAX,
       nominal=InitLimits.CPNOM) "Specific heat capacity at constant presure";
-    Modelica.SIunits.DerDensityByEnthalpy ddhp
+    Units.SI.DerDensityByEnthalpy ddhp
       "Derivative of density wrt. specific enthalpy at constant pressure";
-    Modelica.SIunits.DerDensityByPressure ddph
+    Units.SI.DerDensityByPressure ddph
       "Derivative of density wrt. pressure at constant specific enthalpy";
     Real duph(unit="m3/kg")
       "Derivative of specific inner energy wrt. pressure at constant specific enthalpy";
     Real duhp(unit = "1")
       "Derivative of specific inner energy wrt. specific enthalpy at constant pressure";
-    ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+    ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
     annotation (
       Window(
         x=0.21,
@@ -214,8 +214,8 @@ package Common
   end gibbsToProps_ph;
 
   record NewtonDerivatives_ph
-    Modelica.SIunits.AbsolutePressure p;
-    Modelica.SIunits.SpecificEnthalpy h;
+    Units.SI.AbsolutePressure p;
+    Units.SI.SpecificEnthalpy h;
     Real pd;
     Real pt;
     Real hd;
@@ -297,16 +297,15 @@ package Common
   record PhaseBoundaryProperties
     "thermodynamic base properties on the phase boundary"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Density d "density";
-    Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-    Modelica.SIunits.SpecificEnergy u "inner energy";
-    Modelica.SIunits.SpecificEntropy s "specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "heat capacity at constant pressure";
-    Modelica.SIunits.SpecificHeatCapacity cv "heat capacity at constant volume";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    Units.SI.Density d "density";
+    Units.SI.SpecificEnthalpy h "specific enthalpy";
+    Units.SI.SpecificEnergy u "inner energy";
+    Units.SI.SpecificEntropy s "specific entropy";
+    Units.SI.SpecificHeatCapacity cp "heat capacity at constant pressure";
+    Units.SI.SpecificHeatCapacity cv "heat capacity at constant volume";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt density";
   end PhaseBoundaryProperties;
 
@@ -341,7 +340,7 @@ package Common
     input HelmholtzDerivs f "dimensionless derivatives of Helmholtz function";
     output PhaseBoundaryProperties sat "phase boundary property record";
   protected
-    SI.Pressure p "pressure";
+    Units.SI.Pressure p "pressure";
   algorithm
     p := f.R*f.d*f.T*f.delta*f.fdelta;
     sat.d := f.d;
@@ -358,7 +357,7 @@ package Common
   function HelmholtzOfph
 
   protected
-    Modelica.SIunits.SpecificHeatCapacity cv;
+    Units.SI.SpecificHeatCapacity cv;
   public
     input HelmholtzDerivs f
       "Dérivées adimensionnelles de la fonction de Helmholtz"
@@ -411,9 +410,9 @@ package Common
     input PhaseBoundaryProperties liq;
     input PhaseBoundaryProperties vap;
     input Real x "Vapor mass fraction";
-    input Modelica.SIunits.Temperature T;
-    input Modelica.SIunits.AbsolutePressure p;
-    output Modelica.SIunits.SpecificHeatCapacity cv;
+    input Units.SI.Temperature T;
+    input Units.SI.AbsolutePressure p;
+    output Units.SI.SpecificHeatCapacity cv;
 
   protected
     Real dpT;
@@ -466,8 +465,8 @@ package Common
   end cv2Phase;
 
   record NewtonDerivatives_ps
-    Modelica.SIunits.AbsolutePressure p;
-    Modelica.SIunits.SpecificEntropy s;
+    Units.SI.AbsolutePressure p;
+    Units.SI.SpecificEntropy s;
     Real pd;
     Real pt;
     Real sd;
@@ -506,7 +505,7 @@ package Common
   function HelmholtzOfps
 
   protected
-    Modelica.SIunits.SpecificHeatCapacity cv;
+    Units.SI.SpecificHeatCapacity cv;
   public
     input HelmholtzDerivs f
       "Dérivées adimensionnelles de la fonction de Helmholtz"
@@ -557,14 +556,14 @@ package Common
   end HelmholtzOfps;
 
   record PropThermoSat
-    Modelica.SIunits.AbsolutePressure P "Pressure";
-    Modelica.SIunits.Temperature T "Temperature";
-    Modelica.SIunits.Density rho "Density";
-    Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
-    Modelica.SIunits.SpecificHeatCapacity cp
+    Units.SI.AbsolutePressure P "Pressure";
+    Units.SI.Temperature T "Temperature";
+    Units.SI.Density rho "Density";
+    Units.SI.SpecificEnthalpy h "Specific enthalpy";
+    Units.SI.SpecificHeatCapacity cp
       "Specific heat capacity at constant pressure";
     Real pt "Derivative of pressure wrt. temperature";
-    Modelica.SIunits.SpecificHeatCapacity cv
+    Units.SI.SpecificHeatCapacity cv
       "Specific heat capacity at constant volume";
     /*
   Modelica.SIunits.SpecificEnergy u "Specific inner energy";
@@ -601,10 +600,10 @@ package Common
   end PropThermoSat;
 
   function gibbsRho
-    input Modelica.SIunits.AbsolutePressure P "Pressure";
-    input Modelica.SIunits.Temperature T "Temperature";
+    input Units.SI.AbsolutePressure P "Pressure";
+    input Units.SI.Temperature T "Temperature";
 
-    output Modelica.SIunits.Density rho "density";
+    output Units.SI.Density rho "density";
     input GibbsDerivs g "Dérivées de la fonction de Gibbs"
       annotation (Placement(transformation(extent={{-70,-70},{70,70}}, rotation=
              0)));
@@ -644,8 +643,8 @@ package Common
   end gibbsRho;
 
   function gibbsPropsSat
-    input Modelica.SIunits.AbsolutePressure P "Pressure";
-    input Modelica.SIunits.Temperature T "Temperature";
+    input Units.SI.AbsolutePressure P "Pressure";
+    input Units.SI.Temperature T "Temperature";
 
     input GibbsDerivs g "Dérivées de la fonction de Gibbs"
       annotation (Placement(transformation(extent={{-85,15},{-15,85}}, rotation=
@@ -754,35 +753,35 @@ package Common
   end gibbsToProps_pT;
 
   record ThermoProperties_pT
-    Modelica.SIunits.Density d(
+    Units.SI.Density d(
       min=InitLimits.DMIN,
       max=InitLimits.DMAX,
       nominal=InitLimits.DNOM) "Density";
-    Modelica.SIunits.SpecificEnthalpy h(
+    Units.SI.SpecificEnthalpy h(
       min=InitLimits.SHMIN,
       max=InitLimits.SHMAX,
       nominal=InitLimits.SHNOM) "Specific enthalpy";
-    Modelica.SIunits.SpecificEnergy u(
+    Units.SI.SpecificEnergy u(
       min=InitLimits.SEMIN,
       max=InitLimits.SEMAX,
       nominal=InitLimits.SENOM) "Specific inner energy";
-    Modelica.SIunits.SpecificEntropy s(
+    Units.SI.SpecificEntropy s(
       min=InitLimits.SSMIN,
       max=InitLimits.SSMAX,
       nominal=InitLimits.SSNOM) "Specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp(
+    Units.SI.SpecificHeatCapacity cp(
       min=InitLimits.CPMIN,
       max=InitLimits.CPMAX,
       nominal=InitLimits.CPNOM) "Specific heat capacity at constant presure";
-    Modelica.SIunits.DerDensityByTemperature ddTp
+    Units.SI.DerDensityByTemperature ddTp
       "Derivative of the density wrt. temperature at constant pressure";
-    Modelica.SIunits.DerDensityByPressure ddpT
+    Units.SI.DerDensityByPressure ddpT
       "Derivative of the density wrt. presure at constant temperature";
-    Modelica.SIunits.DerEnergyByPressure dupT
+    Units.SI.DerEnergyByPressure dupT
       "Derivative of the inner energy wrt. pressure at constant temperature";
-    Modelica.SIunits.SpecificHeatCapacity duTp
+    Units.SI.SpecificHeatCapacity duTp
       "Derivative of the inner energy wrt. temperature at constant pressure";
-    ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+    ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
     annotation (
       Window(
         x=0.23,
@@ -861,31 +860,31 @@ package Common
   end gibbsToProps_ps;
 
   record ThermoProperties_ps
-    Modelica.SIunits.Temperature T(
+    Units.SI.Temperature T(
       min=InitLimits.TMIN,
       max=InitLimits.TMAX,
       nominal=InitLimits.TNOM) "Temperature";
-    Modelica.SIunits.Density d(
+    Units.SI.Density d(
       min=InitLimits.DMIN,
       max=InitLimits.DMAX,
       nominal=InitLimits.DNOM) "Density";
-    Modelica.SIunits.SpecificEnergy u(
+    Units.SI.SpecificEnergy u(
       min=InitLimits.SEMIN,
       max=InitLimits.SEMAX,
       nominal=InitLimits.SENOM) "Specific inner energy";
-    Modelica.SIunits.SpecificEnthalpy h(
+    Units.SI.SpecificEnthalpy h(
       min=InitLimits.SHMIN,
       max=InitLimits.SHMAX,
       nominal=InitLimits.SHNOM) "Specific enthalpy";
-    Modelica.SIunits.SpecificHeatCapacity cp(
+    Units.SI.SpecificHeatCapacity cp(
       min=InitLimits.CPMIN,
       max=InitLimits.CPMAX,
       nominal=InitLimits.CPNOM) "Specific heat capacity at constant pressure";
-    ThermoSysPro.Units.DerDensityByEntropy ddsp
+    ThermoSysPro.Units.xSI.DerDensityByEntropy ddsp
       "Derivative of the density wrt. specific entropy at constant pressure";
-    Modelica.SIunits.DerDensityByPressure ddps
+    Units.SI.DerDensityByPressure ddps
       "Derivative of the density wrt. pressure at constant specific entropy";
-    ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+    ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
     annotation (
       Window(
         x=0.31,
@@ -1017,29 +1016,29 @@ package Common
   end gibbsToProps_dT;
 
   record ThermoProperties_dT
-    Modelica.SIunits.AbsolutePressure p(
+    Units.SI.AbsolutePressure p(
       min=InitLimits.PMIN,
       max=InitLimits.PMAX,
       nominal=InitLimits.PNOM) "Pressure";
-    Modelica.SIunits.SpecificEnthalpy h(
+    Units.SI.SpecificEnthalpy h(
       min=InitLimits.SHMIN,
       max=InitLimits.SHMAX,
       nominal=InitLimits.SHNOM) "Specific enthalpy";
-    Modelica.SIunits.SpecificEnergy u(
+    Units.SI.SpecificEnergy u(
       min=InitLimits.SEMIN,
       max=InitLimits.SEMAX,
       nominal=InitLimits.SENOM) "Specific inner energy";
-    Modelica.SIunits.SpecificEntropy s(
+    Units.SI.SpecificEntropy s(
       min=InitLimits.SSMIN,
       max=InitLimits.SSMAX,
       nominal=InitLimits.SSNOM) "Specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp(
+    Units.SI.SpecificHeatCapacity cp(
       min=InitLimits.CPMIN,
       max=InitLimits.CPMAX,
       nominal=InitLimits.CPNOM) "Specific heat capacity at constant pressure";
     Real dudT
       "Derivative of the inner energy wrt. density at constant temperature";
-    ThermoSysPro.Units.MassFraction x "Vapor mas fraction";
+    ThermoSysPro.Units.SI.MassFraction x "Vapor mas fraction";
     annotation (
       Icon(coordinateSystem(
           preserveAspectRatio=false,
@@ -1115,8 +1114,8 @@ package Common
   end helmholtzToProps_dT;
 
   record NewtonDerivatives_pT
-    Modelica.SIunits.AbsolutePressure p "Pressure";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    Units.SI.AbsolutePressure p "Pressure";
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt. density";
     annotation (
       Icon(coordinateSystem(
@@ -1241,26 +1240,25 @@ package Common
   end helmholtzToProps_pT;
 
   record miniProp "Test record for derivatives"
-    Modelica.SIunits.Temperature T "Temperature";
-    Modelica.SIunits.Density d "Density";
+    Units.SI.Temperature T "Temperature";
+    Units.SI.Density d "Density";
   end miniProp;
 
   record IF97PhaseBoundaryProperties
     "thermodynamic base properties on the phase boundary for IF97 steam tables"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.Density d "density";
-    Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-    Modelica.SIunits.SpecificEntropy s "specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "heat capacity at constant pressure";
-    Modelica.SIunits.SpecificHeatCapacity cv "heat capacity at constant volume";
-    ThermoSysPro.Units.DerPressureByTemperature dpT
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Temperature T "temperature";
+    Units.SI.Density d "density";
+    Units.SI.SpecificEnthalpy h "specific enthalpy";
+    Units.SI.SpecificEntropy s "specific entropy";
+    Units.SI.SpecificHeatCapacity cp "heat capacity at constant pressure";
+    Units.SI.SpecificHeatCapacity cv "heat capacity at constant volume";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature dpT
       "dp/dT derivative of saturation curve";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt density";
     Real vt(unit="m3/(kg.K)")
       "derivative of specific volume w.r.t. temperature";
@@ -1268,8 +1266,8 @@ package Common
   end IF97PhaseBoundaryProperties;
 
   function water_ph_r4
-    input Modelica.SIunits.AbsolutePressure p;
-    input Modelica.SIunits.SpecificEnthalpy h;
+    input Units.SI.AbsolutePressure p;
+    input Units.SI.SpecificEnthalpy h;
 
   protected
     Real x;
@@ -1283,8 +1281,8 @@ package Common
     GibbsDerivs gv;
     HelmholtzDerivs fl;
     HelmholtzDerivs fv;
-    Modelica.SIunits.Density dl;
-    Modelica.SIunits.Density dv;
+    Units.SI.Density dl;
+    Units.SI.Density dv;
     Real cv "Heat capacity at constant volume";
   algorithm
     pro.T := BaseIF97.Basic.tsat(p);
@@ -1340,8 +1338,8 @@ package Common
   end water_ph_r4;
 
   function water_ps_r4
-    input Modelica.SIunits.AbsolutePressure p "pressure";
-    input Modelica.SIunits.SpecificEntropy s "specific entropy";
+    input Units.SI.AbsolutePressure p "pressure";
+    input Units.SI.SpecificEntropy s "specific entropy";
 
   protected
     Real x;
@@ -1360,8 +1358,8 @@ package Common
     HelmholtzDerivs fv
       "dimensionless Helmholtz function and derivatives wrt dimensionless presure and temperature";
     Real cv "Heat capacity at constant volume";
-    Modelica.SIunits.Density dl;
-    Modelica.SIunits.Density dv;
+    Units.SI.Density dl;
+    Units.SI.Density dv;
   algorithm
 
     pro.T := BaseIF97.Basic.tsat(p);
@@ -1422,19 +1420,19 @@ package Common
     extends Modelica.Icons.Record;
     Integer phase "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
     Integer region(min=1, max=5) "IF 97 region";
-    SI.Pressure p "pressure";
-    SI.Temperature T "temperature";
-    SI.SpecificEnthalpy h "specific enthalpy";
-    SI.SpecificHeatCapacity R "gas constant";
-    SI.SpecificHeatCapacity cp "specific heat capacity";
+    Units.SI.Pressure p "pressure";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificEnthalpy h "specific enthalpy";
+    Units.SI.SpecificHeatCapacity R "gas constant";
+    Units.SI.SpecificHeatCapacity cp "specific heat capacity";
     Real cpt "derivative of cp w.r.t. temperature";
-    SI.SpecificHeatCapacity cv "specific heat capacity";
+    Units.SI.SpecificHeatCapacity cv "specific heat capacity";
     Real cvt "derivative of cv w.r.t. temperature";
-    SI.Density rho "density";
-    SI.SpecificEntropy s "specific entropy";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    Units.SI.Density rho "density";
+    Units.SI.SpecificEntropy s "specific entropy";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt density";
     Real ptt "2nd derivative of pressure wrt temperature";
     Real pdd "2nd derivative of pressure wrt density";
@@ -1453,17 +1451,17 @@ package Common
     extends Modelica.Icons.Record;
     Integer phase "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
     Integer region(min=1, max=5) "IF 97 region";
-    SI.Pressure p "pressure";
-    SI.Temperature T "temperature";
-    SI.SpecificEnthalpy h "specific enthalpy";
-    SI.SpecificHeatCapacity R "gas constant";
-    SI.SpecificHeatCapacity cp "specific heat capacity";
-    SI.SpecificHeatCapacity cv "specific heat capacity";
-    SI.Density rho "density";
-    SI.SpecificEntropy s "specific entropy";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    Units.SI.Pressure p "pressure";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificEnthalpy h "specific enthalpy";
+    Units.SI.SpecificHeatCapacity R "gas constant";
+    Units.SI.SpecificHeatCapacity cp "specific heat capacity";
+    Units.SI.SpecificHeatCapacity cv "specific heat capacity";
+    Units.SI.Density rho "density";
+    Units.SI.SpecificEntropy s "specific entropy";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt density";
     Real vt "derivative of specific volume w.r.t. temperature";
     Real vp "derivative of specific volume w.r.t. pressure";
@@ -1474,9 +1472,9 @@ package Common
   record GibbsDerivs3rd
     "derivatives of dimensionless Gibbs-function w.r.t dimensionless pressure and temperature, including 3rd derivatives"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Pressure p "pressure";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Pressure p "pressure";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
     Real pi(unit="1") "dimensionless pressure";
     Real tau(unit="1") "dimensionless temperature";
     Real g(unit="1") "dimensionless Gibbs-function";
@@ -1530,9 +1528,9 @@ package Common
   record HelmholtzDerivs3rd
     "derivatives of dimensionless Helmholtz-function w.r.t dimensionless pressuredensity and temperature, including 3rd derivatives"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Density d "density";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Density d "density";
+    Units.SI.Temperature T "temperature";
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
     Real delta(unit="1") "dimensionless density";
     Real tau(unit="1") "dimensionless temperature";
     Real f(unit="1") "dimensionless Helmholtz-function";
@@ -1558,7 +1556,7 @@ package Common
     output ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd
       sat "phase boundary property record";
   protected
-    Modelica.SIunits.Pressure p "pressure";
+    Units.SI.Pressure p "pressure";
   algorithm
     p := f.R*f.d*f.T*f.delta*f.fdelta;
     sat.d := f.d;
@@ -1583,20 +1581,19 @@ package Common
   record IF97PhaseBoundaryProperties3rd
     "Thermodynamic base properties on the phase boundary, Analytic Jacobian verModelica.SIunitson"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.SpecificHeatCapacity R "specific heat capacity";
-    Modelica.SIunits.Temperature T "temperature";
-    Modelica.SIunits.Density d "denModelica.SIunitsty";
-    Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-    Modelica.SIunits.SpecificEntropy s "specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "heat capacity at constant pressure";
-    Modelica.SIunits.SpecificHeatCapacity cv "heat capacity at constant volume";
-    ThermoSysPro.Units.DerPressureByTemperature dpT
+    Units.SI.SpecificHeatCapacity R "specific heat capacity";
+    Units.SI.Temperature T "temperature";
+    Units.SI.Density d "denModelica.SIunitsty";
+    Units.SI.SpecificEnthalpy h "specific enthalpy";
+    Units.SI.SpecificEntropy s "specific entropy";
+    Units.SI.SpecificHeatCapacity cp "heat capacity at constant pressure";
+    Units.SI.SpecificHeatCapacity cv "heat capacity at constant volume";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature dpT
       "dp/dT derivative of saturation curve";
     Real dpTT(unit = "Pa/(K.K)") "Second derivative of saturation curve";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "derivative of pressure wrt denModelica.SIunitsty";
     Real vt(unit="m3/(kg.K)")
       "derivative of specific volume w.r.t. temperature";
@@ -1616,19 +1613,18 @@ package Common
   record PhaseBoundaryProperties3rd
     "thermodynamic base properties on the phase boundary"
     extends Modelica.Icons.Record;
-    Modelica.SIunits.Temperature T "Temperature";
-    ThermoSysPro.Units.DerPressureByTemperature dpT
+    Units.SI.Temperature T "Temperature";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature dpT
       "dp/dT derivative of saturation curve";
-    Modelica.SIunits.Density d "Density";
-    Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
-    Modelica.SIunits.SpecificEnergy u "Inner energy";
-    Modelica.SIunits.SpecificEntropy s "Specific entropy";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "Heat capacity at constant pressure";
-    Modelica.SIunits.SpecificHeatCapacity cv "Heat capacity at constant volume";
-    ThermoSysPro.Units.DerPressureByTemperature pt
+    Units.SI.Density d "Density";
+    Units.SI.SpecificEnthalpy h "Specific enthalpy";
+    Units.SI.SpecificEnergy u "Inner energy";
+    Units.SI.SpecificEntropy s "Specific entropy";
+    Units.SI.SpecificHeatCapacity cp "Heat capacity at constant pressure";
+    Units.SI.SpecificHeatCapacity cv "Heat capacity at constant volume";
+    ThermoSysPro.Units.xSI.DerPressureByTemperature pt
       "Derivative of pressure wrt temperature";
-    ThermoSysPro.Units.DerPressureByDensity pd
+    ThermoSysPro.Units.xSI.DerPressureByDensity pd
       "Derivative of pressure wrt density";
     Real cvt "Derivative of cv w.r.t. temperature";
     Real cpt "Derivative of cp w.r.t. temperature";

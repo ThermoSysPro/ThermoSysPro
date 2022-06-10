@@ -1,20 +1,18 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_Ps
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEntropy s "Specific entropy";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEntropy s "Specific entropy";
   input Integer mode = 0 "IF97 region. 0:automatic";
+
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ps pro;
 
-//  Integer phase;
 protected
   Integer region;
+//  Integer phase;
 
 algorithm
   //phase := ThermoSysPro.Properties.WaterSteamSimple.phase_ps(p, s);
-  region := ThermoSysPro.Properties.WaterSteamSimple.region_ps(
-    p,
-    s,
-    mode);
+  region := ThermoSysPro.Properties.WaterSteamSimple.region_ps(p, s, mode);
 
   if (region == 1) then
     pro := ThermoSysPro.Properties.WaterSteamSimple.prop1_Ps(p, s);

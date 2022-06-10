@@ -434,7 +434,7 @@ parameter Integer Ns4 = 3 "Nombre de mailles de la première échangeur";
                      annotation (
     Placement(transformation(
         origin={-293,-12},
-        extent={{23,-24},{-23,24}},
+        extent={{23,24},{-23,-24}},
         rotation=90)));
   WaterSteam.Machines.StaticCentrifugalPump Pompe2(
     Pm(fixed=false),
@@ -694,7 +694,8 @@ equation
   connect(TubeEcran_4.CTh,Paroi4. WT1) annotation (
     Line(points={{-252.55,-11.5},{-257,-11.5},{-257,-12},{-263,-12}}, color={191,95,0}));
   connect(Paroi4.WT2, TubeEcran_44.CTh) annotation (
-    Line(points={{-275,-12},{-280,-12},{-300.2,-12}}, color={191,95,0}));
+    Line(points={{-275,-12},{-285.8,-12},{-285.8,-12}},
+                                                      color={191,95,0}));
   connect(ControlValveBallon1.C2, TubeEcran_4.C1) annotation (
     Line(
       points={{-222,-81},{-245.5,-81},{-245.5,-35}},

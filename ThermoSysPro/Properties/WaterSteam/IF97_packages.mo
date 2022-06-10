@@ -61,16 +61,16 @@ package IF97_packages
         16.7343150270632; 16.8752144692458; 16.9266730020941; 16.9094578790152]);
 
     function Water_Ph
-      input Modelica.SIunits.AbsolutePressure p "Pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+      input Units.SI.AbsolutePressure p "Pressure";
+      input Units.SI.SpecificEnthalpy h "Specific enthalpy";
       input Integer mode = 0 "IF97 region. 0:automatic";
 
     protected
       Integer phase;
       Integer region;
       Integer error;
-      Modelica.SIunits.Temperature T;
-      Modelica.SIunits.Density d;
+      Units.SI.Temperature T;
+      Units.SI.Density d;
       Boolean supercritical;
 
     public
@@ -155,16 +155,16 @@ package IF97_packages
     end Water_Ph;
 
     function Water_Ps
-      input Modelica.SIunits.AbsolutePressure p "Pressure";
-      input Modelica.SIunits.SpecificEntropy s "Specific entropy";
+      input Units.SI.AbsolutePressure p "Pressure";
+      input Units.SI.SpecificEntropy s "Specific entropy";
       input Integer mode = 0 "IF97 region. 0:automatic";
 
     protected
       Integer phase;
       Integer region;
       Integer error;
-      Modelica.SIunits.Temperature T;
-      Modelica.SIunits.Density d;
+      Units.SI.Temperature T;
+      Units.SI.Density d;
       Boolean supercritical;
 
     public
@@ -243,10 +243,10 @@ package IF97_packages
     end Water_Ps;
 
     function Water_sat_P
-      input Modelica.SIunits.AbsolutePressure P "Pressure";
+      input Units.SI.AbsolutePressure P "Pressure";
 
     protected
-      Modelica.SIunits.Temperature T;
+      Units.SI.Temperature T;
 
     public
       output ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat
@@ -311,10 +311,10 @@ package IF97_packages
     end Water_sat_P;
 
     function DynamicViscosity_rhoT
-      input Modelica.SIunits.Density rho "Density";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Density rho "Density";
+      input Units.SI.Temperature T "Temperature";
 
-      output Modelica.SIunits.DynamicViscosity mu "Dynamic viscosity";
+      output Units.SI.DynamicViscosity mu "Dynamic viscosity";
     algorithm
 
       mu := ThermoSysPro.Properties.WaterSteam.BaseIF97.Transport.visc_dT(rho, T);
@@ -351,12 +351,12 @@ package IF97_packages
     end DynamicViscosity_rhoT;
 
     function ThermalConductivity_rhoT
-      input Modelica.SIunits.Density rho "Density";
-      input Modelica.SIunits.Temperature T "Temperature";
-      input Modelica.SIunits.AbsolutePressure P "Pressure";
+      input Units.SI.Density rho "Density";
+      input Units.SI.Temperature T "Temperature";
+      input Units.SI.AbsolutePressure P "Pressure";
       input Integer region = 0 "IF97 region. 0:automatic";
 
-      output Modelica.SIunits.ThermalConductivity lambda "Thermal conductivity";
+      output Units.SI.ThermalConductivity lambda "Thermal conductivity";
     algorithm
 
       lambda := ThermoSysPro.Properties.WaterSteam.BaseIF97.Transport.cond_industrial_dT(rho, T);
@@ -393,9 +393,9 @@ package IF97_packages
     end ThermalConductivity_rhoT;
 
     function SurfaceTension_T
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.Temperature T "Temperature";
 
-      output Modelica.SIunits.SurfaceTension sigma "Surface tension";
+      output Units.SI.SurfaceTension sigma "Surface tension";
     algorithm
 
       sigma := ThermoSysPro.Properties.WaterSteam.BaseIF97.Transport.surfaceTension(T);
@@ -432,11 +432,11 @@ package IF97_packages
     end SurfaceTension_T;
 
     function SpecificEnthalpy_PT
-      input Modelica.SIunits.AbsolutePressure p "Pressure";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.AbsolutePressure p "Pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer mode = 0 "IF97 region. 0:automatic";
 
-      output Modelica.SIunits.SpecificEnthalpy H "Specific enthalpy";
+      output Units.SI.SpecificEnthalpy H "Specific enthalpy";
 
     protected
       ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_pT
@@ -470,13 +470,13 @@ package IF97_packages
     end SpecificEnthalpy_PT;
 
     function Pressure_sat_hl
-      input Modelica.SIunits.SpecificEnthalpy hl
+      input Units.SI.SpecificEnthalpy hl
         "Liquid specific enthalpy on the saturation line";
 
-      output Modelica.SIunits.AbsolutePressure P
+      output Units.SI.AbsolutePressure P
         "Liquid pressure on the saturation line";
     protected
-      Modelica.SIunits.AbsolutePressure tmp[1];
+      Units.SI.AbsolutePressure tmp[1];
     algorithm
 
       assert(hl > ThermoSysPro.Properties.WaterSteam.BaseIF97.Regions.hl_p(ThermoSysPro.Properties.WaterSteam.BaseIF97.triple.ptriple),
@@ -515,8 +515,8 @@ package IF97_packages
     end Pressure_sat_hl;
 
     function Water_PT
-      input Modelica.SIunits.AbsolutePressure p "Pressure";
-      input Modelica.SIunits.Temperature T "Temperature";
+      input Units.SI.AbsolutePressure p "Pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer mode=0 "IF97 region. 0:automatic";
       output ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_pT pro;
 
@@ -525,7 +525,7 @@ package IF97_packages
       Boolean supercritical;
       Integer error;
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs f;
-      Modelica.SIunits.Density d;
+      Units.SI.Density d;
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs g;
     algorithm
 
@@ -577,14 +577,13 @@ package IF97_packages
     end Water_PT;
 
       function Pressure_sat_hl_der
-        input Modelica.SIunits.SpecificEnthalpy hl
+      input Units.SI.SpecificEnthalpy hl
         "Liquid specific enthalpy on the saturation line";
         input Real hl_der;
 
         output Real P_der;
     protected
-        Modelica.SIunits.AbsolutePressure P[1]
-        "Liquid pressure on the saturation line";
+      Units.SI.AbsolutePressure P[1] "Liquid pressure on the saturation line";
         Real tmp[1];
       algorithm
 
@@ -624,8 +623,8 @@ package IF97_packages
       end Pressure_sat_hl_der;
 
     function Water_Ph_der "Derivative function of Water_Ph"
-      input Modelica.SIunits.AbsolutePressure p "Pressure";
-      input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+      input Units.SI.AbsolutePressure p "Pressure";
+      input Units.SI.SpecificEnthalpy h "Specific enthalpy";
       input Integer mode = 0 "Région IF97 - 0:calcul automatique";
       //input CombiPlant.ThermoFluidPro.Media.Common.IF97TwoPhaseAnalytic aux "auxiliary record";
 
@@ -644,16 +643,16 @@ package IF97_packages
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd f
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature T;
-      Modelica.SIunits.SpecificHeatCapacity R "gas constant";
-      Modelica.SIunits.Density rho "density";
+      Units.SI.Temperature T;
+      Units.SI.SpecificHeatCapacity R "gas constant";
+      Units.SI.Density rho "density";
       Real vt "derivative of specific volume w.r.t. temperature";
-      Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
-      Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cp "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cv "specific heat capacity";
       Real vp "derivative of specific volume w.r.t. pressure";
-      ThermoSysPro.Units.DerPressureByDensity pd
+      ThermoSysPro.Units.xSI.DerPressureByDensity pd
         "derivative of pressure wrt density";
-      ThermoSysPro.Units.DerPressureByTemperature pt
+      ThermoSysPro.Units.xSI.DerPressureByTemperature pt
         "derivative of pressure wrt temperature";
       Real dpT "dp/dT derivative of saturation curve";
       Real dxv "der of x wrt v";
@@ -675,19 +674,19 @@ package IF97_packages
       Real duTTv "2nd der of u wrt T at dew";
 
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEnthalpy h_liq "liquid specific enthalpy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEnthalpy h_vap "vapour specific enthalpy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEnthalpy h_liq "liquid specific enthalpy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEnthalpy h_vap "vapour specific enthalpy";
+      Units.SI.Density d_vap "vapour density";
       Real x "dryness fraction";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd liq
         "phase boundary property record";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd vap
         "phase boundary property record";
 
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
       ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs3rd gl
         "dimensionless Gibbs funcion and dervatives wrt pi and tau";
@@ -697,7 +696,7 @@ package IF97_packages
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.SpecificVolume v;
+      Units.SI.SpecificVolume v;
 
       Real ptt "2nd derivative of pressure wrt temperature";
       Real pdd "2nd derivative of pressure wrt density";
@@ -1159,8 +1158,8 @@ package IF97_packages
     end Water_Ph_der;
 
     function Water_Ps_der
-      input Modelica.SIunits.AbsolutePressure p "Pression";
-      input Modelica.SIunits.SpecificEntropy s "Entropie spécifique";
+      input Units.SI.AbsolutePressure p "Pression";
+      input Units.SI.SpecificEntropy s "Entropie spécifique";
       input Integer mode = 0 "Région IF97 - 0:calcul automatique";
 
       input Real p_der "derivative of Pressure";
@@ -1172,17 +1171,17 @@ package IF97_packages
       // variables taken from auxiliary record
       Integer phase "phase: 2 for two-phase, 1 for one phase, 0 if unknown";
       Integer region(min=1, max=5) "IF 97 region";
-      Modelica.SIunits.Temperature T "temperature";
-      Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-      Modelica.SIunits.SpecificHeatCapacity R "gas constant";
-      Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      Units.SI.Temperature T "temperature";
+      Units.SI.SpecificEnthalpy h "specific enthalpy";
+      Units.SI.SpecificHeatCapacity R "gas constant";
+      Units.SI.SpecificHeatCapacity cp "specific heat capacity";
       Real cpt "derivative of cp w.r.t. temperature";
-      Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cv "specific heat capacity";
       Real cvt "derivative of cv w.r.t. temperature";
-      Modelica.SIunits.Density rho "density";
-      ThermoSysPro.Units.DerPressureByTemperature pt
+      Units.SI.Density rho "density";
+      ThermoSysPro.Units.xSI.DerPressureByTemperature pt
         "derivative of pressure wrt temperature";
-      ThermoSysPro.Units.DerPressureByDensity pd
+      ThermoSysPro.Units.xSI.DerPressureByDensity pd
         "derivative of pressure wrt density";
       Real ptt "2nd derivative of pressure wrt temperature";
       Real pdd "2nd derivative of pressure wrt density";
@@ -1195,14 +1194,14 @@ package IF97_packages
         "mixed derivative of specific volume w.r.t. pressure and temperature";
       Real x "dryness fraction";
       Real dpT "dp/dT derivative of saturation curve";
-      Modelica.SIunits.SpecificEntropy auxs "specific entropy";
+      Units.SI.SpecificEntropy auxs "specific entropy";
 
       // variables taken from waterBaseProp_ps
       Integer error "error flag for inverse iterations";
-      Modelica.SIunits.SpecificEntropy s_liq "liquid specific entropy";
-      Modelica.SIunits.Density d_liq "liquid density";
-      Modelica.SIunits.SpecificEntropy s_vap "vapour specific entropy";
-      Modelica.SIunits.Density d_vap "vapour density";
+      Units.SI.SpecificEntropy s_liq "liquid specific entropy";
+      Units.SI.Density d_liq "liquid density";
+      Units.SI.SpecificEntropy s_vap "vapour specific entropy";
+      Units.SI.Density d_vap "vapour density";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd liq
         "phase boundary property record";
       ThermoSysPro.Properties.WaterSteam.Common.PhaseBoundaryProperties3rd vap
@@ -1215,9 +1214,9 @@ package IF97_packages
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
       ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd fv
         "dimensionless Helmholtz function and dervatives wrt delta and tau";
-      Modelica.SIunits.Temperature t1
+      Units.SI.Temperature t1
         "temperature at phase boundary, using inverse from region 1";
-      Modelica.SIunits.Temperature t2
+      Units.SI.Temperature t2
         "temperature at phase boundary, using inverse from region 2";
 
       // variables needed
@@ -1565,8 +1564,8 @@ package IF97_packages
     end Water_Ps_der;
 
     function Water_PT_der
-      input Modelica.SIunits.AbsolutePressure p "pressure";
-      input Modelica.SIunits.Temperature   T "Temperature";
+      input Units.SI.AbsolutePressure p "pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer mode = 0 "Région IF97 - 0:calcul automatique";
 
       input Real p_der "Pression";
@@ -1578,22 +1577,22 @@ package IF97_packages
       Boolean supercritical;
       Integer error;
 
-      Modelica.SIunits.Density d;
+      Units.SI.Density d;
 
       // From aux record
-      Modelica.SIunits.Pressure p_aux "pressure";
-      Modelica.SIunits.Temperature T_aux "temperature";
-      Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-      Modelica.SIunits.SpecificHeatCapacity R "gas constant";
-      Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
+      Units.SI.Pressure p_aux "pressure";
+      Units.SI.Temperature T_aux "temperature";
+      Units.SI.SpecificEnthalpy h "specific enthalpy";
+      Units.SI.SpecificHeatCapacity R "gas constant";
+      Units.SI.SpecificHeatCapacity cp "specific heat capacity";
       Real cpt "derivative of cp w.r.t. temperature";
-      Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cv "specific heat capacity";
       Real cvt "derivative of cv w.r.t. temperature";
-      Modelica.SIunits.Density rho "density";
-      Modelica.SIunits.SpecificEntropy s "specific entropy";
-      ThermoSysPro.Units.DerPressureByTemperature pt
+      Units.SI.Density rho "density";
+      Units.SI.SpecificEntropy s "specific entropy";
+      ThermoSysPro.Units.xSI.DerPressureByTemperature pt
         "derivative of pressure wrt temperature";
-      ThermoSysPro.Units.DerPressureByDensity pd
+      ThermoSysPro.Units.xSI.DerPressureByDensity pd
         "derivative of pressure wrt density";
       Real ptt "2nd derivative of pressure wrt temperature";
       Real pdd "2nd derivative of pressure wrt density";
@@ -1614,7 +1613,7 @@ package IF97_packages
         "dimensionless Helmholtz funcion and dervatives wrt delta and tau";
       Real vp3 "vp^3";
       Real ivp3 "1/vp3";
-      Modelica.SIunits.SpecificVolume v;
+      Units.SI.SpecificVolume v;
 
       Real rho2;
       Real quotient;
@@ -1830,23 +1829,23 @@ package IF97_packages
     end Water_PT_der;
 
     function Water_sat_P_der
-      input Modelica.SIunits.AbsolutePressure P "Pression";
+      input Units.SI.AbsolutePressure P "Pression";
 
       input Real P_der "derivative of pressure";
 
     protected
-      Modelica.SIunits.Temperature T;
-      ThermoSysPro.Units.DerPressureByTemperature dpT
+      Units.SI.Temperature T;
+      ThermoSysPro.Units.xSI.DerPressureByTemperature dpT
         "dp/dT derivative of saturation curve";
-      Modelica.SIunits.Density d "density";
-      Modelica.SIunits.SpecificHeatCapacity cp
+      Units.SI.Density d "density";
+      Units.SI.SpecificHeatCapacity cp
         "Chaleur spécifique à pression constante";
-      Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cv "specific heat capacity";
       Real vt(unit="m3/(kg.K)")
         "derivative of specific volume w.r.t. temperature";
       Real vp(unit="m3/(kg.Pa)")
         "derivative of specific volume w.r.t. pressure";
-      ThermoSysPro.Units.DerPressureByDensity pd
+      ThermoSysPro.Units.xSI.DerPressureByDensity pd
         "Derivative of pressure wrt density";
 
       Real vp3 "Third power of vp";
@@ -2027,8 +2026,8 @@ package IF97_packages
     end Water_sat_P_der;
 
     function SpecificEnthalpy_PT_der
-      input Modelica.SIunits.AbsolutePressure p "pressure";
-      input Modelica.SIunits.Temperature   T "Temperature";
+      input Units.SI.AbsolutePressure p "pressure";
+      input Units.SI.Temperature T "Temperature";
       input Integer mode = 0 "Région IF97 - 0:calcul automatique";
 
       input Real p_der "Pression";
@@ -2040,13 +2039,13 @@ package IF97_packages
       Boolean supercritical;
       Integer error;
 
-      Modelica.SIunits.SpecificHeatCapacity R "gas constant";
-      Modelica.SIunits.SpecificHeatCapacity cp "specific heat capacity";
-      Modelica.SIunits.SpecificHeatCapacity cv "specific heat capacity";
-      Modelica.SIunits.Density rho "density";
-      ThermoSysPro.Units.DerPressureByTemperature pt
+      Units.SI.SpecificHeatCapacity R "gas constant";
+      Units.SI.SpecificHeatCapacity cp "specific heat capacity";
+      Units.SI.SpecificHeatCapacity cv "specific heat capacity";
+      Units.SI.Density rho "density";
+      ThermoSysPro.Units.xSI.DerPressureByTemperature pt
         "derivative of pressure wrt temperature";
-      ThermoSysPro.Units.DerPressureByDensity pd
+      ThermoSysPro.Units.xSI.DerPressureByDensity pd
         "derivative of pressure wrt density";
 
       Real vt "derivative of specific volume w.r.t. temperature";
@@ -2129,8 +2128,8 @@ package IF97_packages
     package Unused
       "unused functions for which no analytic derivative can be provided"
       function Water_rhoT
-        input Modelica.SIunits.Density rho "Masse volumique";
-        input Modelica.SIunits.Temperature T "Température";
+        input Units.SI.Density rho "Masse volumique";
+        input Units.SI.Temperature T "Température";
         input Integer phase "2: diphasique, 1 sinon";
         input Integer mode = 0 "Région IF97 - 0:calcul automatique";
         output ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_dT
@@ -2140,7 +2139,7 @@ package IF97_packages
         Integer region;
         Integer error;
         Boolean supercritical;
-        Modelica.SIunits.AbsolutePressure p;
+        Units.SI.AbsolutePressure p;
       protected
         ThermoSysPro.Properties.WaterSteam.Common.GibbsDerivs
                            g annotation (Placement(transformation(extent={{-90,
@@ -2217,17 +2216,17 @@ package IF97_packages
       end Water_rhoT;
 
       function Water_h_is
-        input Modelica.SIunits.AbsolutePressure p;
-        input Modelica.SIunits.SpecificEntropy s;
+        input Units.SI.AbsolutePressure p;
+        input Units.SI.SpecificEntropy s;
         input Integer phase;
         input Integer mode = 0;
-        output Modelica.SIunits.SpecificEnthalpy h;
+        output Units.SI.SpecificEnthalpy h;
 
       protected
         Integer region;
         Integer error;
-        Modelica.SIunits.Temperature T;
-        Modelica.SIunits.Density d;
+        Units.SI.Temperature T;
+        Units.SI.Density d;
       protected
         ThermoSysPro.Properties.WaterSteam.Common.HelmholtzData
                              dTR(R=ThermoSysPro.Properties.WaterSteam.BaseIF97.data.RH2O)
@@ -2981,7 +2980,6 @@ package IF97_packages
 
       package Modelica_Interpolation
         package Table1D "Table interpolation in one dimension"
-          extends Modelica.Icons.Library;
 
           function init "Initialize 1-dim. table interpolation"
             extends Modelica.Icons.Function;
@@ -3057,7 +3055,6 @@ of 1-dim. tables is provided."));
         end Table1D;
 
         package Bspline1D "1-dimensional Bspline interpolation"
-        extends Modelica.Icons.Library;
 
         record Data "Datastructure of a Bspline"
           parameter Integer ndim(min=1) "Number of dimensions of one control point";
@@ -3395,7 +3392,6 @@ of 1-dim. tables is provided."));
           end plot;
 
           package Utilities "Utility functions for package Bspline1D"
-          extends Modelica.Icons.Library;
 
             function interpolation
               "Interpolation of the points with a Bspline of degree n"
@@ -4107,7 +4103,6 @@ Modelica in file \"Modelica/package.mo\".
         end Bspline1D;
 
         package Utilities "Utility functions for package Interpolation"
-        extends Modelica.Icons.Library;
 
           function curveLength "Computes the length of the curve from a to b"
             import

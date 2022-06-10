@@ -1,19 +1,19 @@
 within ThermoSysPro.Properties.C3H3F5;
 function C3H3F5_Ps "11133-C3H3F5 physical properties as a function of P and s"
-  input Modelica.SIunits.AbsolutePressure P "Pressure";
-  input Modelica.SIunits.SpecificEntropy s "Specific entropy";
+  input Units.SI.AbsolutePressure P "Pressure";
+  input Units.SI.SpecificEntropy s "Specific entropy";
 
 protected
-  Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
-  Modelica.SIunits.AbsolutePressure Psc "Critical pressure";
-  Modelica.SIunits.AbsolutePressure Pcalc
+  Units.SI.SpecificEnthalpy h "Specific enthalpy";
+  Units.SI.AbsolutePressure Psc "Critical pressure";
+  Units.SI.AbsolutePressure Pcalc
     "Variable for the computation of the pressure";
-  Modelica.SIunits.SpecificEntropy scalc
+  Units.SI.SpecificEntropy scalc
     "Variable for the computation of the specific entropy";
-  Modelica.SIunits.SpecificEnthalpy hsatL "Boiling specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hsatV "Condensation specific enthalpy";
-  Modelica.SIunits.SpecificEntropy ssatL "Boiling specific entropy";
-  Modelica.SIunits.SpecificEntropy ssatV "Condensation specific entropy";
+  Units.SI.SpecificEnthalpy hsatL "Boiling specific enthalpy";
+  Units.SI.SpecificEnthalpy hsatV "Condensation specific enthalpy";
+  Units.SI.SpecificEntropy ssatL "Boiling specific entropy";
+  Units.SI.SpecificEntropy ssatV "Condensation specific entropy";
   Real x "Vapor mass fraction";
   Real A;
   Real B;

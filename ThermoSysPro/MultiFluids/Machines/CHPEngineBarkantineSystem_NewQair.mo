@@ -1,6 +1,6 @@
 within ThermoSysPro.MultiFluids.Machines;
 model CHPEngineBarkantineSystem_NewQair
-  parameter Modelica.SIunits.Temperature Tair=300 "Temperature inlet air";
+  parameter Units.SI.Temperature Tair=300 "Temperature inlet air";
   parameter Real RechFumEff=0.73 "Flue gases heater efficiency";
   parameter Real RechWaterEff=0.9 "Water heater efficiency";
   parameter Integer mechanical_efficiency_type=3 "Engine efficiency type"

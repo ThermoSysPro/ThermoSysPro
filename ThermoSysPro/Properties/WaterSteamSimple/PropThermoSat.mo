@@ -1,14 +1,12 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 record PropThermoSat
-  Modelica.SIunits.AbsolutePressure P "Pressure";
-  Modelica.SIunits.Temperature T "Temperature";
-  Modelica.SIunits.Density rho "Density";
-  Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
-  Modelica.SIunits.SpecificHeatCapacity cp
-    "Specific heat capacity at constant pressure";
+  Units.SI.AbsolutePressure P "Pressure";
+  Units.SI.Temperature T "Temperature";
+  Units.SI.Density rho "Density";
+  Units.SI.SpecificEnthalpy h "Specific enthalpy";
+  Units.SI.SpecificHeatCapacity cp "Specific heat capacity at constant pressure";
   Real pt "Derivative of pressure wrt. temperature";
-  Modelica.SIunits.SpecificHeatCapacity cv
-    "Specific heat capacity at constant volume";
+  Units.SI.SpecificHeatCapacity cv "Specific heat capacity at constant volume";
   annotation (
     Window(
       x=0.15,

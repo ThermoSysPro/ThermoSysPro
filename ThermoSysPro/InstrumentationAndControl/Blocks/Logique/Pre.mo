@@ -1,7 +1,7 @@
 within ThermoSysPro.InstrumentationAndControl.Blocks.Logique;
 block Pre
 
-  ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical uL
+  ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical uL(signal(start=false, fixed=true))
                                           annotation (Placement(transformation(
           extent={{-120,-10},{-100,10}}, rotation=0)));
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputLogical yL

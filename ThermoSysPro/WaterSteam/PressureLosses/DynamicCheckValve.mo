@@ -1,14 +1,14 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model DynamicCheckValve "Dynamic check valve"
-  parameter ThermoSysPro.Units.Cv Cvmax=8005.42 "Maximum CV";
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax=8005.42 "Maximum CV";
   parameter Real caract[:, 2]=[0, 0; 1, Cvmax]
     "Position vs. Cv characteristics (active if mode_caract=1)";
-  parameter Modelica.SIunits.MomentOfInertia J=1 "Flap moment of inertia";
+  parameter Units.SI.MomentOfInertia J=1 "Flap moment of inertia";
   parameter Real Kf1=0 "Flap friction law coefficient #1";
   parameter Real Kf2=100 "Flap friction law coefficient #2";
   parameter Real n=5 "Flap friction law exponent";
-  parameter Modelica.SIunits.Mass m=1 "Flap mass";
-  parameter Modelica.SIunits.Area A=1 "Flap hydraulic area";
+  parameter Units.SI.Mass m=1 "Flap mass";
+  parameter Units.SI.Area A=1 "Flap hydraulic area";
   parameter Real Ouv0=0 "Initial valve position, between 0 and 1. 0:valve closed - 1: valve open (active if permanent_meca = false)";
   parameter Integer mode_caract=0
     "0:linear characteristics - 1:characteristics is given by caract[]";
@@ -19,40 +19,39 @@ model DynamicCheckValve "Dynamic check valve"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  parameter Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.Radius r=sqrt(A/pi) "Flap radius";
-  parameter Modelica.SIunits.Angle theta_min=0 "Minimum flap aperture angle";
-  parameter Modelica.SIunits.Angle theta_max=pi/2 "Maximum flap aperture angle";
-  parameter Modelica.SIunits.Angle theta_m = (theta_min + theta_max)/2;
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.Radius r=sqrt(A/pi) "Flap radius";
+  parameter Units.SI.Angle theta_min=0 "Minimum flap aperture angle";
+  parameter Units.SI.Angle theta_max=pi/2 "Maximum flap aperture angle";
+  parameter Units.SI.Angle theta_m=(theta_min + theta_max)/2;
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Boolean libre(start=true)
     "Indicator whether the flap is free to move in both directions";
-  Modelica.SIunits.Torque Cp "Gravity torque";
-  Modelica.SIunits.Torque Cf "Friction torque";
-  Modelica.SIunits.Torque Ch "Hydraulic torque";
-  Modelica.SIunits.Torque Ct "Total torque";
-  Modelica.SIunits.Angle theta(start=theta_m) "Flap aperture angle";
-  Modelica.SIunits.AngularVelocity omega "Flap angular speed";
-  Modelica.SIunits.AngularAcceleration a "Flap angular acceleration";
+  Units.SI.Torque Cp "Gravity torque";
+  Units.SI.Torque Cf "Friction torque";
+  Units.SI.Torque Ch "Hydraulic torque";
+  Units.SI.Torque Ct "Total torque";
+  Units.SI.Angle theta(start=theta_m) "Flap aperture angle";
+  Units.SI.AngularVelocity omega "Flap angular speed";
+  Units.SI.AngularAcceleration a "Flap angular acceleration";
   Real Ouv "Valve position";
-  ThermoSysPro.Units.Cv Cv(start=Cvmax) "Cv";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Fluid average pressrue";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  ThermoSysPro.Units.xSI.Cv Cv(start=Cvmax) "Cv";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Singular pressure loss";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Fluid average pressrue";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
 protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Propriétés de l'eau"

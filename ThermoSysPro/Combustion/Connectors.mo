@@ -2,12 +2,11 @@ within ThermoSysPro.Combustion;
 package Connectors "Connectors"
 
   connector FuelInlet "Fuel inlet connector"
-    Modelica.SIunits.MassFlowRate Q "Fuel mass flow rate";
-    Modelica.SIunits.Temperature T "Fuel temperature";
-    Modelica.SIunits.AbsolutePressure P "Fuel pressure";
-    Modelica.SIunits.SpecificEnergy LHV "Lower heating value";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "Fuel specific heat capacity at 273.15 K";
+    Units.SI.MassFlowRate Q "Fuel mass flow rate";
+    Units.SI.Temperature T "Fuel temperature";
+    Units.SI.AbsolutePressure P "Fuel pressure";
+    Units.SI.SpecificEnergy LHV "Lower heating value";
+    Units.SI.SpecificHeatCapacity cp "Fuel specific heat capacity at 273.15 K";
     Real hum "Fuel humidity (%)";
     Real Xc "C mass fraction";
     Real Xh "H mass fraction";
@@ -16,7 +15,7 @@ package Connectors "Connectors"
     Real Xs "S mass fraction";
     Real Xashes "Ashes mass fraction";
     Real VolM "Percentage of volatile matter";
-    Modelica.SIunits.Density rho "Fuel density";
+    Units.SI.Density rho "Fuel density";
 
     input Boolean a=true
       "Pseudo-variable for the verification of the connection orientation";
@@ -41,12 +40,11 @@ package Connectors "Connectors"
   end FuelInlet;
 
   connector FuelOutlet "Fuel outlet connector"
-    Modelica.SIunits.MassFlowRate Q "Fuel mass flow rate";
-    Modelica.SIunits.Temperature T "Fuel temperature";
-    Modelica.SIunits.AbsolutePressure P "Fuel pressure";
-    Modelica.SIunits.SpecificEnergy LHV "Lower heating value";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "Fuel specific heat capacity at 273.15 K";
+    Units.SI.MassFlowRate Q "Fuel mass flow rate";
+    Units.SI.Temperature T "Fuel temperature";
+    Units.SI.AbsolutePressure P "Fuel pressure";
+    Units.SI.SpecificEnergy LHV "Lower heating value";
+    Units.SI.SpecificHeatCapacity cp "Fuel specific heat capacity at 273.15 K";
     Real hum "Fuel humidity (%)";
     Real Xc "C mass fraction";
     Real Xh "H mass fraction";
@@ -55,7 +53,7 @@ package Connectors "Connectors"
     Real Xs "S mass fraction";
     Real Xashes "Ashes mass fraction";
     Real VolM "Percentage of volatile matter";
-    Modelica.SIunits.Density rho "Fuel density";
+    Units.SI.Density rho "Fuel density";
 
     output Boolean a
       "Pseudo-variable for the verification of the connection orientation";
@@ -80,12 +78,11 @@ package Connectors "Connectors"
   end FuelOutlet;
 
   connector FuelInletI "Internal fuel inlet connector"
-    Modelica.SIunits.MassFlowRate Q "Fuel mass flow rate";
-    Modelica.SIunits.Temperature T "Fuel temperature";
-    Modelica.SIunits.AbsolutePressure P "Fuel pressure";
-    Modelica.SIunits.SpecificEnergy LHV "Lower heating value";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "Fuel specific heat capacity at 273.15 K";
+    Units.SI.MassFlowRate Q "Fuel mass flow rate";
+    Units.SI.Temperature T "Fuel temperature";
+    Units.SI.AbsolutePressure P "Fuel pressure";
+    Units.SI.SpecificEnergy LHV "Lower heating value";
+    Units.SI.SpecificHeatCapacity cp "Fuel specific heat capacity at 273.15 K";
     Real hum "Fuel humidity (%)";
     Real Xc "C mass fraction";
     Real Xh "H mass fraction";
@@ -94,7 +91,7 @@ package Connectors "Connectors"
     Real Xs "S mass fraction";
     Real Xashes "Ashes mass fraction";
     Real VolM "Percentage of volatile matter";
-    Modelica.SIunits.Density rho "Fuel density";
+    Units.SI.Density rho "Fuel density";
 
     input Boolean a
       "Pseudo-variable for the verification of the connection orientation";
@@ -120,12 +117,11 @@ package Connectors "Connectors"
   end FuelInletI;
 
   connector FuelOutletI "Internal fuel outlet connector"
-    Modelica.SIunits.MassFlowRate Q "Fuel mass flow rate";
-    Modelica.SIunits.Temperature T "Fuel temperature";
-    Modelica.SIunits.AbsolutePressure P "Fuel pressure";
-    Modelica.SIunits.SpecificEnergy LHV "Lower heating value";
-    Modelica.SIunits.SpecificHeatCapacity cp
-      "Fuel specific heat capacity at 273.15 K";
+    Units.SI.MassFlowRate Q "Fuel mass flow rate";
+    Units.SI.Temperature T "Fuel temperature";
+    Units.SI.AbsolutePressure P "Fuel pressure";
+    Units.SI.SpecificEnergy LHV "Lower heating value";
+    Units.SI.SpecificHeatCapacity cp "Fuel specific heat capacity at 273.15 K";
     Real hum "Fuel humidity (%)";
     Real Xc "C mass fraction";
     Real Xh "H mass fraction";
@@ -134,7 +130,7 @@ package Connectors "Connectors"
     Real Xs "S mass fraction";
     Real Xashes "Ashes mass fraction";
     Real VolM "Percentage of volatile matter";
-    Modelica.SIunits.Density rho "Fuel density";
+    Units.SI.Density rho "Fuel density";
 
     output Boolean a
       "Pseudo-variable for the verification of the connection orientation";
@@ -158,7 +154,6 @@ package Connectors "Connectors"
 </HTML>
 "));
   end FuelOutletI;
-
   annotation (Icon(graphics={
         Text(
           extent={{-102,0},{24,-26}},

@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Temperature_mu "inverse of DynamicViscosity_t"
-  input Modelica.SIunits.DynamicViscosity mu "Viscosity (Pa.s)";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.DynamicViscosity mu "Viscosity (Pa.s)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
     constant Real viscC0 = 0.07551475951333098;
     constant Real viscC1 = - 0.00027760397992950003;

@@ -1,10 +1,10 @@
 within ThermoSysPro.WaterSteam.Machines;
 model StaticCentrifugalPump "Static centrifugal pump"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRot=1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRot=1400
     "Fixed rotational speed (active if fixed_rot_or_power=1 and rpm_or_mpower connector not connected)";
-  parameter Modelica.SIunits.Power MPower=0.1e6
+  parameter Units.SI.Power MPower=0.1e6
     "Fixed mechanical power (active if fixed_rot_or_power=2 and rpm_or_mpower connector not connected)";
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRotn=1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRotn=1400
     "Nominal rotational speed";
   parameter Real rm=0.85
     "Product of the pump mechanical and electrical efficiencies";
@@ -15,7 +15,7 @@ model StaticCentrifugalPump "Static centrifugal pump"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=1
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
@@ -34,31 +34,29 @@ model StaticCentrifugalPump "Static centrifugal pump"
     "Constant coef. of the pump efficiency characteristics rh = f(vol_flow) (s.u.)";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-6 "Small number";
   parameter Real rhmin=0.20 "Minimum efficiency to avoid zero crossings";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Real rh "Hydraulic efficiency";
-  Modelica.SIunits.Height hn(start=10) "Pump head";
+  Units.SI.Height hn(start=10) "Pump head";
   Real R(start=VRot/VRotn) "Reduced rotational speed";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
-  Modelica.SIunits.Power Wh "Hydraulic power";
-  Modelica.SIunits.Power Wm "Mechanical power";
-  ThermoSysPro.Units.AngularVelocity_rpm Vr "Rotational speed";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  ThermoSysPro.Units.DifferentialPressure deltaP
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.VolumeFlowRate Qv(start=0.5) "Volume flow rate";
+  Units.SI.Power Wh "Hydraulic power";
+  Units.SI.Power Wm "Mechanical power";
+  ThermoSysPro.Units.nonSI.AngularVelocity_rpm Vr "Rotational speed";
+  Units.SI.Density rho(start=998) "Fluid density";
+  ThermoSysPro.Units.SI.PressureDifference deltaP
     "Pressure variation between the outlet and the inlet";
-  Modelica.SIunits.SpecificEnthalpy deltaH
+  Units.SI.SpecificEnthalpy deltaH
     "Specific enthalpy variation between the outlet and the inlet";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000)
-    "Fluid average specific enthalpy";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid average specific enthalpy";
   Connectors.FluidInlet C1
                           annotation (Placement(transformation(extent={{-110,
             -10},{-90,10}}, rotation=0)));

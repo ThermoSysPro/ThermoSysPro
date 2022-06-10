@@ -1,16 +1,18 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_sat_P
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
+  input Units.SI.AbsolutePressure p "Pressure";
 
 protected
-  Modelica.SIunits.Temperature T;
+  Units.SI.Temperature T;
 
+  // Use ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat
+  // instead of ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat
+  // to be compatible with OpenModelica
 public
-  output ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat lsat
+  output ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat lsat
     annotation (Placement(transformation(extent={{-85,15},{-15,85}}, rotation=0)));
-  output ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat vsat
+  output ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat vsat
     annotation (Placement(transformation(extent={{15,15},{85,85}}, rotation=0)));
-
 algorithm
   lsat := ThermoSysPro.Properties.WaterSteamSimple.propsat1_P(p);
   vsat := ThermoSysPro.Properties.WaterSteamSimple.propsat2_P(p);

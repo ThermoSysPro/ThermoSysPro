@@ -2,20 +2,19 @@
 function FlueGases_h_Ps "Specific enthalpy"
   //extends ThermoSysPro.Properties.FlueGases.unSafeForJacobian;
 
-  input Modelica.SIunits.AbsolutePressure PMF "Flue gases average pressure";
-  input Modelica.SIunits.SpecificEntropy SMF
-    "Flue gases average specific entropy";
+  input Units.SI.AbsolutePressure PMF "Flue gases average pressure";
+  input Units.SI.SpecificEntropy SMF "Flue gases average specific entropy";
   input Real Xco2 "CO2 mass fraction";
   input Real Xh2o "H2O mass fraction";
   input Real Xo2 "O2 mass fraction";
   input Real Xso2 "SO2 mass fraction";
 
-  output Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  output Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
 protected
   ThermoSysPro.Properties.ModelicaMediaFlueGases.ThermodynamicState state;
   ThermoSysPro.Properties.ModelicaMediaFlueGases.ThermodynamicState state0;
-  Modelica.SIunits.SpecificEntropy S0;
+  Units.SI.SpecificEntropy S0;
   Real Xn2 "N2 mass fraction";
   constant Real Hlat=2501.5999019e3 "Phase transition energy";
   constant Real Slat=9.157461e3 "Phase transition entropy";

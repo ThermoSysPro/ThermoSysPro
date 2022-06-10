@@ -1,10 +1,10 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 function propsat1_P
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
+  input Units.SI.AbsolutePressure p "Pressure";
   output ThermoSysPro.Properties.WaterSteamSimple.PropThermoSat pro;
 
 protected
-  Modelica.SIunits.SpecificEnthalpy hl "bubble enthalpy";
+  Units.SI.SpecificEnthalpy hl "Bubble enthalpy";
 
 algorithm
   hl := Enthalpy.h1sat_P(p);

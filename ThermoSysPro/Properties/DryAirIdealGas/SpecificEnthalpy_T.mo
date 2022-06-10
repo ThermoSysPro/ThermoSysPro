@@ -3,8 +3,8 @@ function SpecificEnthalpy_T
   "Specific Enthalpy computation for Dry Air Ideal Gas (input T)"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  output Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
+  input Units.SI.Temperature T "Temperature (K)";
+  output Units.SI.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
 
 protected
   ThermoSysPro.Properties.DryAirIdealGas.DryAirIdealGas Data;

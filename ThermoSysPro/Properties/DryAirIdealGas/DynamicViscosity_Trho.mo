@@ -4,14 +4,14 @@ function DynamicViscosity_Trho
   //valid up to 100MPa and 2000K, according to Kadoya et al. 1985 (Viscosity and Thermal Conductivity of Dry Air in the Gaseous Phase), Journal of Physical and Chemical Reference Data"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  input Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Temperature T "Temperature (K)";
+  input Units.SI.Density rho "Density (kg/m3)";
 
-  output Modelica.SIunits.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
+  output Units.SI.DynamicViscosity mu "Dynamic Viscosity (Pa.s)";
 
 protected
-  constant Modelica.SIunits.Temperature tnorm = 132.5 "kritikal temperature";
-  constant Modelica.SIunits.Density rhonorm = 314.3 "critical density";
+  constant Units.SI.Temperature tnorm=132.5 "kritikal temperature";
+  constant Units.SI.Density rhonorm=314.3 "critical density";
   constant Real H = 6.1609e-6;
   constant Real A1 = 0.128517;
   constant Real A05 = 2.60661;
@@ -25,8 +25,8 @@ protected
   constant Real B3 = -0.511425;
   constant Real B4 = 0.2746;
   Real viscosityZeroDensity;
-  Modelica.SIunits.Temperature tReduced "dimensionless temperature";
-  Modelica.SIunits.Density rhoReduced "dimensionless density";
+  Units.SI.Temperature tReduced "dimensionless temperature";
+  Units.SI.Density rhoReduced "dimensionless density";
   Real residualViscosity;
 
 algorithm

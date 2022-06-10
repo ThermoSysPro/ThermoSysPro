@@ -1,24 +1,22 @@
 ﻿within ThermoSysPro.HeatNetworksCooling;
 model SensibleHeatStorage "Sensible heat storage"
-  parameter Modelica.SIunits.Area S=1
+  parameter Units.SI.Area S=1
     "Exchange surface between the water and the surface";
-  parameter Modelica.SIunits.Area Samb=1 "Echange surface with the ambient air";
-  parameter Modelica.SIunits.Volume V=1 "Storage volume";
-  parameter Modelica.SIunits.SpecificHeatCapacity Cp=4000
-    "PCM specific heat capacity";
-  parameter Modelica.SIunits.ThermalConductivity Lambda=20
-    "PCM thermal conductivity";
-  parameter Modelica.SIunits.ThermalConductivity LambdaC=0.04
+  parameter Units.SI.Area Samb=1 "Echange surface with the ambient air";
+  parameter Units.SI.Volume V=1 "Storage volume";
+  parameter Units.SI.SpecificHeatCapacity Cp=4000 "PCM specific heat capacity";
+  parameter Units.SI.ThermalConductivity Lambda=20 "PCM thermal conductivity";
+  parameter Units.SI.ThermalConductivity LambdaC=0.04
     "Insulation thermal conductivity";
-  parameter Modelica.SIunits.Length ep=0.1 "PCM thickness";
-  parameter Modelica.SIunits.Length epC=0.1 "Insulation thickness";
-  parameter Modelica.SIunits.Density rhom=2000 "PCM density";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer h=20
+  parameter Units.SI.Length ep=0.1 "PCM thickness";
+  parameter Units.SI.Length epC=0.1 "Insulation thickness";
+  parameter Units.SI.Density rhom=2000 "PCM density";
+  parameter Units.SI.CoefficientOfHeatTransfer h=20
     "Convective heat exchange coefficient with the water";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer ha=20
+  parameter Units.SI.CoefficientOfHeatTransfer ha=20
     "Convective heat exchange coefficient with the ambient air";
-  parameter Modelica.SIunits.Temperature Tamb "Ambient air temperature";
-  parameter Modelica.SIunits.Temperature Tss0
+  parameter Units.SI.Temperature Tamb "Ambient air temperature";
+  parameter Units.SI.Temperature Tss0
     "Initial storage temperature (active if steady_state=false)";
   parameter Real Fremp=0.5 "Volume fraction of the solid matrix in the storage";
   parameter Boolean steady_state=false
@@ -29,18 +27,17 @@ model SensibleHeatStorage "Sensible heat storage"
     "IF97 region at the outlet. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.MassFlowRate Q "Water mass flow rate";
-  Modelica.SIunits.Mass m "PCM mass";
-  Modelica.SIunits.Temperature Tss(start=293) "Storage average temperature";
-  Modelica.SIunits.Temperature T1 "Water temperature at the inlet";
-  Modelica.SIunits.Temperature T2 "Water temperature at the outlet";
-  Modelica.SIunits.Power Ws "Stored power";
-  Modelica.SIunits.Power We "Power exchanged with the water";
-  Modelica.SIunits.Power Wa "Power exchanged with the ambient air";
-  Modelica.SIunits.Temperature Tm(start=293) "Average temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Average pressure";
-  Modelica.SIunits.SpecificEnthalpy hm(start=100000)
-    "Average specific enthalpy";
+  Units.SI.MassFlowRate Q "Water mass flow rate";
+  Units.SI.Mass m "PCM mass";
+  Units.SI.Temperature Tss(start=293) "Storage average temperature";
+  Units.SI.Temperature T1 "Water temperature at the inlet";
+  Units.SI.Temperature T2 "Water temperature at the outlet";
+  Units.SI.Power Ws "Stored power";
+  Units.SI.Power We "Power exchanged with the water";
+  Units.SI.Power Wa "Power exchanged with the ambient air";
+  Units.SI.Temperature Tm(start=293) "Average temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Average pressure";
+  Units.SI.SpecificEnthalpy hm(start=100000) "Average specific enthalpy";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph proe
     "Propriétés de l'eau"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

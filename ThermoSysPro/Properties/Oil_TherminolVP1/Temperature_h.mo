@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_h
-    input Modelica.SIunits.SpecificEnthalpy h "Enthalpy (J/kg)";
-    output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.SpecificEnthalpy h "Enthalpy (J/kg)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
     constant Real Temperature_c0 = 285.5140346333899;
     constant Real Temperature_c1 = 0.0006466731366692376;

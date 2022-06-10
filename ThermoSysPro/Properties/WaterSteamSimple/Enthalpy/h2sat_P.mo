@@ -1,9 +1,10 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Enthalpy;
 function h2sat_P "specific enthalpy at vapor saturation for given pressure"
 
-  input Modelica.SIunits.Pressure p "pressure";
-  output Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
-  protected
+  input Units.SI.Pressure p "pressure";
+  output Units.SI.SpecificEnthalpy h "specific enthalpy";
+
+protected
   h2sat_P_coef1 coef1;
   h2sat_P_coef2 coef2;
   h2sat_P_coef3 coef3;

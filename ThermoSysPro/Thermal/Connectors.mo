@@ -1,8 +1,8 @@
 within ThermoSysPro.Thermal;
 package Connectors "Connectors"
   connector ThermalPort "Thermal connector"
-    Modelica.SIunits.Temperature T "Temperature";
-    flow Modelica.SIunits.HeatFlowRate W
+    Units.SI.Temperature T "Temperature";
+    flow Units.SI.HeatFlowRate W
       "Thermal flow rate. Positive when going into the component";
     annotation (
       Diagram(coordinateSystem(

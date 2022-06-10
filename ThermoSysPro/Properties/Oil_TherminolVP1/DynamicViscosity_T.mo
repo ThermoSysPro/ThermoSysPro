@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function DynamicViscosity_T
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
-    output Modelica.SIunits.DynamicViscosity mu "Viscosity (Pa.s)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
+  output Units.SI.DynamicViscosity mu "Viscosity (Pa.s)";
 
 protected
     constant Real Viscosity_cm2 = 66476.1563165124;

@@ -1,9 +1,11 @@
 within ThermoSysPro.Examples.SimpleExamples;
 model TestDynamicReliefValve
   import ThermoSysPro;
-  parameter Modelica.SIunits.AbsolutePressure Pinitial=18e5 "Initial pressure";
-  parameter Modelica.SIunits.AbsolutePressure Pfinal=Pinitial "Final pressure";
-  parameter Modelica.SIunits.AbsolutePressure Pmax=21e5 "Maximum pressure";
+  parameter ThermoSysPro.Units.SI.AbsolutePressure Pinitial=18e5
+    "Initial pressure";
+  parameter ThermoSysPro.Units.SI.AbsolutePressure Pfinal=Pinitial
+    "Final pressure";
+  parameter ThermoSysPro.Units.SI.AbsolutePressure Pmax=21e5 "Maximum pressure";
 
   ThermoSysPro.WaterSteam.PressureLosses.DynamicReliefValve reliefValve(
     mech_steady_state=false,

@@ -1,12 +1,13 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function DynamicViscosity_rhoT
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
 
-  output Modelica.SIunits.DynamicViscosity mu "Dynamic viscosity";
+  output Units.SI.DynamicViscosity mu "Dynamic viscosity";
+
 protected
-  Modelica.SIunits.Density d1sat;
-  Modelica.SIunits.Density d2sat;
+  Units.SI.Density d1sat;
+  Units.SI.Density d2sat;
   Real x;
 
 algorithm
@@ -19,9 +20,8 @@ algorithm
       mu := ThermoSysPro.Properties.WaterSteamSimple.Viscosity.mu2_dT(rho, T);
     else
        x := (rho-d1sat)/(d2sat - d1sat);
-         mu := ThermoSysPro.Properties.WaterSteamSimple.Viscosity.mu1_dT(d1sat, T)*(
-         1 - x) + ThermoSysPro.Properties.WaterSteamSimple.Viscosity.mu2_dT(d2sat,
-         T)*x;
+         mu := ThermoSysPro.Properties.WaterSteamSimple.Viscosity.mu1_dT(d1sat, T)*(1 - x)
+               + ThermoSysPro.Properties.WaterSteamSimple.Viscosity.mu2_dT(d2sat, T)*x;
     end if;
   else
     if rho > ThermoSysPro.Properties.WaterSteamSimple.critical.DCRIT then

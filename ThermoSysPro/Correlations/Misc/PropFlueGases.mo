@@ -1,7 +1,7 @@
 within ThermoSysPro.Correlations.Misc;
 function PropFlueGases "Computation of the flue gases properties"
-  input Modelica.SIunits.AbsolutePressure Pmf "Flue gases average pressure";
-  input Modelica.SIunits.Temperature Tmf "Flue gases average temperature";
+  input Units.SI.AbsolutePressure Pmf "Flue gases average pressure";
+  input Units.SI.Temperature Tmf "Flue gases average temperature";
   input Real XefCO2 "CO2 mass fraction";
   input Real XefH2O "H2O mass fraction";
   input Real XefO2 "O2 mass fraction";
@@ -11,10 +11,10 @@ function PropFlueGases "Computation of the flue gases properties"
   output Real propf[4] "Flue gases physical properties vector";
 
 protected
-  Modelica.SIunits.ThermalConductivity condf "Flue gases thermal conductivity";
-  Modelica.SIunits.SpecificHeatCapacity cpf "Flue gases specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muf "Flue gases dynamic viscosity";
-  Modelica.SIunits.Density rhof "Flue gases density";
+  Units.SI.ThermalConductivity condf "Flue gases thermal conductivity";
+  Units.SI.SpecificHeatCapacity cpf "Flue gases specific heat capacity";
+  Units.SI.DynamicViscosity muf "Flue gases dynamic viscosity";
+  Units.SI.Density rhof "Flue gases density";
 
 algorithm
   condf := ThermoSysPro.Properties.FlueGases.FlueGases_k(Pmf, Tmf, XefCO2, XefH2O, XefO2, XefSO2);

@@ -6,10 +6,10 @@ model Shaft "Mechanical coupling"
     "true: start from steady state - false: start from delta=0";
 
 public
-  Modelica.SIunits.Angle delta(start=0) "Torsion angle";
-  Modelica.SIunits.AngularVelocity w_rel
+  Units.SI.Angle delta(start=0) "Torsion angle";
+  Units.SI.AngularVelocity w_rel
     "Relative angular speed between the two extremities of the shaft";
-  Modelica.SIunits.Torque Ctr "Transmitted torque";
+  Units.SI.Torque Ctr "Transmitted torque";
   ThermoSysPro.ElectroMechanics.Connectors.MechanichalTorque C2
                                   annotation (Placement(transformation(extent={
             {100,-10},{120,10}}, rotation=0)));

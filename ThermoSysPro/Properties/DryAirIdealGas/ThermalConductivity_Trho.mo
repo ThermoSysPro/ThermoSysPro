@@ -4,15 +4,14 @@ function ThermalConductivity_Trho
   //valid up to 100MPa and 2000K, according to Kadoya et al. 1985 (Viscosity and Thermal Conductivity of Dry Air in the Gaseous Phase), Journal of Physical and Chemical Reference Data
   // STEPHANIE Dry Air Ideal Gas
 
-    input Modelica.SIunits.Temperature T "Temperature (K)";
-    input Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Temperature T "Temperature (K)";
+  input Units.SI.Density rho "Density (kg/m3)";
 
-    output Modelica.SIunits.ThermalConductivity k
-    "Thermal Conductivity (W/m/K)";
+  output Units.SI.ThermalConductivity k "Thermal Conductivity (W/m/K)";
 
 protected
-    constant Modelica.SIunits.Temperature tnorm = 132.5 "critical temperature";
-    constant Modelica.SIunits.Density rhonorm = 314.3 "critical density";
+  constant Units.SI.Temperature tnorm=132.5 "critical temperature";
+  constant Units.SI.Density rhonorm=314.3 "critical density";
     constant Real lambda = 25.9778e-3;
     constant Real C1 = 0.239503;
     constant Real C05 = 0.00649768;
@@ -26,8 +25,8 @@ protected
     constant Real D3 = -0.163159;
     constant Real D4 = 0.138059;
     constant Real D5 = -0.0201725;
-    Modelica.SIunits.Temperature tReduced "dimensionless temperature";
-    Modelica.SIunits.Density rhoReduced "dimensionless density";
+  Units.SI.Temperature tReduced "dimensionless temperature";
+  Units.SI.Density rhoReduced "dimensionless density";
     Real diluteConductivity;
     Real residualConductivity;
 

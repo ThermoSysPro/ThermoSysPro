@@ -2,11 +2,11 @@ within ThermoSysPro.MultiFluids.HeatExchangers;
 model DynamicExchangerWaterSteamFlueGases
   "Dynamic exchanger water/steam - flue gases "
 
-  parameter Modelica.SIunits.Length L=1 "Exchanger length";
-  parameter Modelica.SIunits.Position z1=0 "Exchanger inlet altitude";
-  parameter Modelica.SIunits.Position z2=0 "Exchanger outlet altitude";
+  parameter Units.SI.Length L=1 "Exchanger length";
+  parameter Units.SI.Position z1=0 "Exchanger inlet altitude";
+  parameter Units.SI.Position z2=0 "Exchanger outlet altitude";
   parameter Integer Ns=1 "Numver of segments";
-  parameter Modelica.SIunits.Diameter Dint=0.1 "Pipe internal diameter";
+  parameter Units.SI.Diameter Dint=0.1 "Pipe internal diameter";
   parameter Integer Ntubes=1 "Number of pipes in parallel";
 
   ThermoSysPro.FlueGases.HeatExchangers.StaticWallFlueGasesExchanger

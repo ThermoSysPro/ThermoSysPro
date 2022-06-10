@@ -2,8 +2,8 @@ within ThermoSysPro.Properties.Fluid;
 function derDynamicViscosity_derrho_derT
   "Dynamic Viscosity computation for all fluids"
 
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam  <br>7 - WaterSteamSimple </html>";
   input Real der_rho "Density time derivative";

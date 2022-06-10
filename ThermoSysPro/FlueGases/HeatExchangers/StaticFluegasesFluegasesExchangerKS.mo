@@ -1,33 +1,30 @@
 within ThermoSysPro.FlueGases.HeatExchangers;
 model StaticFluegasesFluegasesExchangerKS
   "Static flue gases/flue gases heat exchanger with fixed K and S"
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer K=100
+  parameter Units.SI.CoefficientOfHeatTransfer K=100
     "Global heat exchange coefficient";
-  parameter Modelica.SIunits.Area S=10 "Heat exchange surface";
+  parameter Units.SI.Area S=10 "Heat exchange surface";
   parameter Real DPc= 0.1
     "Pressure losses in the hot fluid as a percent of the pressure at the inlet";
   parameter Real DPf= 0.1
     "Pressure losses in the cold fluid as a percent of the pressure at the inlet";
 
 public
-  Modelica.SIunits.Power W "Power exchanged";
-  Modelica.SIunits.Temperature Tec(start=400)
+  Units.SI.Power W "Power exchanged";
+  Units.SI.Temperature Tec(start=400)
     "Temperature of the hot fluid at the inlet";
-  Modelica.SIunits.Temperature Tsc(start=300)
+  Units.SI.Temperature Tsc(start=300)
     "Temperature of the hot fluid at the outlet";
-  Modelica.SIunits.Temperature Tef(start=300)
+  Units.SI.Temperature Tef(start=300)
     "Temperature of the cold fluid at the inlet";
-  Modelica.SIunits.Temperature Tsf(start=400)
+  Units.SI.Temperature Tsf(start=400)
     "Temperature of the cold fluid at the outlet";
-  ThermoSysPro.Units.DifferentialTemperature DT1 "Delta T at the inlet";
-  ThermoSysPro.Units.DifferentialTemperature DT2 "Delta T at the outlet";
-  Modelica.SIunits.SpecificHeatCapacity Cpf
-    "Specific heat capacity of the cold fluid";
-  Modelica.SIunits.SpecificHeatCapacity Cpc
-    "Specific heat capacity of the hot fluid";
-  Modelica.SIunits.MassFlowRate Qc(start=100) "Mass flow rate of the hot fluid";
-  Modelica.SIunits.MassFlowRate Qf(start=100)
-    "Mass flow rate of the cold fluid";
+  ThermoSysPro.Units.SI.TemperatureDifference DT1 "Delta T at the inlet";
+  ThermoSysPro.Units.SI.TemperatureDifference DT2 "Delta T at the outlet";
+  Units.SI.SpecificHeatCapacity Cpf "Specific heat capacity of the cold fluid";
+  Units.SI.SpecificHeatCapacity Cpc "Specific heat capacity of the hot fluid";
+  Units.SI.MassFlowRate Qc(start=100) "Mass flow rate of the hot fluid";
+  Units.SI.MassFlowRate Qf(start=100) "Mass flow rate of the cold fluid";
   Real Kcor "Corrective term for the global heat exchange coefficient";
 
   ThermoSysPro.FlueGases.Connectors.FlueGasesOutlet Sc

@@ -1,21 +1,21 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model calculette_h
-  parameter Modelica.SIunits.Pressure p = 50e5;
-  parameter Modelica.SIunits.SpecificEnthalpy h_min = 1e5;
-  parameter Modelica.SIunits.SpecificEnthalpy h_max = 5e6;
-  Modelica.SIunits.SpecificEnthalpy h;
-  Modelica.SIunits.SpecificEnthalpy h1sat;
-  Modelica.SIunits.SpecificEnthalpy h2sat;
-  Modelica.SIunits.Temperature T1;
-  Modelica.SIunits.Temperature Tsat1;
-  Modelica.SIunits.SpecificEnthalpy h1sat_IF97;
-  Modelica.SIunits.SpecificEnthalpy h2sat_IF97;
+  parameter Units.SI.Pressure p=50e5;
+  parameter Units.SI.SpecificEnthalpy h_min=1e5;
+  parameter Units.SI.SpecificEnthalpy h_max=5e6;
+  Units.SI.SpecificEnthalpy h;
+  Units.SI.SpecificEnthalpy h1sat;
+  Units.SI.SpecificEnthalpy h2sat;
+  Units.SI.Temperature T1;
+  Units.SI.Temperature Tsat1;
+  Units.SI.SpecificEnthalpy h1sat_IF97;
+  Units.SI.SpecificEnthalpy h2sat_IF97;
 
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro_IF97;
   ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph pro_polynomial;
 
 protected
-  parameter Modelica.SIunits.Time dt = 10000;
+  parameter Units.SI.Time dt=10000;
   Real x = time/dt;
 
 equation

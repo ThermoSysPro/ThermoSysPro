@@ -4,7 +4,7 @@ record ThermoProperties_T
     //min=ThermoSysPro.Properties.WaterSteam.InitLimits.TMIN,
     //max=ThermoSysPro.Properties.WaterSteam.InitLimits.TMAX,
     //nominal=ThermoSysPro.Properties.WaterSteam.InitLimits.TNOM) "Temperature";
-  Modelica.SIunits.Density d(
+  Units.SI.Density d(
     min=HitecLimits.DMIN,
     max=HitecLimits.DMAX,
     nominal=HitecLimits.DNOM) "Density";
@@ -18,7 +18,7 @@ record ThermoProperties_T
     //max=ThermoSysPro.Properties.WaterSteam.InitLimits.SSMAX,
     //nominal=ThermoSysPro.Properties.WaterSteam.InitLimits.SSNOM)
     //"Specific entropy";
-  Modelica.SIunits.SpecificHeatCapacity cp(
+  Units.SI.SpecificHeatCapacity cp(
     min=HitecLimits.CPMIN,
     max=HitecLimits.CPMAX,
     nominal=HitecLimits.CPNOM) "Specific heat capacity at constant presure";
@@ -32,16 +32,16 @@ record ThermoProperties_T
   //Real duhp(unit = "1")
     //"Derivative of specific inner energy wrt. specific enthalpy at constant pressure";
   //ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
-  Modelica.SIunits.ThermalConductivity k(
+  Units.SI.ThermalConductivity k(
     min=HitecLimits.LAMMIN,
     max=HitecLimits.LAMMAX,
     nominal=HitecLimits.LAMNOM);
-  Modelica.SIunits.DynamicViscosity mu(
+  Units.SI.DynamicViscosity mu(
     min=HitecLimits.ETAMIN,
     max=HitecLimits.ETAMAX,
     nominal=HitecLimits.ETANOM);
-  Modelica.SIunits.DerDensityByTemperature ddTp;
-  Modelica.SIunits.DerDensityByPressure ddpT;
+  Units.SI.DerDensityByTemperature ddTp;
+  Units.SI.DerDensityByPressure ddpT;
   annotation (Icon(graphics={
         Rectangle(
           extent={{-100,60},{100,-90}},

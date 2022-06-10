@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Temperature_k "inverse function of ThermalConductivity_t"
-  input Modelica.SIunits.ThermalConductivity k "Thermal Conductivity";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.ThermalConductivity k "Thermal Conductivity";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
   constant Real tempC0 = -2058.43;
   constant Real tempC1 = 5263.16;

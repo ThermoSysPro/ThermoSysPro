@@ -1,13 +1,14 @@
 within ThermoSysPro.FlueGases.Machines;
 model StaticFan "Static fan"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRot=1400 "Rotational speed";
-  parameter ThermoSysPro.Units.AngularVelocity_rpm VRotn=1400
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRot=1400
+    "Rotational speed";
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm VRotn=1400
     "Nominal rotational speed";
   parameter Real rm=0.85
     "Product of the pump mechanical and electrical efficiencies";
   parameter Boolean adiabatic_compression=false
     "true: adiabatic compression - false: non adiabatic compression";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
   parameter Real a1=-52.04
     "x^2 coef. of the pump characteristics hn = f(vol_flow) (s2/m5)";
@@ -24,32 +25,28 @@ model StaticFan "Static fan"
     "Constant coef. of the pump efficiency characteristics rh = f(vol_flow) (s.u.)";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   parameter Real eps=1.e-6 "Small number";
   parameter Real rhmin=0.20 "Minimum efficiency to avoid zero crossings";
 
 public
   Real rh( start=0.5) "Hydraulic efficiency";
-  Modelica.SIunits.Length hn(start=10) "Pump head";
+  Units.SI.Length hn(start=10) "Pump head";
   Real R "Ratio VRot/VRotn (s.u.)";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow";
-  Modelica.SIunits.VolumeFlowRate Qv(start=0.5) "Volumetric flow";
-  Modelica.SIunits.Power Wh "Hydraulic power";
-  Modelica.SIunits.Power Wm "Motor power";
-   Modelica.SIunits.Density rho(start=998) "Fluid density";
-  ThermoSysPro.Units.DifferentialPressure deltaP
+  Units.SI.MassFlowRate Q(start=500) "Mass flow";
+  Units.SI.VolumeFlowRate Qv(start=0.5) "Volumetric flow";
+  Units.SI.Power Wh "Hydraulic power";
+  Units.SI.Power Wm "Motor power";
+  Units.SI.Density rho(start=998) "Fluid density";
+  ThermoSysPro.Units.SI.PressureDifference deltaP
     "Pressure variation between the outlet and the inlet";
-  Modelica.SIunits.SpecificEnthalpy deltaH
+  Units.SI.SpecificEnthalpy deltaH
     "Specific enthalpy variation between the outlet and the inlet";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000)
-    "Fluid average specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy h1(start=100000)
-    "Fluid specific enthalpy in";
-  Modelica.SIunits.SpecificEnthalpy h2(start=100000)
-    "Fluid specific enthalpy out";
-  Modelica.SIunits.Temperature T( start=500) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid average specific enthalpy";
+  Units.SI.SpecificEnthalpy h1(start=100000) "Fluid specific enthalpy in";
+  Units.SI.SpecificEnthalpy h2(start=100000) "Fluid specific enthalpy out";
+  Units.SI.Temperature T(start=500) "Fluid temperature";
 
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical commandeFan

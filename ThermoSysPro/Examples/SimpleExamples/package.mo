@@ -1,5 +1,5 @@
 within ThermoSysPro.Examples;
-package SimpleExamples 
+package SimpleExamples
 
 
 

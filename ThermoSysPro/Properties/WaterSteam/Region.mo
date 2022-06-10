@@ -2,7 +2,7 @@ within ThermoSysPro.Properties.WaterSteam;
 package Region
   function boilingcurveL3_p "properties on the boiling curve"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
+    input Units.SI.Pressure p "pressure";
     output
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";
@@ -11,10 +11,9 @@ package Region
       "dimensionless Gibbs funcion and dervatives";
     ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd f
       "dimensionless Helmholtz function and dervatives";
-    Modelica.SIunits.Pressure plim=min(p,ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
-                                                     - 1e-7)
-      "pressure limited to critical pressure - epsilon";
-    Modelica.SIunits.SpecificVolume v "Specific Volume";
+    Units.SI.Pressure plim=min(p, ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
+         - 1e-7) "pressure limited to critical pressure - epsilon";
+    Units.SI.SpecificVolume v "Specific Volume";
     Real vp3 "vp^3";
     Real ivp3 "1/vp^3";
     Real pv "partial derivative of p w.r.t v";
@@ -88,7 +87,7 @@ package Region
 
   function dewcurveL3_p "properties on the dew curve"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
+    input Units.SI.Pressure p "pressure";
     output
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";
@@ -97,10 +96,9 @@ package Region
       "dimensionless Gibbs funcion and dervatives";
     ThermoSysPro.Properties.WaterSteam.Common.HelmholtzDerivs3rd f
       "dimensionless Helmholtz function and dervatives";
-    Modelica.SIunits.Pressure plim=min(p,ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
-                                                     - 1e-7)
-      "pressure limited to critical pressure - epsilon";
-    Modelica.SIunits.SpecificVolume v "Specific Volume";
+    Units.SI.Pressure plim=min(p, ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
+         - 1e-7) "pressure limited to critical pressure - epsilon";
+    Units.SI.SpecificVolume v "Specific Volume";
     Real vp3 "vp^3";
     Real ivp3 "1/vp^3";
     Real pv "partial derivative of p w.r.t v";
@@ -174,7 +172,7 @@ package Region
   function hvl_dp
     "derivative function for the specific enthalpy along the phase boundary"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
+    input Units.SI.Pressure p "pressure";
     input
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";
@@ -192,7 +190,7 @@ package Region
   function hvl_dp_der
     "derivative function for the specific enthalpy along the phase boundary"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
+    input Units.SI.Pressure p "pressure";
     input
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";
@@ -229,8 +227,8 @@ package Region
     "derivative of liquid specific enthalpy on the boundary between regions 4 and 3 or 1 w.r.t pressure"
 
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
-    output Modelica.SIunits.DerEnthalpyByPressure dh_dp
+    input Units.SI.Pressure p "pressure";
+    output Units.SI.DerEnthalpyByPressure dh_dp
       "specific enthalpy derivative w.r.t. pressure";
     algorithm
     dh_dp := ThermoSysPro.Properties.WaterSteam.Region.hvl_dp(p,
@@ -242,8 +240,8 @@ package Region
     "derivative of vapour specific enthalpy on the boundary between regions 4 and 3 or 1 w.r.t pressure"
 
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "pressure";
-    output Modelica.SIunits.DerEnthalpyByPressure dh_dp
+    input Units.SI.Pressure p "pressure";
+    output Units.SI.DerEnthalpyByPressure dh_dp
       "specific enthalpy derivative w.r.t. pressure";
   algorithm
     dh_dp := ThermoSysPro.Properties.WaterSteam.Region.hvl_dp(p,
@@ -253,7 +251,7 @@ package Region
 
   function drhovl_dp
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "saturation pressure";
+    input Units.SI.Pressure p "saturation pressure";
     input
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";
@@ -269,8 +267,8 @@ package Region
 
   function drhol_dp "derivative of density of saturated water w.r.t. pressure"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "saturation pressure";
-    output Modelica.SIunits.DerDensityByPressure dd_dp
+    input Units.SI.Pressure p "saturation pressure";
+    output Units.SI.DerDensityByPressure dd_dp
       "derivative of density of water at the boiling point";
   algorithm
     dd_dp := ThermoSysPro.Properties.WaterSteam.Region.drhovl_dp(p,
@@ -279,8 +277,8 @@ package Region
 
   function drhov_dp "derivative of density of saturated steam w.r.t. pressure"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "saturation pressure";
-    output Modelica.SIunits.DerDensityByPressure dd_dp
+    input Units.SI.Pressure p "saturation pressure";
+    output Units.SI.DerDensityByPressure dd_dp
       "derivative of density of water at the boiling point";
   algorithm
     dd_dp := ThermoSysPro.Properties.WaterSteam.Region.drhovl_dp(p,
@@ -290,7 +288,7 @@ package Region
   function drhovl_dp_der
     "Time derivative of density derivative along phase boundary"
     extends Modelica.Icons.Function;
-    input Modelica.SIunits.Pressure p "saturation pressure";
+    input Units.SI.Pressure p "saturation pressure";
     input
       ThermoSysPro.Properties.WaterSteam.Common.IF97PhaseBoundaryProperties3rd
       bpro "property record";

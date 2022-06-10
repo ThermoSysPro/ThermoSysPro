@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Temperature_dermu "derivative of Temperature_mu"
-  input Modelica.SIunits.DynamicViscosity mu "Viscosity (Pa.s)";
+  input Units.SI.DynamicViscosity mu "Viscosity (Pa.s)";
   input Real der_mu "Viscosity time derivative (Pa)";
   output Real der_temp "Fluid temperature time derivative (K/s)";
 protected

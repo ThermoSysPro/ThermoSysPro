@@ -1,23 +1,23 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model calculette_T
-  parameter Modelica.SIunits.Temperature T_min = 275;
-  parameter Modelica.SIunits.Temperature T_max = 350;
-  parameter Modelica.SIunits.Density d = 15;
- Modelica.SIunits.Temperature T;
+  parameter Units.SI.Temperature T_min=275;
+  parameter Units.SI.Temperature T_max=350;
+  parameter Units.SI.Density d=15;
+  Units.SI.Temperature T;
 
-  Modelica.SIunits.Density d1sat;
-  Modelica.SIunits.Density d2sat;
-  Modelica.SIunits.SurfaceTension sigma_polynomial;
-  Modelica.SIunits.SurfaceTension sigma_IF97;
+  Units.SI.Density d1sat;
+  Units.SI.Density d2sat;
+  Units.SI.SurfaceTension sigma_polynomial;
+  Units.SI.SurfaceTension sigma_IF97;
 
-  Modelica.SIunits.Pressure Psat;
-  Modelica.SIunits.DynamicViscosity mu1;
-  Modelica.SIunits.DynamicViscosity mu2;
-  Modelica.SIunits.DynamicViscosity mu_polynomial "Dynamic viscosity";
-  Modelica.SIunits.DynamicViscosity mu_IF97 "Dynamic viscosity";
+  Units.SI.Pressure Psat;
+  Units.SI.DynamicViscosity mu1;
+  Units.SI.DynamicViscosity mu2;
+  Units.SI.DynamicViscosity mu_polynomial "Dynamic viscosity";
+  Units.SI.DynamicViscosity mu_IF97 "Dynamic viscosity";
   Real titre;
 protected
-  parameter Modelica.SIunits.Time dt = 10000;
+  parameter Units.SI.Time dt=10000;
   Real x = time/dt;
 
 equation

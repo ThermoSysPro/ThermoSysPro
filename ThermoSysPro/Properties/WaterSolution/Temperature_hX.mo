@@ -1,11 +1,10 @@
 within ThermoSysPro.Properties.WaterSolution;
 function Temperature_hX
   "Temperature of the H2O/LiBr solution as a function of h et Xh2o"
-  input Modelica.SIunits.SpecificEnthalpy h
-    "Specific enthazlpy of the solution";
+  input Units.SI.SpecificEnthalpy h "Specific enthazlpy of the solution";
   input Real X "Water mass fraction in the solution";
 
-  output Modelica.SIunits.Temperature T "Temperature";
+  output Units.SI.Temperature T "Temperature";
 
 protected
   Real A0;

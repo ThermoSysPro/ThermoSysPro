@@ -7,9 +7,9 @@ model Mixer3 "Mixer with three inlets"
 public
   Real alpha1 "Extraction coefficient for inlet 1 (<=1)";
   Real alpha2 "Extraction coefficient for inlet 2 (<=1)";
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
-  Modelica.SIunits.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.Temperature T "Fluid temperature";
 
 public
   Connectors.FluidInlet Ce2

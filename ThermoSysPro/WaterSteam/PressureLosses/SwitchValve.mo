@@ -1,29 +1,29 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model SwitchValve "Switch valve"
-  parameter ThermoSysPro.Units.PressureLossCoefficient k=1000
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient k=1000
     "Pressure loss coefficient";
-  parameter Modelica.SIunits.MassFlowRate Qmin=1.e-6
+  parameter Units.SI.MassFlowRate Qmin=1.e-6
     "Mass flow when the valve is closed";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Singular pressure loss";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Propriétés de l'eau"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

@@ -1,11 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function SurfaceTension_T
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Temperature T "Temperature";
 
-  output Modelica.SIunits.SurfaceTension sigma "Surface tension";
+  output Units.SI.SurfaceTension sigma "Surface tension";
+
 algorithm
-  sigma :=
-    ThermoSysPro.Properties.WaterSteamSimple.SurfaceTension.SurfaceTension_T(T);
+  sigma := ThermoSysPro.Properties.WaterSteamSimple.SurfaceTension.SurfaceTension_T(T);
 
   annotation (
     smoothOrder=2,

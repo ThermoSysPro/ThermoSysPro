@@ -1,14 +1,12 @@
 within ThermoSysPro.InstrumentationAndControl.Blocks.Logique;
 block Edge
-
-  ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical uL
+  ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical uL(signal(start=false, fixed=true))
                                           annotation (Placement(transformation(
           extent={{-120,-10},{-100,10}}, rotation=0)));
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputLogical yL
                                            annotation (Placement(transformation(
           extent={{100,-10},{120,10}}, rotation=0)));
 algorithm
-
   yL.signal := edge(uL.signal);
   annotation (
     Diagram(coordinateSystem(

@@ -1,14 +1,10 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
 record triple "triple point data"
   extends Modelica.Icons.Record;
-  constant Modelica.SIunits.Temperature Ttriple=273.16
-    "the triple point temperature";
-  constant Modelica.SIunits.Pressure ptriple=611.657
-    "the triple point temperature";
-  constant Modelica.SIunits.Density dltriple=999.792520031617642
-    "the triple point liquid density";
-  constant Modelica.SIunits.Density dvtriple=0.485457572477861372e-2
-    "the triple point vapour density";
+  constant Units.SI.Temperature Ttriple=273.16 "the triple point temperature";
+  constant Units.SI.Pressure ptriple=611.657 "the triple point temperature";
+  constant Units.SI.Density dltriple=999.792520031617642 "the triple point liquid density";
+  constant Units.SI.Density dvtriple=0.485457572477861372e-2 "the triple point vapour density";
   annotation (Documentation(info="<HTML>
  <h4>Record description</h4>
  <p>Vapour/liquid/ice triple point data for IF97 steam properties.</p>

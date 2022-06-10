@@ -1,14 +1,12 @@
 within ThermoSysPro.Correlations.Thermal;
 function WBHeatExchangerEfficiency "Heat exchanger efficiency"
-  input Modelica.SIunits.MassFlowRate QevC "Steam mass flow rate at the inlet";
-  input Modelica.SIunits.MassFlowRate QeeF "Water mass flow rate at the inlet";
-  input Modelica.SIunits.SpecificHeatCapacity Cc
-    "Hot fluid specific heat capacity";
-  input Modelica.SIunits.SpecificHeatCapacity Cf
-    "Cold fluid specific heat capacity";
-  input Modelica.SIunits.CoefficientOfHeatTransfer KEG0
+  input Units.SI.MassFlowRate QevC "Steam mass flow rate at the inlet";
+  input Units.SI.MassFlowRate QeeF "Water mass flow rate at the inlet";
+  input Units.SI.SpecificHeatCapacity Cc "Hot fluid specific heat capacity";
+  input Units.SI.SpecificHeatCapacity Cf "Cold fluid specific heat capacity";
+  input Units.SI.CoefficientOfHeatTransfer KEG0
     "Global heat transfer coefficient";
-  input Modelica.SIunits.Area S0 "External exchange surface";
+  input Units.SI.Area S0 "External exchange surface";
   input Real Phase " = 0 ou 1 one-phase flow - otherwise two-phase flow";
 
   output Real EC0 "Heat exchanger efficiency";
@@ -18,9 +16,8 @@ protected
   Real CpMIN "Minimum heat capacity for the two fluids";
   Real CpMAX "Maximum heat capacity for the two fluids";
   Integer TYP2 "0 = co-current, 1 = counter-current";
-  Modelica.SIunits.CoefficientOfHeatTransfer KEG
-    "Global heat exchange coefficient";
-  Modelica.SIunits.Area S "External exchange surface";
+  Units.SI.CoefficientOfHeatTransfer KEG "Global heat exchange coefficient";
+  Units.SI.Area S "External exchange surface";
   Real EC "Exchnager efficiency";
 
 algorithm

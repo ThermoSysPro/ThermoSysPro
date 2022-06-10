@@ -2,12 +2,11 @@
 model DynamicDrum "Dynamic drum"
   parameter Boolean Vertical=true
     "true: vertical cylinder - false: horizontal cylinder";
-  parameter Modelica.SIunits.Radius R=1.05
-    "Radius of the drum cross-sectional area";
-  parameter Modelica.SIunits.Length L=16.27 "Drum length";
+  parameter Units.SI.Radius R=1.05 "Radius of the drum cross-sectional area";
+  parameter Units.SI.Length L=16.27 "Drum length";
   parameter Real Vf0=0.5
     "Fraction of initial water volume in the drum (active if steady_state=false)";
-  parameter Modelica.SIunits.AbsolutePressure P0=50.e5
+  parameter Units.SI.AbsolutePressure P0=50.e5
     "Fluid initial pressure (active if steady_state=false)";
   parameter Real Ccond=0.01 "Condensation coefficient";
   parameter Real Cevap=0.09 "Evaporation coefficient";
@@ -17,70 +16,65 @@ model DynamicDrum "Dynamic drum"
     "Vapor mass fraction in the gas phase from which the liquid starts to condensate";
   parameter Real Kvl=1000
     "Heat exchange coefficient between the liquid and gas phases";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Klp=400
+  parameter Units.SI.CoefficientOfHeatTransfer Klp=400
     "Heat exchange coefficient between the liquid phase and the wall";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kvp=100
+  parameter Units.SI.CoefficientOfHeatTransfer Kvp=100
     "Heat exchange coefficient between the gas phase and the wall";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kpa=25
+  parameter Units.SI.CoefficientOfHeatTransfer Kpa=25
     "Heat exchange coefficient between the wall and the outside";
-  parameter Modelica.SIunits.Mass Mp=117e3 "Wall mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpp=600 "Wall specific heat";
+  parameter Units.SI.Mass Mp=117e3 "Wall mass";
+  parameter Units.SI.SpecificHeatCapacity cpp=600 "Wall specific heat";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, Vf0)";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
-  parameter Modelica.SIunits.Volume V=pi*R^2*L "Drum volume";
-  parameter Modelica.SIunits.Volume Vmin=1.e-6;
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
+  parameter Units.SI.Volume V=pi*R^2*L "Drum volume";
+  parameter Units.SI.Volume Vmin=1.e-6;
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid average pressure";
-  Modelica.SIunits.AbsolutePressure Pfond
-    "Fluid pressure at the bottom of the drum";
-  Modelica.SIunits.SpecificEnthalpy hl "Liquid phase specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "Gas phase specific enthalpy";
-  Modelica.SIunits.Temperature Tl "Liquid phase temperature";
-  Modelica.SIunits.Temperature Tv "Gas phase temperature";
-  Modelica.SIunits.Temperature Tp(start=550) "Wall temperature";
-  Modelica.SIunits.Temperature Ta "External temperature";
-  Modelica.SIunits.Volume Vl "Liquid phase volume";
-  Modelica.SIunits.Volume Vv "Gas phase volume";
-  Modelica.SIunits.Area Alp "Liquid phase surface on contact with the wall";
-  Modelica.SIunits.Area Avp "Gas phase surface on contact with the wall";
-  Modelica.SIunits.Area Ape "Wall surface on contact with the outside";
+  Units.SI.AbsolutePressure P "Fluid average pressure";
+  Units.SI.AbsolutePressure Pfond "Fluid pressure at the bottom of the drum";
+  Units.SI.SpecificEnthalpy hl "Liquid phase specific enthalpy";
+  Units.SI.SpecificEnthalpy hv "Gas phase specific enthalpy";
+  Units.SI.Temperature Tl "Liquid phase temperature";
+  Units.SI.Temperature Tv "Gas phase temperature";
+  Units.SI.Temperature Tp(start=550) "Wall temperature";
+  Units.SI.Temperature Ta "External temperature";
+  Units.SI.Volume Vl "Liquid phase volume";
+  Units.SI.Volume Vv "Gas phase volume";
+  Units.SI.Area Alp "Liquid phase surface on contact with the wall";
+  Units.SI.Area Avp "Gas phase surface on contact with the wall";
+  Units.SI.Area Ape "Wall surface on contact with the outside";
   Real xl(start=0.5) "Mass vapor fraction in the liquid phase";
   Real xv(start=0) "Mass vapor fraction in the vapor phase";
   Real xmv(start=0.5) "Mass vapor fraction in the ascending tube";
-  Modelica.SIunits.Density rhol(start=996) "Liquid phase density";
-  Modelica.SIunits.Density rhov(start=1.5) "Gas phase density";
-  Modelica.SIunits.MassFlowRate BQl
+  Units.SI.Density rhol(start=996) "Liquid phase density";
+  Units.SI.Density rhov(start=1.5) "Gas phase density";
+  Units.SI.MassFlowRate BQl
     "Right hand side of the mass balance equation of the liquid phase";
-  Modelica.SIunits.MassFlowRate BQv
+  Units.SI.MassFlowRate BQv
     "Right hand side of the mass balance equation of the gas phase";
-  Modelica.SIunits.Power BHl
+  Units.SI.Power BHl
     "Right hand side of the energy balance equation of the liquid phase";
-  Modelica.SIunits.Power BHv
+  Units.SI.Power BHv
     "Right hand side of the energy balance equation of the gas phase";
-  Modelica.SIunits.MassFlowRate Qcond
+  Units.SI.MassFlowRate Qcond
     "Condensation mass flow rate from the vapor phase";
-  Modelica.SIunits.MassFlowRate Qevap
+  Units.SI.MassFlowRate Qevap
     "Evaporation mass flow rate from the liquid phase";
-  Modelica.SIunits.MassFlowRate Qv
-    "Steam mass flow rate from the riser";
-  Modelica.SIunits.Power Wlv
+  Units.SI.MassFlowRate Qv "Steam mass flow rate from the riser";
+  Units.SI.Power Wlv
     "Thermal power exchanged from the gas phase to the liquid phase";
-  Modelica.SIunits.Power Wpl
+  Units.SI.Power Wpl
     "Thermal power exchanged from the liquid phase to the wall";
-  Modelica.SIunits.Power Wpv
-    "Thermal power exchanged from the gas phase to the wall";
-  Modelica.SIunits.Power Wpa
-    "Thermal power exchanged from the outside to the wall";
-  Modelica.SIunits.Position zl(start=1.05) "Liquid level in drum";
-  Modelica.SIunits.Area Al "Cross sectional area of the liquid phase";
-  Modelica.SIunits.Angle theta "Angle";
-  Modelica.SIunits.Area Avl(start=1.0)
+  Units.SI.Power Wpv "Thermal power exchanged from the gas phase to the wall";
+  Units.SI.Power Wpa "Thermal power exchanged from the outside to the wall";
+  Units.SI.Position zl(start=1.05) "Liquid level in drum";
+  Units.SI.Area Al "Cross sectional area of the liquid phase";
+  Units.SI.Angle theta "Angle";
+  Units.SI.Area Avl(start=1.0)
     "Heat exchange surface between the liquid and gas phases";
 
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph prol

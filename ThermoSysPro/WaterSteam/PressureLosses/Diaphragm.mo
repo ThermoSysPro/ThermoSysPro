@@ -1,31 +1,31 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model Diaphragm "Diaphragm"
   parameter Real Ouv=0.5 "Diaphragm aperture";
-  parameter Modelica.SIunits.Diameter D=0.2 "Diaphragm diameter";
+  parameter Units.SI.Diameter D=0.2 "Diaphragm diameter";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Real khi "Hydraulic pressure loss coefficient";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Pressure loss";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.ReynoldsNumber Re "Reynolds number";
-  Modelica.SIunits.ReynoldsNumber Relim "Limit Reynolds number";
-  Modelica.SIunits.Density rho "Fluid density";
-  Modelica.SIunits.DynamicViscosity mu "Fluid dynamic viscosity";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Pressure loss";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.ReynoldsNumber Re "Reynolds number";
+  Units.SI.ReynoldsNumber Relim "Limit Reynolds number";
+  Units.SI.Density rho "Fluid density";
+  Units.SI.DynamicViscosity mu "Fluid dynamic viscosity";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure Pm "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
 public
   Connectors.FluidInlet C1
                           annotation (Placement(transformation(extent={{-110,

@@ -1,8 +1,7 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function prop2_Ph
-  "thermodynamics properties in region 2, independent variables p and h "
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+function prop2_Ph "Thermodynamics properties in region 2, independent variables p and h "
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph pro;
 

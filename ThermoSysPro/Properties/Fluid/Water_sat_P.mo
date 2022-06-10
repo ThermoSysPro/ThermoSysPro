@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.Fluid;
 function Water_sat_P
-  input Modelica.SIunits.AbsolutePressure P "Pressure";
+  input Units.SI.AbsolutePressure P "Pressure";
   input Integer fluid  "Fluid number - 1: IF97 - 7: SimpleWater";
 
   output ThermoSysPro.Properties.WaterSteam.Common.PropThermoSat lsat

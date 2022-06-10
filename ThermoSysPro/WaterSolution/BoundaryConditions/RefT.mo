@@ -1,6 +1,6 @@
 within ThermoSysPro.WaterSolution.BoundaryConditions;
 model RefT "Fixed temperature reference"
-  parameter Modelica.SIunits.Temperature T0=320 "Fixed fluid temperature";
+  parameter Units.SI.Temperature T0=320 "Fixed fluid temperature";
 
   Connectors.WaterSolutionInlet C1
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

@@ -1,18 +1,16 @@
 within ThermoSysPro.Correlations.Misc;
 record Pro_FlueGases
   "Flue gases properties for the computation of correlations"
-  Modelica.SIunits.Density rhoMF(start=0.5) "Flue gases average density";
-  Modelica.SIunits.SpecificHeatCapacity cpMF(start=500)
+  Units.SI.Density rhoMF(start=0.5) "Flue gases average density";
+  Units.SI.SpecificHeatCapacity cpMF(start=500)
     "Flue gases average specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muMF(start=1.e-5)
+  Units.SI.DynamicViscosity muMF(start=1.e-5)
     "Flue gases average dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity kMF(start=0.10)
+  Units.SI.ThermalConductivity kMF(start=0.10)
     "Flue gases average thermal conductivity";
-  Modelica.SIunits.SpecificHeatCapacity cpMFF(start=500)
-    "Film specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muMFF(start=1.e-5) "Film dynamic viscosity";
-  Modelica.SIunits.ThermalConductivity kMFF(start=0.10)
-    "Film thermal conductivity";
+  Units.SI.SpecificHeatCapacity cpMFF(start=500) "Film specific heat capacity";
+  Units.SI.DynamicViscosity muMFF(start=1.e-5) "Film dynamic viscosity";
+  Units.SI.ThermalConductivity kMFF(start=0.10) "Film thermal conductivity";
   Real Xtot " ";
 
   annotation (

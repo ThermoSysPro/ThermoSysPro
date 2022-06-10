@@ -5,9 +5,9 @@ model Mixer8 "Mixer with eight inlets"
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
-  Modelica.SIunits.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.Temperature T "Fluid temperature";
 
   Connectors.FluidInlet Ce5
     annotation (                             layer="icon", Placement(

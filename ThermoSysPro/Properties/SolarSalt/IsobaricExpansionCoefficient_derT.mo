@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.SolarSalt;
 function IsobaricExpansionCoefficient_derT
   "derivative of IsobaricExpansionCoefficient_T"
-  input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
   input Real der_temp "fluid temperature time derivative (K/s)";
   output Real der_beta "isobaric expansion coefficient time derivative (1/Ks)";
 protected

@@ -1,7 +1,8 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Pressure;
 function dpsat1h_h "Derivative of saturation pressure wrt. specific enthalpy"
- input Modelica.SIunits.SpecificEnthalpy h "Enthalpy";
- output Real dph "Pressure";
+  input Units.SI.SpecificEnthalpy h "Enthalpy";
+  output Real dph "Pressure";
+protected
   psat1_h_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

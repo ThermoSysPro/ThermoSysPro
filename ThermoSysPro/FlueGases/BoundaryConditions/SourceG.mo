@@ -6,9 +6,9 @@ model SourceG "General flue gas source"
   parameter Real Xso2=0.00 "SO2 mass fraction";
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid pressure";
-  Modelica.SIunits.MassFlowRate Q "Mass flow";
-  Modelica.SIunits.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P "Fluid pressure";
+  Units.SI.MassFlowRate Q "Mass flow";
+  Units.SI.Temperature T "Fluid temperature";
   Real Xn2 "N2 mas fraction";
 
 public

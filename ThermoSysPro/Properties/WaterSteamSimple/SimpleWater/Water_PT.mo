@@ -1,8 +1,9 @@
 within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_PT
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.Temperature T "Temperature";
   input Integer mode=0 "IF97 region. 0:automatic";
+
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_pT pro;
 
 protected
@@ -12,10 +13,7 @@ protected
 algorithm
   supercritical := (p > ThermoSysPro.Properties.WaterSteamSimple.critical.PCRIT);
 
-  region := ThermoSysPro.Properties.WaterSteamSimple.region_pT(
-    p,
-    T,
-    mode);
+  region := ThermoSysPro.Properties.WaterSteamSimple.region_pT(p, T, mode);
 
   if (region == 1) then
     ThermoSysPro.Properties.WaterSteamSimple.prop1_PT(p, T);

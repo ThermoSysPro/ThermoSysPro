@@ -7,20 +7,19 @@ function WBInternalSuperCriticalFlowHeatTransferCoefficient
         transformation(extent={{-26,-74},{-6,-54}}, rotation=0)));
   input Real geomt[6] "Geometrical data vector";
   input Real Gm "Water mass velocity at the inlet (kg/m2s)";
-  input Modelica.SIunits.AbsolutePressure Pmc "Water average pressure";
-  input Modelica.SIunits.Temperature Tmc "Water average temperature";
-  input Modelica.SIunits.Temperature Tpint "Wall temperature";
+  input Units.SI.AbsolutePressure Pmc "Water average pressure";
+  input Units.SI.Temperature Tmc "Water average temperature";
+  input Units.SI.Temperature Tpint "Wall temperature";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer hi
+  output Units.SI.CoefficientOfHeatTransfer hi
     "Internal heat transfer coefficient";
 
 protected
-  Modelica.SIunits.DynamicViscosity mul "Dynamic viscosity of the liquid phase";
-  Modelica.SIunits.SpecificHeatCapacity cpl
+  Units.SI.DynamicViscosity mul "Dynamic viscosity of the liquid phase";
+  Units.SI.SpecificHeatCapacity cpl
     "Specific heat capacity of the liquid phase";
-  Modelica.SIunits.ThermalConductivity kl
-    "Thermal conductivity of the liquid phase";
-  Modelica.SIunits.Diameter dtin "Pipes internal diameter";
+  Units.SI.ThermalConductivity kl "Thermal conductivity of the liquid phase";
+  Units.SI.Diameter dtin "Pipes internal diameter";
   Real Re "Reynolds number for the computation of hi";
   Real Pr "Prandtl number for the computation of hi";
   Real cor1 "Corrective coefficient for hi in the supercritical case";

@@ -3,21 +3,20 @@ model TwoPhaseCavityOnePipe "TwoPhaseCavity for one shell pass "
 
   parameter Boolean Vertical=true
     "true: vertical cylinder - false: horizontal cylinder";
-  parameter Modelica.SIunits.Radius R=1.05
-    "Radius of the Cavity cross-sectional area";
-  parameter Modelica.SIunits.Length L=16.27 "Cavity length";
-  parameter Modelica.SIunits.Length Lc=2.5
+  parameter Units.SI.Radius R=1.05 "Radius of the Cavity cross-sectional area";
+  parameter Units.SI.Length L=16.27 "Cavity length";
+  parameter Units.SI.Length Lc=2.5
     "support plate spacing in cooling zone(Chicanes)";
-  parameter Modelica.SIunits.Volume V=pi*R^2*L "Cavity volume";
-  parameter Modelica.SIunits.Volume Vmin=1.e-6;
+  parameter Units.SI.Volume V=pi*R^2*L "Cavity volume";
+  parameter Units.SI.Volume Vmin=1.e-6;
   parameter Real Vf0=0.5
     "Fraction of initial water volume in the Cavity (active if steady_state=false)";
   parameter Integer Ns=10 "Number of segments";
   parameter Integer NbTubT=10000 "Number of total pipes in Cavity";
   parameter Integer NbTubV=150 "Numbers of pipes in a vertical plan in Cavity";
-  parameter Modelica.SIunits.Length L2=25 "tubes length";
-  parameter Modelica.SIunits.Diameter Dext=0.020 "External pipe diameter";
-  parameter Modelica.SIunits.Pressure P0=1e5
+  parameter Units.SI.Length L2=25 "tubes length";
+  parameter Units.SI.Diameter Dext=0.020 "External pipe diameter";
+  parameter Units.SI.Pressure P0=1e5
     "Fluid initial pressure (active if steady_state=false)";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, Vl0)";
@@ -27,95 +26,87 @@ model TwoPhaseCavityOnePipe "TwoPhaseCavity for one shell pass "
     "Corrective terme for heat exchange coefficient between the vapor and the liquid Kvl (with a stagnation point Kcorr = 0.5)";
   parameter Boolean Cal_hcond=false
     "false : Condensation heat transfer coefficient = hcond (parameter) - true: calculate by Nusselt corelation";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hcond=8e3
+  parameter Units.SI.CoefficientOfHeatTransfer hcond=8e3
     "Heat transfer coefficient between the vapor and the cooling pipes ";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kpa=0.02
+  parameter Units.SI.CoefficientOfHeatTransfer Kpa=0.02
     "Heat exchange coefficient between the wall and the outside ambiant";
-  parameter Modelica.SIunits.Temperature Ta = 300 "External temperature";
-  parameter Modelica.SIunits.Mass Mp=50e3 "Wall mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpp=600 "Wall specific heat";
+  parameter Units.SI.Temperature Ta=300 "External temperature";
+  parameter Units.SI.Mass Mp=50e3 "Wall mass";
+  parameter Units.SI.SpecificHeatCapacity cpp=600 "Wall specific heat";
   parameter Boolean step_square=true
     "true: Step square  - false: Step triangular";
-  parameter Modelica.SIunits.PathLength Ls=L2/Ns "Section length for pipe";
-  parameter Modelica.SIunits.Area Surf_exe=pi*Dext*Ls*NbTubT
+  parameter Units.SI.PathLength Ls=L2/Ns "Section length for pipe";
+  parameter Units.SI.Area Surf_exe=pi*Dext*Ls*NbTubT
     "Section heat exchange surface";
-  parameter Modelica.SIunits.Area Surf_tot=Surf_exe*Ns
-    "Total heat exchange surface";
+  parameter Units.SI.Area Surf_tot=Surf_exe*Ns "Total heat exchange surface";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi;
 
 public
-  Modelica.SIunits.Pressure P(start=10000) "Fluid average pressure";
-  Modelica.SIunits.Pressure Pfond( start=11000)
+  Units.SI.Pressure P(start=10000) "Fluid average pressure";
+  Units.SI.Pressure Pfond(start=11000)
     "Fluid pressure at the bottom of the cavity";
-  Modelica.SIunits.SpecificEnthalpy hl(start=200e3)
-    "Liquid phase spepcific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv(start=250e3)
-    "Gas phase spepcific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hvIn(start=2400000)
+  Units.SI.SpecificEnthalpy hl(start=200e3) "Liquid phase spepcific enthalpy";
+  Units.SI.SpecificEnthalpy hv(start=250e3) "Gas phase spepcific enthalpy";
+  Units.SI.SpecificEnthalpy hvIn(start=2400000)
     "Steam average spepcific enthalpy input cavity";
-  Modelica.SIunits.Temperature Tl(start=310) "Liquid phase temperature";
-  Modelica.SIunits.Temperature Tv(start=320) "Gas phase temperature";
-  Modelica.SIunits.Volume Vl(start=100) "Liquid phase volume";
-  Modelica.SIunits.Volume Vv(start=2000) "Gas phase volume";
+  Units.SI.Temperature Tl(start=310) "Liquid phase temperature";
+  Units.SI.Temperature Tv(start=320) "Gas phase temperature";
+  Units.SI.Volume Vl(start=100) "Liquid phase volume";
+  Units.SI.Volume Vv(start=2000) "Gas phase volume";
   Real xl(start=0.5) "Mass vapor fraction in the liquid phase";
   Real xv(start=0) "Mass vapor fraction in the gas phase";
-  Modelica.SIunits.Density rhol(start=996) "Liquid phase density";
-  Modelica.SIunits.Density rhov(start=1.5) "Gas phase density";
-  Modelica.SIunits.MassFlowRate BQl
+  Units.SI.Density rhol(start=996) "Liquid phase density";
+  Units.SI.Density rhov(start=1.5) "Gas phase density";
+  Units.SI.MassFlowRate BQl
     "Right hand side of the mass balance equation of the liquid phase";
-  Modelica.SIunits.MassFlowRate BQv
+  Units.SI.MassFlowRate BQv
     "Right hand side of the mass balance equation of the gas phaser";
-  Modelica.SIunits.Power BHl
+  Units.SI.Power BHl
     "Right hand side of the energy balance equation of the liquid phase";
-  Modelica.SIunits.Power BHv
+  Units.SI.Power BHv
     "Right hand side of the energy balance equation of the gas phase";
-  Modelica.SIunits.MassFlowRate Qcond(start=1000)
+  Units.SI.MassFlowRate Qcond(start=1000)
     "Condensation mass flow rate from the vapor phase";
-  Modelica.SIunits.MassFlowRate QcondS(start=100)
+  Units.SI.MassFlowRate QcondS(start=100)
     " Splitter mass flow rate of the liquid phase from the input two phases";
-  Modelica.SIunits.Power Wvl
+  Units.SI.Power Wvl
     "Thermal power exchanged from the gas phase to the liquid phase";
-  Modelica.SIunits.Power Wlp
+  Units.SI.Power Wlp
     "Thermal power exchanged from the liquid phase to the wall";
-  Modelica.SIunits.Power Wvp
-    "Thermal power exchanged from the gas phase to the wall";
-  Modelica.SIunits.Power Wpa "Thermal power losses to ambiant";
-  Modelica.SIunits.Power dW[Ns](start=fill(10e5, Ns))
+  Units.SI.Power Wvp "Thermal power exchanged from the gas phase to the wall";
+  Units.SI.Power Wpa "Thermal power losses to ambiant";
+  Units.SI.Power dW[Ns](start=fill(10e5, Ns))
     "Power exchange between the wall and the fluid in each section side 3";
-  Modelica.SIunits.Power Wt "Total power exchanged on the water side 3";
-  Modelica.SIunits.Power Wt2( start= 0) "Total power exchanged Deheating zone";
-  Modelica.SIunits.Temperature Tp1[Ns](start=fill(320, Ns))
+  Units.SI.Power Wt "Total power exchanged on the water side 3";
+  Units.SI.Power Wt2(start=0) "Total power exchanged Deheating zone";
+  Units.SI.Temperature Tp1[Ns](start=fill(320, Ns))
     "Wall temperature in section i of side 1";
-  Modelica.SIunits.Temperature Tp(start= 320) "Wall temperature of cavity";
-  Modelica.SIunits.Position zl(start=1.05) "Liquid level in Cavity";
-  Modelica.SIunits.Area Al "Cross sectional area of the liquid phase";
-  Modelica.SIunits.Angle theta "Angle";
-  Modelica.SIunits.Area Avl(start=1.0)
+  Units.SI.Temperature Tp(start=320) "Wall temperature of cavity";
+  Units.SI.Position zl(start=1.05) "Liquid level in Cavity";
+  Units.SI.Area Al "Cross sectional area of the liquid phase";
+  Units.SI.Angle theta "Angle";
+  Units.SI.Area Avl(start=1.0)
     "Heat exchange surface between the liquid and gas phases";
-  Modelica.SIunits.Area Alp "Liquid phase surface on contact with the wall";
-  Modelica.SIunits.Area Avp "Gas phase surface on contact with the wall";
-  Modelica.SIunits.Area Ape "Wall surface on contact with the outside";
-  Modelica.SIunits.ReynoldsNumber Rel(start= 6.e4) "liquid Reynolds number";
-  Modelica.SIunits.ReynoldsNumber Rev(start= 6.e3) "Steam Reynolds number";
-  Modelica.SIunits.ReynoldsNumber Revl(start= 6.e3)
-    "Steam liquid Reynolds number";
-  Modelica.SIunits.ThermalConductivity kl(start=1)
-    "liquid thermal conductivity";
-  Modelica.SIunits.ThermalConductivity kv(start=1) "steam thermal conductivity";
-  Modelica.SIunits.DynamicViscosity mul(start=2.e-4)
-    "liquid dynamic viscosity ";
-  Modelica.SIunits.DynamicViscosity muv(start=2.e-5) "steam dynamic viscosity ";
-  Modelica.SIunits.CoefficientOfHeatTransfer hcond3[Ns](start=fill(1e4, Ns))
+  Units.SI.Area Alp "Liquid phase surface on contact with the wall";
+  Units.SI.Area Avp "Gas phase surface on contact with the wall";
+  Units.SI.Area Ape "Wall surface on contact with the outside";
+  Units.SI.ReynoldsNumber Rel(start=6.e4) "liquid Reynolds number";
+  Units.SI.ReynoldsNumber Rev(start=6.e3) "Steam Reynolds number";
+  Units.SI.ReynoldsNumber Revl(start=6.e3) "Steam liquid Reynolds number";
+  Units.SI.ThermalConductivity kl(start=1) "liquid thermal conductivity";
+  Units.SI.ThermalConductivity kv(start=1) "steam thermal conductivity";
+  Units.SI.DynamicViscosity mul(start=2.e-4) "liquid dynamic viscosity ";
+  Units.SI.DynamicViscosity muv(start=2.e-5) "steam dynamic viscosity ";
+  Units.SI.CoefficientOfHeatTransfer hcond3[Ns](start=fill(1e4, Ns))
     "Heat transfer coefficient between the vapor and the cooling pipes 2";
-  Modelica.SIunits.CoefficientOfHeatTransfer Kvl(start=10)
+  Units.SI.CoefficientOfHeatTransfer Kvl(start=10)
     "Heat exchange coefficient between the liquid and gas phases";
-  Modelica.SIunits.CoefficientOfHeatTransfer Klp(start=10)
+  Units.SI.CoefficientOfHeatTransfer Klp(start=10)
     "Heat exchange coefficient between the liquid phase and the wall";
-  Modelica.SIunits.CoefficientOfHeatTransfer Kvp(start=10)
+  Units.SI.CoefficientOfHeatTransfer Kvp(start=10)
     "Heat exchange coefficient between the gas phase and the wall";
 
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph prol

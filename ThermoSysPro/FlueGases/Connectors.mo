@@ -1,11 +1,10 @@
 within ThermoSysPro.FlueGases;
 package Connectors "Connectors"
   connector FlueGasesOutlet "Flue gases outlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T(start=300)
-      "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=100)
+    Units.SI.Temperature T(start=300) "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q(start=100)
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xco2(start=0.01)
       "CO2 mass fraction of the fluid crossing the boundary of the control volume";
@@ -51,11 +50,10 @@ package Connectors "Connectors"
   end FlueGasesOutlet;
 
   connector FlueGasesInlet "Flue gases inlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T(start=300)
-      "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=100)
+    Units.SI.Temperature T(start=300) "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q(start=100)
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xco2(start=0.01)
       "CO2 mass fraction of the fluid crossing the boundary of the control volume";
@@ -101,11 +99,10 @@ package Connectors "Connectors"
   end FlueGasesInlet;
 
   connector FlueGasesInletI "Internal flue gases inlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T(start=300)
-      "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=100)
+    Units.SI.Temperature T(start=300) "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q(start=100)
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xco2(start=0.01)
       "CO2 mass fraction of the fluid crossing the boundary of the control volume";
@@ -151,11 +148,10 @@ package Connectors "Connectors"
   end FlueGasesInletI;
 
   connector FlueGasesOutletI "Internal flue gases outlet fluid connector"
-    Modelica.SIunits.AbsolutePressure P(start=1.e5)
+    Units.SI.AbsolutePressure P(start=1.e5)
       "Fluid pressure in the control volume";
-    Modelica.SIunits.Temperature T(start=300)
-      "Fluid temperature in the control volume";
-    Modelica.SIunits.MassFlowRate Q(start=100)
+    Units.SI.Temperature T(start=300) "Fluid temperature in the control volume";
+    Units.SI.MassFlowRate Q(start=100)
       "Mass flow of the fluid crossing the boundary of the control volume";
     Real Xco2(start=0.01)
       "CO2 mass fraction of the fluid crossing the boundary of the control volume";
@@ -199,7 +195,6 @@ package Connectors "Connectors"
 </ul>
 </html>"));
   end FlueGasesOutletI;
-
   annotation (Icon(graphics={
         Text(
           extent={{-102,0},{24,-26}},

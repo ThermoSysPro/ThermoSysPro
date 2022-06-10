@@ -1,22 +1,20 @@
 within ThermoSysPro.Thermal.HeatTransfer;
 model HeatExchangerWallWithLosses "Heat exchanger wall"
-  parameter Modelica.SIunits.Length L=10 "Tube length";
-  parameter Modelica.SIunits.Diameter D=0.03 "Internal tube diameter";
-  parameter Modelica.SIunits.Diameter D_rec=24 "receiver diameter";
-  parameter Modelica.SIunits.Diameter L_rec=10
-    "receiver height (characteristic length";
-  parameter Modelica.SIunits.Thickness e=2.e-3 "Wall thickness";
+  parameter Units.SI.Length L=10 "Tube length";
+  parameter Units.SI.Diameter D=0.03 "Internal tube diameter";
+  parameter Units.SI.Diameter D_rec=24 "receiver diameter";
+  parameter Units.SI.Diameter L_rec=10 "receiver height (characteristic length";
+  parameter Units.SI.Thickness e=2.e-3 "Wall thickness";
   parameter Real Sc=0.5
     "Decrease factor of the external heat exchange surface for Solar Receiver or Boiler ";
 
-  parameter Modelica.SIunits.ThermalConductivity lambda=21
+  parameter Units.SI.ThermalConductivity lambda=21
     "Thermal conductivity of the pipes";
   parameter Real Eps=0.6 "Tube emissivity";
-  parameter Modelica.SIunits.Thickness e_ins=0.1 "Insulation thickness";
-  parameter Modelica.SIunits.ThermalConductivity lambda_ins=0.035
+  parameter Units.SI.Thickness e_ins=0.1 "Insulation thickness";
+  parameter Units.SI.ThermalConductivity lambda_ins=0.035
     "Equivalent thermal conductivity of Insulation + pipes";
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
 
   parameter Real hcCorr1=1.00
     "Corrective term for Forced convection losses coefficient for each node";
@@ -24,10 +22,9 @@ model HeatExchangerWallWithLosses "Heat exchanger wall"
     "Corrective term for Natural convection losses coefficient for each node";
 
   parameter Integer Ns=1 "Number of sections inside the wall";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpw=480
-    "Wall specific heat capacity";
-  parameter Modelica.SIunits.Density rhow=7800 "Wall density";
-  parameter Modelica.SIunits.Temperature T0=350
+  parameter Units.SI.SpecificHeatCapacity cpw=480 "Wall specific heat capacity";
+  parameter Units.SI.Density rhow=7800 "Wall density";
+  parameter Units.SI.Temperature T0=350
     "Initial temperature (active if steady_state=false)";
 
   parameter Boolean steady_state=true
@@ -37,51 +34,48 @@ model HeatExchangerWallWithLosses "Heat exchanger wall"
 protected
   constant Real pi=Modelica.Constants.pi "pi";
   constant Real sigma=5.67e-8 "Bolzmann constant";
-  parameter Modelica.SIunits.Length dx=L/Ns "Section length";
+  parameter Units.SI.Length dx=L/Ns "Section length";
   parameter Real ksD=(D+2*e)/(2*D_rec) "apparent roughness of the receiver";
-  parameter Modelica.SIunits.Mass dM=ntubes*rhow*pi*((D + 2*e)^2 - D^2)/4*dx
+  parameter Units.SI.Mass dM=ntubes*rhow*pi*((D + 2*e)^2 - D^2)/4*dx
     "Wall section mass";
 public
-  Modelica.SIunits.Power dW1[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
+  Units.SI.Power dW1[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
     "Power in section i of side 1";
-  Modelica.SIunits.Power dW2[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
+  Units.SI.Power dW2[Ns](start=fill(3.e5, Ns), nominal=fill(3.e5, Ns))
     "Power in section i of side 2";
-  Modelica.SIunits.Power WRad[Ns](start=fill(0,Ns))
-    "Radiation of the wall layer";
-  Modelica.SIunits.Power WConv[Ns](start=fill(0,Ns))
-    "Convection of the wall layer";
- Modelica.SIunits.Power Wrad_Total;
- Modelica.SIunits.Power Wconv_Total;
-  Modelica.SIunits.Temperature Tatm(start=300) "Atmospheric temperature";
-  Modelica.SIunits.Temperature Tfilm(start=300) "mean fluid temperature";
-  Modelica.SIunits.ThermalConductivity lambda_air( start=0.03)
+  Units.SI.Power WRad[Ns](start=fill(0, Ns)) "Radiation of the wall layer";
+  Units.SI.Power WConv[Ns](start=fill(0, Ns)) "Convection of the wall layer";
+  Units.SI.Power Wrad_Total;
+  Units.SI.Power Wconv_Total;
+  Units.SI.Temperature Tatm(start=300) "Atmospheric temperature";
+  Units.SI.Temperature Tfilm(start=300) "mean fluid temperature";
+  Units.SI.ThermalConductivity lambda_air(start=0.03)
     "Air thermal conductivity";
-  Modelica.SIunits.Density rho_air( start=1) "Air density";
-  Modelica.SIunits.Density mu_air( start=1e-6) "Air viscosity";
-  Modelica.SIunits.Temperature Tsky(start=300) "Sky temperature";
-  Modelica.SIunits.Temperature Tp1[Ns](start=fill(300, Ns))
+  Units.SI.Density rho_air(start=1) "Air density";
+  Units.SI.Density mu_air(start=1e-6) "Air viscosity";
+  Units.SI.Temperature Tsky(start=300) "Sky temperature";
+  Units.SI.Temperature Tp1[Ns](start=fill(300, Ns))
     "Wall temperature in section i of side 1";
-  Modelica.SIunits.Temperature Tp2[Ns](start=fill(300, Ns))
+  Units.SI.Temperature Tp2[Ns](start=fill(300, Ns))
     "Wall temperature in section i of side 2";
-  Modelica.SIunits.Temperature Tp[Ns](start=fill(300, Ns))
+  Units.SI.Temperature Tp[Ns](start=fill(300, Ns))
     "Average wall temperature in section i";
-  Modelica.SIunits.Temperature Tpm(start=300) "Average wall temperature";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc_n[Ns](start=fill(5, Ns))
+  Units.SI.Temperature Tpm(start=300) "Average wall temperature";
+  Units.SI.CoefficientOfHeatTransfer hc_n[Ns](start=fill(5, Ns))
     "Natural Convection losses coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc_f(start=11)
+  Units.SI.CoefficientOfHeatTransfer hc_f(start=11)
     "Forced Convection losses coefficient";
-Modelica.SIunits.CoefficientOfHeatTransfer hc_f1(start=11)
+  Units.SI.CoefficientOfHeatTransfer hc_f1(start=11)
     "Forced Convection losses coefficient";
-Modelica.SIunits.CoefficientOfHeatTransfer hc_f2(start=11)
+  Units.SI.CoefficientOfHeatTransfer hc_f2(start=11)
     "Forced Convection losses coefficient";
-Modelica.SIunits.CoefficientOfHeatTransfer hc_f3(start=11)
+  Units.SI.CoefficientOfHeatTransfer hc_f3(start=11)
     "Forced Convection losses coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc[Ns](start=fill(5, Ns))
+  Units.SI.CoefficientOfHeatTransfer hc[Ns](start=fill(5, Ns))
     "Mixed Convection losses coefficient";
-  Modelica.SIunits.Velocity v_wind(start=2) "Wind Velocity";
-  Modelica.SIunits.ReynoldsNumber Re(start=6.e4) "Fluid Reynolds number ";
-  Modelica.SIunits.GrashofNumber Gr[Ns](start=fill(1.e9, Ns))
-    "Fluid Grashof number ";
+  Units.SI.Velocity v_wind(start=2) "Wind Velocity";
+  Units.SI.ReynoldsNumber Re(start=6.e4) "Fluid Reynolds number ";
+  Units.SI.GrashofNumber Gr[Ns](start=fill(1.e9, Ns)) "Fluid Grashof number ";
  //Modelica.SIunits.Power WLosses[Ns](start=fill(10,Ns));
 
   ThermoSysPro.Thermal.Connectors.ThermalPort WT2[Ns] "Side 2"

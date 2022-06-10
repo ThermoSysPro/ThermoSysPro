@@ -1,27 +1,27 @@
 within ThermoSysPro.WaterSteam.PressureLosses;
 model NonBoilingValve "Non boiling valve"
-  parameter ThermoSysPro.Units.DifferentialPressure Psecu=1.e4
+  parameter ThermoSysPro.Units.SI.PressureDifference Psecu=1.e4
     "Security margin to avoid boiling";
-  parameter Modelica.SIunits.SpecificEnthalpy Hmax=5.e6
+  parameter Units.SI.SpecificEnthalpy Hmax=5.e6
     "Fluid maximum specific enthalpy";
-  parameter Modelica.SIunits.SpecificEnthalpy Hmin=6.e4
+  parameter Units.SI.SpecificEnthalpy Hmin=6.e4
     "Fluid minimum specific enthalpy";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
 
 protected
-  constant Modelica.SIunits.AbsolutePressure Pcrit=220.64e5 "Critical pressure";
+  constant Units.SI.AbsolutePressure Pcrit=220.64e5 "Critical pressure";
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  Modelica.SIunits.AbsolutePressure Pebul(start=1.e5)
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  Units.SI.AbsolutePressure Pebul(start=1.e5)
     "Fluid saturation pressure corresponding to Pec";
-  Modelica.SIunits.AbsolutePressure Pec(start=5.e5) "Pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Psc(start=5.e5) "Pressure at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hec(start=50.e4)
+  Units.SI.AbsolutePressure Pec(start=5.e5) "Pressure at the inlet";
+  Units.SI.AbsolutePressure Psc(start=5.e5) "Pressure at the outlet";
+  Units.SI.SpecificEnthalpy Hec(start=50.e4)
     "Specific fluid enthalpy at the inlet";
 
 public

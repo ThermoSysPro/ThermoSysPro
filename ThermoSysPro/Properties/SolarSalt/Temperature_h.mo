@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Temperature_h
-    input Modelica.SIunits.SpecificEnthalpy h "Enthalpy (J/kg)";
-    output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.SpecificEnthalpy h "Enthalpy (J/kg)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
     constant Real enthC0 = -798297.6386;
     constant Real enthC1 = 1396.02;

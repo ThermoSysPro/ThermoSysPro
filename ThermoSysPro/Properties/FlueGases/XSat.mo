@@ -4,8 +4,8 @@ function XSat
 // Fonction  de l'humidité absolue a saturation xs(T)
 // Tair en °K, attention formule avec T en °C
 //---------------------------------------------------------------------------
-  input Modelica.SIunits.Temperature Tair "Air temperature";
-  input Modelica.SIunits.AbsolutePressure Patm "Atmospheric pressure";
+  input Units.SI.Temperature Tair "Air temperature";
+  input Units.SI.AbsolutePressure Patm "Atmospheric pressure";
 
 public
   output Real xs "Humidity at the saturation point";
@@ -14,7 +14,7 @@ protected
   Real Ps;
   Real Ps0;
   Real TT;
-  ThermoSysPro.Units.Temperature_degC T "Air temperature in Celsius";
+  ThermoSysPro.Units.nonSI.Temperature_degC T "Air temperature in Celsius";
 algorithm
   T := Tair - 273.16;
 

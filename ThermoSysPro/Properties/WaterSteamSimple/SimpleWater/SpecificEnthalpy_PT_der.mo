@@ -1,13 +1,14 @@
 ﻿within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function SpecificEnthalpy_PT_der
-  input Modelica.SIunits.AbsolutePressure p "pressure";
-  input Modelica.SIunits.Temperature   T "Temperature";
+  input Units.SI.AbsolutePressure p "pressure";
+  input Units.SI.Temperature T "Temperature";
   input Integer mode = 0 "Région IF97 - 0:calcul automatique";
 
   input Real p_der "Pression";
   input Real T_der "Température";
 
   output Real h_der "specific enthalpy";
+
 protected
   Integer region;
   Boolean supercritical;
@@ -17,10 +18,7 @@ protected
 algorithm
   supercritical := (p > ThermoSysPro.Properties.WaterSteamSimple.critical.PCRIT);
 
-  region := ThermoSysPro.Properties.WaterSteamSimple.region_pT(
-    p,
-    T,
-    mode);
+  region := ThermoSysPro.Properties.WaterSteamSimple.region_pT(p, T, mode);
 
   // Partial derivatives
   if (region == 1) then

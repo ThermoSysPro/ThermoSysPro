@@ -3,8 +3,8 @@ function Temperature_h
   "Temperature computation for Dry Air Ideal Gas (input h)"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
-  output Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.SpecificEnthalpy h "Specific Enthalpy (J/kg)";
+  output Units.SI.Temperature T "Temperature (K)";
 
 protected
   constant Real C[6] = {302.45170074922396, 0.0009955239553877519,-2.3667518904940937e-11,-1.6218505689880788e-16,1.5436079535175405e-22,-4.4309458281550505e-29};

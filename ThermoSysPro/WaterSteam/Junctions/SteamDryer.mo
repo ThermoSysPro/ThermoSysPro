@@ -6,8 +6,8 @@ model SteamDryer "Steam dryer"
     "IF97 region at the inlet. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
   Real xe(start=1.0) "Vapor mass fraction at the inlet";
 
 public

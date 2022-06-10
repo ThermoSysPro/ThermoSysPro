@@ -1,74 +1,64 @@
 within ThermoSysPro.WaterSteam.Volumes;
 model Pressurizer "Pressurizer"
-  parameter Modelica.SIunits.Volume V=61.1 "Pressurizer volume";
-  parameter Modelica.SIunits.Radius Rp=1.265
-    "Pressurizer cross-sectional radius";
-  parameter Modelica.SIunits.Area Ae=1 "Wall surface";
-  parameter Modelica.SIunits.Position Zm=10.15
-    "Hauteur de la gamme de mesure niveau";
+  parameter Units.SI.Volume V=61.1 "Pressurizer volume";
+  parameter Units.SI.Radius Rp=1.265 "Pressurizer cross-sectional radius";
+  parameter Units.SI.Area Ae=1 "Wall surface";
+  parameter Units.SI.Position Zm=10.15 "Hauteur de la gamme de mesure niveau";
   parameter Real Yw0=50
     "Initial water level - percent of the measure scale level (active if steady_state=false)";
-  parameter Modelica.SIunits.AbsolutePressure P0=155e5
+  parameter Units.SI.AbsolutePressure P0=155e5
     "Initial fluid pressure (active if steady_state=false)";
   parameter Real Ccond=0.1 "Condensation coefficient";
   parameter Real Cevap=0.1 "Evaporation coefficient";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Klv=0.5e6
+  parameter Units.SI.CoefficientOfHeatTransfer Klv=0.5e6
     "Heat exchange coefficient between the liquid and gas phases";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Klp=50000
+  parameter Units.SI.CoefficientOfHeatTransfer Klp=50000
     "Heat exchange coefficient between the liquid phase and the wall";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kvp=25
+  parameter Units.SI.CoefficientOfHeatTransfer Kvp=25
     "Heat exchange coefficient between the gas phase and the wall";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kpa=542
+  parameter Units.SI.CoefficientOfHeatTransfer Kpa=542
     "Heat exchange coefficient between the wall and the outside";
-  parameter Modelica.SIunits.Mass Mp=117e3 "Wall mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cpp=600 "Wall specific heat";
+  parameter Units.SI.Mass Mp=117e3 "Wall mass";
+  parameter Units.SI.SpecificHeatCapacity cpp=600 "Wall specific heat";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from (P0, Yw0)";
 
 protected
   constant Real pi=Modelica.Constants.pi "Pi";
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
-  parameter Modelica.SIunits.Area Ap=pi*Rp*Rp
-    "Pressurizer cross-sectional area";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
+  parameter Units.SI.Area Ap=pi*Rp*Rp "Pressurizer cross-sectional area";
 
 public
-  Modelica.SIunits.Area Slpin
-    "Exchange surface between the liquid and the wall";
-  Modelica.SIunits.Area Svpin "Exchange surface between the vapor and the wall";
+  Units.SI.Area Slpin "Exchange surface between the liquid and the wall";
+  Units.SI.Area Svpin "Exchange surface between the vapor and the wall";
   Real Yw(start=50) "Liquid level as a percent of the measure scale";
   Real y(start=0.5) "Liquid level as a proportion of the measure scale";
-  Modelica.SIunits.Position Zl(start=20) "Liquid level in the pressurizer";
-  Modelica.SIunits.Volume Vl "Liquid phase volume";
-  Modelica.SIunits.Volume Vv "Gas phase volume";
-  Modelica.SIunits.AbsolutePressure P(start=155.0e5) "Average fluid pressure";
-  Modelica.SIunits.AbsolutePressure Pfond
-    "Fluid pressure at the bottom of the drum";
-  Modelica.SIunits.SpecificEnthalpy hl "Liquid phase specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "Gas phase specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hls
-    "Liquid phase saturation specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hvs
-    "Gas phase saturation specific enthalpy";
-  Modelica.SIunits.Temperature Tl "Liquid phase temperature";
-  Modelica.SIunits.Temperature Tv "Gas phase temperature";
-  Modelica.SIunits.Temperature Tp(start=617.24) "Wall temperature";
-  Modelica.SIunits.Temperature Ta "External temperature";
-  Modelica.SIunits.Power Wlv
+  Units.SI.Position Zl(start=20) "Liquid level in the pressurizer";
+  Units.SI.Volume Vl "Liquid phase volume";
+  Units.SI.Volume Vv "Gas phase volume";
+  Units.SI.AbsolutePressure P(start=155.0e5) "Average fluid pressure";
+  Units.SI.AbsolutePressure Pfond "Fluid pressure at the bottom of the drum";
+  Units.SI.SpecificEnthalpy hl "Liquid phase specific enthalpy";
+  Units.SI.SpecificEnthalpy hv "Gas phase specific enthalpy";
+  Units.SI.SpecificEnthalpy hls "Liquid phase saturation specific enthalpy";
+  Units.SI.SpecificEnthalpy hvs "Gas phase saturation specific enthalpy";
+  Units.SI.Temperature Tl "Liquid phase temperature";
+  Units.SI.Temperature Tv "Gas phase temperature";
+  Units.SI.Temperature Tp(start=617.24) "Wall temperature";
+  Units.SI.Temperature Ta "External temperature";
+  Units.SI.Power Wlv
     "Thermal power exchanged from the gas phase to the liquid phase";
-  Modelica.SIunits.Power Wpl
+  Units.SI.Power Wpl
     "Thermal power exchanged from the liquid phase to the wall";
-  Modelica.SIunits.Power Wpv
-    "Thermal power exchanged from the gas phase to the wall";
-  Modelica.SIunits.Power Wpa
-    "Thermal power exchanged from the outside to the wall";
-  Modelica.SIunits.Power Wch "Power released by the electrical heaters";
-  Modelica.SIunits.MassFlowRate Qcond
+  Units.SI.Power Wpv "Thermal power exchanged from the gas phase to the wall";
+  Units.SI.Power Wpa "Thermal power exchanged from the outside to the wall";
+  Units.SI.Power Wch "Power released by the electrical heaters";
+  Units.SI.MassFlowRate Qcond
     "Condensation mass flow rate from the vapor phase";
-  Modelica.SIunits.MassFlowRate Qevap
+  Units.SI.MassFlowRate Qevap
     "Evaporation mass flow rate from the liquid phase";
-  Modelica.SIunits.Density rhol(start=996) "Liquid phase density";
-  Modelica.SIunits.Density rhov(start=1.5) "Vapor phase density";
+  Units.SI.Density rhol(start=996) "Liquid phase density";
+  Units.SI.Density rhov(start=1.5) "Vapor phase density";
 
   Connectors.FluidInlet Cas "Water input"
                                  annotation (Placement(transformation(extent={{

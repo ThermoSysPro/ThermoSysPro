@@ -1,8 +1,8 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model Bend "Bend"
-  parameter Modelica.SIunits.Diameter D=0.2 "Pipe diameter";
-  parameter Modelica.SIunits.Radius R0=0.2 "Pipe radius";
-  parameter ThermoSysPro.Units.Angle_deg delta= 90 "Pipe angle";
+  parameter Units.SI.Diameter D=0.2 "Pipe diameter";
+  parameter Units.SI.Radius R0=0.2 "Pipe radius";
+  parameter ThermoSysPro.Units.nonSI.Angle_deg delta=90 "Pipe angle";
   parameter Real rugosrel=0 "Pipe roughness";
   parameter Boolean K_A1_Tabule=true
     "true: A1 is computed using linear interpolation - false: A1 is computed using correlation formula";
@@ -11,14 +11,14 @@ model Bend "Bend"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
@@ -26,19 +26,19 @@ public
   Real khim "Singular pressure loss coefficient";
   Real khif "Friction pressure loss coefficient";
   Real kdelta "Roughness factor for the singular pressure loss";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Presure loss";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.ReynoldsNumber Re "Reynolds number";
-  Modelica.SIunits.ReynoldsNumber Relim "Limit Reynolds number";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Presure loss";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.ReynoldsNumber Re "Reynolds number";
+  Units.SI.ReynoldsNumber Relim "Limit Reynolds number";
   Real yA1 "Output of table A1";
   Real yB1 "Output of table B1";
   Real yC1 "Output of table C1";
   Real lambda "Friction pressure loss coefficient";
-  Modelica.SIunits.Density rho "Fluid density";
-  Modelica.SIunits.DynamicViscosity mu "Fluid dynamic viscosity";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  Units.SI.Density rho "Fluid density";
+  Units.SI.DynamicViscosity mu "Fluid dynamic viscosity";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure Pm "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
 
 
 public

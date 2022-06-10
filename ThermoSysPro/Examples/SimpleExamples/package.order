@@ -87,6 +87,8 @@ TestSteamDryer1
 TestSteamDryer2
 TestSteamEngine
 TestSteamExtractionSplitter
+TestSteamGenerator_1SG
+TestSteamGenerator_4SG
 TestStodolaTurbine
 TestStodolaTurbine1
 TestStodolaTurbine2

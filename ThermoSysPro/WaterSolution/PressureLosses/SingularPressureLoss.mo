@@ -1,16 +1,16 @@
 within ThermoSysPro.WaterSolution.PressureLosses;
 model SingularPressureLoss "Singular pressure loss"
   parameter Real K=10 "Friction pressure loss coefficient";
-  parameter Modelica.SIunits.Density rho=1000 "Fluid density";
+  parameter Units.SI.Density rho=1000 "Fluid density";
 
 protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
 
 public
-  ThermoSysPro.Units.DifferentialPressure deltaPf(start=1.e2)
+  ThermoSysPro.Units.SI.PressureDifference deltaPf(start=1.e2)
     "Friction pressure loss";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
 
   ThermoSysPro.WaterSolution.Connectors.WaterSolutionInlet C1
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}, rotation=

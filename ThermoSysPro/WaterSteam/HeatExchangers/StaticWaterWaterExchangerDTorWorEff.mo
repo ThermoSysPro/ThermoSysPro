@@ -3,23 +3,23 @@ model StaticWaterWaterExchangerDTorWorEff
   "Static water/water heat exchanger with fixed delta temperature, delta power or efficiency"
   parameter Integer exchanger_type=1
     "Exchanger type - 1: Delta temperature is fixed - 2: delta power is fixed - 3: efficiency is fixed";
-  parameter ThermoSysPro.Units.DifferentialTemperature DTfroid=0
+  parameter ThermoSysPro.Units.SI.TemperatureDifference DTfroid=0
     "Temperature difference between the cold inlet and the cold outlet (active if exchanger_type=1)";
-  parameter Modelica.SIunits.Power DW=0
+  parameter Units.SI.Power DW=0
     "Power increase on the cold side (active if exchanger_type=2)";
   parameter Real EffEch=0.9
     "Thermal exchange efficiency (=W/Wmax) (active if exchanger_type=3)";
   parameter Real Kc=10 "Pressure loss coefficient for the hot fluid";
   parameter Real Kf=10 "Pressure loss coefficient for the cold fluid";
-  parameter Modelica.SIunits.Position z1c=0 "Hot inlet altitude";
-  parameter Modelica.SIunits.Position z2c=0 "Hot outlet altitude";
-  parameter Modelica.SIunits.Position z1f=0 "Cold inlet altitude";
-  parameter Modelica.SIunits.Position z2f=0 "Cold outlet altitude";
+  parameter Units.SI.Position z1c=0 "Hot inlet altitude";
+  parameter Units.SI.Position z2c=0 "Hot outlet altitude";
+  parameter Units.SI.Position z1f=0 "Cold inlet altitude";
+  parameter Units.SI.Position z2f=0 "Cold outlet altitude";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
-  parameter Modelica.SIunits.Density p_rhoc=0
+  parameter Units.SI.Density p_rhoc=0
     "If > 0, fixed fluid density for the hot fluid";
-  parameter Modelica.SIunits.Density p_rhof=0
+  parameter Units.SI.Density p_rhof=0
     "If > 0, fixed fluid density for the cold fluid";
   parameter Integer modec=0
     "IF97 region of the water for the hot fluid. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
@@ -29,42 +29,41 @@ model StaticWaterWaterExchangerDTorWorEff
     "IF97 region of the water for the cold fluid. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
 
 public
-  Modelica.SIunits.Power W(start=1e6)
+  Units.SI.Power W(start=1e6)
     "Power exchanged from the hot fluid to the cold fluid";
-  Modelica.SIunits.Temperature Tec(start=500)
+  Units.SI.Temperature Tec(start=500)
     "Fluid temperature at the inlet of the hot side";
-  Modelica.SIunits.Temperature Tsc(start=400)
+  Units.SI.Temperature Tsc(start=400)
     "Fluid temperature at the outlet of the hot side";
-  Modelica.SIunits.Temperature Tef(start=350)
+  Units.SI.Temperature Tef(start=350)
     "Fluid temperature at the inlet of the cold side";
-  Modelica.SIunits.Temperature Tsf(start=450)
+  Units.SI.Temperature Tsf(start=450)
     "Fluid temperature at the outlet of the cold side";
-  Modelica.SIunits.Temperature Tsatsf
+  Units.SI.Temperature Tsatsf
     "Saturation temperature at the outlet of the cold side";
-  ThermoSysPro.Units.DifferentialPressure DPfc(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPfc(start=1e3)
     "Friction pressure loss for the hot fluid";
-  ThermoSysPro.Units.DifferentialPressure DPgc(start=1e2)
+  ThermoSysPro.Units.SI.PressureDifference DPgc(start=1e2)
     "Gravity pressure loss for the hot fluid";
-  ThermoSysPro.Units.DifferentialPressure DPc( start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPc(start=1e3)
     "Total pressure loss for the hot fluid";
-  ThermoSysPro.Units.DifferentialPressure DPff(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPff(start=1e3)
     "Friction pressure loss for the cold fluid";
-  ThermoSysPro.Units.DifferentialPressure DPgf(start=1e2)
+  ThermoSysPro.Units.SI.PressureDifference DPgf(start=1e2)
     "Gravity pressure loss for the cold fluid";
-  ThermoSysPro.Units.DifferentialPressure DPf( start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference DPf(start=1e3)
     "Total pressure loss for the cold fluid";
-  Modelica.SIunits.Density rhoc(start=998) "Hot fluid density";
-  Modelica.SIunits.Density rhof(start=998) "Cold fluid density";
-  Modelica.SIunits.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
-  Modelica.SIunits.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
+  Units.SI.Density rhoc(start=998) "Hot fluid density";
+  Units.SI.Density rhof(start=998) "Cold fluid density";
+  Units.SI.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
+  Units.SI.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
 
 public
   Connectors.FluidInlet Ec "Hot inlet"

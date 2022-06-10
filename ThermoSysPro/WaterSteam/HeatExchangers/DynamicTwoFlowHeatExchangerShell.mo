@@ -3,12 +3,12 @@ model DynamicTwoFlowHeatExchangerShell
   "Dynamic exchanger water/steam - water/steam"
   import ThermoSysPro;
 
-  parameter Modelica.SIunits.Length L=1 "Exchanger length";
-  parameter Modelica.SIunits.Position z1=0 "Exchanger inlet altitude";
-  parameter Modelica.SIunits.Position z2=0 "Exchanger outlet altitude";
+  parameter ThermoSysPro.Units.SI.Length L=1 "Exchanger length";
+  parameter ThermoSysPro.Units.SI.Position z1=0 "Exchanger inlet altitude";
+  parameter ThermoSysPro.Units.SI.Position z2=0 "Exchanger outlet altitude";
   parameter Integer Ns=1 "Numver of segments";
-  parameter Modelica.SIunits.Diameter Dint=0.1 "Pipe internal diameter";
-  parameter Modelica.SIunits.Diameter Dext=0.11 "Pipe external diameter";
+  parameter ThermoSysPro.Units.SI.Diameter Dint=0.1 "Pipe internal diameter";
+  parameter ThermoSysPro.Units.SI.Diameter Dext=0.11 "Pipe external diameter";
   //parameter Modelica.SIunits.Diameter Ds = 0.39 "shell internal diameter";
   //parameter Modelica.SIunits.Diameter De = 0.019 "tube external diameter";
   parameter Integer Ntubes=1 "Number of pipes in parallel";

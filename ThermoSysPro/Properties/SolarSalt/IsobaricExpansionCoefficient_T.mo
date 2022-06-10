@@ -1,8 +1,8 @@
 within ThermoSysPro.Properties.SolarSalt;
 function IsobaricExpansionCoefficient_T
   "beta as function of temperature"
-  input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
-  output Modelica.SIunits.CubicExpansionCoefficient beta
+  input Units.SI.Temperature temp "Fluid temperature (K)";
+  output Units.SI.CubicExpansionCoefficient beta
     "isobaric expansion coefficient (1/K)";
 protected
   constant Real betaC0 = 0.636;

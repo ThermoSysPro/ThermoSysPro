@@ -2,7 +2,7 @@ within ThermoSysPro.Correlations.Misc;
 function WBCorrectiveDiameterCoefficient "Corrective diameter coefficient"
   input Real PasTD "Transverse step on the diameter";
   input Real PasLD "Longitudinal steap on the diameter";
-  input Modelica.SIunits.Diameter Dext "Pipes external diameter";
+  input Units.SI.Diameter Dext "Pipes external diameter";
   input Integer option_interpolation=1
     "1: linear interpolation - 2: spline interpolation";
 

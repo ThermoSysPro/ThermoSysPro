@@ -1,7 +1,7 @@
 within ThermoSysPro.Thermal.HeatTransfer;
 model ConvectiveHeatFlow "Convective heat flow"
-  parameter Modelica.SIunits.Area A[:]={1} "Heat exchange surface";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer k[:]={1000}
+  parameter Units.SI.Area A[:]={1} "Heat exchange surface";
+  parameter Units.SI.CoefficientOfHeatTransfer k[:]={1000}
     "Heat exchange coefficient";
 
 protected

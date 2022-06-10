@@ -20,7 +20,7 @@ model GasTurbine "Combustion turbine for CICO and Barilla plants"
   parameter Real B2 = -0.04778;
 
   parameter Real Kcham = 1 "Chamber pressure loss coefficient";
-  parameter Modelica.SIunits.Power Wpth=1e5 "Combustion chamber thermal losses";
+  parameter Units.SI.Power Wpth=1e5 "Combustion chamber thermal losses";
 
   BoundaryConditions.AirHumidity xAIR
                     annotation (Placement(transformation(

@@ -1,11 +1,11 @@
 ﻿within ThermoSysPro.WaterSteam.HeatExchangers;
 model DynamicTwoPhaseFlowRiser "Riser: Dynamic two-phase flow pipe"
-  parameter Modelica.SIunits.Length L=10. "Pipe length";
-  parameter Modelica.SIunits.Diameter D=0.02 "Hydraulic diameter";
-  parameter Modelica.SIunits.Length rugosrel=0.0007 "Pipe relative roughness";
+  parameter Units.SI.Length L=10. "Pipe length";
+  parameter Units.SI.Diameter D=0.02 "Hydraulic diameter";
+  parameter Units.SI.Length rugosrel=0.0007 "Pipe relative roughness";
   parameter Integer ntubes=1 "Number of pipes in parallel";
-  parameter Modelica.SIunits.Position z1=0 "Pipe inlet altitude";
-  parameter Modelica.SIunits.Position z2=0 "Pipe outlet altitude";
+  parameter Units.SI.Position z1=0 "Pipe inlet altitude";
+  parameter Units.SI.Position z2=0 "Pipe outlet altitude";
   parameter Real rgliss=1 "Phase slip coefficient";
   parameter Integer a=4200 "Phase pressure loss coefficient";
   parameter Real dpfCorr=1.00
@@ -13,9 +13,10 @@ model DynamicTwoPhaseFlowRiser "Riser: Dynamic two-phase flow pipe"
   parameter Real hcCorr=1.00
     "Corrective term for the heat exchange coefficient (hc) for each node";
   parameter Integer Ns=10 "Number of segments";
-  parameter Modelica.SIunits.Temperature T0[Ns]=fill(300, Ns)
-    "Initial fluid temperature (active if steady_state = false and option_temperature = 1)" annotation(Evaluate=false);
-  parameter Modelica.SIunits.SpecificEnthalpy h0[Ns]=fill(1e5, Ns)
+  parameter Units.SI.Temperature T0[Ns]=fill(300, Ns)
+    "Initial fluid temperature (active if steady_state = false and option_temperature = 1)"
+    annotation (Evaluate=false);
+  parameter Units.SI.SpecificEnthalpy h0[Ns]=fill(1e5, Ns)
     "Initial fluid specific enthalpy (active if steady_state = false and option_temperature = 2)";
   parameter Boolean inertia=true
     "true: momentum balance equation with inertia - false: without inertia";
@@ -35,121 +36,122 @@ model DynamicTwoPhaseFlowRiser "Riser: Dynamic two-phase flow pipe"
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
   parameter Integer N=Ns + 1
     "Number of hydraulic nodes (= number of thermal nodes + 1)";
-  parameter Modelica.SIunits.Area A=ntubes*pi*D^2/4
+  parameter Units.SI.Area A=ntubes*pi*D^2/4
     "Internal cross sectional pipe area";
-  parameter Modelica.SIunits.Diameter Di=ntubes*D "Internal pipe diameter";
-  parameter Modelica.SIunits.PathLength dx1=L/(N - 1)
-    "Length of a thermal node";
-  parameter Modelica.SIunits.PathLength dx2=L/N "Length of a hydraulic node";
-  parameter Modelica.SIunits.Area dSi=pi*Di*dx1
+  parameter Units.SI.Diameter Di=ntubes*D "Internal pipe diameter";
+  parameter Units.SI.PathLength dx1=L/(N - 1) "Length of a thermal node";
+  parameter Units.SI.PathLength dx2=L/N "Length of a hydraulic node";
+  parameter Units.SI.Area dSi=pi*Di*dx1
     "Internal heat exchange area for a node";
   parameter Real Mmol=18.015 "Water molar mass";
-  parameter Modelica.SIunits.AbsolutePressure pcrit=ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
+  parameter Units.SI.AbsolutePressure pcrit=ThermoSysPro.Properties.WaterSteam.BaseIF97.data.PCRIT
     "Critical pressure";
-  parameter Modelica.SIunits.Temperature Tcrit=ThermoSysPro.Properties.WaterSteam.BaseIF97.data.TCRIT
+  parameter Units.SI.Temperature Tcrit=ThermoSysPro.Properties.WaterSteam.BaseIF97.data.TCRIT
     "Critical temperature";
-  parameter Modelica.SIunits.AbsolutePressure ptriple=ThermoSysPro.Properties.WaterSteam.BaseIF97.triple.ptriple
+  parameter Units.SI.AbsolutePressure ptriple=ThermoSysPro.Properties.WaterSteam.BaseIF97.triple.ptriple
     "Triple point pressure";
   parameter Real xb1=0.0002 "Min value for vapor mass fraction";
   parameter Real xb2=0.85 "Max value for vapor mass fraction";
 
 public
-  Modelica.SIunits.AbsolutePressure P[N + 1](start=fill(1.e5, N + 1), nominal=fill(1.e5, N + 1))
-    "Fluid pressure in node i";
-  Modelica.SIunits.MassFlowRate Q[N](start=fill(10, N), nominal=fill(10, N))
+  Units.SI.AbsolutePressure P[N + 1](start=fill(1.e5, N + 1), nominal=fill(1.e5,
+        N + 1)) "Fluid pressure in node i";
+  Units.SI.MassFlowRate Q[N](start=fill(10, N), nominal=fill(10, N))
     "Mass flow rate in node i";
-  Modelica.SIunits.SpecificEnthalpy h[N + 1](start=fill(1.e5, N + 1), nominal=fill(1.e6, N + 1))
-    "Fluid specific enthalpy in node i";
-  Modelica.SIunits.SpecificEnthalpy hb[N]
+  Units.SI.SpecificEnthalpy h[N + 1](start=fill(1.e5, N + 1), nominal=fill(1.e6,
+        N + 1)) "Fluid specific enthalpy in node i";
+  Units.SI.SpecificEnthalpy hb[N]
     "Fluid specific enthalpy at the boundary of node i";
-  Modelica.SIunits.AbsolutePressure Pb[N + 1](start=fill(1.e5, N + 1), nominal=fill(1.e5, N + 1))
-    "Bounded fluid pressure in node i";
-  Modelica.SIunits.Density rho1[N - 1](start=fill(998, N - 1), nominal=fill(1, N - 1))
+  Units.SI.AbsolutePressure Pb[N + 1](start=fill(1.e5, N + 1), nominal=fill(
+        1.e5, N + 1)) "Bounded fluid pressure in node i";
+  Units.SI.Density rho1[N - 1](start=fill(998, N - 1), nominal=fill(1, N - 1))
     "Fluid density in thermal node i";
-  Modelica.SIunits.Density rho2[N](start=fill(998, N), nominal=fill(1, N))
+  Units.SI.Density rho2[N](start=fill(998, N), nominal=fill(1, N))
     "Fluid density in hydraulic node i";
-  Modelica.SIunits.Density rhoc[N + 1](start=fill(998, N + 1), nominal=fill(1, N + 1))
+  Units.SI.Density rhoc[N + 1](start=fill(998, N + 1), nominal=fill(1, N + 1))
     "Fluid density at the boudary of node i";
-  Modelica.SIunits.Power dW1[N - 1](start=fill(3.e5, N - 1), nominal=fill(3.e5, N - 1))
+  Units.SI.Power dW1[N - 1](start=fill(3.e5, N - 1), nominal=fill(3.e5, N - 1))
     "Thermal power exchanged on the liquid side for node i";
-  Modelica.SIunits.Power dW2[N - 1](start=fill(3.e5, N - 1), nominal=fill(3.e5, N - 1))
+  Units.SI.Power dW2[N - 1](start=fill(3.e5, N - 1), nominal=fill(3.e5, N - 1))
     "Thermal power exchanged on the liquid side for node i";
-  Modelica.SIunits.Power W1t "Total power exchanged on the liquid side";
-  Modelica.SIunits.Temperature Tp1[N - 1](each start = 500.0)
+  Units.SI.Power W1t "Total power exchanged on the liquid side";
+  Units.SI.Temperature Tp1[N - 1](each start=500.0)
     "Wall temperature in node i";
-  Modelica.SIunits.Temperature Tp2[N - 1](each start = 500.0)
+  Units.SI.Temperature Tp2[N - 1](each start=500.0)
     "Wall temperature in node i";
-  Modelica.SIunits.CoefficientOfHeatTransfer hi[N - 1](start=fill(2000, N - 1), nominal=fill(2.e4, N - 1))
-    "Fluid heat exchange coefficient in node i";
-  Modelica.SIunits.CoefficientOfHeatTransfer hcl[N - 1](start=fill(2000, N - 1), nominal=fill(200, N - 1))
+  Units.SI.CoefficientOfHeatTransfer hi[N - 1](start=fill(2000, N - 1), nominal=
+       fill(2.e4, N - 1)) "Fluid heat exchange coefficient in node i";
+  Units.SI.CoefficientOfHeatTransfer hcl[N - 1](start=fill(2000, N - 1),
+      nominal=fill(200, N - 1))
     "Fluid heat exchange coefficient in node i for the liquid fraction";
-  Modelica.SIunits.CoefficientOfHeatTransfer hcv[N - 1](start=fill(0, N - 1), nominal=fill(200, N - 1))
+  Units.SI.CoefficientOfHeatTransfer hcv[N - 1](start=fill(0, N - 1), nominal=
+        fill(200, N - 1))
     "Fluid heat exchange coefficient in node i for the vapor fraction";
   Real S[N - 1] "Corrective terme correctif for nucleation removal";
   Real E[N - 1] "Corrective term for hcl";
-  Modelica.SIunits.CoefficientOfHeatTransfer heb[N - 1](start=fill(0, N - 1), nominal=fill(5.e5, N - 1))
+  Units.SI.CoefficientOfHeatTransfer heb[N - 1](start=fill(0, N - 1), nominal=
+        fill(5.e5, N - 1))
     "Fluid heat exchange coefficient for vaporization in thermal node i";
-  Modelica.SIunits.ReynoldsNumber Rel1[N - 1](start=fill(6.e4, N - 1), nominal=fill(0.5e4, N - 1))
-    "Reynolds number in thermal node i for the liquid";
-  Modelica.SIunits.ReynoldsNumber Rel2[N](start=fill(6.e4, N), nominal=fill(0.5e4, N))
+  Units.SI.ReynoldsNumber Rel1[N - 1](start=fill(6.e4, N - 1), nominal=fill(
+        0.5e4, N - 1)) "Reynolds number in thermal node i for the liquid";
+  Units.SI.ReynoldsNumber Rel2[N](start=fill(6.e4, N), nominal=fill(0.5e4, N))
     "Reynolds number in hydraulic node i for the liquid";
-  Modelica.SIunits.ReynoldsNumber Rev1[N - 1](start=fill(0.1e4, N - 1), nominal=fill(5.e5, N - 1))
-    "Reynolds number in thermal node i for the vapor";
-  Modelica.SIunits.ReynoldsNumber Rev2[N](start=fill(0.1e4, N), nominal=fill(5.e5, N))
+  Units.SI.ReynoldsNumber Rev1[N - 1](start=fill(0.1e4, N - 1), nominal=fill(
+        5.e5, N - 1)) "Reynolds number in thermal node i for the vapor";
+  Units.SI.ReynoldsNumber Rev2[N](start=fill(0.1e4, N), nominal=fill(5.e5, N))
     "Reynolds number in hydraulic node i for the vapor";
   Real Prl[N - 1](start=fill(4, N - 1), nominal=fill(1, N - 1))
     "Fluid Prandtl number in node i for the liquid";
   Real Prv[N - 1](start=fill(1, N - 1), nominal=fill(1, N - 1))
     "Fluid Prandtl number in node i for the vapor";
-  Modelica.SIunits.ThermalConductivity kl[N - 1](start=fill(0.6, N - 1), nominal=fill(0.6, N - 1))
-    "Thermal conductivity in node i for the liquid";
-  Modelica.SIunits.ThermalConductivity kv[N - 1](start=fill(0.03, N - 1), nominal=fill(0.03, N - 1))
-    "Thermal conductivity in node i for the vapor";
+  Units.SI.ThermalConductivity kl[N - 1](start=fill(0.6, N - 1), nominal=fill(
+        0.6, N - 1)) "Thermal conductivity in node i for the liquid";
+  Units.SI.ThermalConductivity kv[N - 1](start=fill(0.03, N - 1), nominal=fill(
+        0.03, N - 1)) "Thermal conductivity in node i for the vapor";
   Real xv1[N - 1] "Vapor mass fraction in thermal node i";
   Real xv2[N] "Vapor mass fraction in hydraulic node i";
   Real xbs[N - 1] "Bounded upper value for the vapor mass fraction";
   Real xbi[N - 1] "Bounded lower value for the vapor mass fraction";
-  Modelica.SIunits.DynamicViscosity mul1[N - 1](start=fill(2.e-4, N - 1), nominal=fill(2.e-4, N - 1))
-    "Dynamic viscosity in thermal node i for the liquid";
-  Modelica.SIunits.DynamicViscosity mul2[N](start=fill(2.e-4, N), nominal=fill(2.e-4, N))
+  Units.SI.DynamicViscosity mul1[N - 1](start=fill(2.e-4, N - 1), nominal=fill(
+        2.e-4, N - 1)) "Dynamic viscosity in thermal node i for the liquid";
+  Units.SI.DynamicViscosity mul2[N](start=fill(2.e-4, N), nominal=fill(2.e-4, N))
     "Dynamic viscosity in hydraulic node i for the liquid";
-  Modelica.SIunits.DynamicViscosity muv1[N - 1](start=fill(1.e-5, N - 1), nominal=fill(1.e-4, N - 1))
-    "Dynamic viscosity in thermal node i for the vapor";
-  Modelica.SIunits.DynamicViscosity muv2[N](start=fill(1.e-5, N), nominal=fill(1.e-4, N))
+  Units.SI.DynamicViscosity muv1[N - 1](start=fill(1.e-5, N - 1), nominal=fill(
+        1.e-4, N - 1)) "Dynamic viscosity in thermal node i for the vapor";
+  Units.SI.DynamicViscosity muv2[N](start=fill(1.e-5, N), nominal=fill(1.e-4, N))
     "Dynamic viscosity in hydraulic node i for the vapor";
-  Modelica.SIunits.SpecificHeatCapacity cpl[N - 1](start=fill(4000, N - 1), nominal=fill(4000, N - 1))
-    "Specific heat capacity for the liquid";
-  Modelica.SIunits.SpecificHeatCapacity cpv[N - 1](start=fill(2000, N - 1), nominal=fill(2000, N - 1))
-    "Specific heat capacity for the vapor";
+  Units.SI.SpecificHeatCapacity cpl[N - 1](start=fill(4000, N - 1), nominal=
+        fill(4000, N - 1)) "Specific heat capacity for the liquid";
+  Units.SI.SpecificHeatCapacity cpv[N - 1](start=fill(2000, N - 1), nominal=
+        fill(2000, N - 1)) "Specific heat capacity for the vapor";
   Real Bo[N - 1](start=fill(0, N - 1), nominal=fill(4.e-4, N - 1))
     "Boiling number";
   Real Xtt[N - 1](start=fill(1, N - 1), nominal=fill(1, N - 1))
     "Martinelli number";
-  Modelica.SIunits.SpecificEnthalpy lv[N - 1](start=fill(2.e6, N - 1), nominal=fill(2.e6, N - 1))
-    "Specific enthalpy for vaporisation";
-  Modelica.SIunits.Density rhol1[N - 1](start=fill(998, N - 1), nominal=fill(998, N - 1))
+  Units.SI.SpecificEnthalpy lv[N - 1](start=fill(2.e6, N - 1), nominal=fill(
+        2.e6, N - 1)) "Specific enthalpy for vaporisation";
+  Units.SI.Density rhol1[N - 1](start=fill(998, N - 1), nominal=fill(998, N - 1))
     "Fluid density in thermal node i for the liquid";
-  Modelica.SIunits.Density rhol2[N](start=fill(998, N), nominal=fill(998, N))
+  Units.SI.Density rhol2[N](start=fill(998, N), nominal=fill(998, N))
     "Fluid density in hydraulic node i for the liquid";
-  Modelica.SIunits.Density rhov1[N - 1](start=fill(1, N - 1), nominal=fill(1, N - 1))
+  Units.SI.Density rhov1[N - 1](start=fill(1, N - 1), nominal=fill(1, N - 1))
     "Fluid density in thermal node i for the vapor";
-  Modelica.SIunits.Density rhov2[N](start=fill(1, N), nominal=fill(1, N))
+  Units.SI.Density rhov2[N](start=fill(1, N), nominal=fill(1, N))
     "Fluid density in hydraulic node i for the vapor";
-  Modelica.SIunits.Temperature T1[N - 1] "Fluid temperature in thermal node i";
-  Modelica.SIunits.Temperature T2[N] "Fluid temperature in hydraulic node i";
-  ThermoSysPro.Units.DifferentialPressure dpa[N]
+  Units.SI.Temperature T1[N - 1] "Fluid temperature in thermal node i";
+  Units.SI.Temperature T2[N] "Fluid temperature in hydraulic node i";
+  ThermoSysPro.Units.SI.PressureDifference dpa[N]
     "Advection term for the mass balance equation in node i";
-  ThermoSysPro.Units.DifferentialPressure dpf[N]
+  ThermoSysPro.Units.SI.PressureDifference dpf[N]
     "Friction pressure loss in node i";
-  ThermoSysPro.Units.DifferentialPressure dpg[N]
+  ThermoSysPro.Units.SI.PressureDifference dpg[N]
     "Gravity pressure loss in node i";
   Real khi[N] "Hydraulic pressure loss coefficient in node i";
   Real lambdal[N](start=fill(0.03, N), nominal=fill(0.03, N))

@@ -1,10 +1,10 @@
 ﻿within ThermoSysPro.MultiFluids.HeatExchangers;
 model StaticAerocondenser "Static aerocondenser"
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Uref=50
+  parameter Units.SI.CoefficientOfHeatTransfer Uref=50
     "Reference heat transfer coefficient between the air and the condenser external wall";
   parameter Real UCOR=1. "Heat transfer corrective coefficient";
-  parameter Modelica.SIunits.Area Se=1.e4 "Condenser external wall area";
-  parameter Modelica.SIunits.Height z=0 "Water level in the condenser";
+  parameter Units.SI.Area Se=1.e4 "Condenser external wall area";
+  parameter Units.SI.Height z=0 "Water level in the condenser";
   parameter Real K=0.02
     "Pressure loss coefficient for the water/steam pipe (Pa.s²/(kg.m**3))";
   parameter Real Ka=0.00
@@ -15,49 +15,45 @@ model StaticAerocondenser "Static aerocondenser"
     "Région IAPWS en entrée. 1:liquide - 2:vapeur - 4:saturation - 0:calcul automatique";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
 
 public
-  Modelica.SIunits.SpecificEnthalpy hv(start=2500000)
+  Units.SI.SpecificEnthalpy hv(start=2500000)
     "Fluid specific enthalpy at the inlet of the condenser";
-  Modelica.SIunits.SpecificEnthalpy he(start=370000)
+  Units.SI.SpecificEnthalpy he(start=370000)
     "Fluid specific enthalpy at the outlet of the condenser";
-  Modelica.SIunits.SpecificEnthalpy hae(start=75000)
+  Units.SI.SpecificEnthalpy hae(start=75000)
     "Air specific enthalpy at the inlet of the condenser";
-  Modelica.SIunits.SpecificEnthalpy has(start=100000)
+  Units.SI.SpecificEnthalpy has(start=100000)
     "Air specific enthalpy at the outlet of the condenser";
-  Modelica.SIunits.MassFlowRate Q(start=1.5e2)
+  Units.SI.MassFlowRate Q(start=1.5e2)
     "Fluid mass flow rate in the water/steam pipe";
-  Modelica.SIunits.MassFlowRate Qa(start=1.4e3)
-    "Air mass flow rate in the condenser";
-  Modelica.SIunits.Temperature Tae(start=290)
+  Units.SI.MassFlowRate Qa(start=1.4e3) "Air mass flow rate in the condenser";
+  Units.SI.Temperature Tae(start=290)
     "Air temperature at the inlet of the condenser";
-  Modelica.SIunits.Temperature Tas(start=360)
+  Units.SI.Temperature Tas(start=360)
     "Air temperature at the outlet of the condenser";
-  Modelica.SIunits.AbsolutePressure Pae(start=1.e5)
+  Units.SI.AbsolutePressure Pae(start=1.e5)
     "Air pressure at the inlet of the condenser";
-  Modelica.SIunits.AbsolutePressure Pas(start=1.e5)
+  Units.SI.AbsolutePressure Pas(start=1.e5)
     "Air pressure at the outlet of the condenser";
-  Modelica.SIunits.AbsolutePressure Pv(start=30000)
+  Units.SI.AbsolutePressure Pv(start=30000)
     "Fluid pressure at the inlet of the condenser";
-  Modelica.SIunits.AbsolutePressure Pe(start=30000)
+  Units.SI.AbsolutePressure Pe(start=30000)
     "Fluid pressure at the outlet of the condenser";
-  Modelica.SIunits.AbsolutePressure Pcond(start=17000)
-    "Condensation pressure (vacuum)";
-  Modelica.SIunits.Temperature Tcond(start=360) "Condensation temperature";
-  Modelica.SIunits.CoefficientOfHeatTransfer U(start=50)
-    "Heat transfer coefficient";
-  Modelica.SIunits.SpecificHeatCapacity cp_a(start=1000)
+  Units.SI.AbsolutePressure Pcond(start=17000) "Condensation pressure (vacuum)";
+  Units.SI.Temperature Tcond(start=360) "Condensation temperature";
+  Units.SI.CoefficientOfHeatTransfer U(start=50) "Heat transfer coefficient";
+  Units.SI.SpecificHeatCapacity cp_a(start=1000)
     "Air specific heat capacity at constant pressure";
   Real Nut(start=2.) "Number of transfer units";
   Real Ef(start=0.8) "Efficiency in two-phase flow regime";
-  Modelica.SIunits.Power W "Heat power transfered to the cooling air";
-  Modelica.SIunits.Density rho_v(start=500)
+  Units.SI.Power W "Heat power transfered to the cooling air";
+  Units.SI.Density rho_v(start=500)
     "Fluid density at the inlet of the condenser";
-  Modelica.SIunits.Density rho_e(start=998)
+  Units.SI.Density rho_e(start=998)
     "Fluid density at the outlet of the condenser";
-  Modelica.SIunits.Density rho_a(start=1) "Air density";
+  Units.SI.Density rho_a(start=1) "Air density";
 public
   WaterSteam.Connectors.FluidInlet Cws1
     annotation (Placement(transformation(extent={{-110,-50},{-90,-30}},

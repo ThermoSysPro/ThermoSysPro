@@ -3,16 +3,16 @@ function derDynamicViscosity_derT_derrho
   "der(Dynamic Viscosity) computation for Dry Air Ideal Gas (inputs: T, rho, der(T), der(rho))"
   // STEPHANIE Dry Air Ideal Gas
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
-  input Modelica.SIunits.Density rho "Density (kg/m3)";
+  input Units.SI.Temperature T "Temperature (K)";
+  input Units.SI.Density rho "Density (kg/m3)";
   input Real der_T "Temperature time derivative (K/s)";
   input Real der_rho "Density time derivative (kg/m3/s)";
 
   output Real der_mu "Dynamic Viscosity time derivative (Pa)";
 
 protected
-  constant Modelica.SIunits.Temperature tnorm = 132.5 "kritikal temperature";
-  constant Modelica.SIunits.Density rhonorm = 314.3 "critical density";
+  constant Units.SI.Temperature tnorm=132.5 "kritikal temperature";
+  constant Units.SI.Density rhonorm=314.3 "critical density";
   constant Real H = 6.1609e-6;
   constant Real A1 = 0.128517;
   constant Real A05 = 2.60661;

@@ -1,8 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_cp "inverse function of SpecificHeatCp_t"
-  input Modelica.SIunits.SpecificHeatCapacity cp
-    "Specific Heat Capacity (J/kgK)";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.SpecificHeatCapacity cp "Specific Heat Capacity (J/kgK)";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
   constant Real temp_c0 = -1550.799964717781;
   constant Real temp_c1 = 3.2657321743494627;

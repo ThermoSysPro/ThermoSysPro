@@ -1,8 +1,7 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function prop1_PT
-  "thermodynamics properties in region 1, independent variables p and T "
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.Temperature T "temperature";
+function prop1_PT "Thermodynamics properties in region 1, independent variables p and T "
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.Temperature T "Temperature";
 
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_pT pro;
 

@@ -1,20 +1,20 @@
 ﻿within ThermoSysPro.Correlations.Thermal;
 function WBRadiativeHeatTransferCoefficient
   "Radiative heat transfer coefficient for the wall heat exchanger"
-  input ThermoSysPro.Units.DifferentialTemperature DeltaT
+  input ThermoSysPro.Units.SI.TemperatureDifference DeltaT
     "Temperature difference between the flue gases and the walls";
-  input Modelica.SIunits.Temperature Tp "Surface temperature";
+  input Units.SI.Temperature Tp "Surface temperature";
   input Real Pph2o "H20 fraction";
   input Real Ppco2 "CO2 fraction";
   input Real Beaml "Geometrical parameter";
   input Integer option_interpolation=1
     "1: linear interpolation - 2: spline interpolation";
 
-  output Modelica.SIunits.CoefficientOfHeatTransfer Kr
+  output Units.SI.CoefficientOfHeatTransfer Kr
     "Radiative heat transgfer coefficient";
 
 protected
-  Modelica.SIunits.AbsolutePressure Pgaz "CO2+H2O partial pressure";
+  Units.SI.AbsolutePressure Pgaz "CO2+H2O partial pressure";
   Real Rap "H20/C02 partial pressure";
   Real Kprim "Interpolation result over TabKr";
   Real Ak "Interpolation result over TabK2";

@@ -1,6 +1,6 @@
 within ThermoSysPro.FlueGases.PressureLosses;
 model ControlValve "Control valve"
-  parameter ThermoSysPro.Units.Cv Cvmax=5000
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax=5000
     "Maximum CV (active if mode_caract=0)";
   parameter Real caract[:, 2]=[0, 0; 1, Cvmax]
     "Position vs. Cv characteristics (active if mode_caract=1)";
@@ -8,19 +8,19 @@ model ControlValve "Control valve"
     "0:linear characteristics - 1:characteristics is given by caract[]";
   parameter Integer option_interpolation=1
     "1: linear interpolation - 2: spline interpolation (active if mode_caract=1)";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
 protected
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
 
 public
-  ThermoSysPro.Units.Cv Cv(start=100) "Cv";
-  Modelica.SIunits.MassFlowRate Q(start=100) "Mass flow";
-  ThermoSysPro.Units.DifferentialPressure deltaP(start=10)
+  ThermoSysPro.Units.xSI.Cv Cv(start=100) "Cv";
+  Units.SI.MassFlowRate Q(start=100) "Mass flow";
+  ThermoSysPro.Units.SI.PressureDifference deltaP(start=10)
     "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=1) "Fluid density";
-  Modelica.SIunits.Temperature T(start=300) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid average pressure";
+  Units.SI.Density rho(start=1) "Fluid density";
+  Units.SI.Temperature T(start=300) "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid average pressure";
 
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal Ouv

@@ -1,15 +1,15 @@
 within ThermoSysPro.ElectroMechanics.Machines;
 model SynchronousMotor "Synchronous electrical motor"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm Vrot=1400.
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm Vrot=1400.
     "Nominal rotational speed";
-  parameter ThermoSysPro.Units.AngularVelocity_rpm Vrot0=0
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm Vrot0=0
     "Initial rotational speed (active if steady_state_mech=true)";
-  parameter Modelica.SIunits.Voltage Ualim=380. "Voltage";
+  parameter Units.SI.Voltage Ualim=380. "Voltage";
   parameter Real D=10.0 "Damping coefficient (mechanical losses) (n.u.)";
-  parameter Modelica.SIunits.Inductance Lm=1. "Motor nductance";
-  parameter Modelica.SIunits.Resistance Rm=0.00001 "Motor resistance";
+  parameter Units.SI.Inductance Lm=1. "Motor nductance";
+  parameter Units.SI.Resistance Rm=0.00001 "Motor resistance";
   parameter Real Ki=1. "Proportionnality coef. between Cm and Im (N.m/A)";
-  parameter Modelica.SIunits.MomentOfInertia J=4. "Motor moment of inertia";
+  parameter Units.SI.MomentOfInertia J=4. "Motor moment of inertia";
   parameter Boolean steady_state_mech=true
     "true: start from steady state - false : start from Vrot0";
   parameter Boolean mech_coupling=true "Use mechanical coupling component";
@@ -20,11 +20,11 @@ protected
     "Voltage in rotor under stationary state";
 
 public
-  Modelica.SIunits.AngularVelocity w "Angular speed";
-  Modelica.SIunits.Torque Cm "Motor torque";
-  Modelica.SIunits.Torque Ctr "Mechanical torque";
-  Modelica.SIunits.Current Im "Current";
-  Modelica.SIunits.Voltage Um "Voltage";
+  Units.SI.AngularVelocity w "Angular speed";
+  Units.SI.Torque Cm "Motor torque";
+  Units.SI.Torque Ctr "Mechanical torque";
+  Units.SI.Current Im "Current";
+  Units.SI.Voltage Um "Voltage";
 
 
 public

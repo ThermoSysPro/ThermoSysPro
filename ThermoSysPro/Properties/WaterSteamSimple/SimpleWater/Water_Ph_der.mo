@@ -1,45 +1,29 @@
 ﻿within ThermoSysPro.Properties.WaterSteamSimple.SimpleWater;
 function Water_Ph_der "Derivative function of Water_Ph"
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer mode = 0 "Région IF97 - 0:calcul automatique";
   //input CombiPlant.ThermoFluidPro.Media.Common.IF97TwoPhaseAnalytic aux "auxiliary record";
 
   input Real p_der "derivative of Pressure";
   input Real h_der "derivative of Specific enthalpy";
 
-  output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph der_pro
-    "Derivative";
+  output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph der_pro "Derivative";
 
- // Integer phase;
 protected
   Integer region;
+ // Integer phase;
 
 algorithm
   //phase := ThermoSysPro.Properties.WaterSteamSimple.phase_ph(p,h);
   //region :=ThermoSysPro.Properties.WaterSteamSimple.region_ph(p,h,phase,mode);
-  region := ThermoSysPro.Properties.WaterSteamSimple.region_ph(
-    p,
-    h,
-    mode);
+  region := ThermoSysPro.Properties.WaterSteamSimple.region_ph(p, h, mode);
   if (region == 1) then
-    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop1_Ph_der(
-      p,
-      h,
-      p_der,
-      h_der);
+    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop1_Ph_der(p, h, p_der, h_der);
   elseif (region == 2) then
-    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop2_Ph_der(
-      p,
-      h,
-      p_der,
-      h_der);
+    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop2_Ph_der(p, h, p_der, h_der);
   elseif (region == 4) then
-    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop4_Ph_der(
-      p,
-      h,
-      p_der,
-      h_der);
+    der_pro := ThermoSysPro.Properties.WaterSteamSimple.prop4_Ph_der(p, h, p_der, h_der);
   else
     assert(false, "Water_Ph: Incorrect region number (" + String(region) + ")");
   end if;

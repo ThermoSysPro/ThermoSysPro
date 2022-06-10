@@ -1,11 +1,10 @@
 within ThermoSysPro.Examples.SimpleExamples;
 model TestFresnelField
-
+  parameter Integer Nt=3 "Number of trains";
 public
   ThermoSysPro.Thermal.HeatTransfer.HeatExchangerWall heatExchangerWall(
     ntubes=1,
     steady_state=true,
-    L=54,
     D=0.07,
     e=0.004,
     Ns=30,
@@ -42,14 +41,16 @@ public
           644.4616292617266,644.4934994867675,644.531791236838,
           644.5773261834961,644.6312079828199,644.6949482231629,
           644.7706792525222,644.8615205623447,646.1407907783827,
-          649.404839172216,652.1510013554424}))
+          649.404839172216,652.1510013554424}),
+    L=1e4/11.46)
     annotation (Placement(transformation(extent={{-40,-36},{40,-2}}, rotation=0)));
+  ThermoSysPro.WaterSteam.BoundaryConditions.SourceQ sourceP(Q0=11, h0=1500e3)
+               annotation (Placement(transformation(extent={{-101,-55},{-81,-35}},
+          rotation=0)));
   ThermoSysPro.WaterSteam.HeatExchangers.DynamicTwoPhaseFlowPipe
     dynamicTwoPhaseFlowPipe(
     ntubes=1,
-    mode=0,
     steady_state=true,
-    L=54,
     rugosrel=0.00005,
     dpfCorr=1,
     Ns=30,
@@ -76,66 +77,76 @@ public
           2518015.7979130256,2552967.680496474,2587102.355161259,
           82548.43470391157}),
     D=0.07,
-    inertia=false)          annotation (Placement(transformation(extent={{-36,
+    inertia=false,
+    L=1e4/11.46)            annotation (Placement(transformation(extent={{-36,
             -67},{36,-20}}, rotation=0)));
-  Solar.Collectors.FresnelField champThermosolaireLFR_N(
-    A=5.5e4,
-    T0=500,
+  ThermoSysPro.Solar.Collectors.FresnelField champThermosolaireLFR_N(
     Ns=30,
     T(start=fill(500, 30)),
-    F12=0.6366)
+    F12=0.6366,
+    A=1e4,
+    T0=303)
     annotation (Placement(transformation(extent={{-40,-16},{40,72}}, rotation=0)));
-  WaterSteam.BoundaryConditions.SinkP sinkP(
-    h0=2000e3, P0=125e5)          annotation (Placement(transformation(extent={
-            {48,-54},{68,-34}}, rotation=0)));
-  WaterSteam.BoundaryConditions.SourceQ sourceP(Q0=11, h0=1500e3)
-               annotation (Placement(transformation(extent={{-69,-53},{-49,-33}},
-          rotation=0)));
-  InstrumentationAndControl.Blocks.Sources.Rampe DNI(
+  ThermoSysPro.WaterSteam.BoundaryConditions.SinkP sinkP(
+    h0=2000e3, P0=125e5)          annotation (Placement(transformation(extent={{80,-54},
+            {100,-34}},         rotation=0)));
+  ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Rampe DNI(
     Starttime=100,
     Initialvalue=100,
     Duration=3600,
     Finalvalue=900) annotation (Placement(transformation(extent={{72,39},{58,53}},
           rotation=0)));
-  InstrumentationAndControl.Blocks.Sources.Rampe Angles(
+  ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Rampe Angles(
     Starttime=100,
     Initialvalue=45,
     Finalvalue=45,
-    Duration=3600)  annotation (Placement(transformation(extent={{-10,59},{4,72}},
+    Duration=3600)  annotation (Placement(transformation(extent={{-26,77},{-12,
+            90}},
           rotation=0)));
-  InstrumentationAndControl.Blocks.Sources.Rampe Q(
+  ThermoSysPro.InstrumentationAndControl.Blocks.Sources.Rampe Q(
     Starttime=100,
     Duration=3600,
-    Finalvalue=10,
-    Initialvalue=2) annotation (Placement(transformation(extent={{-65,-32},{-51,
-            -19}}, rotation=0)));
+    Initialvalue=2,
+    Finalvalue=3)   annotation (Placement(transformation(extent={{7,-6.5},{-7,
+            6.5}}, rotation=90,
+        origin={-90,-9.5})));
+  WaterSteam.Junctions.MassFlowMultiplier massFlowMultiplier1(alpha=1/Nt)
+    annotation (Placement(transformation(extent={{-70,-54},{-50,-34}})));
+  WaterSteam.Junctions.MassFlowMultiplier massFlowMultiplier2(alpha=Nt)
+    annotation (Placement(transformation(extent={{52,-54},{72,-34}})));
 equation
   connect(champThermosolaireLFR_N.P, heatExchangerWall.WT2)
     annotation (Line(points={{0,1.6},{0,-15.6}}, color={191,95,0}));
   connect(heatExchangerWall.WT1, dynamicTwoPhaseFlowPipe.CTh) annotation (Line(
         points={{0,-22.4},{0,-36.45}}, color={191,95,0}));
-  connect(dynamicTwoPhaseFlowPipe.C2, sinkP.C) annotation (Line(points={{36,
-          -43.5},{47,-43.5},{47,-44},{48,-44}}, color={0,0,255}));
   connect(champThermosolaireLFR_N.SunDNI, DNI.y)
     annotation (Line(points={{44,45.6},{51,45.6},{51,46},{57.3,46}}));
-  connect(champThermosolaireLFR_N.SunG, Angles.y)
-    annotation (Line(points={{27.2,58.8},{27.2,65.5},{4.7,65.5}}));
   connect(champThermosolaireLFR_N.SunA, Angles.y)
-    annotation (Line(points={{36.8,58.8},{36.8,70},{6,70},{6,65.5},{4.7,65.5}}));
-  connect(Q.y, sourceP.IMassFlow)
-    annotation (Line(points={{-50.3,-25.5},{-50,-25.5},{-50,-38},{-59,-38}}));
-  connect(sourceP.C, dynamicTwoPhaseFlowPipe.C1) annotation (Line(points={{-49,
-          -43},{-47.5,-43},{-47.5,-43.5},{-36,-43.5}}, color={0,0,255}));
+    annotation (Line(points={{36.8,58.8},{36.8,84},{28,84},{28,83.5},{-11.3,
+          83.5}}));
+  connect(sourceP.C, massFlowMultiplier1.Ce) annotation (Line(points={{-81,-45},
+          {-76.5,-45},{-76.5,-44},{-70,-44}}, color={0,0,0}));
+  connect(massFlowMultiplier1.Cs, dynamicTwoPhaseFlowPipe.C1) annotation (Line(
+        points={{-50,-44},{-44,-44},{-44,-43.5},{-36,-43.5}}, color={0,0,0}));
+  connect(dynamicTwoPhaseFlowPipe.C2, massFlowMultiplier2.Ce) annotation (Line(
+        points={{36,-43.5},{47,-43.5},{47,-44},{52,-44}}, color={0,0,0}));
+  connect(massFlowMultiplier2.Cs, sinkP.C)
+    annotation (Line(points={{72,-44},{80,-44}}, color={0,0,0}));
+  connect(Q.y, sourceP.IMassFlow) annotation (Line(points={{-90,-17.2},{-91,
+          -17.2},{-91,-40}}, color={0,0,255}));
+  connect(Angles.y, champThermosolaireLFR_N.SunG) annotation (Line(points={{
+          -11.3,83.5},{27.2,83.5},{27.2,58.8}}, color={0,0,255}));
   annotation (
-      Diagram(graphics),
     Documentation(revisions="<html>
 <p><u><b>Author</b></u></p>
 <ul>
 <li>Baligh El Hefni</li>
 </ul>
 </html>", info="<html>
-<p><b>Copyright &copy; EDF 2002 - 2019 </p>
-<p><b>ThermoSysPro Version 3.2 </h4>
+<h4>Copyright &copy; EDF 2002 - 2021 </h4>
+<h4>ThermoSysPro Version 4.0 </h4>
+<p>This model is documented in Sect. 16.2.4 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>. </p>
+<p>The results reported in the ThermoSysPro book were computed using Dymola. </p>
 </html>"),
     Icon(graphics={
         Rectangle(
@@ -154,5 +165,10 @@ equation
           fillColor={78,138,73},
           pattern=LinePattern.None,
           fillPattern=FillPattern.Solid,
-          points={{-58.0,46.0},{42.0,-14.0},{-58.0,-74.0},{-58.0,46.0}})}));
+          points={{-58.0,46.0},{42.0,-14.0},{-58.0,-74.0},{-58.0,46.0}})}),
+    experiment(StopTime=5000),
+    Diagram(graphics={Text(
+          extent={{-36,-64},{54,-82}},
+          lineColor={28,108,200},
+          textString="Fresnel field with Nt=%Nt trains")}));
 end TestFresnelField;

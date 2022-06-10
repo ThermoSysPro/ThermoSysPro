@@ -5,19 +5,19 @@ model AirHumidity "Air humidity"
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  Modelica.SIunits.AbsolutePressure ppvap0(start=1e4)
+  Units.SI.AbsolutePressure ppvap0(start=1e4)
     "Intermediate vapor partial pressure";
-  Modelica.SIunits.Density rho_vap0(start=200) "Intermediate H2O density";
+  Units.SI.Density rho_vap0(start=200) "Intermediate H2O density";
 
 public
-  Modelica.SIunits.AbsolutePressure P "Air pressure";
-  Modelica.SIunits.Temperature T "Air temperature";
-  Modelica.SIunits.Density rho_vap(start=200) "H20 density";
-  Modelica.SIunits.Density rho_air(start=0.8) "Air density";
-  Modelica.SIunits.AbsolutePressure psvap(start=1e5)
+  Units.SI.AbsolutePressure P "Air pressure";
+  Units.SI.Temperature T "Air temperature";
+  Units.SI.Density rho_vap(start=200) "H20 density";
+  Units.SI.Density rho_air(start=0.8) "Air density";
+  Units.SI.AbsolutePressure psvap(start=1e5)
     "Vapor stauration pressure in the air";
-  Modelica.SIunits.AbsolutePressure ppvap(start=1e4) "Vapor partial pressure";
-  Modelica.SIunits.AbsolutePressure ppair "Air partial pressure";
+  Units.SI.AbsolutePressure ppvap(start=1e4) "Vapor partial pressure";
+  Units.SI.AbsolutePressure ppair "Air partial pressure";
   Real hum "Air relative humidity";
   Real Xo2as(start=0.2) "O2 mass fraction in dry air";
   Real Xco2 "CO2 mass fraction at the outlet";

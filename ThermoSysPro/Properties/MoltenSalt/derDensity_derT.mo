@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.MoltenSalt;
 function derDensity_derT "der(Density) computation for Salt (input der(T))"
 
-  input Modelica.SIunits.Temperature T "Temperature (K)";
+  input Units.SI.Temperature T "Temperature (K)";
   input Real der_T "Temperature time derivative (K/s)";
   output Real der_rho "Density time derivative (kg/(m3*s))";
 

@@ -10,33 +10,28 @@ protected
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
 
 public
-  Modelica.SIunits.AbsolutePressure Pef(start=3e5)
-    "Flue gases pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=2.5e5)
+  Units.SI.AbsolutePressure Pef(start=3e5) "Flue gases pressure at the inlet";
+  Units.SI.AbsolutePressure Psf(start=2.5e5)
     "Flue gases pressure at the outlet";
-  Modelica.SIunits.Temperature Tef(start=600)
-    "Flue gases temperature at the inlet";
-  Modelica.SIunits.Temperature Tsf(start=400)
-    "Flue gases temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hsf(start=3e5)
+  Units.SI.Temperature Tef(start=600) "Flue gases temperature at the inlet";
+  Units.SI.Temperature Tsf(start=400) "Flue gases temperature at the outlet";
+  Units.SI.SpecificEnthalpy Hsf(start=3e5)
     "Flue gases specific enthalpy at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hef(start=6e5)
+  Units.SI.SpecificEnthalpy Hef(start=6e5)
     "Flue gases specific enthalpy at the inlet";
-  Modelica.SIunits.MassFlowRate Qf(start=10) "Flue gases mass flow rate";
-  Modelica.SIunits.AbsolutePressure Pee(start=2e6)
-    "Water pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Pse(start=2e6)
-    "Water pressure at the outlet";
-  Modelica.SIunits.Temperature Tee(start=400) "Water temperature at the inlet";
-  Modelica.SIunits.Temperature Tse(start=450) "Water temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hee(start=3e5)
+  Units.SI.MassFlowRate Qf(start=10) "Flue gases mass flow rate";
+  Units.SI.AbsolutePressure Pee(start=2e6) "Water pressure at the inlet";
+  Units.SI.AbsolutePressure Pse(start=2e6) "Water pressure at the outlet";
+  Units.SI.Temperature Tee(start=400) "Water temperature at the inlet";
+  Units.SI.Temperature Tse(start=450) "Water temperature at the outlet";
+  Units.SI.SpecificEnthalpy Hee(start=3e5)
     "Water specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hse(start=20e5)
+  Units.SI.SpecificEnthalpy Hse(start=20e5)
     "Water specific enthalpy at the outlet";
-  Modelica.SIunits.MassFlowRate Qe(start=10) "Water mass flow rate";
-  Modelica.SIunits.Density rhof(start=0.9) "Flue gases density";
-  Modelica.SIunits.Density rhoe(start=700) "Water density";
-  Modelica.SIunits.Power W(start=1e8) "Power exchanged";
+  Units.SI.MassFlowRate Qe(start=10) "Water mass flow rate";
+  Units.SI.Density rhof(start=0.9) "Flue gases density";
+  Units.SI.Density rhoe(start=700) "Water density";
+  Units.SI.Power W(start=1e8) "Power exchanged";
 
   ThermoSysPro.WaterSteam.Connectors.FluidOutlet Cws2
     annotation (Placement(transformation(extent={{90,-10},{110,10}}, rotation=0)));

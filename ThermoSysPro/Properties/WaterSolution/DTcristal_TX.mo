@@ -1,16 +1,16 @@
 within ThermoSysPro.Properties.WaterSolution;
 function DTcristal_TX
   "Temperature difference with the cristallisation of the H2O/LiBr solution as a function of T et Xh2o"
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Temperature T "Temperature";
   input Real X "Water mass fraction in the solution";
 
-  output ThermoSysPro.Units.DifferentialTemperature DTc
+  output ThermoSysPro.Units.SI.TemperatureDifference DTc
     "Temperature difference with cristallisation : > 0 = no cristallisation ; < 0 = cristallisation";
 
 protected
   Real Xi "LiBr mass fraction in the solution";
-  Modelica.SIunits.Temperature Tc "Temperature in Celsius";
-  Modelica.SIunits.Temperature Tcrist "Cristallisation temperature in Celsius";
+  Units.SI.Temperature Tc "Temperature in Celsius";
+  Units.SI.Temperature Tcrist "Cristallisation temperature in Celsius";
 
 algorithm
   /* Units conversions */

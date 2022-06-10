@@ -1,14 +1,12 @@
 within ThermoSysPro.WaterSteam.Junctions;
-model StaticDrum "Staic drum"
+model StaticDrum "Static drum"
   parameter Real x=1 "Vapor separation efficiency at the outlet";
 
 public
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=10.e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy hl(start=100000)
-    "Liquid phase specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv(start=2800000)
-    "Gas phase specific enthalpy";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=10.e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy hl(start=100000) "Liquid phase specific enthalpy";
+  Units.SI.SpecificEnthalpy hv(start=2800000) "Gas phase specific enthalpy";
 public
   Connectors.FluidInlet Ce_eva
     annotation (Placement(transformation(extent={{-104,-44},{-84,-24}},

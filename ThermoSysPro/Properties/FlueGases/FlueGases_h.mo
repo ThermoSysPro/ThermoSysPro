@@ -1,13 +1,13 @@
 ﻿within ThermoSysPro.Properties.FlueGases;
 function FlueGases_h "Specific enthalpy"
-  input Modelica.SIunits.AbsolutePressure PMF "Flue gases average pressure";
-  input Modelica.SIunits.Temperature TMF "Flue gases average temperature";
+  input Units.SI.AbsolutePressure PMF "Flue gases average pressure";
+  input Units.SI.Temperature TMF "Flue gases average temperature";
   input Real Xco2 "CO2 mass fraction";
   input Real Xh2o "H2O mass fraction";
   input Real Xo2 "O2 mass fraction";
   input Real Xso2 "SO2 mass fraction";
 
-  output Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  output Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
 protected
   ThermoSysPro.Properties.ModelicaMediaFlueGases.ThermodynamicState state;

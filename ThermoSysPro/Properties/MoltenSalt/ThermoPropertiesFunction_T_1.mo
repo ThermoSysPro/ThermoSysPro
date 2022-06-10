@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.MoltenSalt;
 function ThermoPropertiesFunction_T_1 "ThermoPropertiesFunction"
-  input Modelica.SIunits.Temperature T
+  input Units.SI.Temperature T
     "dimensionless derivatives of the Gibbs function";
   output ThermoSysPro.Properties.MoltenSalt.ThermoProperties_T pro;
 //protected

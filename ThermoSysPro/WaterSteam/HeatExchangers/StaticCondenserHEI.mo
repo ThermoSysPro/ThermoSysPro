@@ -2,17 +2,17 @@
 model StaticCondenserHEI "HEI Static condenser"
 
   parameter Real Kf=0 "Friction pressure loss coefficient for the cold side";
-  parameter Modelica.SIunits.Position z1c=0 "Hot inlet altitude";
-  parameter Modelica.SIunits.Position z2c=0 "Hot outlet altitude";
-  parameter Modelica.SIunits.Position z1f=0 "Cold inlet altitude";
-  parameter Modelica.SIunits.Position z2f=0 "Cold outlet altitude";
+  parameter Units.SI.Position z1c=0 "Hot inlet altitude";
+  parameter Units.SI.Position z2c=0 "Hot outlet altitude";
+  parameter Units.SI.Position z1f=0 "Cold inlet altitude";
+  parameter Units.SI.Position z2f=0 "Cold outlet altitude";
   parameter Real Ucorr=1.00
     "Corrective term for the heat transfert coefficient (U) for calibration";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
-  parameter Modelica.SIunits.Density p_rhoc=0
+  parameter Units.SI.Density p_rhoc=0
     "If > 0, fixed fluid density for the hot side";
-  parameter Modelica.SIunits.Density p_rhof=0
+  parameter Units.SI.Density p_rhof=0
     "If > 0, fixed fluid density for the cold side";
   parameter Integer modec=0
     "IF97 region of the water for the hot side. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
@@ -48,57 +48,50 @@ model StaticCondenserHEI "HEI Static condenser"
   parameter Real nb_tube4=200 "Number of tubes type 4";
   parameter Real nb_tube5=200 "Number of tubes type 5";
   parameter Real nb_tube6=200 "Number of tubes type 6";
-  parameter Modelica.SIunits.Thickness e_tube1=0.7e-3 "Tubes thickness type 1";
-  parameter Modelica.SIunits.Thickness e_tube2=0.7e-3 "Tubes thickness type 2";
-  parameter Modelica.SIunits.Thickness e_tube3=1e-3 "Tubes thickness type 3";
-  parameter Modelica.SIunits.Thickness e_tube4=1e-3 "Tubes thickness type 4";
-  parameter Modelica.SIunits.Thickness e_tube5=1e-3 "Tubes thickness type 5";
-  parameter Modelica.SIunits.Thickness e_tube6=1e-3 "Tubes thickness type 6";
-  parameter Modelica.SIunits.Diameter D_tube1=25.4e-3
+  parameter Units.SI.Thickness e_tube1=0.7e-3 "Tubes thickness type 1";
+  parameter Units.SI.Thickness e_tube2=0.7e-3 "Tubes thickness type 2";
+  parameter Units.SI.Thickness e_tube3=1e-3 "Tubes thickness type 3";
+  parameter Units.SI.Thickness e_tube4=1e-3 "Tubes thickness type 4";
+  parameter Units.SI.Thickness e_tube5=1e-3 "Tubes thickness type 5";
+  parameter Units.SI.Thickness e_tube6=1e-3 "Tubes thickness type 6";
+  parameter Units.SI.Diameter D_tube1=25.4e-3
     "External diameter of tubes type 1";
-  parameter Modelica.SIunits.Diameter D_tube2=25.4e-3
+  parameter Units.SI.Diameter D_tube2=25.4e-3
     "External diameter of tubes type 2";
-  parameter Modelica.SIunits.Diameter D_tube3=25.4e-3
+  parameter Units.SI.Diameter D_tube3=25.4e-3
     "External diameter of tubes type 3";
-  parameter Modelica.SIunits.Diameter D_tube4=25.4e-3
+  parameter Units.SI.Diameter D_tube4=25.4e-3
     "External diameter of tubes type 4";
-  parameter Modelica.SIunits.Diameter D_tube5=25.4e-3
+  parameter Units.SI.Diameter D_tube5=25.4e-3
     "External diameter of tubes type 5";
-  parameter Modelica.SIunits.Diameter D_tube6=25.4e-3
+  parameter Units.SI.Diameter D_tube6=25.4e-3
     "External diameter of tubes type 6";
-  parameter Modelica.SIunits.Length L_tube1=10 "Tubes length type 1";
-  parameter Modelica.SIunits.Length L_tube2=10 "Tubes length type 2";
-  parameter Modelica.SIunits.Length L_tube3=10 "Tubes length type 3";
-  parameter Modelica.SIunits.Length L_tube4=10 "Tubes length type 4";
-  parameter Modelica.SIunits.Length L_tube5=10 "Tubes length type 5";
-  parameter Modelica.SIunits.Length L_tube6=10 "Tubes length type 6";
+  parameter Units.SI.Length L_tube1=10 "Tubes length type 1";
+  parameter Units.SI.Length L_tube2=10 "Tubes length type 2";
+  parameter Units.SI.Length L_tube3=10 "Tubes length type 3";
+  parameter Units.SI.Length L_tube4=10 "Tubes length type 4";
+  parameter Units.SI.Length L_tube5=10 "Tubes length type 5";
+  parameter Units.SI.Length L_tube6=10 "Tubes length type 6";
   parameter Real FC=0.95 "Correction factor for cleanless";
 
-  parameter Modelica.SIunits.Pressure Poffset=0
+  parameter Units.SI.Pressure Poffset=0
     "Offset applied on the pressure provided by HEI";
 
 protected
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow rate for continuous flow reversal";
-  Modelica.SIunits.Diameter D_tubes "Weight average diameter of tubes";
-  Modelica.SIunits.Thickness e_tubes "Weight average thickness of tubes";
-  Modelica.SIunits.Area S_pass(start=3) "Passage section of cold water";
-  Modelica.SIunits.Area S_ech1(start=10000)
-    "Heat exchange surface tubes type 1";
-  Modelica.SIunits.Area S_ech2(start=10000)
-    "Heat exchange surface tubes type 2";
-  Modelica.SIunits.Area S_ech3(start=10000)
-    "Heat exchange surface tubes type 3";
-  Modelica.SIunits.Area S_ech4(start=10000)
-    "Heat exchange surface tubes type 4";
-  Modelica.SIunits.Area S_ech5(start=10000)
-    "Heat exchange surface tubes type 5";
-  Modelica.SIunits.Area S_ech6(start=10000)
-    "Heat exchange surface tubes type 6";
+  Units.SI.Diameter D_tubes "Weight average diameter of tubes";
+  Units.SI.Thickness e_tubes "Weight average thickness of tubes";
+  Units.SI.Area S_pass(start=3) "Passage section of cold water";
+  Units.SI.Area S_ech1(start=10000) "Heat exchange surface tubes type 1";
+  Units.SI.Area S_ech2(start=10000) "Heat exchange surface tubes type 2";
+  Units.SI.Area S_ech3(start=10000) "Heat exchange surface tubes type 3";
+  Units.SI.Area S_ech4(start=10000) "Heat exchange surface tubes type 4";
+  Units.SI.Area S_ech5(start=10000) "Heat exchange surface tubes type 5";
+  Units.SI.Area S_ech6(start=10000) "Heat exchange surface tubes type 6";
   Real FM1 "Correction factor for material and gauge tubes type 1";
   Real FM2 "Correction factor for material and gauge tubes type 2";
   Real FM3 "Correction factor for material and gauge tubes type 3";
@@ -107,60 +100,53 @@ protected
   Real FM6 "Correction factor for material and gauge tubes type 6";
 
 public
-  Modelica.SIunits.Power W(start=1e6)
+  Units.SI.Power W(start=1e6)
     "Power exchanged from the hot side to the cold side";
-  Modelica.SIunits.Temperature Tec(start=500)
+  Units.SI.Temperature Tec(start=500)
     "Fluid temperature at the inlet of the hot side";
-  Modelica.SIunits.Temperature Tsc(start=400)
+  Units.SI.Temperature Tsc(start=400)
     "Fluid temperature at the outlet of the hot side";
-  Modelica.SIunits.Temperature Tef(start=350)
+  Units.SI.Temperature Tef(start=350)
     "Fluid temperature at the inlet of the cold side";
-  Modelica.SIunits.Temperature Tsf(start=350)
+  Units.SI.Temperature Tsf(start=350)
     "Fluid temperature at the outlet of the cold side";
-  Modelica.SIunits.Pressure DPgc(start=1e2)
-    "Gravity pressure loss in the hot side";
-  Modelica.SIunits.Pressure DPff(start=1e3)
-    "Friction pressure loss in the cold side";
-  Modelica.SIunits.Pressure DPgf(start=1e2)
-    "Gravity pressure loss in the cold side";
-  Modelica.SIunits.Pressure DPf(start=1e3)
-    "Total pressure loss in the cold side";
-  Modelica.SIunits.Density rhof(start=998)
-    "Density of the fluid in the cold side";
-  Modelica.SIunits.Density rho_ex(start=950)
-    "Water density at the extraction point";
+  Units.SI.Pressure DPgc(start=1e2) "Gravity pressure loss in the hot side";
+  Units.SI.Pressure DPff(start=1e3) "Friction pressure loss in the cold side";
+  Units.SI.Pressure DPgf(start=1e2) "Gravity pressure loss in the cold side";
+  Units.SI.Pressure DPf(start=1e3) "Total pressure loss in the cold side";
+  Units.SI.Density rhof(start=998) "Density of the fluid in the cold side";
+  Units.SI.Density rho_ex(start=950) "Water density at the extraction point";
 
-  Modelica.SIunits.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
-  Modelica.SIunits.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
-  Modelica.SIunits.Area S_ech(start=10000) "Heat exchange surface";
-  Modelica.SIunits.Velocity Vf "Velocity of cold water";
+  Units.SI.MassFlowRate Qc(start=100) "Hot fluid mass flow rate";
+  Units.SI.MassFlowRate Qf(start=100) "Cold fluid mass flow rate";
+  Units.SI.Area S_ech(start=10000) "Heat exchange surface";
+  Units.SI.Velocity Vf "Velocity of cold water";
   Real Fw "Correction factor for water";
-  Modelica.SIunits.CoefficientOfHeatTransfer U1
+  Units.SI.CoefficientOfHeatTransfer U1
     "Uncorrected heat transfert coefficient";
   Real FM "Overall correction factor for material and gauge";
-  Modelica.SIunits.CoefficientOfHeatTransfer U "Heat transfert coefficient";
-  Modelica.SIunits.Temperature Tcut_off
-    "Saturation temperature at pressure cut off";
-  Modelica.SIunits.Pressure Psat_att( start= 6000)
-                                                  "Expected saturation pressure HEI";
-  Modelica.SIunits.Pressure Pcut_off "Pressure cut off";
-  Modelica.SIunits.Pressure Pzero_load "Pressure zero load";
-  Modelica.SIunits.Pressure Pcond( start= 6000)
+  Units.SI.CoefficientOfHeatTransfer U "Heat transfert coefficient";
+  Units.SI.Temperature Tcut_off "Saturation temperature at pressure cut off";
+  Units.SI.Pressure Psat_att(start=6000) "Expected saturation pressure HEI";
+  Units.SI.Pressure Pcut_off "Pressure cut off";
+  Units.SI.Pressure Pzero_load "Pressure zero load";
+  Units.SI.Pressure Pcond(start=6000)
     "Expected corrected saturation pressure HEI";
-  Modelica.SIunits.Temperature Tsat(start= 310)
+  Units.SI.Temperature Tsat(start=310)
     "Expected corrected saturation temperature HEI";
-  Modelica.SIunits.Power Wcut_off(start=5e5)
+  Units.SI.Power Wcut_off(start=5e5)
     "Power exchanged from the hot side to the cold side at Pcut_off";
-  Modelica.SIunits.Temperature TTD "Terminal Temperature Difference";
+  Units.SI.Temperature TTD "Terminal Temperature Difference";
   Integer HEI "Applicabiltity of the standards HEI. 0:NO - 1:OK";
-  Modelica.SIunits.Temperature Tsat_att(start= 310) "Expected saturation temperature HEI";
-  Modelica.SIunits.SpecificHeatCapacity Cpmf(start= 950)
+  Units.SI.Temperature Tsat_att(start=310)
+    "Expected saturation temperature HEI";
+  Units.SI.SpecificHeatCapacity Cpmf(start=950)
     "Average of specific heat capacity of cold water";
-  Modelica.SIunits.SpecificEnthalpy Hmv(start=2500000)
+  Units.SI.SpecificEnthalpy Hmv(start=2500000)
     "Fluid input average specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hml(start=100000)
+  Units.SI.SpecificEnthalpy Hml(start=100000)
     "Extraction water average specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hex(start=100000)
+  Units.SI.SpecificEnthalpy Hex(start=100000)
     "Drain specific enthalpy at the outlet";
 
 public

@@ -4,23 +4,23 @@ model SingularPressureLoss "Singular pressure loss"
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1.e-3 "Small number for pressure loss equation";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  ThermoSysPro.Units.DifferentialPressure deltaP "Singular pressure loss";
-  Modelica.SIunits.MassFlowRate Q(start=100) "Mass flow rate";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Average fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Singular pressure loss";
+  Units.SI.MassFlowRate Q(start=100) "Mass flow rate";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Average fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
 
   Connectors.FluidInlet C1
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

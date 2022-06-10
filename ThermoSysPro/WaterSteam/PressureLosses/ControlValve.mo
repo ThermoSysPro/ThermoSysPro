@@ -1,6 +1,6 @@
 ﻿within ThermoSysPro.WaterSteam.PressureLosses;
 model ControlValve "Control valve"
-  parameter ThermoSysPro.Units.Cv Cvmax=8005.42
+  parameter ThermoSysPro.Units.xSI.Cv Cvmax=8005.42
     "Maximum CV (active if mode_caract=0)";
   parameter Real caract[:, 2]=[0, 0; 1, Cvmax]
     "Position vs. Cv characteristics (active if mode_caract=1)";
@@ -13,25 +13,25 @@ model ControlValve "Control valve"
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
   parameter Integer option_rho_water=1
     "1: using (deltaP*Cv^2=A.Q^2/rho^2) - 2: using (deltaP*Cv^2=A.Q^2/(rho*rho_15)); with rho_15 is the density of the water at 15.5556 °C)";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
   parameter Real eps=1.e-0 "Small number for pressure loss equation";
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.Density rho_15= 999 "density of the water at 15.5556 °C";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.Density rho_15=999 "density of the water at 15.5556 °C";
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
-  ThermoSysPro.Units.Cv Cv(start=100) "Cv";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP "Singular pressure loss";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.Temperature T(start=290) "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
+  ThermoSysPro.Units.xSI.Cv Cv(start=100) "Cv";
+  Units.SI.MassFlowRate Q(start=500) "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP "Singular pressure loss";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.Temperature T(start=290) "Fluid temperature";
+  Units.SI.AbsolutePressure Pm(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid specific enthalpy";
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Propriétés de l'eau"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

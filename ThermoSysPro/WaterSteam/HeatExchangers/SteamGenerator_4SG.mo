@@ -24,7 +24,6 @@ public
         origin={-67,-41.5},
         extent={{30.5,-15},{-30.5,15}},
         rotation=270)));
-
   DynamicOnePhaseFlowPipe UtubeColdtLeg(
     option_temperature=2,
     mode=0,
@@ -46,7 +45,6 @@ public
         origin={67,-41.5},
         extent={{30.5,-14},{-30.5,14}},
         rotation=90)));
-
   Volumes.DynamicDrum DomeGV(
     hl(start=1257382.15477056),
     hv(start=2771260.46625813),
@@ -59,7 +57,6 @@ public
     Cd(P(start=67.9e5)),
     zl(fixed=false, start=0.66))   annotation (Placement(transformation(extent=
             {{-22,64},{22,107}}, rotation=0)));
-protected
   ThermoSysPro.WaterSteam.PressureLosses.LumpedStraightPipe DPSeparateurCyclone(
     L=1,
     D=0.95886,
@@ -67,7 +64,6 @@ protected
         origin={0,39.5},
         extent={{-7.5,-10},{7.5,10}},
         rotation=90)));
-public
   ThermoSysPro.WaterSteam.Volumes.VolumeC MixAlimDomeGV(
     h0=H0_Mix_AlimDomeGV,
     steady_state=true,
@@ -92,13 +88,11 @@ public
     rho(start=742))                annotation (Placement(transformation(extent={{47,53},
             {57,73}},          rotation=0)));
 
-public
   ThermoSysPro.WaterSteam.Sensors.SensorP CapteurPAlim
     annotation (Placement(transformation(
         origin={99,30},
         extent={{-6,-6},{6,6}},
         rotation=270)));
-
   ThermoSysPro.WaterSteam.Connectors.FluidOutletI fluidOutletI
     annotation (Placement(transformation(extent={{-10,139},{10,159}}, rotation=
             0)));
@@ -113,7 +107,6 @@ public
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputReal outputReal
     annotation (Placement(transformation(extent={{-42,86},{-62,106}}, rotation=
             0)));
-public
   PressureLosses.LumpedStraightPipe DownComerGV(
     p_rho=0,
     h(start=1194851.3),
@@ -207,8 +200,6 @@ public
         rotation=270)));
 equation
 
-outputReal.signal = DomeGV.yLevel.signal*100;
-
   connect(UtubeHotLeg.C2, UtubeColdtLeg.C1) annotation (Line(
       points={{-67,-11},{-67,-2},{67,-2},{67,-11}},
       color={127,0,0},
@@ -270,6 +261,8 @@ outputReal.signal = DomeGV.yLevel.signal*100;
           118},{-0.5,118}}, color={255,0,0}));
   connect(DPnulle_Vapeur.C2, fluidOutletI) annotation (Line(points={{-0.5,130},
           {0,130},{0,149}}, color={255,0,0}));
+  connect(DomeGV.yLevel, outputReal) annotation (Line(points={{24.2,85.5},{32,
+          85.5},{32,116},{-34,116},{-34,96},{-52,96}}, color={0,0,255}));
   annotation (Diagram(coordinateSystem(
         preserveAspectRatio=false,
         extent={{-150,-150},{150,150}},

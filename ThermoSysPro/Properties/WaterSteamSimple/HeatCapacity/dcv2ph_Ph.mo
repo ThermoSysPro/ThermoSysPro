@@ -1,10 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple.HeatCapacity;
 function dcv2ph_Ph
   "Derivative of specific heat capacity wrt. pressure at constant specific enthalpy in vapor region for given pressure and specific enthalpy"
- input Modelica.SIunits.AbsolutePressure p "Pressure";
- input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
- output Real dcvph
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
+  output Real dcvph
     "Derivative of specific heat capacity wrt. pressure at constant specific enthalpy";
+protected
   cv2_Ph_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

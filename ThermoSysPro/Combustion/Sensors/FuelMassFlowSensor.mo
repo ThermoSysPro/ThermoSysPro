@@ -2,7 +2,7 @@ within ThermoSysPro.Combustion.Sensors;
 model FuelMassFlowSensor "Fuel mass flow rate sensor"
 
 public
-  Modelica.SIunits.MassFlowRate Q(start=20) "Mass flow rate";
+  Units.SI.MassFlowRate Q(start=20) "Mass flow rate";
 
 public
   ThermoSysPro.InstrumentationAndControl.Connectors.OutputReal Mesure

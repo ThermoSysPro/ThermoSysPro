@@ -1,15 +1,14 @@
 within ThermoSysPro.MultiFluids.Boilers;
 model FossilFuelBoiler "Fossil fuel boiler"
-  parameter Modelica.SIunits.Temperature Tsf=400
-    "Flue gases temperature at the outlet";
+  parameter Units.SI.Temperature Tsf=400 "Flue gases temperature at the outlet";
   parameter Integer Boiler_efficiency_type = 1
     "1: Taking into account LHV only - 2: Using the total incoming power";
-  parameter ThermoSysPro.Units.PressureLossCoefficient Kf=0.05
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient Kf=0.05
     "Flue gases pressure loss coefficient";
-  parameter ThermoSysPro.Units.PressureLossCoefficient Ke=1e4
+  parameter ThermoSysPro.Units.xSI.PressureLossCoefficient Ke=1e4
     "Water/steam pressure loss coefficient";
   parameter Real etacomb=1 "Combustion efficiency (between 0 and 1)";
-  parameter Modelica.SIunits.Power Wloss=1e5 "Thermal losses";
+  parameter Units.SI.Power Wloss=1e5 "Thermal losses";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
@@ -27,70 +26,64 @@ protected
     "Intermediate variable for the computation of the O2 mass fraction";
 
 public
-  Modelica.SIunits.MassFlowRate Qea(start=400)
-    "Air mass flow rate at the inlet";
-  Modelica.SIunits.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
-  Modelica.SIunits.Temperature Tea(start=400) "Air temperature at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hea(start=50e3)
+  Units.SI.MassFlowRate Qea(start=400) "Air mass flow rate at the inlet";
+  Units.SI.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
+  Units.SI.Temperature Tea(start=400) "Air temperature at the inlet";
+  Units.SI.SpecificEnthalpy Hea(start=50e3)
     "Air specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hrair(start=10e3)
-    "Air reference specific enthalpy";
+  Units.SI.SpecificEnthalpy Hrair(start=10e3) "Air reference specific enthalpy";
   Real XeaCO2(start=0) "CO2 mass fraction at the inlet";
   Real XeaH2O(start=0.1) "H2O mass fraction at the inlet";
   Real XeaO2(start=0.2) "O2 mass fraction at the inlet";
   Real XeaSO2(start=0) "SO2 mass fraction at the inlet";
 
-  Modelica.SIunits.MassFlowRate Qcomb(start=5) "Fuel mass flow rate";
-  Modelica.SIunits.Temperature Tcomb(start=300) "Fuel temperature";
-  Modelica.SIunits.SpecificEnthalpy Hcomb(start=10e3) "Fuel specific enthalpy";
-  Modelica.SIunits.SpecificEnthalpy Hrcomb(start=10e3)
+  Units.SI.MassFlowRate Qcomb(start=5) "Fuel mass flow rate";
+  Units.SI.Temperature Tcomb(start=300) "Fuel temperature";
+  Units.SI.SpecificEnthalpy Hcomb(start=10e3) "Fuel specific enthalpy";
+  Units.SI.SpecificEnthalpy Hrcomb(start=10e3)
     "Fuel reference specific enthalpy";
   Real XCcomb(start=0.8) "Carbon mass fraction";
   Real XHcomb(start=0.2) "Hydrogen mass fraction";
   Real XOcomb(start=0) "Oxygen mass fraction";
   Real XScomb(start=0) "Sulfur mass fraction";
   Real PCIcomb(start=5e7) "Fuel PCI (J/kg)";
-  Modelica.SIunits.SpecificHeatCapacity Cpcomb(start=2000)
+  Units.SI.SpecificHeatCapacity Cpcomb(start=2000)
     "Fuel specific heat capacity";
 
-  Modelica.SIunits.MassFlowRate Qe(start=100) "Water/steam mass flow rate";
-  Modelica.SIunits.AbsolutePressure Pee(start=50e5)
-    "Water/steam pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Pse(start=50e5)
+  Units.SI.MassFlowRate Qe(start=100) "Water/steam mass flow rate";
+  Units.SI.AbsolutePressure Pee(start=50e5) "Water/steam pressure at the inlet";
+  Units.SI.AbsolutePressure Pse(start=50e5)
     "Water/steam pressure at the outlet";
-  ThermoSysPro.Units.DifferentialPressure deltaPe(start=1e5)
+  ThermoSysPro.Units.SI.PressureDifference deltaPe(start=1e5)
     "Water/steam pressure losses";
-  Modelica.SIunits.Temperature Tse(start=500)
-    "Water/steam temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hee(start=400e3)
+  Units.SI.Temperature Tse(start=500) "Water/steam temperature at the outlet";
+  Units.SI.SpecificEnthalpy Hee(start=400e3)
     "Water/steam specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hse(start=400e3)
+  Units.SI.SpecificEnthalpy Hse(start=400e3)
     "Water/steam specific enthalpy at the outlet";
-  Modelica.SIunits.Density rhoe(start=998) "Average water/steam density";
+  Units.SI.Density rhoe(start=998) "Average water/steam density";
 
-  Modelica.SIunits.MassFlowRate Qsf(start=400)
+  Units.SI.MassFlowRate Qsf(start=400)
     "Flue gases mass flow rate at the outlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=1e5)
-    "Flue gases pressure at the outlet";
-  Modelica.SIunits.Temperature Tf(start=1500)
-    "Flue gases temperature after combustion";
-  Modelica.SIunits.SpecificEnthalpy Hsf(start=50e3)
+  Units.SI.AbsolutePressure Psf(start=1e5) "Flue gases pressure at the outlet";
+  Units.SI.Temperature Tf(start=1500) "Flue gases temperature after combustion";
+  Units.SI.SpecificEnthalpy Hsf(start=50e3)
     "Flue gases specific enthalpy at the outlet";
-  Modelica.SIunits.SpecificEnthalpy Hf(start=100e3)
+  Units.SI.SpecificEnthalpy Hf(start=100e3)
     "Flue gases specific enthalpy after combustion";
-  Modelica.SIunits.SpecificEnthalpy Hrfum(start=10e3)
+  Units.SI.SpecificEnthalpy Hrfum(start=10e3)
     "Flue gases reference specific enthalpy";
-  ThermoSysPro.Units.DifferentialPressure deltaPf(start=1e3)
+  ThermoSysPro.Units.SI.PressureDifference deltaPf(start=1e3)
     "Pressure losses in the combusiton chamber";
-  Modelica.SIunits.Density rhof(start=0.05) "Flue gases density";
+  Units.SI.Density rhof(start=0.05) "Flue gases density";
   Real XsfCO2(start=0.2) "CO2 mass fraction at the outlet";
   Real XsfH2O(start=0.15) "H2O mass fraction at the outlet";
   Real XsfO2(start=0) "O2 mass fraction at the outlet";
   Real XsfSO2(start=0) "SO2 mass fraction at the outlet";
 
-  Modelica.SIunits.Power Wfuel(start=5e8) "Fuel available power PCI";
-  Modelica.SIunits.Power Wtot(start=5e8) "Total incoming power";
-  Modelica.SIunits.Power Wboil(start=5e9) "Power exchanged in the boiler";
+  Units.SI.Power Wfuel(start=5e8) "Fuel available power PCI";
+  Units.SI.Power Wtot(start=5e8) "Total incoming power";
+  Units.SI.Power Wboil(start=5e9) "Power exchanged in the boiler";
   Real eta_boil(start=90) "Boiler efficiency (%) ";
   Real exc(start=1) "Air combustion ratio";
   Real exc_air(start=0.1) "Pertcentage of air in excess";

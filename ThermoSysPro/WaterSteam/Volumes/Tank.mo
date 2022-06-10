@@ -1,19 +1,19 @@
 within ThermoSysPro.WaterSteam.Volumes;
 model Tank "Open tank"
-  parameter Modelica.SIunits.AbsolutePressure Patm=1.013e5
+  parameter Units.SI.AbsolutePressure Patm=1.013e5
     "Pressure above the fluid level";
-  parameter Modelica.SIunits.Area A=1 "Tank cross sectional area";
-  parameter Modelica.SIunits.Position ze1=40 "Altitude of inlet 1";
-  parameter Modelica.SIunits.Position ze2=de2/2 "Altitude of inlet 2";
-  parameter Modelica.SIunits.Position zs1=40 "Altitude of outlet 1";
-  parameter Modelica.SIunits.Position zs2=ds2/2 "Altitude of outlet 2";
-  parameter Modelica.SIunits.Diameter de1=0.20 "Diameter of inlet 1";
-  parameter Modelica.SIunits.Diameter de2=0.20 "Diameter of inlet 2";
-  parameter Modelica.SIunits.Diameter ds1=0.20 "Diameter of outlet 1";
-  parameter Modelica.SIunits.Diameter ds2=0.20 "Diameter of outlet 2";
-  parameter Modelica.SIunits.Position z0=30
+  parameter Units.SI.Area A=1 "Tank cross sectional area";
+  parameter Units.SI.Position ze1=40 "Altitude of inlet 1";
+  parameter Units.SI.Position ze2=de2/2 "Altitude of inlet 2";
+  parameter Units.SI.Position zs1=40 "Altitude of outlet 1";
+  parameter Units.SI.Position zs2=ds2/2 "Altitude of outlet 2";
+  parameter Units.SI.Diameter de1=0.20 "Diameter of inlet 1";
+  parameter Units.SI.Diameter de2=0.20 "Diameter of inlet 2";
+  parameter Units.SI.Diameter ds1=0.20 "Diameter of outlet 1";
+  parameter Units.SI.Diameter ds2=0.20 "Diameter of outlet 2";
+  parameter Units.SI.Position z0=30
     "Initial fluid level (active if steady_state=false)";
-  parameter Modelica.SIunits.SpecificEnthalpy h0=1.e5
+  parameter Units.SI.SpecificEnthalpy h0=1.e5
     "Initial fluid specific enthalpy (active if steady_state=false)";
   parameter Real ke1=1
     "Pressure loss coefficient for inlet e1";
@@ -30,39 +30,36 @@ model Tank "Open tank"
   parameter Boolean steady_state_mech=false
     "true: start from steady state - false: start from z0";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 protected
-  parameter Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
+  parameter Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
   parameter Real eps=1.e-0 "Small number for ths square function";
-  parameter Modelica.SIunits.Position zmin=1.e-6 "Minimum fluid level";
+  parameter Units.SI.Position zmin=1.e-6 "Minimum fluid level";
   parameter Real pi=Modelica.Constants.pi;
 
 public
-  Modelica.SIunits.Position z "Fluid level";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.AbsolutePressure P(start=1.e5) "Fluid average pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=100000)
-    "Fluid average specific enthalpy";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
-  Modelica.SIunits.MassFlowRate BQ
-    "Right hand side of the mass balance equation";
-  Modelica.SIunits.Power BH "Right hand side of the energy balance equation";
-  ThermoSysPro.Units.DifferentialPressure deltaP_e1 "Presure loss for e1";
-  ThermoSysPro.Units.DifferentialPressure deltaP_e2 "Presure loss for e2";
-  ThermoSysPro.Units.DifferentialPressure deltaP_s1 "Presure loss for s1";
-  ThermoSysPro.Units.DifferentialPressure deltaP_s2 "Presure loss for s2";
+  Units.SI.Position z "Fluid level";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.AbsolutePressure P(start=1.e5) "Fluid average pressure";
+  Units.SI.SpecificEnthalpy h(start=100000) "Fluid average specific enthalpy";
+  Units.SI.Density rho(start=998) "Fluid density";
+  Units.SI.MassFlowRate BQ "Right hand side of the mass balance equation";
+  Units.SI.Power BH "Right hand side of the energy balance equation";
+  ThermoSysPro.Units.SI.PressureDifference deltaP_e1 "Presure loss for e1";
+  ThermoSysPro.Units.SI.PressureDifference deltaP_e2 "Presure loss for e2";
+  ThermoSysPro.Units.SI.PressureDifference deltaP_s1 "Presure loss for s1";
+  ThermoSysPro.Units.SI.PressureDifference deltaP_s2 "Presure loss for s2";
   Real omega_e1;
   Real omega_e2;
   Real omega_s1;
   Real omega_s2;
-  Modelica.SIunits.Angle theta_e1;
-  Modelica.SIunits.Angle theta_e2;
-  Modelica.SIunits.Angle theta_s1;
-  Modelica.SIunits.Angle theta_s2;
+  Units.SI.Angle theta_e1;
+  Units.SI.Angle theta_e2;
+  Units.SI.Angle theta_s1;
+  Units.SI.Angle theta_s2;
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro
     "Water properties"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}, rotation=

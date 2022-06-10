@@ -1,11 +1,11 @@
 within ThermoSysPro.Examples.SimpleExamples;
 model TestStaticCondenser
 
-  parameter Modelica.SIunits.AbsolutePressure Pin_1(fixed=false,start=20000)
+  parameter Units.SI.AbsolutePressure Pin_1(fixed=false, start=20000)
     "Flow pressure at inlet 1 (sourceP)";
-  parameter Modelica.SIunits.AbsolutePressure Pin_2(fixed=false,start=20000)
+  parameter Units.SI.AbsolutePressure Pin_2(fixed=false, start=20000)
     "Flow pressure at inlet 2 (sourceP1)";
-  parameter Modelica.SIunits.AbsolutePressure Pin_3(fixed=false,start=20000)
+  parameter Units.SI.AbsolutePressure Pin_3(fixed=false, start=20000)
     "Flow pressure at inlet 3 (sourceP2)";
 
   WaterSteam.BoundaryConditions.SourceQ Source_condenseur(

@@ -1,7 +1,8 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Pressure;
 function dpsatT_T "Derivative of saturation pressure wrt. temperature"
- input Modelica.SIunits.Temperature T "Temperature";
- output Real dpT "Derivative of pressure";
+  input Units.SI.Temperature T "Temperature";
+  output Real dpT "Derivative of pressure";
+protected
   psat_T_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

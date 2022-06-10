@@ -2,7 +2,7 @@ within ThermoSysPro.Properties.MoltenSalt;
 function DynamicViscosity_dert
   "der Dynamic Viscosity computation for Salt (input T)"
 
-  input Modelica.SIunits.Temperature temp "Temperature (K)";
+  input Units.SI.Temperature temp "Temperature (K)";
   input Real der_temp "Fluid temperature time derivative (K/s)";
   output Real der_mu "Dynamic Viscosity time derivative(Pa)";
 

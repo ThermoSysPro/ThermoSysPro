@@ -10,30 +10,25 @@ protected
   constant Real HfCO2=3.275e+07 "CO2 formation specific enthalpy";
   constant Real HfCO=9.201e+06 "CO formation specific enthalpy";
   constant Real HfH2O=2.418e+08 "H2O steam formation specific enthalpy";
-  constant Modelica.SIunits.SpecificEnthalpy H0v=2501551.43
+  constant Units.SI.SpecificEnthalpy H0v=2501551.43
     "Vaporisation specific enthalpy at 0°C";
-  constant Modelica.SIunits.MassFlowRate Qeps=0.0001 "Minimum value for Qmel";
-  Modelica.SIunits.MassFlowRate Qmelc(start=10)
+  constant Units.SI.MassFlowRate Qeps=0.0001 "Minimum value for Qmel";
+  Units.SI.MassFlowRate Qmelc(start=10)
     "Intermediate variable for the computation of Qmel";
   Real Keq0(start=0.1) "Intermediate variable for the compuation of Keq";
   Real delta(start=0.1)
     "Intermediate variable to compute the progress of stage 4";
 
 public
-  Modelica.SIunits.MassFlowRate Qef(start=10)
-    "Flue gases mass flow rate at the inlet";
-  Modelica.SIunits.Temperature Tef(start=1700)
-    "Flue gases temperature at the inlet";
+  Units.SI.MassFlowRate Qef(start=10) "Flue gases mass flow rate at the inlet";
+  Units.SI.Temperature Tef(start=1700) "Flue gases temperature at the inlet";
   Real XefCO2(start=0.5) "CO2 mass fraction at the flue gases inlet";
   Real XefH2O(start=0) "H2O mass fraction at the flue gases inlet";
   Real XefO2(start=0.5) "O2 mass fraction at the flue gases inlet";
   Real XefSO2(start=0) "SO2 mass fraction at the flue gases inlet";
-  Modelica.SIunits.MassFlowRate Qsf(start=10)
-    "Flue gases mass flow rate at the outlet";
-  Modelica.SIunits.Temperature Tsf(start=1700)
-    "Flue gases temperature at the outlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=1e5)
-    "Flue gases pressure at the outlet";
+  Units.SI.MassFlowRate Qsf(start=10) "Flue gases mass flow rate at the outlet";
+  Units.SI.Temperature Tsf(start=1700) "Flue gases temperature at the outlet";
+  Units.SI.AbsolutePressure Psf(start=1e5) "Flue gases pressure at the outlet";
   Real XsfCO2(start=0.2) "CO2 mass fraction at the flue gases outlet";
   Real XsfCO(start=0.1) "CO mass fraction at the flue gases outlet";
   Real XsfH2O(start=0.2) "H2O mass fraction at the flue gases outlet";
@@ -41,54 +36,52 @@ public
   Real XsfO2(start=0.1) "O2 mass fraction at the flue gases outlet";
   Real XsfN2(start=0.2) "N2 mass fraction at the flue gases outlet";
   Real XsfSO2(start=0.1) "SO2 mass fraction at the flue gases outlet";
-  Modelica.SIunits.MassFlowRate Qea(start=0.2)
-    "Air mass flow rate at the inlet";
-  Modelica.SIunits.Temperature Tea(start=300) "Air temperature at the inlet";
-  Modelica.SIunits.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
+  Units.SI.MassFlowRate Qea(start=0.2) "Air mass flow rate at the inlet";
+  Units.SI.Temperature Tea(start=300) "Air temperature at the inlet";
+  Units.SI.AbsolutePressure Pea(start=1e5) "Air pressure at the inlet";
   Real XeaCO2(start=0.2) "CO2 mass fraction at the air inlet";
   Real XeaH2O(start=0.2) "H20 mass fraction at the air inlet";
   Real XeaO2(start=0.2) "O2 mass fraction at the air inlet";
   Real XeaSO2(start=0.2) "SO2 mass fraction at the air inlet";
-  Modelica.SIunits.MassFlowRate Qec(start=0.1)
-    "Fuel mass flow rate at the inlet";
-  Modelica.SIunits.Temperature Tec(start=1700) "Fuel temperature at the inlet";
-  Modelica.SIunits.SpecificHeatCapacity Cpfuel(start=1000)
+  Units.SI.MassFlowRate Qec(start=0.1) "Fuel mass flow rate at the inlet";
+  Units.SI.Temperature Tec(start=1700) "Fuel temperature at the inlet";
+  Units.SI.SpecificHeatCapacity Cpfuel(start=1000)
     "Fuel specific heat capacity";
-  Modelica.SIunits.SpecificEnergy LHVfuel( start=1e6) "Fuel LHV";
+  Units.SI.SpecificEnergy LHVfuel(start=1e6) "Fuel LHV";
   Real XH2Ofuel(start=0) "H2O mass fraction in fuel";
   Real XCfuel(start=0.25) "C mass fraction in fuel";
   Real XHfuel(start=0.75) "H mass fraction in fuel";
   Real XOfuel(start=0) "O mass fraction in fuel";
   Real XNfuel(start=0) "N mass fraction in fuel";
   Real XSfuel(start=0) "S mass fraction in fuel";
-  Modelica.SIunits.Power Wrad(start=1e6) "Power radiated";
-  Modelica.SIunits.SpecificEnthalpy Hea(start=1e3)
+  Units.SI.Power Wrad(start=1e6) "Power radiated";
+  Units.SI.SpecificEnthalpy Hea(start=1e3)
     "Humid air specific enthalpy at the temperature of the input air";
-  Modelica.SIunits.SpecificEnthalpy Hef(start=1e3)
+  Units.SI.SpecificEnthalpy Hef(start=1e3)
     "Flue gases specific enthalpy at the inlet";
-  Modelica.SIunits.MassFlowRate Qmel(start=10)
+  Units.SI.MassFlowRate Qmel(start=10)
     "Mass flow rate of the air/flue gases mixture";
   Real XmelO2(start=0.1) "O2 pass fraction in the air/flue gases mixture";
   Real XmelCO2(start=0.1) "CO2 pass fraction in the air/flue gases mixture";
   Real XmelH2O(start=0.1) "H2O pass fraction in the air/flue gases mixture";
   Real XmelSO2(start=0.1) "SO2 pass fraction in the air/flue gases mixture";
   Real XmelN2(start=0.1) "N2 pass fraction in the air/flue gases mixture";
-  Modelica.SIunits.SpecificEnthalpy Hmel(start=1e3)
+  Units.SI.SpecificEnthalpy Hmel(start=1e3)
     "Specific enthalpy of the air/flue gases mixture";
-  Modelica.SIunits.Temperature Tmel(start=500)
+  Units.SI.Temperature Tmel(start=500)
     "Temperature of the air/flue gases mixture";
-  Modelica.SIunits.SpecificEnthalpy Hwfuel(start=1e3)
+  Units.SI.SpecificEnthalpy Hwfuel(start=1e3)
     "Specific enthalpy of the water in fuel";
-  Modelica.SIunits.SpecificEnthalpy Hfuel(start=1e3) "Fuel specific enthalpy";
-  Modelica.SIunits.MassFlowRate Q1H2O(start=10)
+  Units.SI.SpecificEnthalpy Hfuel(start=1e3) "Fuel specific enthalpy";
+  Units.SI.MassFlowRate Q1H2O(start=10)
     "H2O mass flow rate at the outlet of zone 1";
-  Modelica.SIunits.MassFlowRate Q1O2(start=10)
+  Units.SI.MassFlowRate Q1O2(start=10)
     "O2 mass flow rate at the outlet of zone 1";
-  Modelica.SIunits.MassFlowRate Q1N2(start=10)
+  Units.SI.MassFlowRate Q1N2(start=10)
     "N2 mass flow rate at the outlet of zone 1";
-  Modelica.SIunits.MassFlowRate Q1CO2(start=10)
+  Units.SI.MassFlowRate Q1CO2(start=10)
     "CO2 mass flow rate at the outlet of zone 1";
-  Modelica.SIunits.MassFlowRate Q1SO2(start=10)
+  Units.SI.MassFlowRate Q1SO2(start=10)
     "SO2 mass flow rate at the outlet of zone 1";
   Real X1Cfuel(start=0.1) "C mass fraction in fuel after drying";
   Real X1Hfuel(start=0.1) "H mass fraction in fuel after drying";
@@ -97,39 +90,35 @@ public
   Real X1Clfuel(start=0.1) "Cl mass fraction in fuel after drying";
   Real X1Ffuel(start=0.1) "F mass fraction in fuel after drying";
   Real X1Sfuel(start=0.1) "S mass fraction in fuel after drying";
-  Modelica.SIunits.MassFlowRate Q1ec(start=10)
-    "Fuel mass flow rate after drying";
-  Modelica.SIunits.SpecificEnergy LHVfuel1(start=1e6) "Fuel LHV after drying";
-  Modelica.SIunits.MassFlowRate Q2eO(start=10)
+  Units.SI.MassFlowRate Q1ec(start=10) "Fuel mass flow rate after drying";
+  Units.SI.SpecificEnergy LHVfuel1(start=1e6) "Fuel LHV after drying";
+  Units.SI.MassFlowRate Q2eO(start=10)
     "O2 mass flow rate at the inlet of zone 2";
-  Modelica.SIunits.MassFlowRate Q21HCl(start=10)
+  Units.SI.MassFlowRate Q21HCl(start=10)
     "HCl mass flow rate at the outlet of zone 2";
-  Modelica.SIunits.MassFlowRate Q21HF(start=10)
+  Units.SI.MassFlowRate Q21HF(start=10)
     "HF mass flow rate at the outlet of zone 2";
-  Modelica.SIunits.MassFlowRate Q21SO2(start=10)
+  Units.SI.MassFlowRate Q21SO2(start=10)
     "SO2 mass flow rate at the outlet of zone 2";
-  Modelica.SIunits.MassFlowRate Q21N2(start=10)
+  Units.SI.MassFlowRate Q21N2(start=10)
     "N2 mass flow rate at the outlet of zone 2";
-  Modelica.SIunits.MassFlowRate Q22CO(start=10)
-    "CO mass flow rate produced in stage 2";
-  Modelica.SIunits.MassFlowRate Q22O2(start=10)
-    "O2 mass flow rate left after stage 2";
-  Modelica.SIunits.MassFlowRate Q22H2(start=10)
-    "H2 mass flow rate produced at stage 2";
+  Units.SI.MassFlowRate Q22CO(start=10) "CO mass flow rate produced in stage 2";
+  Units.SI.MassFlowRate Q22O2(start=10) "O2 mass flow rate left after stage 2";
+  Units.SI.MassFlowRate Q22H2(start=10) "H2 mass flow rate produced at stage 2";
   Real etaO2(start=0.1) "O2 fraction at the end of the combustion";
-  Modelica.SIunits.MassFlowRate Q23CO2(start=10)
+  Units.SI.MassFlowRate Q23CO2(start=10)
     "CO2 mass flow rate at the end of stage 3";
-  Modelica.SIunits.MassFlowRate Q23H2O(start=10)
+  Units.SI.MassFlowRate Q23H2O(start=10)
     "H2O mass flow rate at the end of stage 3";
-  Modelica.SIunits.MassFlowRate Q23CO(start=10)
+  Units.SI.MassFlowRate Q23CO(start=10)
     "CO mass flow rate at the end of stage 3";
-  Modelica.SIunits.MassFlowRate Q23H2(start=10)
+  Units.SI.MassFlowRate Q23H2(start=10)
     "H2 mass flow rate at the end of stage 3";
-  Modelica.SIunits.MassFlowRate Q23O2(start=10)
+  Units.SI.MassFlowRate Q23O2(start=10)
     "O2 mass flow rate at the end of stage 3";
-  Modelica.SIunits.MassFlowRate Q24eg(start=10)
+  Units.SI.MassFlowRate Q24eg(start=10)
     "Mass flow rate of the volatile elements at the end of zone 2";
-  Modelica.SIunits.MassFlowRate Q24sg(start=10)
+  Units.SI.MassFlowRate Q24sg(start=10)
     "Mass flow rate of the volatile elements at the outlet of zone 2";
   Real X24O2(start=0.1) "O2 mass fraction in flue gases of zone 4";
   Real X24SO2(start=0.1) "SO2 mass fraction in flue gases of zone 4";
@@ -154,18 +143,18 @@ public
   Real X24sH2vol(start=0.1) "H2 volume fraction after stage 4";
   Real X24sH2Ovol(start=0.1) "H2O volume fraction after stage 4";
   Real AVE(start=0.1) "Progress of stage 4";
-  Modelica.SIunits.MassFlowRate Q24H2O(start=10)
+  Units.SI.MassFlowRate Q24H2O(start=10)
     "H2O mass flow rate at the ned of stage 4";
-  Modelica.SIunits.MassFlowRate Q24H2(start=10)
+  Units.SI.MassFlowRate Q24H2(start=10)
     "H2 mass flow rate at the ned of stage 4";
-  Modelica.SIunits.MassFlowRate Q24CO(start=10)
+  Units.SI.MassFlowRate Q24CO(start=10)
     "CO mass flow rate at the ned of stage 4";
-  Modelica.SIunits.MassFlowRate Q24CO2(start=10)
+  Units.SI.MassFlowRate Q24CO2(start=10)
     "CO2 mass flow rate at the ned of stage 4";
   Real PciCvol(start=1e6) "Power released by the combustion";
-  Modelica.SIunits.Power P2g(start=1e6) "Power released by the combustion";
+  Units.SI.Power P2g(start=1e6) "Power released by the combustion";
   Real XsfC(start=0.1) "C mass fraction in the flue gases";
-  Modelica.SIunits.Power P2t(start=1e6) "Total flue gases power at the outlet";
+  Units.SI.Power P2t(start=1e6) "Total flue gases power at the outlet";
 
 public
   ThermoSysPro.FlueGases.Connectors.FlueGasesInlet Ca "Air inlet"

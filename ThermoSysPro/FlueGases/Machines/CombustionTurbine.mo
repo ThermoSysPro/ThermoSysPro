@@ -11,29 +11,24 @@ model CombustionTurbine "Combustion turbine"
 public
   Real tau(start=0.07) "Expansion rate";
   Real is_eff(start=0.85) "Isentropic efficiency";
-  Modelica.SIunits.Power Wcp(start=1e9) "Compressor power";
-  Modelica.SIunits.Power Wturb(start=2e9) "Turbine power";
-  Modelica.SIunits.Power Wmech(start=1e9) "Mechanical power";
-  Modelica.SIunits.AbsolutePressure Pe( start=1e5)
-    "Flue gases pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Ps(start=1e5)
-    "Flue gases pressure at the outlet";
+  Units.SI.Power Wcp(start=1e9) "Compressor power";
+  Units.SI.Power Wturb(start=2e9) "Turbine power";
+  Units.SI.Power Wmech(start=1e9) "Mechanical power";
+  Units.SI.AbsolutePressure Pe(start=1e5) "Flue gases pressure at the inlet";
+  Units.SI.AbsolutePressure Ps(start=1e5) "Flue gases pressure at the outlet";
   Real Xtau(start=1) "Ratio between the actual and nominal expansion rate";
-  Modelica.SIunits.MassFlowRate Q(start=500) "Flue gases mass flow rate";
-  Modelica.SIunits.Temperature Te(start=1.4e3)
-    "Flue gases temperature at the inlet";
-  Modelica.SIunits.Temperature Ts(start=900)
-    "Flue gases temperature at the outlet";
-  Modelica.SIunits.Temperature Tis(start=750)
+  Units.SI.MassFlowRate Q(start=500) "Flue gases mass flow rate";
+  Units.SI.Temperature Te(start=1.4e3) "Flue gases temperature at the inlet";
+  Units.SI.Temperature Ts(start=900) "Flue gases temperature at the outlet";
+  Units.SI.Temperature Tis(start=750)
     "Isentropic air temperature at the outlet";
-  Modelica.SIunits.SpecificEnthalpy He(start=1.2e6)
+  Units.SI.SpecificEnthalpy He(start=1.2e6)
     "Flue gases specific enthalpy at the inlet";
-  Modelica.SIunits.SpecificEnthalpy Hs(start=6e5)
+  Units.SI.SpecificEnthalpy Hs(start=6e5)
     "Flue gases specific enthalpy at the outlet";
-  Modelica.SIunits.SpecificEnthalpy His(start=6e5)
+  Units.SI.SpecificEnthalpy His(start=6e5)
     "Flue gases specific enthalpy after the isentropic expansion";
-  Modelica.SIunits.SpecificEntropy Se
-    "Flue gases specific entropy at the inlet";
+  Units.SI.SpecificEntropy Se "Flue gases specific entropy at the inlet";
 public
   ThermoSysPro.FlueGases.Connectors.FlueGasesInlet Ce
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

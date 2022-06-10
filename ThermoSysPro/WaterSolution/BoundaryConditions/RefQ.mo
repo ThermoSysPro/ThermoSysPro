@@ -1,6 +1,6 @@
 within ThermoSysPro.WaterSolution.BoundaryConditions;
 model RefQ "Fixed mass flow reference"
-  parameter Modelica.SIunits.MassFlowRate Q0=1.e5 "Fixed fluid mass flow";
+  parameter Units.SI.MassFlowRate Q0=1.e5 "Fixed fluid mass flow";
 
   Connectors.WaterSolutionInlet C1
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

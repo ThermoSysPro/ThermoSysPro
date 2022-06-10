@@ -5,7 +5,6 @@ public
   ThermoSysPro.Thermal.HeatTransfer.HeatExchangerWall heatExchangerWall(
     ntubes=1,
     steady_state=true,
-    L=54,
     D=0.07,
     e=0.004,
     Ns=30,
@@ -42,14 +41,14 @@ public
           644.4616292617266,644.4934994867675,644.531791236838,
           644.5773261834961,644.6312079828199,644.6949482231629,
           644.7706792525222,644.8615205623447,646.1407907783827,
-          649.404839172216,652.1510013554424}))
+          649.404839172216,652.1510013554424}),
+    L=1e4/11.46)
     annotation (Placement(transformation(extent={{-40,-36},{40,-2}}, rotation=0)));
   ThermoSysPro.WaterSteam.HeatExchangers.DynamicTwoPhaseFlowPipe
     dynamicTwoPhaseFlowPipe(
     ntubes=1,
     mode=0,
     steady_state=true,
-    L=54,
     rugosrel=0.00005,
     dpfCorr=1,
     Ns=30,
@@ -76,14 +75,15 @@ public
           2518015.7979130256,2552967.680496474,2587102.355161259,
           82548.43470391157}),
     D=0.07,
-    inertia=false)          annotation (Placement(transformation(extent={{-36,
+    inertia=false,
+    L=1e4/11.46)            annotation (Placement(transformation(extent={{-36,
             -67},{36,-20}}, rotation=0)));
   Solar.Collectors.FresnelField champThermosolaireLFR_N(
-    A=5.5e4,
-    T0=500,
     Ns=30,
     T(start=fill(500, 30)),
-    F12=0.6366)
+    F12=0.6366,
+    A=1e4,
+    T0=303)
     annotation (Placement(transformation(extent={{-40,-16},{40,72}}, rotation=0)));
   WaterSteam.BoundaryConditions.SinkP sinkP(
     h0=2000e3, P0=125e5)          annotation (Placement(transformation(extent={
@@ -106,8 +106,8 @@ public
   InstrumentationAndControl.Blocks.Sources.Rampe Q(
     Starttime=100,
     Duration=3600,
-    Finalvalue=10,
-    Initialvalue=2) annotation (Placement(transformation(extent={{-65,-32},{-51,
+    Initialvalue=2,
+    Finalvalue=3)   annotation (Placement(transformation(extent={{-65,-32},{-51,
             -19}}, rotation=0)));
 equation
   connect(champThermosolaireLFR_N.P, heatExchangerWall.WT2)
@@ -134,10 +134,10 @@ equation
 <li>Baligh El Hefni</li>
 </ul>
 </html>", info="<html>
-<p><b>Copyright &copy; EDF 2002 - 2019 </p>
-<p><b>ThermoSysPro Version 3.2 </h4>
-<p>This model is documented in Sect. 16.2.4 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>.</h4>
-<p>The results reported in the ThermoSysPro book were computed using Dymola.</h4>
+<h4>Copyright &copy; EDF 2002 - 2021 </h4>
+<h4>ThermoSysPro Version 4.0 </h4>
+<p>This model is documented in Sect. 16.2.4 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>. </p>
+<p>The results reported in the ThermoSysPro book were computed using Dymola. </p>
 </html>"),
     Icon(graphics={
         Rectangle(

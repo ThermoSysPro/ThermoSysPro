@@ -1,7 +1,7 @@
 within ThermoSysPro.Properties.Oil_TherminolVP1;
 function Temperature_k "inverse function of ThermalConductivity_t"
-  input Modelica.SIunits.ThermalConductivity k "Thermal Conductivity";
-  output Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.ThermalConductivity k "Thermal Conductivity";
+  output Units.SI.Temperature temp "Fluid temperature (K)";
 protected
     constant Real Temp_c0 = 475.2525031233294;
     constant Real Temp_c1 = 18070.362425348725;

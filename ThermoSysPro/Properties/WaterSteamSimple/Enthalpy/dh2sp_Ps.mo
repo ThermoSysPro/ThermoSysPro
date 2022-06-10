@@ -1,10 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Enthalpy;
 function dh2sp_Ps
   "Derivative of specific enthalpy wrt. specific entropy at constant pressure in vapor region for given pressure and specific entropy"
- input Modelica.SIunits.AbsolutePressure p "Pressure";
- input Modelica.SIunits.SpecificEntropy s "Specific entropy";
- output Real dhsp
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEntropy s "Specific entropy";
+  output Real dhsp
     "Derivative of specific enthalpy wrt. specific entropy at constant pressure";
+protected
   h2_Ps_coef coef annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 algorithm
 

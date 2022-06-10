@@ -2,8 +2,8 @@
 function ThermalConductivity_Ph
   "Thermal Conductivity computation for all fluids (inputs: P, h, fluid)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -12,7 +12,7 @@ function ThermalConductivity_Ph
   input Real Xo2 "O2 mass fraction";
   input Real Xso2 "SO2 mass fraction";
 
-  output Modelica.SIunits.ThermalConductivity k "Thermal Conductivity (W/m/K)";
+  output Units.SI.ThermalConductivity k "Thermal Conductivity (W/m/K)";
 protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro annotation (Placement(
         transformation(extent={{-80,40},{-40,80}}, rotation=0)));

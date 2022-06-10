@@ -1,12 +1,12 @@
 within ThermoSysPro.ElectroMechanics.BoundaryConditions;
 model SourceAngularVelocity "Angular velocity source"
-  parameter ThermoSysPro.Units.AngularVelocity_rpm N0=1400;
+  parameter ThermoSysPro.Units.nonSI.AngularVelocity_rpm N0=1400;
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
 
 public
-  Modelica.SIunits.AngularVelocity w "Angular velocity";
+  Units.SI.AngularVelocity w "Angular velocity";
 
   ThermoSysPro.ElectroMechanics.Connectors.MechanichalTorque M
     annotation (Placement(transformation(

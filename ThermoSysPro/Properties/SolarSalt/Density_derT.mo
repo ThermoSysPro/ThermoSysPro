@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.SolarSalt;
 function Density_derT
-    input Modelica.SIunits.Temperature temp "Fluid temperature (K)";
+  input Units.SI.Temperature temp "Fluid temperature (K)";
     input Real der_temp "Fluid temperature time derivative (K/s)";
     output Real der_rho "Density time derivative (kg/(m3*s))";
 protected

@@ -1,7 +1,7 @@
 within ThermoSysPro.Correlations.Misc;
 function Function_FM
   "Calculation of the correction factor for material and gauge"
-  input Modelica.SIunits.Thickness e_tubes "Weight average thickness of tubes";
+  input Units.SI.Thickness e_tubes "Weight average thickness of tubes";
   input Integer Tube_Material "Material of the tubes. 1:Cu Fe 194 - 2:Arsenical Cu - 3:Admiralty - 4:Al Brass - 5:Al Bronze - 6:Carbon Steel 
     - 7:Cu Ni 90-10 - 8:Cu Ni 70-30 - 9:SS (UNS S43035) - 10:Titanium Grades 1 & 2 - 11:SS (UNS S44660) 
     - 12:SS (UNS S44735) - 13:SS TP 304 - 14:SS TP 316/317 - 15:SS (UNS N08367)";

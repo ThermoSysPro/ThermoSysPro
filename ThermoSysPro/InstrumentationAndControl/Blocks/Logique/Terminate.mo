@@ -1,5 +1,6 @@
 within ThermoSysPro.InstrumentationAndControl.Blocks.Logique;
 block Terminate
+  parameter String message="End of simulation";
 
   ThermoSysPro.InstrumentationAndControl.Connectors.InputLogical uL
                                           annotation (Placement(transformation(
@@ -7,7 +8,7 @@ block Terminate
 algorithm
 
   when uL.signal then
-    terminate("Fin de la simulation");
+    terminate(message);
   end when;
   annotation (
     Icon(coordinateSystem(
@@ -48,7 +49,6 @@ algorithm
       width=0.6,
       height=0.6),
     Documentation(info="<html>
-<p><b>Version 1.0</b></p>
-</HTML>
-"));
+<p><b>Version 4.0</b> </p>
+</html>"));
 end Terminate;

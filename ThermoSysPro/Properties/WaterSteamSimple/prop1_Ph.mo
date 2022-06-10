@@ -1,12 +1,11 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function prop1_Ph
-  "thermodynamics properties in region 1, independent variables p and h "
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+function prop1_Ph "Thermodynamics properties in region 1, independent variables p and h"
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
  output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph pro;
-algorithm
 
+algorithm
   pro.T := ThermoSysPro.Properties.WaterSteamSimple.Temperature.T1_Ph(p, h);
   pro.d := ThermoSysPro.Properties.WaterSteamSimple.Density.d1_Ph(p, h);
   pro.u := ThermoSysPro.Properties.WaterSteamSimple.Energy.u1_Ph(p, h);

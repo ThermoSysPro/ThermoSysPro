@@ -1,6 +1,6 @@
 within ThermoSysPro.Properties.WaterSteamSimple.Validation;
 model generate_data_watersat
-  import Modelica.SIunits.*;
+  import ThermoSysPro.Units.SI.*;
   parameter Pressure p_min = 1e5;
   parameter Pressure p_max = 220e5;
   parameter Pressure delta_p(min = 1) = 20e5;

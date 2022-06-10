@@ -1,23 +1,23 @@
 within ThermoSysPro.WaterSteam.PressureLosses;
 model IdealCheckValve "Ideal check valve"
-  parameter ThermoSysPro.Units.DifferentialPressure dPOuvert=0.01
+  parameter ThermoSysPro.Units.SI.PressureDifference dPOuvert=0.01
     "Pressure difference when the valve opens";
-  parameter Modelica.SIunits.MassFlowRate Qmin=1.e-6
+  parameter Units.SI.MassFlowRate Qmin=1.e-6
     "Mass flow trhough the valve when the valve is closed";
   parameter Boolean continuous_flow_reversal=false
     "true: continuous flow reversal - false: discontinuous flow reversal";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
-  parameter Modelica.SIunits.MassFlowRate Qeps=1.e-3
+  parameter Units.SI.MassFlowRate Qeps=1.e-3
     "Small mass flow for continuous flow reversal";
 
 public
   Boolean ouvert(start=true, fixed=true) "Valve state";
   discrete Boolean touvert(start=false, fixed=true);
   discrete Boolean tferme(start=false, fixed=true);
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  ThermoSysPro.Units.DifferentialPressure deltaP
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  ThermoSysPro.Units.SI.PressureDifference deltaP
     "Pressure difference between the inlet and the outlet";
   Connectors.FluidOutlet C2         annotation (Placement(transformation(extent=
            {{90,-10},{110,10}}, rotation=0)));

@@ -1,22 +1,22 @@
 within ThermoSysPro.Properties.FlueGases;
 function FlueGases_drhodh
   "Derivative of the density wrt. the specific enthalpy at constant pressure"
-  input Modelica.SIunits.AbsolutePressure PMF "Flue gases average pressure";
-  input Modelica.SIunits.Temperature TMF "Flue gases average temperature";
+  input Units.SI.AbsolutePressure PMF "Flue gases average pressure";
+  input Units.SI.Temperature TMF "Flue gases average temperature";
   input Real Xco2 "CO2 mass fraction";
   input Real Xh2o "H2O mass fraction";
   input Real Xo2 "O2 mass fraction";
   input Real Xso2 "SO2 mass fraction";
 
-  output Modelica.SIunits.DerDensityByEnthalpy drhodh
+  output Units.SI.DerDensityByEnthalpy drhodh
     "Derivative of the density wrt. the specific enthalpy at constant pressure";
 
 protected
   ThermoSysPro.Properties.ModelicaMediaFlueGases.ThermodynamicState state;
-  Modelica.SIunits.SpecificEntropy s "Flue gases specific entropy";
-  Modelica.SIunits.Density rho "Flue gaases density";
-  Modelica.SIunits.SpecificHeatCapacity cp "Specific heat capacity";
-  Modelica.SIunits.SpecificHeatCapacity R "gas constant";
+  Units.SI.SpecificEntropy s "Flue gases specific entropy";
+  Units.SI.Density rho "Flue gaases density";
+  Units.SI.SpecificHeatCapacity cp "Specific heat capacity";
+  Units.SI.SpecificHeatCapacity R "gas constant";
 
   Real Xn2 "N2 mass fraction";
 

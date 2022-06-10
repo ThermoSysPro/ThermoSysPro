@@ -1,17 +1,18 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function region_ph
-  "return the current region (valid values: 1,2,4) for given pressure and specific enthalpy"
- input Modelica.SIunits.Pressure p "pressure";
- input Modelica.SIunits.SpecificEnthalpy h "specific enthalpy";
+function region_ph "Returns the current region (valid values: 1,2,4) for given pressure and specific enthalpy"
+  input Units.SI.Pressure p "pressure";
+  input Units.SI.SpecificEnthalpy h "specific enthalpy";
 // input Integer phase=0 "phase: 2 for two-phase, 1 for one phase";
  input Integer mode=0 "mode: 0 means check, otherwise assume region=mode";
+
  output Integer region "region (valid values: 1,2,4)";
   // If mode is different from 0, no checking for the region is done and
   // the mode is assumed to be the correct region. This can be used to
   // implement e.g. water-only steamtables when mode == 1
+
 protected
-  Modelica.SIunits.SpecificEnthalpy hl "bubble enthalpy";
-  Modelica.SIunits.SpecificEnthalpy hv "dew enthalpy";
+  Units.SI.SpecificEnthalpy hl "bubble enthalpy";
+  Units.SI.SpecificEnthalpy hv "dew enthalpy";
   Integer phase;
   Boolean supercritical;
 

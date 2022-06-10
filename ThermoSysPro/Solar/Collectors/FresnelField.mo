@@ -1,76 +1,61 @@
 within ThermoSysPro.Solar.Collectors;
-model FresnelField "FresnelField"
-  parameter Modelica.SIunits.Area A=50e4 "Aperture area of the collectors";
-  parameter Integer mode_efficency=1
-    "1:Definition of each parameter : rho, a, tau , geo. 2:Definition of the global optical efficency";
+model FresnelField "Fresnel field"
+  parameter Units.SI.Area A=10e4 "Aperture area of a train";
+  parameter Integer mode_efficency=1 "1:Definition of each parameter : rho, a, tau , geo. 2:Definition of the global optical efficency";
   parameter Real eta0=0.625 "Global optical efficency at normal irradiation";
   parameter Real rho=0.935 "Reflexivity of the primary reflector";
   parameter Real a=0.955 "Absorptivity of the collector";
   parameter Real tau=0.965 "Transmissivity of the glass envelope";
   parameter Real geo=0.725 "Geometric default factor";
   parameter Real dispo=1 "Mean disponibility of the field";
-    parameter Real clean=1 "Mean cleanliness factor";
-  parameter Modelica.SIunits.Length h=7.4 "Height of a collector";
-  parameter Modelica.SIunits.Length w=11.46 "Aperture width of a collector";
-  parameter Modelica.SIunits.Diameter D=0.07 "External tube diameter";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hc=1
-    "Heat transfer coefficient";
-  parameter Real F12=1 "View factor to surroundings,radiation heat loss";
-  parameter Real Emi=0.8 "Tube emissivity";
-  parameter Real A1=0.1598
-    "x coefficient of the linear thermal loss caracteristics Qloss=f(deltaT)";
-  parameter Real A2=0.0057
-    "x^2 coefficient of the linear thermal loss caracteristics Qloss=f(deltaT)";
-  parameter Real B0=0.995
-    "Constant coefficient of the KT caracteristics KT=f(thetaT)";
+  parameter Real clean=1 "Mean cleanliness factor";
+  parameter Units.SI.Length h=7.4 "Height of a collector";
+  parameter ThermoSysPro.Units.SI.Length Lc=44.8 "Length of a collector";
+  parameter Units.SI.Length w=11.46 "Aperture width of a collector";
+  parameter Units.SI.CoefficientOfHeatTransfer hc=1 "Heat transfer coefficient";
+  parameter Boolean thermalLossPhy=true "true: thermal loss using a physical equation - false: thermal loss using a polynomial equation f(deltaT)";
+  parameter Units.SI.Diameter D=0.07 "External tube diameter (active if thermalLossPhy=true)";
+  parameter Real F12=1 "View factor to surroundings radiation heat loss (active if thermalLossPhy=true)";
+  parameter Real Emi=0.8 "Tube emissivity (active if thermalLossPhy=true)";
+  parameter Real A1=0.1598 "x coefficient of the linear thermal loss caracteristics Qloss=f(deltaT) (active if thermalLossPhy=false)";
+  parameter Real A2=0.0057 "x^2 coefficient of the linear thermal loss caracteristics Qloss=f(deltaT) (active if thermalLossPhy=false)";
+  parameter Real B0=0.995 "Constant coefficient of the KT caracteristics KT=f(thetaT)";
   parameter Real B1=-4e-4 "x coefficient of the KT caracteristics KT=f(thetaT)";
-  parameter Real B2=-3e-5
-    "x^2 coefficient of the KT caracteristics KT=f(thetaT)";
-  parameter Real B3=1e-6
-    "x^3 coefficient of the KT caracteristics KT=f(thetaT)";
-  parameter Real B4=-5e-8
-    "x^4 coefficient of the KT caracteristics KT=f(thetaT)";
-  parameter Real B5=3e-10
-    "x^5 coefficient of the KT caracteristics KT=f(thetaT)";
+  parameter Real B2=-3e-5 "x^2 coefficient of the KT caracteristics KT=f(thetaT)";
+  parameter Real B3=1e-6 "x^3 coefficient of the KT caracteristics KT=f(thetaT)";
+  parameter Real B4=-5e-8 "x^4 coefficient of the KT caracteristics KT=f(thetaT)";
+  parameter Real B5=3e-10 "x^5 coefficient of the KT caracteristics KT=f(thetaT)";
   parameter Real B6=0 "x^6 coefficient of the KT caracteristics KT=f(thetaT)";
-  parameter Modelica.SIunits.Temperature T0= 300 "Atmospheric temperature";
+  parameter Units.SI.Temperature T0=300 "Atmospheric temperature";
   parameter Integer Ns=10 "Number of cells (sections) in the field";
-  parameter ThermoSysPro.Units.Angle_deg SunA0=90
-    "Sun azimuth angle by default";
-  parameter ThermoSysPro.Units.Angle_deg SunG0=1e-6
-    "Sun elevation angle by default";
-  parameter Modelica.SIunits.Irradiance SunDNI0=1000
-    "Direct normal irradiance by default";
+  parameter ThermoSysPro.Units.nonSI.Angle_deg SunA0=90 "Sun azimuth angle by default";
+  parameter ThermoSysPro.Units.nonSI.Angle_deg SunG0=1e-6 "Sun elevation angle by default";
+  parameter Units.SI.Irradiance SunDNI0=1000 "Direct normal irradiance by default";
+  parameter Real trackingFactor=1 "Mean sun tracking system factor";
 
 protected
   constant Real pi=Modelica.Constants.pi "pi";
   parameter Real eps=1e-6 "epsilon";
 
 public
-  Modelica.SIunits.Length L(start=44.8) "Length of a collector";
-  Modelica.SIunits.Power dPth[Ns](start=fill(80e7/Ns,Ns))
-    "Thermal Power transfered to the fluid for each section";
+  Units.SI.Length L(start=44.8) "Length of a train";
+  Units.SI.Power dPth[Ns](start=fill(80e7/Ns, Ns)) "Thermal Power transfered to the fluid for each section";
   Real ETA0(start=0.625) "Definition of efficency at normal irradiation";
   Real sin_alphaS(start=1) "Used in the definition of thetaL and thetaT";
+  ThermoSysPro.Units.nonSI.Angle_deg thetaT(start=0) "Transversal incidence angle";
+  ThermoSysPro.Units.nonSI.Angle_deg thetaL(start=0) "Longitudinal incidence angle";
   Real track "Mean sun tracking system factor";
-  Modelica.SIunits.Power Pth(start=563e6)
-    "Thermal Power transfered to the the fluid";
-  Modelica.SIunits.Power Qrec(start=625e6)
-    "Thermal Power received by the receptor";
-  Modelica.SIunits.Power Qloss(start=625e5) "Thermal loss on the receptor";
-  ThermoSysPro.Units.Angle_deg thetaT(start=0) "Transversal incidence angle";
-  ThermoSysPro.Units.Angle_deg thetaL(start=0) "Longitudinal incidence angle";
+  Units.SI.Power Pth(start=563e6) "Thermal Power transfered to the the fluid";
+  Units.SI.Power Qrec(start=625e6) "Thermal Power received by the receptor";
+  Units.SI.Power Qloss(start=625e5) "Thermal loss on the receptor";
   Real KT(start=1) "Transversal incidence modifier fonction";
   Real KL(start=1) "Longitudinal incidence modifier fonction";
-  ThermoSysPro.Units.DifferentialTemperature deltaT[Ns](start=fill(50,Ns))
-    "Mean tempertaure difference";
-  ThermoSysPro.Units.Angle_deg gammaS(start=90) "Sun azimuth angle";
-  ThermoSysPro.Units.Angle_deg alphaS(start=1e-6) "Sun elevation angle";
-  Modelica.SIunits.Irradiance DNI(start=2000) "Direct normal irradiance";
-  Modelica.SIunits.Temperature T[Ns](start=fill(300,Ns))
-    "Pipe wall Temperature ";
-  Modelica.SIunits.Power dQloss[Ns](start=fill(563e6/Ns,Ns))
-    "Thermal loss on the receptor by each cell (section)";
+  ThermoSysPro.Units.SI.TemperatureDifference deltaT[Ns](start=fill(50, Ns)) "Mean tempertaure difference";
+  ThermoSysPro.Units.nonSI.Angle_deg gammaS(start=90) "Sun azimuth angle";
+  ThermoSysPro.Units.nonSI.Angle_deg alphaS(start=1e-6) "Sun elevation angle";
+  Units.SI.Irradiance DNI(start=2000) "Direct normal irradiance";
+  Units.SI.Temperature T[Ns](start=fill(300, Ns)) "Pipe wall Temperature ";
+  Units.SI.Power dQloss[Ns](start=fill(563e6/Ns, Ns)) "Thermal loss on the receptor by each cell (section)";
 
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal SunG
     "Azimuthal angle of the sun as function of time"
@@ -121,7 +106,7 @@ equation
   end if;
 
   if (cardinality(Track) == 0) then
-    Track.signal = 1;
+    Track.signal = trackingFactor;
   end if;
 
   /* Output connectors */
@@ -132,7 +117,7 @@ equation
   for i in 1:Ns loop
     /* Power conservation + Thermal loss on the receptor */
     deltaT[i] = T[i] - T0;
-    dQloss[i] = pi*D*L/Ns*(0.5*F12*Emi*5.67e-8*(T[i]^4 - (0.0552*T0^(1.5))^4) + hc*(T[i] - T0));
+    dQloss[i] = if thermalLossPhy then pi*D*L/Ns*(0.5*F12*Emi*5.67e-8*(T[i]^4 - (0.0552*T0^(1.5))^4) + hc*(T[i] - T0)) else L/Ns*(A1*deltaT[i] + A2*deltaT[i]^2);
     dPth[i] = Qrec/Ns - dQloss[i];
   end for;
 
@@ -155,7 +140,7 @@ equation
   KT = B6*abs(thetaT)^6 + B5*abs(thetaT)^5 + B4*abs(thetaT)^4 + B3*abs(thetaT)^3 + B2*abs(thetaT)^2 + B1*abs(thetaT) + B0;
 
   /* Definition of KL */
-  KL = cos(pi*thetaL/180)*(1 - h*tan(pi*thetaL/180)/L);
+  KL = cos(pi*thetaL/180)*(1 - h*tan(pi*thetaL/180)/Lc);
 
   /* Thermal Power received by the receptor */
   Qrec = A*DNI*ETA0*KT*KL*dispo*track*clean;
@@ -222,10 +207,10 @@ equation
           fillColor={255,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
-<p><b>Copyright &copy; EDF 2002 - 2019</b></p>
-<p><b>ThermoSysPro Version 3.2</b></p>
-<p>This component model is documented in Sect. 16.2 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>. </h4>
-</html>
-", revisions="<html>
+<h4>Copyright &copy; EDF 2002 - 2021</h4>
+<h4>ThermoSysPro Version 4.0</h4>
+<p>This component model is documented in Sect. 16.2 of the <a href=\"https://www.springer.com/us/book/9783030051044\">ThermoSysPro book</a>. </p>
+</html>",
+   revisions="<html>
 </html>"));
 end FresnelField;

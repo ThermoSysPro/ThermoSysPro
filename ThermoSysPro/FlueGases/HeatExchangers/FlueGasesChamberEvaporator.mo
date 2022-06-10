@@ -1,71 +1,62 @@
 ﻿within ThermoSysPro.FlueGases.HeatExchangers;
 model FlueGasesChamberEvaporator "Flue gases chamber  for water evaporation"
-  parameter Modelica.SIunits.Area Se=400
-    "Heat exchange surface on the flue gases side";
-  parameter Modelica.SIunits.Length rugosi=1e-5 "Pipe roughness";
+  parameter Units.SI.Area Se=400 "Heat exchange surface on the flue gases side";
+  parameter Units.SI.Length rugosi=1e-5 "Pipe roughness";
   parameter Real rencrf=0.1
     "Fouling resistance on the flue gases side (m².K/m)";
   parameter Real rencrc=0.1 "Fouling resistance on the coolant side (m².K/m)";
   parameter Real FVN=0 "Ashes volume fraction";
-  parameter Modelica.SIunits.Height haut=15 "Flux wall height";
+  parameter Units.SI.Height haut=15 "Flux wall height";
   parameter Real alpha=1 "Chamber width/depth ratio";
-  parameter Modelica.SIunits.Diameter dtex=0.06 "Pipe external diameter";
-  parameter Modelica.SIunits.Diameter dtin=0.05 "Pipe internal diameter";
-  parameter Modelica.SIunits.Length lailet=0.05 "Membrane length";
-  parameter Modelica.SIunits.Length eailet=0.001 "Membrane thickness";
-  parameter Modelica.SIunits.Length ebeton=0.01 "Concrete thickness";
-  parameter Modelica.SIunits.ThermalConductivity condt=10
-    "Pipes thermal conductivity";
-  parameter Modelica.SIunits.ThermalConductivity condm=10
+  parameter Units.SI.Diameter dtex=0.06 "Pipe external diameter";
+  parameter Units.SI.Diameter dtin=0.05 "Pipe internal diameter";
+  parameter Units.SI.Length lailet=0.05 "Membrane length";
+  parameter Units.SI.Length eailet=0.001 "Membrane thickness";
+  parameter Units.SI.Length ebeton=0.01 "Concrete thickness";
+  parameter Units.SI.ThermalConductivity condt=10 "Pipes thermal conductivity";
+  parameter Units.SI.ThermalConductivity condm=10
     "Membrane thermal conductivity";
-  parameter Modelica.SIunits.ThermalConductivity condb=10
+  parameter Units.SI.ThermalConductivity condb=10
     "Concret thermal conductivity";
   parameter Real emimur=0.1 "Walls emissitivity";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer hi=10000
+  parameter Units.SI.CoefficientOfHeatTransfer hi=10000
     "Coolant heat exchange coefficient";
 
 protected
-  Modelica.SIunits.ThermalConductivity c1(start=0.1)
+  Units.SI.ThermalConductivity c1(start=0.1)
     "Variable for the computation of the flue gases thermal conductivity";
-  Modelica.SIunits.ThermalConductivity c2(start=0.1)
+  Units.SI.ThermalConductivity c2(start=0.1)
     "Variable for the computation of the flue gases thermal conductivity";
   Real bb(start=0.1e-5)
     "Variable for the computation of the friction coefficient";
 
 public
-  Modelica.SIunits.Temperature Tef(start=800)
-    "Flue gases temperature at the inlet";
-  Modelica.SIunits.Temperature Tsf(start=800)
-    "Flue gases temperature at the outlet";
-  Modelica.SIunits.AbsolutePressure Pef(start=1e5)
-    "Flue gases pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Psf(start=1e5)
-    "Flue gases pressure at the outlet";
-  Modelica.SIunits.MassFlowRate Qf(start=10) "Flue gases mass flow rate";
+  Units.SI.Temperature Tef(start=800) "Flue gases temperature at the inlet";
+  Units.SI.Temperature Tsf(start=800) "Flue gases temperature at the outlet";
+  Units.SI.AbsolutePressure Pef(start=1e5) "Flue gases pressure at the inlet";
+  Units.SI.AbsolutePressure Psf(start=1e5) "Flue gases pressure at the outlet";
+  Units.SI.MassFlowRate Qf(start=10) "Flue gases mass flow rate";
   Real XfCO2(start=0.1) "CO2 mass fraction";
   Real XfH2O(start=0.1) "H2O mass fraction";
   Real XfO2(start=0.1) "O2 mass fraction";
   Real XfN2(start=0.1) "N2 mass fraction";
   Real XfSO2(start=0.6) "SO2 mass fraction";
-  Modelica.SIunits.Power Wer(start=10e5) "Radiation power received";
-  Modelica.SIunits.Power Wech(start=1e6) "Power exchanged";
-  Modelica.SIunits.Temperature Ts(start=600)
+  Units.SI.Power Wer(start=10e5) "Radiation power received";
+  Units.SI.Power Wech(start=1e6) "Power exchanged";
+  Units.SI.Temperature Ts(start=600)
     "Average surface temperature on the flue gases side";
-  Modelica.SIunits.Temperature Tpet(start=600)
-    "Average external fin wall temperature";
-  Modelica.SIunits.AbsolutePressure Pec0(start=1e5) "Coolant pressure";
-  Modelica.SIunits.AbsolutePressure Pec(start=1e5) "Coolant pressure";
-  Modelica.SIunits.Angle anglb(start=1.5)
+  Units.SI.Temperature Tpet(start=600) "Average external fin wall temperature";
+  Units.SI.AbsolutePressure Pec0(start=1e5) "Coolant pressure";
+  Units.SI.AbsolutePressure Pec(start=1e5) "Coolant pressure";
+  Units.SI.Angle anglb(start=1.5)
     "Angle of the junction between the pipe and the membrane";
-  Modelica.SIunits.Angle angla(start=1.5)
-    "Angle of the pipe exposed to the flue gases";
+  Units.SI.Angle angla(start=1.5) "Angle of the pipe exposed to the flue gases";
   Real rtube(start=100) "Number of coressponding pipes";
-  Modelica.SIunits.Length long(start=100) "Chamber length";
-  Modelica.SIunits.Length prof(start=10) "Chamber depth";
-  Modelica.SIunits.Temperature Tc(start=800) "Coolant saturation temperature";
-  Modelica.SIunits.AbsolutePressure Pmf(start=1e5)
-    "Flue gases average pressure";
-  Modelica.SIunits.Temperature Tmf(start=800) "Flue gases average temperature";
+  Units.SI.Length long(start=100) "Chamber length";
+  Units.SI.Length prof(start=10) "Chamber depth";
+  Units.SI.Temperature Tc(start=800) "Coolant saturation temperature";
+  Units.SI.AbsolutePressure Pmf(start=1e5) "Flue gases average pressure";
+  Units.SI.Temperature Tmf(start=800) "Flue gases average temperature";
   Real Xcor(start=0.1)
     "Corrective coefficient for the flue gases mass fractions";
   Real XfH2O0(start=0.1) "H2O corrected mass fraction";
@@ -73,47 +64,44 @@ public
   Real XfO20(start=0.1) "O2 corrected mass fraction";
   Real XfSO20(start=0.1) "SO2 corrected mass fraction";
   Real XfN20(start=0.1) "N2 corrected mass fraction";
-  constant Modelica.SIunits.AbsolutePressure Pnorm=1.01325e5 "Normal pressure";
-  constant Modelica.SIunits.Temperature Tnorm=273.15 "Normal temperature";
-  Modelica.SIunits.Density rhonorm(start=100)
-    "Flue gases density at (Pnorm,Tnorm)";
-  Modelica.SIunits.ThermalConductivity condf(start=100)
+  constant Units.SI.AbsolutePressure Pnorm=1.01325e5 "Normal pressure";
+  constant Units.SI.Temperature Tnorm=273.15 "Normal temperature";
+  Units.SI.Density rhonorm(start=100) "Flue gases density at (Pnorm,Tnorm)";
+  Units.SI.ThermalConductivity condf(start=100)
     "Flue gases thermal conductivity";
-  Modelica.SIunits.SpecificHeatCapacity cpf(start=1000)
+  Units.SI.SpecificHeatCapacity cpf(start=1000)
     "Flue gases specific heat capacity";
-  Modelica.SIunits.DynamicViscosity muf(start=1e-5)
-    "Flue gases dynamic viscosity";
-  Modelica.SIunits.Density rhof(start=100) "Flue gases density";
+  Units.SI.DynamicViscosity muf(start=1e-5) "Flue gases dynamic viscosity";
+  Units.SI.Density rhof(start=100) "Flue gases density";
   Real fvd(start=0.5) "Ashes volume fraction";
-  Modelica.SIunits.Area Surf(start=50) "Flue gases cross-sectional area";
-  Modelica.SIunits.Length Perim(start=50) "Chamber perimeter";
-  Modelica.SIunits.Diameter Dh(start=50) "Chamber hydraulic diameter";
+  Units.SI.Area Surf(start=50) "Flue gases cross-sectional area";
+  Units.SI.Length Perim(start=50) "Chamber perimeter";
+  Units.SI.Diameter Dh(start=50) "Chamber hydraulic diameter";
   Real Ref(start=10000) "Reynolds number";
   Real Prf(start=1) "Prandtl number";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc(start=1)
+  Units.SI.CoefficientOfHeatTransfer hc(start=1)
     "Convection heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer hr(start=50)
+  Units.SI.CoefficientOfHeatTransfer hr(start=50)
     "Radiation heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer hf(start=50)
+  Units.SI.CoefficientOfHeatTransfer hf(start=50)
     "Global heat exchange coefficient";
-  Modelica.SIunits.Volume volumg(start=500) "Gas volume";
-  Modelica.SIunits.Area senveng(start=500) "Gas envelope surface";
-  Modelica.SIunits.Length rop(start=5)
-    "Average optical radius between the pipes";
+  Units.SI.Volume volumg(start=500) "Gas volume";
+  Units.SI.Area senveng(start=500) "Gas envelope surface";
+  Units.SI.Length rop(start=5) "Average optical radius between the pipes";
   Real Masmol(start=0.1) "Mixture molar mass";
-  Modelica.SIunits.AbsolutePressure PCO2R(start=0.5e5) "CO2 partial pressure";
-  Modelica.SIunits.AbsolutePressure PH2OR(start=0.5e5) "H2O partial pressure";
+  Units.SI.AbsolutePressure PCO2R(start=0.5e5) "CO2 partial pressure";
+  Units.SI.AbsolutePressure PH2OR(start=0.5e5) "H2O partial pressure";
   Real EG(start=0.5);
   Real ES(start=0.5);
   Real emigaz(start=0.5) "Gases emissivity";
   Real emigaz0(start=0.5) "Gases emissivity";
   Real rugos(start=0.1e-5) "Pipe roughness on the flue gases side";
   Real kfrot(start=0.05) "Pressure losses friction coefficient";
-  ThermoSysPro.Units.DifferentialPressure dpd(start=1000)
+  ThermoSysPro.Units.SI.PressureDifference dpd(start=1000)
     "Dynamical pressure losses";
-  ThermoSysPro.Units.DifferentialPressure dps(start=1000)
+  ThermoSysPro.Units.SI.PressureDifference dps(start=1000)
     "Static pressure losses";
-  ThermoSysPro.Units.DifferentialPressure Pdf(start=1000)
+  ThermoSysPro.Units.SI.PressureDifference Pdf(start=1000)
     "Total pressure losses";
   Real R1(start=0.1) "Thermal resistance";
   Real R2(start=0.1) "Thermal resistance";
@@ -136,8 +124,8 @@ public
   Real Rt(start=0.1) "Total surface thermal resistance (K/W)";
   Real U(start=50)
     "Global heat exchange coefficient per external surface unit (W/m²/K)";
-  Modelica.SIunits.Area Set(start=500) "Total external surface";
-  Modelica.SIunits.Velocity vit(start=1) "Gases veolicity";
+  Units.SI.Area Set(start=500) "Total external surface";
+  Units.SI.Velocity vit(start=1) "Gases veolicity";
 
   ThermoSysPro.FlueGases.Connectors.FlueGasesInlet C1
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}, rotation=

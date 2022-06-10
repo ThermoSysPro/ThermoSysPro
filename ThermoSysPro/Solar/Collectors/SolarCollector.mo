@@ -1,12 +1,12 @@
 ﻿within ThermoSysPro.Solar.Collectors;
 model SolarCollector "Solar Collector"
-  parameter Modelica.SIunits.Length f=1 "Focal length";
+  parameter Units.SI.Length f=1 "Focal length";
   parameter Real RimAngle=70 "Rim Angle";
-  parameter Modelica.SIunits.Length L=1 "Absorber pipe length or collector length";
+  parameter Units.SI.Length L=1 "Absorber pipe length or collector length";
   parameter Integer Ns=10 "Number of cells";
-  parameter Modelica.SIunits.Diameter DTube=0.1 "Tube diameter";
-  parameter Modelica.SIunits.Diameter DGlass=0.11 "Glass diameter";
-  parameter Modelica.SIunits.Length e=1.e-4 "Glass thickness";
+  parameter Units.SI.Diameter DTube=0.1 "Tube diameter";
+  parameter Units.SI.Diameter DGlass=0.11 "Glass diameter";
+  parameter Units.SI.Length e=1.e-4 "Glass thickness";
   parameter Real F12=1 "View factor to surroundings,radiation heat loss";
   parameter Real TauN=0.91 "Glass transmittivity at normal incidence";
   parameter Real AlphaN=0.97 "Tube absorptivity at normal incidence";
@@ -15,14 +15,13 @@ model SolarCollector "Solar Collector"
   parameter Real EpsGlass=0.86 "Glass emissivity";
   parameter Real R=0.8 "Mirror reflectivity";
   parameter Real Gamma=0.83 "Intercept factor";
-  parameter Modelica.SIunits.ThermalConductivity Lambda=0.00262
+  parameter Units.SI.ThermalConductivity Lambda=0.00262
     "Gas thermal conductivity";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer h=3.06
+  parameter Units.SI.CoefficientOfHeatTransfer h=3.06
     "Heat transfer coefficient";
-  parameter Modelica.SIunits.SpecificHeatCapacity cp_glass=720
-    "Glass heat capacity";
-  parameter Modelica.SIunits.Density rho_glass=2500 "Glass density";
-  parameter Modelica.SIunits.Temperature T0=350
+  parameter Units.SI.SpecificHeatCapacity cp_glass=720 "Glass heat capacity";
+  parameter Units.SI.Density rho_glass=2500 "Glass density";
+  parameter Units.SI.Temperature T0=350
     "Initial temperature (active if steady_state=false)";
   parameter Boolean steady_state=true
     "true: start from steady state - false: start from T0";
@@ -34,31 +33,27 @@ protected
 public
   Real PhiSun(start=1) "Radiation flux";
   Real Theta(start=0) "Incidence angle";
-  Modelica.SIunits.Temperature Twall[Ns](start=fill(350,Ns))
-    "Pipe wall temperature";
-  Modelica.SIunits.Temperature Tatm(start=300) "Atmospheric temperature";
+  Units.SI.Temperature Twall[Ns](start=fill(350, Ns)) "Pipe wall temperature";
+  Units.SI.Temperature Tatm(start=300) "Atmospheric temperature";
   Real WTube[Ns](start=fill(1,Ns)) "Flux to the pipe";
-  Modelica.SIunits.Area AReflector(start=1) "Reflector surface";
-  Modelica.SIunits.Area AGlass(start=1) "Glass surface";
-  Modelica.SIunits.Area ATube(start=1) "Pipe surface";
-  Modelica.SIunits.Mass dM(start=1) "Glass mass";
+  Units.SI.Area AReflector(start=1) "Reflector surface";
+  Units.SI.Area AGlass(start=1) "Glass surface";
+  Units.SI.Area ATube(start=1) "Pipe surface";
+  Units.SI.Mass dM(start=1) "Glass mass";
   Real OptEff(start=1) "Optical efficiency";
   Real IAM(start=1) "Incidence angle modifier";
   Real TauAlphaN(start=1) "Transmittivity-absorptivity factor";
-  Modelica.SIunits.Power WRadWall[Ns](start=fill(0,Ns)) "Radiation of the wall";
-  Modelica.SIunits.Power WConvWall[Ns](start=fill(0,Ns))
-    "Convection of the wall";
-  Modelica.SIunits.Power WCondWall[Ns](start=fill(0,Ns))
-    "Conduction of the wall";
-  Modelica.SIunits.Power WRadGlass[Ns](start=fill(0,Ns))
+  Units.SI.Power WRadWall[Ns](start=fill(0, Ns)) "Radiation of the wall";
+  Units.SI.Power WConvWall[Ns](start=fill(0, Ns)) "Convection of the wall";
+  Units.SI.Power WCondWall[Ns](start=fill(0, Ns)) "Conduction of the wall";
+  Units.SI.Power WRadGlass[Ns](start=fill(0, Ns))
     "Radiation of the glass layer";
-  Modelica.SIunits.Power WConvGlass[Ns](start=fill(0,Ns))
+  Units.SI.Power WConvGlass[Ns](start=fill(0, Ns))
     "Convection of the glass layer";
-  Modelica.SIunits.Power WAbsGlass[Ns](start=fill(0,Ns))
+  Units.SI.Power WAbsGlass[Ns](start=fill(0, Ns))
     "Absorption of the glass layer";
-  Modelica.SIunits.Temperature Tsky(start=300) "Sky temperature";
-  Modelica.SIunits.Temperature Tglass[Ns](start=fill(300,Ns))
-    "Glass temperature";
+  Units.SI.Temperature Tsky(start=300) "Sky temperature";
+  Units.SI.Temperature Tglass[Ns](start=fill(300, Ns)) "Glass temperature";
   //Modelica.SIunits.Power WW ;
 
   ThermoSysPro.InstrumentationAndControl.Connectors.InputReal ISun

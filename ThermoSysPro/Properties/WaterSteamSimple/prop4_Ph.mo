@@ -1,34 +1,28 @@
 within ThermoSysPro.Properties.WaterSteamSimple;
-function prop4_Ph
-  "thermodynamics properties in region 4, independent variables p and h "
-  input Modelica.SIunits.AbsolutePressure p "Pressure";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+function prop4_Ph "Thermodynamics properties in region 4, independent variables p and h "
+  input Units.SI.AbsolutePressure p "Pressure";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
 
   output ThermoSysPro.Properties.WaterSteamSimple.ThermoProperties_ph pro;
 
 protected
-  Modelica.SIunits.SpecificEnthalpy h1sat
-    "Specific enthalpy at liquid saturation";
-  Modelica.SIunits.SpecificEnthalpy h2sat
-    "Specific enthalpy at vapor saturation";
-  Modelica.SIunits.Temperature T1sat "Temperature at liquid saturation";
-  Modelica.SIunits.Temperature T2sat "Temperature at vapor saturation";
-  Modelica.SIunits.Density d1sat "Density at liquid saturation";
-  Modelica.SIunits.Density d2sat "Density at vapor saturation";
-  Modelica.SIunits.SpecificEnergy u1sat
-    "Specific inner energy at liquid saturation";
-  Modelica.SIunits.SpecificEnergy u2sat
-    "Specific inner energy at vapor saturation";
-  Modelica.SIunits.SpecificEntropy s1sat
-    "Specific entropy at liquid saturation";
-  Modelica.SIunits.SpecificEntropy s2sat "Specific entropy at vapor saturation";
-  Modelica.SIunits.SpecificHeatCapacity cp1sat
+  Units.SI.SpecificEnthalpy h1sat "Specific enthalpy at liquid saturation";
+  Units.SI.SpecificEnthalpy h2sat "Specific enthalpy at vapor saturation";
+  Units.SI.Temperature T1sat "Temperature at liquid saturation";
+  Units.SI.Temperature T2sat "Temperature at vapor saturation";
+  Units.SI.Density d1sat "Density at liquid saturation";
+  Units.SI.Density d2sat "Density at vapor saturation";
+  Units.SI.SpecificEnergy u1sat "Specific inner energy at liquid saturation";
+  Units.SI.SpecificEnergy u2sat "Specific inner energy at vapor saturation";
+  Units.SI.SpecificEntropy s1sat "Specific entropy at liquid saturation";
+  Units.SI.SpecificEntropy s2sat "Specific entropy at vapor saturation";
+  Units.SI.SpecificHeatCapacity cp1sat
     "Specific heat capacity at liquid saturation";
-  Modelica.SIunits.SpecificHeatCapacity cp2sat
+  Units.SI.SpecificHeatCapacity cp2sat
     "Specific heat capacity at vapor saturation";
-  Modelica.SIunits.DerDensityByPressure dd1satp
+  Units.SI.DerDensityByPressure dd1satp
     "Derivate of density at liquid saturation wrt. pressure";
-  Modelica.SIunits.DerDensityByPressure dd2satp
+  Units.SI.DerDensityByPressure dd2satp
     "Derivative of density at vapor saturation wrt. pressure";
   Real du1satp(unit="m3/kg")
     "Derivative of specific inner energy at liquid saturation wrt. pressure";
@@ -40,7 +34,7 @@ protected
     "Derivative of specific enthalpy at liquid saturation wrt. pressure";
   Real dh2satp(unit="m3/kg")
     "Derivative of specific enthalpy at vapor saturation wrt. pressure";
-  ThermoSysPro.Units.MassFraction x "Vapor mass fraction";
+  ThermoSysPro.Units.SI.MassFraction x "Vapor mass fraction";
 
 algorithm
   h1sat := ThermoSysPro.Properties.WaterSteamSimple.Enthalpy.h1sat_P(p);
@@ -56,8 +50,7 @@ algorithm
   d2sat := ThermoSysPro.Properties.WaterSteamSimple.Density.d2_Ph(p, h2sat);
   u2sat := ThermoSysPro.Properties.WaterSteamSimple.Energy.u2_Ph(p, h2sat);
   s2sat := ThermoSysPro.Properties.WaterSteamSimple.Entropy.s2_Ph(p, h2sat);
-  cp2sat := ThermoSysPro.Properties.WaterSteamSimple.HeatCapacity.cp2_Ph(p,
-    h2sat);
+  cp2sat := ThermoSysPro.Properties.WaterSteamSimple.HeatCapacity.cp2_Ph(p, h2sat);
 
   x :=(h - h1sat)/(h2sat - h1sat);
   pro.x := x;

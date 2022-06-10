@@ -1,6 +1,6 @@
 within ThermoSysPro.Examples.SimpleExamples;
 model TestDynamicWaterHeating
-  parameter ThermoSysPro.Units.Cv CvmaxWater(fixed=false,start=68.5297)
+  parameter ThermoSysPro.Units.xSI.Cv CvmaxWater(fixed=false, start=68.5297)
     "Maximum CV (active if mode_caract=0)";
   parameter Real LambdaPipe(fixed=false,start=0.003003)
     "Friction pressure loss coefficient (active if lambda_fixed=true)";

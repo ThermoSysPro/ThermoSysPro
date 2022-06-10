@@ -2,9 +2,9 @@ within ThermoSysPro.WaterSteam.BoundaryConditions;
 model PlugB "Plug"
 
 public
-  Modelica.SIunits.AbsolutePressure P "Fluid pressure";
-  Modelica.SIunits.MassFlowRate Q "Mass flow rate";
-  Modelica.SIunits.SpecificEnthalpy h "Fluid specific enthalpy";
+  Units.SI.AbsolutePressure P "Fluid pressure";
+  Units.SI.MassFlowRate Q "Mass flow rate";
+  Units.SI.SpecificEnthalpy h "Fluid specific enthalpy";
 
   Connectors.FluidInlet C
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}}, rotation=

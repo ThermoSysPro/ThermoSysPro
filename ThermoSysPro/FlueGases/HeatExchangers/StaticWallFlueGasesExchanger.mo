@@ -3,25 +3,24 @@ model StaticWallFlueGasesExchanger "Static wall/flue gases exchanger"
   parameter Integer Ns=1 "Number of segments";
   parameter Integer NbTub=100 "Number of pipes";
   parameter Real DPc=0 "Pressure loss coefficient";
-  parameter Modelica.SIunits.Length L=2 "Exchanger length";
-  parameter Modelica.SIunits.Diameter Dext=0.022 "External pipe diameter";
-  parameter Modelica.SIunits.PathLength step_L=0.033 "Longitudinal length step";
-  parameter Modelica.SIunits.PathLength step_T=0.066 "Transverse length step";
-  parameter Modelica.SIunits.Area St=100 "Cross-sectional area";
-  parameter Modelica.SIunits.Area Surf_ext=pi*Dext*Ls*NbTub*CSailettes
+  parameter Units.SI.Length L=2 "Exchanger length";
+  parameter Units.SI.Diameter Dext=0.022 "External pipe diameter";
+  parameter Units.SI.PathLength step_L=0.033 "Longitudinal length step";
+  parameter Units.SI.PathLength step_T=0.066 "Transverse length step";
+  parameter Units.SI.Area St=100 "Cross-sectional area";
+  parameter Units.SI.Area Surf_ext=pi*Dext*Ls*NbTub*CSailettes
     "Heat exchange surface for one section";
   parameter Real Encras=1.00 "Corrective term for the heat exchange coefficient";
   parameter Real Fa=0.7 "Fouling factor (0.3 - 1.1)";
-  parameter Modelica.SIunits.MassFlowRate Qmin=1e-3
-    "Minimum flue gases mass flow rate";
+  parameter Units.SI.MassFlowRate Qmin=1e-3 "Minimum flue gases mass flow rate";
   parameter Integer exchanger_type=1
     "Exchanger type - 1:crossed flux - 2:longitudinal flux";
-  parameter Modelica.SIunits.Temperature Tp0=500
+  parameter Units.SI.Temperature Tp0=500
     "Wall temperature (active if the thermal connector is not connected)";
   parameter Real CSailettes=1
     "Increase factor of the heat exchange surface to to the fins";
   parameter Real Coeff=1 "Corrective coeffeicient";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
 
 protected
   parameter Real eps=1.e-1
@@ -32,36 +31,33 @@ protected
   constant Real Mn2=28.014 "N2 molar mass";
   constant Real Mso2=64.063 "SO2 molar mass";
   constant Real pi=Modelica.Constants.pi;
-  constant Modelica.SIunits.Acceleration g=Modelica.Constants.g_n
-    "Gravity constant";
-  parameter Modelica.SIunits.PathLength Ls=L/Ns "Section length";
-  parameter Modelica.SIunits.Area Surf_tot=Ns*Surf_ext
-    "Total heat exchange surface";
-  parameter Modelica.SIunits.Area Sgaz=St*(1 - Dext/step_T)
-    "Geometrical parameter";
+  constant Units.SI.Acceleration g=Modelica.Constants.g_n "Gravity constant";
+  parameter Units.SI.PathLength Ls=L/Ns "Section length";
+  parameter Units.SI.Area Surf_tot=Ns*Surf_ext "Total heat exchange surface";
+  parameter Units.SI.Area Sgaz=St*(1 - Dext/step_T) "Geometrical parameter";
   parameter Real PasLD=step_L/Dext "Geometrical parameter";
   parameter Real PasTD=step_T/Dext "Geometrical parameter";
   parameter Real Optl=ThermoSysPro.Correlations.Misc.WBCorrectiveDiameterCoefficient(PasTD,PasLD,Dext)
     "Geometrical parameter";
-  parameter Modelica.SIunits.Length Deq=4*Sgaz/Perb
+  parameter Units.SI.Length Deq=4*Sgaz/Perb
     "Equivalent diameter for longitudinal flux";
-  parameter Modelica.SIunits.Length Perb=Surf_ext/Ls "Geometrical parameter";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Kdef=50
+  parameter Units.SI.Length Perb=Surf_ext/Ls "Geometrical parameter";
+  parameter Units.SI.CoefficientOfHeatTransfer Kdef=50
     "Heat exchange coefficient in case of zero flow";
 
 public
-  Modelica.SIunits.Density rho(start=1) "Flue gases density";
-  Modelica.SIunits.Temperature T[Ns + 1](start=fill(900, Ns + 1))
+  Units.SI.Density rho(start=1) "Flue gases density";
+  Units.SI.Temperature T[Ns + 1](start=fill(900, Ns + 1))
     "Flue gases temperature at the inlet of section i";
-  Modelica.SIunits.Temperature Tm[Ns](start=fill(900, Ns))
+  Units.SI.Temperature Tm[Ns](start=fill(900, Ns))
     "Average flue gases temperature in section i";
-  Modelica.SIunits.SpecificEnthalpy h[Ns + 1](start=fill(1e6, Ns + 1))
+  Units.SI.SpecificEnthalpy h[Ns + 1](start=fill(1e6, Ns + 1))
     "Flue gases specific enthalpy at the inlet of section i";
-  Modelica.SIunits.Temperature Tp[Ns](start=fill(500, Ns)) "Wall temperature";
-  Modelica.SIunits.AbsolutePressure Pe(start=1e5)
+  Units.SI.Temperature Tp[Ns](start=fill(500, Ns)) "Wall temperature";
+  Units.SI.AbsolutePressure Pe(start=1e5)
     "Flue gases partial pressure at the inlet";
-  Modelica.SIunits.AbsolutePressure Pco2 "CO2 partial pressure";
-  Modelica.SIunits.AbsolutePressure Ph2o "H2O partial pressure";
+  Units.SI.AbsolutePressure Pco2 "CO2 partial pressure";
+  Units.SI.AbsolutePressure Ph2o "H2O partial pressure";
   Real Xh2o "H2O mass fraction";
   Real Xco2 "CO2 mass fraction";
   Real Xn2 "N2 mass fraction";
@@ -70,23 +66,23 @@ public
   Real Xvo2 "O2 volume fraction";
   Real Xvn2 "N2 volume fraction";
   Real Xvso2 "SO2 volume fraction";
-  Modelica.SIunits.MassFlowRate Q(start=1) "Flue gases mass flow rate";
-  Modelica.SIunits.CoefficientOfHeatTransfer K(start=0)
+  Units.SI.MassFlowRate Q(start=1) "Flue gases mass flow rate";
+  Units.SI.CoefficientOfHeatTransfer K(start=0)
     "Total heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer Kc(start=0)
+  Units.SI.CoefficientOfHeatTransfer Kc(start=0)
     "Convective heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer Kr(start=0)
+  Units.SI.CoefficientOfHeatTransfer Kr(start=0)
     "Radiative heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer Kcc[Ns](start=fill(0, Ns))
+  Units.SI.CoefficientOfHeatTransfer Kcc[Ns](start=fill(0, Ns))
     "Intermedaite variable for the computation of the convective heat exchange coefficient";
-  Modelica.SIunits.CoefficientOfHeatTransfer Krr[Ns](start=fill(0, Ns))
+  Units.SI.CoefficientOfHeatTransfer Krr[Ns](start=fill(0, Ns))
     "Intermedaite variable for the computation of the radiative heat exchange coefficient";
-  Modelica.SIunits.Power dW[Ns](start=fill(0, Ns))
+  Units.SI.Power dW[Ns](start=fill(0, Ns))
     "Power exchange between the wall and the fluid in each section";
-  Modelica.SIunits.Power W(start=0) "Total power exchanged";
-  ThermoSysPro.Units.DifferentialTemperature DeltaT[Ns](start=fill(50, Ns))
+  Units.SI.Power W(start=0) "Total power exchanged";
+  ThermoSysPro.Units.SI.TemperatureDifference DeltaT[Ns](start=fill(50, Ns))
     "Temperature difference between the fluid and the wall";
-  Modelica.SIunits.Temperature TFilm[Ns] "Film temperature";
+  Units.SI.Temperature TFilm[Ns] "Film temperature";
   Real Mmt "Total flue gases molar mass";
 
 public

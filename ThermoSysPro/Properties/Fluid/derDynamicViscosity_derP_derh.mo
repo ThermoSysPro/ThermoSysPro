@@ -2,8 +2,8 @@
 function derDynamicViscosity_derP_derh
   "Dynamic Viscosity computation for all fluids (inputs: P, h, fluid)"
 
-  input Modelica.SIunits.AbsolutePressure P "Pressure (Pa)";
-  input Modelica.SIunits.SpecificEnthalpy h "Specific enthalpy";
+  input Units.SI.AbsolutePressure P "Pressure (Pa)";
+  input Units.SI.SpecificEnthalpy h "Specific enthalpy";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -20,15 +20,14 @@ function derDynamicViscosity_derP_derh
 
   output Real der_mu "Dynamic Viscosity time derivative";
 
-    constant Real Viscosity_c0 = 0.07551475951333098;
-    constant Real Viscosity_c1 = - 0.00027760397992950003;
-    constant Real Viscosity_c2 = 0.00000034888693;
-    constant Real Viscosity_c3 = - 0.00000000014739999;
-
 protected
-  Modelica.SIunits.Duration dt=1;
-  Modelica.SIunits.AbsolutePressure delta_P = 0.001*P;
-  Modelica.SIunits.SpecificEnthalpy delta_h = 0.001*h;
+  constant Real Viscosity_c0 = 0.07551475951333098;
+  constant Real Viscosity_c1 = - 0.00027760397992950003;
+  constant Real Viscosity_c2 = 0.00000034888693;
+  constant Real Viscosity_c3 = - 0.00000000014739999;
+  Units.SI.Duration dt=1;
+  Units.SI.AbsolutePressure delta_P=0.001*P;
+  Units.SI.SpecificEnthalpy delta_h=0.001*h;
 
 protected
   ThermoSysPro.Properties.WaterSteam.Common.ThermoProperties_ph pro annotation (Placement(

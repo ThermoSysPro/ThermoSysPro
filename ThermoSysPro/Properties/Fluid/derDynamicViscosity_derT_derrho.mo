@@ -2,8 +2,8 @@
 function derDynamicViscosity_derT_derrho
   "Dynamic Viscosity computation for all fluids"
 
-  input Modelica.SIunits.Density rho "Density";
-  input Modelica.SIunits.Temperature T "Temperature";
+  input Units.SI.Density rho "Density";
+  input Units.SI.Temperature T "Temperature";
   input Integer fluid
     "<html>Fluid number: <br>1 - Water/Steam <br>2 - C3H3F5 <br>3 - FlueGases <br>4 - MoltenSalt <br>5 - Oil <br>6 - DryAirIdealGas <br>7 - WaterSteamSimple </html>";
   input Integer mode "IF97 region - 0:automatic computation";
@@ -20,6 +20,7 @@ function derDynamicViscosity_derT_derrho
 
   output Real der_mu "Dynamic Viscosity time derivative";
 
+protected
   constant Real Viscosity_c0 = 0.07551475951333098;
   constant Real Viscosity_c1 = - 0.00027760397992950003;
   constant Real Viscosity_c2 = 0.00000034888693;
@@ -33,13 +34,7 @@ algorithm
   // Water/Steam  /// FONCTIONNE EN DIPHASIQUE ???
   //if fluid==1 then
 
-
-
-
     //der_mu := 0.0;
-
-
-
 
   // C3H3F5
   // elseif fluid==2 then

@@ -2,15 +2,15 @@ within ThermoSysPro.WaterSteam.Junctions;
 model MassFlowMultiplier "Mass flow multipliier"
   parameter Real alpha=2 "Flow multiplier";
   parameter Integer fluid=1 "1: water/steam - 2: C3H3F5";
-  parameter Modelica.SIunits.Density p_rho=0 "If > 0, fixed fluid density";
+  parameter Units.SI.Density p_rho=0 "If > 0, fixed fluid density";
   parameter Integer mode=0
     "IF97 region. 1:liquid - 2:steam - 4:saturation line - 0:automatic";
 
 public
-  Modelica.SIunits.AbsolutePressure P(start=10e5) "Fluid pressure";
-  Modelica.SIunits.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
-  Modelica.SIunits.Temperature T "Fluid temperature";
-  Modelica.SIunits.Density rho(start=998) "Fluid density";
+  Units.SI.AbsolutePressure P(start=10e5) "Fluid pressure";
+  Units.SI.SpecificEnthalpy h(start=10e5) "Fluid specific enthalpy";
+  Units.SI.Temperature T "Fluid temperature";
+  Units.SI.Density rho(start=998) "Fluid density";
 
 public
   Connectors.FluidInlet Ce

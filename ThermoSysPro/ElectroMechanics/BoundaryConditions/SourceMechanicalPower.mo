@@ -1,6 +1,6 @@
 within ThermoSysPro.ElectroMechanics.BoundaryConditions;
 model SourceMechanicalPower "Mechanical power source"
-  parameter Modelica.SIunits.Power W0=150000;
+  parameter Units.SI.Power W0=150000;
 
   ThermoSysPro.ElectroMechanics.Connectors.MechanichalTorque M
     annotation (Placement(transformation(
