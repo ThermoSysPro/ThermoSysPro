@@ -12,6 +12,10 @@ ThermoSysPro has been mainly designed for the modeling and simulation of thermal
 
 Current release of ThermoSysPro is v4.0.
 
+## Compatibilities
+
+ThermoSysPro v4.0 is developed on Dymola using MSL 4.0.
+
 ## Documentation, book and website
 
 The library documentation is available at [https://thermosyspro.gitlab.io/documentation](https://thermosyspro.gitlab.io/documentation).\
