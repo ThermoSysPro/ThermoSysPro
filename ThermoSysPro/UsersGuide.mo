@@ -1159,7 +1159,8 @@ action. This section shall survive the termination of this License.</p>
   end ThermoSysProDocumentation;
   annotation (DocumentationClass=true, Documentation(info="<html>
 <p><b><span style=\"font-size: 12pt; color: #008000;\">Users Guide of the ThermoSysPro Library</span></b></p>
-<p>ThermoSysPro is a library for the modelling and simulation of power plants and energy systems. It is developed with the Modelica language from the <a href=\"http://www.Modelica.org\">Modelica Association</a>. It provides components in various disciplines related to the modelling of power plants and energy systems. </h4>
+<p>ThermoSysPro is a library for the modelling and simulation of power plants and energy systems. It is developed with the Modelica language from the <a href=\"http://www.Modelica.org\">Modelica Association</a>. It provides components in various disciplines related to the modelling of power plants and energy systems.</p>
+<p> See <a href='https://thermosyspro.gitlab.io/documentation/'> the online documentation</a> (to be updated soon). </h4>
 </html>"),
     Icon(graphics={
         Ellipse(
