@@ -1,9 +1,0 @@
-TestDynamicTwoPhaseFlowPipe
-TestDynamicOnePhaseFlowShell
-DynamicWaterHeater
-TestSimpleDynamicCondenser
-TestDynamicCondenser
-TestNTUWaterHeater
-TestDynamicPlateHeatExchanger
-TestStaticPlateHeatExchanger
-TestStaticCondenser
